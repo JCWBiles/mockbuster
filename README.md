@@ -1,4 +1,4 @@
-# mockbuster
+# Mockbuster
 
 ## We are making our version of BlockBuster called MockBuster it is a place to rent/buy movies digitally (no VHS/CD’s here).
 ```
@@ -34,6 +34,7 @@ So user can review their films they can like or dislike.
 ```
 So user can decide if they want the film they can watch a preview/trailer.
 ```
+
 ### Bonus user story
 ```
 So user can watch a film in the highest quality they can select a HD version of the film.
@@ -41,6 +42,7 @@ So user can watch a film in the highest quality they can select a HD version of 
 ```
 So user can decide how long they want the film they can select duration.
 ```
+
 ## Tools used in this project
 It uses:
 - [Express](https://expressjs.com/) web framework for Node.js.
@@ -55,7 +57,9 @@ It uses:
 - [bCrypt](https://www.npmjs.com/package/bcrypt) for our password security.
 - [MethodOverride](https://www.npmjs.com/package/method-override) to allow a subclass or child class to provide a specific implementation of a method that is already provided by one of its superclasses or parent classes.
 - [Flash](https://www.npmjs.com/package/express-flash-messages) to prompt the user messages when features are tested.
+
 ## Card Wall
+https://trello.com/b/ZD7sr84I/mockbuster
 
 ## Quickstart
 
@@ -93,21 +97,33 @@ PostgreSQL provides a built-in interface, called psql. It's a command-line tool 
 psql also adds a couple of commands on top of SQL, for interacting with the database system.
 PostgreSQL also provides one built-in database, called postgres.
 To start psql, type psql <database name> into a Terminal, where <database name> is the name of the database you want to interact with. So, typing psql postgres will give us direct access to that first database:
-```
-$ psql postgres
-postgres=#
-```
+    ```
+    $ psql postgres
+    postgres=#
+    ```
+1. node-postgres  
+Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native libpq bindings.
+Install
+    ```
+    $ npm install pg
+    ```
 1. Create a database using SQL
-Now that we're in the psql REPL environment, let's create a database using SQL. Databases need a name, so we'll use the same name as our computer:
-postgres=# CREATE DATABASE "your_user_name_here";
+Now that we're in the psql REPL environment, let's create a database using SQL:
+    ```
+    postgres=# CREATE DATABASE "database_name_here";
+    ```
 The semicolon is important! SQL is an old language. You've got to end lines with semicolons.
 1. Listing all database tables
 You can use one of psql's special non-SQL commands to list databases:
-postgres=# \l
+    ```
+    postgres=# \l
+    ```
 You can see the database you made, the given postgres database, and some template databases Postgres needs.
 1. Quitting psql
 You can leave psql in the following way:
-postgres=# \q
+    ```
+    postgres=# \q
+    ```
 
 ### Start
 
