@@ -41,3 +41,17 @@ So user can watch a film in the highest quality they can select a HD version of 
 ```
 So user can decide how long they want the film they can select duration.
 ```
+## Tools used in this project
+It uses:
+- [Express](https://expressjs.com/) web framework for Node.js.
+- [Nodemon](https://nodemon.io/) to reload the server automatically.
+- [Handlebars](https://handlebarsjs.com/) to render view templates.
+- [Postgres](https://www.postgresql.org/) to manage the database.
+- [ESLint](https://eslint.org) for checking syntax and rule following.
+- [Jest](https://jestjs.io/) for testing.
+- [Cypress](https://www.cypress.io/) for end-to-end testing.
+- [Bootstrap](https://getbootstrap.com) for css.
+- [FontAwesome](https://fontawesome.com) for css.
+- [bCrypt](https://www.npmjs.com/package/bcrypt) for our password security.
+- [MethodOverride](https://www.npmjs.com/package/method-override) to allow a subclass or child class to provide a specific implementation of a method that is already provided by one of its superclasses or parent classes.
+- [Flash](https://www.npmjs.com/package/express-flash-messages) to prompt the user messages when features are tested.
