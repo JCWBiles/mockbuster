@@ -19,8 +19,8 @@ var db = require('./queries')
 var filmRouter = require('./routes/films');
 var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
-// // var authRouter = require('./routes/auth');
-// var filmRouter = require('./routes/films');
+var authRouter = require('./routes/auth');
+
 var port = 3000
 
 var app = express()
@@ -47,7 +47,8 @@ app.use('/films', filmRouter);
 //   response.json({ info: 'Node.js, Express, and Postgres API - Testing Mockbuster' })
 // })
 app.use('/user', userRouter);
-// // app.use('/auth', authRouter);
+app.use('/login', authRouter);
+app.use('/auth', authRouter);
 // // // app.use('/account', accountRouter);
 // // // app.use(methodOverride('_method'));
 app.get('/films/:id', db.getFilmById)
@@ -78,7 +79,7 @@ app.listen(port, () => {
 // //   saveUninitialized: false,
 // //   store: new MongoStore({ mongooseConnection: db })
 // // }));
-// app.use(flash())
+app.use(flash());
 
 
 // catch 404 and forward to error handler

@@ -25,14 +25,20 @@ var UserController = {
     })
   },
 
+  Login: function(req, res) {
+    res.status(201).render('login/index');
+  },
+
   Authenticate: function(req, res) {
-    User.findOne({email: req.body.email}, function(err,user){
-      if (user) {
-        bcrypt.compare(req.body.password, user.password, function (err, result) {
+    var { email } = req.body.email
+    pool.query('SELECT * FROM users WHERE email = $1', [email], (error, users) => {
+      
+      if (users) {
+        bcrypt.compare(req.body.password, users.password, function (err, result) {
           if (result == true) {
-            req.session.userId = user._id;
+            req.session.userId = users.id;
             console.log(req.session.userId)
-            res.redirect('/main');
+            res.redirect('/films');
           }
           else {
             console.log('wrong password');
@@ -41,11 +47,11 @@ var UserController = {
           }
         })
       }
-      else {
+      else{
         console.log('wrong email');
         res.status(201).redirect('/')
       }
-    });
+    })
   },
 
   Logout: function(req, res) {

@@ -1,6 +1,7 @@
 var pg= require('pg');
 // var db = require('./config');
 var db = require('../config');
+var bcrypt = require('bcrypt');
 
 var config = {
   user: 'student',
@@ -22,7 +23,14 @@ var createUser = () => {
     created_on DATE NOT NULL DEFAULT CURRENT_DATE,
     payment_id INTEGER REFERENCES payments(id),
     film_id INTEGER REFERENCES films(id));`;
-    pool.query(films)
+    bcrypt.compare(password, users.password, function(err, result){
+      if (result === true) {
+        return callback(null, users);
+      } else{
+        return callback();
+      }
+    })
+    pool.query(users)
     .then((res) => {
       console.log(res);
       pool.end();
@@ -30,6 +38,7 @@ var createUser = () => {
     .catch((err) => {
       console.log(err);
       pool.end();
+
     });
 
 
