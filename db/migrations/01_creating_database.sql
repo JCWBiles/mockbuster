@@ -1,1 +1,2 @@
-CREATE DATABASE mockbusters;
+CREATE DATABASE mockbuster;
+CREATE DATABASE mockbuster_test;
