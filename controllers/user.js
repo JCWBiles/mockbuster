@@ -1,33 +1,28 @@
 var User = require('../models/user');
 var bcrypt = require('bcrypt');
 
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: 'student',
+  host: 'localhost',
+  database: 'mockbuster_test',
+  port: 5432,
+})
 var UserController = {
   Index: function(req, res) {
-    res.render('user/index', { title: 'Sign Up'});
+    res.status(201).render('user/index');
   },
+
 
   Create: function(req, res) {
-    var user = new User({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email: req.body.email,
-      password: req.body.password,
-
-    });
-  console.log(req.body.firstname);
-  console.log(req.body.email);
-  console.log(req.body._id);
-    user.save(function(err) {
-      if (err) { throw err; }
-      else {
-        req.session.userId = user._id;
-        res.status(201).redirect('/main')
+    var { first_name, last_name, email, password } = req.body
+    pool.query('INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)', [first_name, last_name, email, password], (error, result) => {
+      if (error) {
+        throw error
       }
-    });
-  },
-
-  New: function(req, res) {
-    res.render('user/new', {});
+      res.status(201).redirect('/films')
+      // res.status(200).json(results.rows)
+    })
   },
 
   Authenticate: function(req, res) {

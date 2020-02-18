@@ -27,12 +27,14 @@
     "path": "^0.12.7",
     "pg": "^7.18.1",
     "pg-connection-string": "^2.1.0",
-    "pg-pool": "^2.0.10"
+    "pg-pool": "^2.0.10",
+    "process-env": "^1.1.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "npm run lint && npm run test:unit && npm run test:integration",
     "start": "nodemon ./bin/www",
+    "start:test": "PORT=3030 DB_URL='postgres://localhost/mockbuster_test' npm start",
     "test:unit": "jest",
     "test:integration": "cypress run"
   },

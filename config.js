@@ -8,7 +8,7 @@
 //
 // var pool = new Pool({
 //   connectionString: isTest ? process.env.DATABASE_URL : connectionString,
-//   ssl: isTest,
+//   ssl: disable,
 // })
 //
 // module.exports = { pool }

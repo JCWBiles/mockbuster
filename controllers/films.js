@@ -1,49 +1,21 @@
 var Films = require('../models/films');
 
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: 'student',
+  host: 'localhost',
+  database: 'mockbuster_test',
+  port: 5432,
+})
 var FilmsController = {
   Index: function(req, res) {
 
-    pool.query('SELECT * FROM films', (error, res) => {
+    pool.query('SELECT * FROM films ORDER BY id ASC', (error, results) => {
       if (error) {
         throw error
       }
-      res.render('films/index', { films: films });
-      console.log('films showing!');
+      res.status(200).json(results.rows)
     })
-  },
-
-  Genre1: function(req, res) {
-
-    pool.query("SELECT * FROM films  WHERE 'Thriller' = ANY ('genres')", (error, res) => {
-      if (error) {
-        throw error
-      }
-      res.render('films/index', { films: films });
-      console.log('films showing!');
-    })
-  },
-
-  Genre2: function(req, res) {
-
-    pool.query("SELECT * FROM films  WHERE 'Drama' = ANY ('genres')", (error, res) => {
-      if (error) {
-        throw error
-      }
-      res.render('films/drama', { films: films });
-      console.log('films showing!');
-    })
-  },
-
-  Genre3: function(req, res) {
-
-    pool.query("SELECT * FROM films  WHERE 'Action' = ANY ('genres')", (error, res) => {
-      if (error) {
-        throw error
-      }
-      res.render('films/index', { films: films });
-      console.log('films showing!');
-    })
-  },
-}
-
+  }
+};
 module.exports = FilmsController;
