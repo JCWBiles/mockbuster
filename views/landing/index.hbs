@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>MockBuster</title>
+  
   </head>
   <body>
     <h1>Welcome to MockBuster!!!!!!!!</h1>
@@ -10,11 +11,12 @@
     <a href="/user">Sign up</a> <br>
     <a href="/login">Login</a>
     {{#each films}}
-    <div class="each-event">
-      <div class="event-description">
-        <li style="color: black;">{{this.name}}</li>
+    <div>
+      <div>
+        <li style="color: black;">Name: {{name}}</li>
       </div>
     </div>
     {{/each}}
+
   </body>
 </html>

@@ -1,4 +1,4 @@
-var Films = require('../models/films');
+var films = require('../models/films');
 
 const Pool = require('pg').Pool
 const pool = new Pool({

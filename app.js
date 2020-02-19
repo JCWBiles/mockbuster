@@ -13,9 +13,9 @@ var flash = require('express-flash-messages');
 var bcrypt = require('bcrypt');
 var cors = require('cors');
 var connectionString = require('pg-connection-string');
+var crypto = require('crypto');
+var db = require('./queries');
 
-
-var db = require('./queries')
 var filmRouter = require('./routes/films');
 var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
