@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap:100,200,300,400,500,600,700|Nunito&display=swap:100,200,300,400,500,600,700');
+/* I have imported the font I want here in CSS to save repetion. I put it here the once and it will save me putting it in every html file */
+
+/*I have chosen Raleway as it is angular enough to reflect/mirror the lightening bolts but soft enough to welcome you to the site.
+I have chosen Nunito as it is a soft compliment towards Raleway*/
+
+body {
+    width: 100%;
+    overflow-x: hidden
+}
+
+.limit {
+    max-width: 600px;
+    overflow: hidden;
+}
+
+/*---------------------------------------------------heading*/
+
+header {
+    margin: 0;
+}
+
+.logo {
+    background: url("/images/blockbuster.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 200px;
+    transition: all .5s ease-in-out;
+    /* the above line - a little bit of animation for when the image is loading */
+    -moz-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    /* the above 2 lines - need to add the broswer prefixes & vendor prefixes (-moz- & -webkit-) to make sure it works in all broswers */
+}
+
+.header-container {
+    padding-left: 0;
+    padding-right: 0;
+    /* this is so the header container which houses the logo and navbar fills the screen horizontally */
+    font-family: "Raleway", sans-serif;
+    font-weight: 100;
+}
+
+/*---------------------------------------------------callout*/
+
+.background-jumbotron {
+    background: url("/images/background.jpg") no-repeat bottom left fixed;
+}
+
+.callout-container {
+    height: 100vh;
+
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.opaque-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*---------------------------------------------------jumbotron*/
+
+.jumbotron {
+    background-color: transparent;
+}
+
+.jumbotron-header {
+    color: #628cb7;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: #000 0px 0px 1px;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 30px;
+    font-family: "Raleway", sans-serif;
+}
+
+.jumbotron .lead {
+    font-family: "Nunito", sans-serif;
+    font-size: 1.40rem;
+    font-weight: 300;
+    color: #b4b9bd;
+}
+
+.jumbotron small {
+    font-size: 90%;
+    font-weight: 500;
+    color: White;
+}
+
+/*---------------------------------------------------modal*/
+
+.modal-content {
+    font-family: "Nunito", sans-serif;
+    background-color: rgb(79, 206, 206);
+}
+
+.modal-header {
+    display: inline-block;
+    font-weight: 300;
+}
+
+/*---------------------------------------------------buttons*/
+
+.btn--cta {
+    font-weight: bold;
+    border-radius: 23px;
+    width: 250px;
+    margin: 2px;
+    font-family: "Raleway", sans-serif;
+}
+
+.btn--teal {
+    color: white;
+    background-color: #07a5a5;
+    border-color: #07a5a5;
+}
+
+.btn--teal:hover,
+.btn--teal:active,
+.btn--teal:focus,
+.btn--teal:active:focus {
+    background-color: #088484;
+    border-color: #088484;
+}
+
+/*---------------------------------------------------block dividers*/
+
+.block-divider-container {}
+
+.block-divider {
+    width: 50px;
+    height: 5px;
+    border: 0;
+    background-color: #07a5a5;
+    margin-top: 53px;
+    flex: auto;
+}
+
+.block-divider--logo {
+    background: url("/images/blockbuster.png");
+    /* background-color: white; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 220px;
+    min-width: 2200px;
+    /* border-radius: 50%; */
+}
+
+/*---------------------------------------------------section headers*/
+
+.section-header {
+    margin-bottom: 0;
+    border-bottom: 0;
+    text-align: center;
+}
+
+.section-header h2 {
+    font-family: "Raleway", sans-serif;
+    margin-top: 0;
+}
+
+.quotes .section-header {
+    margin-bottom: 25px;
+}
+
+/*---------------------------------------------------form*/
+
+.form-background {
+    background-color: #fff;
+    margin: 100px;
+}
+
+/*---------------------------------------------------artists*/
+
+.artists-container {}
+
+/*.artists-container img {
+    border-radius: 4px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+}*/
+
+/*---------------------------------------------------about*/
+
+.about-container {
+    font-family: "Nunito", sans-serif;
+    margin: 20px 0;
+}
+
+/*---------------------------------------------------quotes & Q&A*/
+
+.quotes-container {
+    font-family: "Nunito", sans-serif;
+    margin: 20px 0;
+}
+
+.quotes-container .carousel-indicators li {
+    background-color: black;
+}
+
+.carousel {
+    padding: 25px 60px;
+}
+
+.carousel-control-next i {
+    color: black;
+    padding-top: 60px;
+}
+
+.fa-angle-right:before {
+    font-size: xx-large;
+}
+
+.carousel-control-prev i {
+    color: black;
+    padding-top: 60px;
+}
+
+.fa-angle-left:before {
+    font-size: xx-large;
+}
+
+.quotes-container .col-sm-8 {
+    padding: 15px 15px;
+}
+
+.quotes-container .col-sm-10 {
+    padding: 15px 15px;
+}
+
+/*---------------------------------------------------gallery*/
+
+.gallery-container {
+    background-color: #fff;
+    color: #35373a;
+    min-height: 100vh;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+
+.tz-gallery {
+    padding: 40px;
+}
+
+.tz-gallery .lightbox img {
+    width: 100%;
+    margin-bottom: 30px;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+.tz-gallery .lightbox img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tz-gallery img {
+    border-radius: 4px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    max-height: 400px;
+    max-width: 400px;
+}
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
+
+@media(max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .container.gallery-container {
+        border-radius: 0;
+    }
+}
+
+/*---------------------------------------------------guest*/
+
+.guest-container {}
+
+.guest-container li {
+    font-size: 50px;
+}
+
+/*---------------------------------------------------footer*/
+
+.footer-container {
+    padding: 20px;
+    background-color: #525252;
+    color: #fafafa;
+    min-height: 120px;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 100;
+}
+
+.footer-container i {
+    padding-right: 10px;
+}
+
+.footer-container li {
+    font-size: larger
+}
+
+.footer-container ul {
+    margin: 0;
+}
+
+/*---------------------------------------------------note*/
+
+.Note {
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    background-color: orange;
+    text-align: center;
+    letter-spacing: 2px;
+}

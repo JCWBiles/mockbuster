@@ -22,7 +22,7 @@ var createUser = () => {
     created_on DATE NOT NULL DEFAULT CURRENT_DATE,
     payment_id INTEGER REFERENCES payments(id),
     film_id INTEGER REFERENCES films(id));`;
-    pool.query(films)
+    pool.query(users)
     .then((res) => {
       console.log(res);
       pool.end();

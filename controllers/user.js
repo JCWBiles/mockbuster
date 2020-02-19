@@ -25,6 +25,10 @@ var UserController = {
     })
   },
 
+  Login: function(req, res) {
+    res.status(201).render('login/index');
+  },
+
   Authenticate: function(req, res) {
     User.findOne({email: req.body.email}, function(err,user){
       if (user) {

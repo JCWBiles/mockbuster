@@ -15,11 +15,11 @@ var cors = require('cors');
 var connectionString = require('pg-connection-string');
 
 
-var db = require('./queries')
+var db = require('./queries');
 var filmRouter = require('./routes/films');
 var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
-// // var authRouter = require('./routes/auth');
+var authRouter = require('./routes/auth');
 // var filmRouter = require('./routes/films');
 var port = 3000
 
@@ -35,7 +35,11 @@ app.use(
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, './public')));
 
 // route setup
 
@@ -47,7 +51,8 @@ app.use('/films', filmRouter);
 //   response.json({ info: 'Node.js, Express, and Postgres API - Testing Mockbuster' })
 // })
 app.use('/user', userRouter);
-// // app.use('/auth', authRouter);
+app.use('/login', authRouter);
+app.use('/auth', authRouter);
 // // // app.use('/account', accountRouter);
 // // // app.use(methodOverride('_method'));
 app.get('/films/:id', db.getFilmById)
