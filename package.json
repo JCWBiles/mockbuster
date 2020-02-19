@@ -1,0 +1,50 @@
+{
+  "name": "mockbuster",
+  "version": "1.0.0",
+  "description": "## We are making our version of BlockBuster called MockBuster it is a place to rent/buy movies digitally (no VHS/CD’s here). ``` So user can join the MockBuster community thety will be able to sign up. ``` ``` So user can view their accounts they can sign in. ``` ``` So user can keep their accounts safe they can log out. ``` ``` So user can see a range of movies they are able to see the library. ``` ``` So user can keep their details up to date they can edit their account. ``` ``` So user can review their selected items they can use the basket. ``` ``` So user can purchase or rent their items they can checkout. ``` ``` So user can be sure they signed up correctly and see purchases they receive emails. ``` ``` So user can find their fave films they can use the search function. ``` ``` So user can review their films they can like or dislike. ``` ``` So user can decide if they want the film they can watch a preview/trailer. ```",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^3.0.8",
+    "config": "^3.2.5",
+    "connect-pg-simple": "^6.1.0",
+    "cookie-parser": "^1.4.4",
+    "cypress": "^4.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-flash-messages": "^0.1.1",
+    "express-session": "^1.17.0",
+    "handlebars": "^4.7.3",
+    "http-errors": "^1.7.3",
+    "jest": "^25.1.0",
+    "method-override": "^3.0.0",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7",
+    "pg": "^7.18.1",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^7.0.0",
+    "eslint": "^6.8.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "babel app.js --out-dir build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JCWBiles/mockbuster.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JCWBiles/mockbuster/issues"
+  },
+  "homepage": "https://github.com/JCWBiles/mockbuster#readme"
+}
