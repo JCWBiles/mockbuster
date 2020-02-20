@@ -13,14 +13,14 @@ var flash = require('express-flash-messages');
 var bcrypt = require('bcrypt');
 var cors = require('cors');
 var connectionString = require('pg-connection-string');
-
-
+var crypto = require('crypto');
 var db = require('./queries');
+
 var filmRouter = require('./routes/films');
 var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
-// var filmRouter = require('./routes/films');
+
 var port = 3000
 
 var app = express()
@@ -43,8 +43,6 @@ app.use(express.static(path.join(__dirname, './public')));
 
 // route setup
 
-
-
 app.use('/', landingRouter);
 app.use('/films', filmRouter);
 // app.get('/', (request, response) => {
@@ -61,29 +59,7 @@ app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
 
-
-
-// //use sessions for tracking logins
-// // var db = mongoose.connection;
-// app.use(session({
-//   secret: 'work hard',
-//   resave: true,
-//   saveUninitialized: false
-// }));
-//
-// app.use(logger('dev'));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-// // app.use(cors());
-// // app.use(session({
-// //   secret: 'work harder',
-// //   resave: true,
-// //   saveUninitialized: false,
-// //   store: new MongoStore({ mongooseConnection: db })
-// // }));
-// app.use(flash())
+app.use(flash());
 
 
 // catch 404 and forward to error handler

@@ -1,5 +1,7 @@
-var User = require('../models/user');
+var users = require('../models/user');
 var bcrypt = require('bcrypt');
+var saltCount = 10;
+
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -14,12 +16,36 @@ var UserController = {
   },
 
 
-  Create: function(req, res) {
-    var { first_name, last_name, email, password } = req.body
-    pool.query('INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)', [first_name, last_name, email, password], (error, result) => {
+  Create: async (req, res) => {
+    var { first_name, last_name, email, password } = req.body;
+    let hashedPassword = await bcrypt.hash(password, 10)
+    pool.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ('${first_name}','${last_name}', '${email}', '${hashedPassword}')`, (error, result) => {
+      console.log(first_name)
+      console.log(last_name)
+      console.log(email)
+      console.log(password)
       if (error) {
         throw error
       }
+
+      var api_key = 'YOUR API KEY';
+      var domain = 'YOUR DOMAIN';
+      var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+      var data = {
+        from: 'Excited User <your email>',
+        to: req.body.email,
+        subject: 'Hello',
+        text: 'Testing some Mailgun awesomeness!'
+      };
+
+      mailgun.messages().send(data, function (error, body) {
+        if (error){
+          console.log(error);
+        }
+        console.log(body);
+      });
+
       res.status(201).redirect('/films')
       // res.status(200).json(results.rows)
     })
@@ -29,27 +55,22 @@ var UserController = {
     res.status(201).render('login/index');
   },
 
-  Authenticate: function(req, res) {
-    User.findOne({email: req.body.email}, function(err,user){
-      if (user) {
-        bcrypt.compare(req.body.password, user.password, function (err, result) {
-          if (result == true) {
-            req.session.userId = user._id;
-            console.log(req.session.userId)
-            res.redirect('/main');
+  Authenticate: async function (req, res) {
+    var  { email, password } = req.body;
+
+    var foundUser = await pool.query(`SELECT * FROM users WHERE email = '${email}'`);
+      console.log(email)
+      var compare = await(bcrypt.compare(password, foundUser.rows[0]['password']))
+          if (compare === true) {
+            res.cookie('email', foundUser.rows[0]['email'])
+
+            res.redirect('/films');
           }
           else {
             console.log('wrong password');
 
             res.status(201).redirect('/')
           }
-        })
-      }
-      else {
-        console.log('wrong email');
-        res.status(201).redirect('/')
-      }
-    });
   },
 
   Logout: function(req, res) {
