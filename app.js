@@ -16,7 +16,6 @@ var connectionString = require('pg-connection-string');
 var crypto = require('crypto');
 var db = require('./queries');
 
-
 var filmRouter = require('./routes/films');
 var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
@@ -33,15 +32,11 @@ app.use(
   })
 )
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-
 // route setup
-
-
 
 app.use('/', landingRouter);
 app.use('/films', filmRouter);
@@ -55,11 +50,9 @@ app.use('/auth', authRouter);
 // // // app.use(methodOverride('_method'));
 app.get('/films/:id', db.getFilmById)
 
-
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
-
 
 
 // //use sessions for tracking logins
@@ -82,6 +75,7 @@ app.use(cors());
 // //   saveUninitialized: false,
 // //   store: new MongoStore({ mongooseConnection: db })
 // // }));
+
 app.use(flash());
 
 

@@ -9,5 +9,4 @@ router.post('/', UserController.Create);
 router.get('/login', UserController.Login);
 router.get('/login/:_id', UserController.Authenticate);
 
-
 module.exports = router;

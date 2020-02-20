@@ -1,8 +1,6 @@
 var users = require('../models/user');
 var bcrypt = require('bcrypt');
 var saltCount = 10;
-
-
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'student',
@@ -14,8 +12,6 @@ var UserController = {
   Index: function(req, res) {
     res.status(201).render('user/index');
   },
-
-
   Create: async (req, res) => {
     var { first_name, last_name, email, password } = req.body;
     let hashedPassword = await bcrypt.hash(password, 10)
@@ -50,29 +46,23 @@ var UserController = {
       // res.status(200).json(results.rows)
     })
   },
-
   Login: function(req, res) {
     res.status(201).render('login/index');
   },
-
   Authenticate: async function (req, res) {
     var  { email, password } = req.body;
-
     var foundUser = await pool.query(`SELECT * FROM users WHERE email = '${email}'`);
       console.log(email)
       var compare = await(bcrypt.compare(password, foundUser.rows[0]['password']))
           if (compare === true) {
             res.cookie('email', foundUser.rows[0]['email'])
-
             res.redirect('/films');
           }
           else {
             console.log('wrong password');
-
             res.status(201).redirect('/')
           }
   },
-
   Logout: function(req, res) {
     console.log(req.session.userId)
     req.session.destroy(function(err){
@@ -87,5 +77,4 @@ var UserController = {
     });
   }
 };
-
 module.exports = UserController;
