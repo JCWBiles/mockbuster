@@ -15,44 +15,6 @@ var UserController = {
     res.status(201).render('user/index');
   },
 
-//   Create: function(req, res) {
-//     bcrypt.genSalt(10, function(err, salt) {
-//     bcrypt.hash(req.password), 10, function(err, hash) {
-//       if (err) {
-//         return next(err);
-//       }
-//       users.password = hash;
-//       next();
-//       var { first_name, last_name, email, password } = req.body
-//       pool.query('INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)', [first_name, last_name, email, password], (err, res) => {
-//         if (err) {
-//           throw err
-//         }
-//         else {
-//           res.status(201).redirect('/films')
-//         }
-//     })
-//   }
-// })
-// },
-
-// Create: function(req, res, email, password) {
-//
-//   bcrypt.genSalt(saltCount, function(err, salt) {
-//             bcrypt.hash(password, salt, function(err, hash) {
-//               var { first_name, last_name, email, password } = req.body
-//                 pool.query('INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)', [first_name, last_name, email, password], (err, res) => {
-//                   if (err) {
-//                         throw err
-//                       }
-//                       else {
-//                         res.status(201).redirect('/films')
-//                       }
-//
-//                 })
-//             });
-//         });
-// },
 
   Create: async (req, res) => {
     var { first_name, last_name, email, password } = req.body;
@@ -65,6 +27,25 @@ var UserController = {
       if (error) {
         throw error
       }
+
+      var api_key = 'YOUR API KEY';
+      var domain = 'YOUR DOMAIN';
+      var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+      var data = {
+        from: 'Excited User <your email>',
+        to: req.body.email,
+        subject: 'Hello',
+        text: 'Testing some Mailgun awesomeness!'
+      };
+
+      mailgun.messages().send(data, function (error, body) {
+        if (error){
+          console.log(error);
+        }
+        console.log(body);
+      });
+
       res.status(201).redirect('/films')
       // res.status(200).json(results.rows)
     })
@@ -74,21 +55,15 @@ var UserController = {
     res.status(201).render('login/index');
   },
 
-  Authenticate: async (req, res) => {
+  Authenticate: async function (req, res) {
     var  { email, password } = req.body;
 
-    var foundUser = pool.query(`SELECT * FROM users WHERE email = '${email}'`, (error, users) => {
+    var foundUser = await pool.query(`SELECT * FROM users WHERE email = '${email}'`);
       console.log(email)
+      var compare = await(bcrypt.compare(password, foundUser.rows[0]['password']))
+          if (compare === true) {
+            res.cookie('email', foundUser.rows[0]['email'])
 
-
-      if (users) {
-        console.log(users)
-        var compare = await(bcrypt.compare(password, foundUser.rows[0]['password']), function (err, result) {
-          if (compare == true) {
-            console.log(result)
-            res.session('email', foundUser.rows[0]['email'])
-            // req.session.userId = users.id;
-            // console.log(req.session.userId)
             res.redirect('/films');
           }
           else {
@@ -96,14 +71,6 @@ var UserController = {
 
             res.status(201).redirect('/')
           }
-        })
-      }
-
-      else{
-        console.log('wrong email');
-        res.status(201).redirect('/')
-      }
-    })
   },
 
   Logout: function(req, res) {

@@ -1,7 +1,4 @@
 var pg= require('pg');
-// var db = require('./config');
-var db = require('../config');
-
 var config = {
   user: 'student',
   host: 'localhost',
