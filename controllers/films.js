@@ -1,4 +1,4 @@
-var films = require('../models/films');
+var Films = require('../models/films');
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -14,8 +14,21 @@ var FilmsController = {
       if (error) {
         throw error
       }
-      res.status(200).json(results.rows)
+      res.render('films/index', { films:results })
+      // res.status(200).json(results.rows)
+    })
+  },
+
+  Horror: function(req, res) {
+
+    pool.query(`SELECT * FROM films WHERE 'Horror' = ANY ("genres")`, (error, results) => {
+      if (error) {
+        throw error
+      }
+      res.render('films/horror', { films:results })
+      // res.status(200).json(results.rows)
     })
   }
+
 };
 module.exports = FilmsController;

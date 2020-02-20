@@ -1,5 +1,5 @@
-var express = require('express')
-var bodyParser = require('body-parser')
+var express = require('express');
+var bodyParser = require('body-parser');
 var createError = require('http-errors');
 var path = require('path');
 var handlebars = require('handlebars');
@@ -11,12 +11,13 @@ var pg_store = require('connect-pg-simple');
 var methodOverride = require('method-override');
 var flash = require('express-flash-messages');
 var bcrypt = require('bcrypt');
-var cors = require('cors');
+// var cors = require('cors');
 var connectionString = require('pg-connection-string');
-var crypto = require('crypto');
+// var crypto = require('crypto');
 var db = require('./queries');
 
 var filmRouter = require('./routes/films');
+// var horrorRouter = require('./routes/films/horror')
 var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
@@ -40,6 +41,7 @@ app.set('view engine', 'hbs');
 
 app.use('/', landingRouter);
 app.use('/films', filmRouter);
+app.use('/films/horror', filmRouter);
 // app.get('/', (request, response) => {
 //   response.json({ info: 'Node.js, Express, and Postgres API - Testing Mockbuster' })
 // })
@@ -48,7 +50,7 @@ app.use('/login', authRouter);
 app.use('/auth', authRouter);
 // // // app.use('/account', accountRouter);
 // // // app.use(methodOverride('_method'));
-app.get('/films/:id', db.getFilmById)
+// app.get('/films/:id', db.getFilmById)
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
@@ -68,7 +70,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+// app.use(cors());
 // // app.use(session({
 // //   secret: 'work harder',
 // //   resave: true,
