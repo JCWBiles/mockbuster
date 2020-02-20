@@ -28,23 +28,23 @@ var UserController = {
         throw error
       }
 
-      var api_key = 'YOUR API KEY';
-      var domain = 'YOUR DOMAIN';
-      var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
-      var data = {
-        from: 'Excited User <your email>',
-        to: req.body.email,
-        subject: 'Hello',
-        text: 'Testing some Mailgun awesomeness!'
-      };
-
-      mailgun.messages().send(data, function (error, body) {
-        if (error){
-          console.log(error);
-        }
-        console.log(body);
-      });
+      // var api_key = 'YOUR API KEY';
+      // var domain = 'YOUR DOMAIN';
+      // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+      //
+      // var data = {
+      //   from: 'Excited User <your email>',
+      //   to: req.body.email,
+      //   subject: 'Hello',
+      //   text: 'Testing some Mailgun awesomeness!'
+      // };
+      //
+      // mailgun.messages().send(data, function (error, body) {
+      //   if (error){
+      //     console.log(error);
+      //   }
+      //   console.log(body);
+      // });
 
       res.status(201).redirect('/films')
       // res.status(200).json(results.rows)
