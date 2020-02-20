@@ -14,7 +14,7 @@ var FilmsController = {
       if (error) {
         throw error
       }
-      res.status(200).json(results.rows)
+      res.render('films/index', { films: results })
     })
   }
 };
