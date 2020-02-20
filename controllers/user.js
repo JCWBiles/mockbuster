@@ -23,6 +23,7 @@ var UserController = {
       if (error) {
         throw error
       }
+
     //   var api_key = 'YOUR API KEY';
     //   var domain = 'YOUR DOMAIN';
     //   var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});

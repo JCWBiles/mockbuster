@@ -35,11 +35,6 @@ app.use(
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, './public')));
 
 // route setup
 
@@ -58,6 +53,28 @@ app.get('/films/:id', db.getFilmById)
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+
+
+// //use sessions for tracking logins
+// // var db = mongoose.connection;
+// app.use(session({
+//   secret: 'work hard',
+//   resave: true,
+//   saveUninitialized: false
+// }));
+//
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
+// // app.use(session({
+// //   secret: 'work harder',
+// //   resave: true,
+// //   saveUninitialized: false,
+// //   store: new MongoStore({ mongooseConnection: db })
+// // }));
 
 app.use(flash());
 
