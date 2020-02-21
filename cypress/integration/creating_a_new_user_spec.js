@@ -2,9 +2,9 @@ describe('Sign up page', function() {
   it('users can sign up', function() {
     cy.visit('/user')
     cy.get('form')
-    cy.get('input[name=firstname]').type('John')
+    cy.get('input[name=first_name]').type('John')
       .should('have.value', 'John');
-    cy.get('input[name=lastname]').type('Doe')
+    cy.get('input[name=last_name]').type('Doe')
       .should('have.value', 'Doe');
     cy.get('input[name=email]').type('j.doe@email.com')
       .should('have.value', 'j.doe@email.com');

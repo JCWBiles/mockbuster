@@ -17,7 +17,6 @@ var connectionString = require('pg-connection-string');
 var db = require('./queries');
 
 var filmRouter = require('./routes/films');
-// var horrorRouter = require('./routes/films/horror')
 var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
@@ -41,7 +40,23 @@ app.set('view engine', 'hbs');
 
 app.use('/', landingRouter);
 app.use('/films', filmRouter);
+app.use('/films/action', filmRouter);
+app.use('/films/biopic', filmRouter);
+app.use('/films/comedy', filmRouter);
+app.use('/films/crime', filmRouter);
+app.use('/films/drama', filmRouter);
+app.use('/films/fantasy', filmRouter);
+app.use('/films/history', filmRouter);
 app.use('/films/horror', filmRouter);
+app.use('/films/kids', filmRouter);
+app.use('/films/legal', filmRouter);
+app.use('/films/musical', filmRouter);
+app.use('/films/romance', filmRouter);
+app.use('/films/sports', filmRouter);
+app.use('/films/sports', filmRouter);
+app.use('/films/superhero', filmRouter);
+app.use('/films/thriller', filmRouter);
+app.use('/films/war', filmRouter);
 app.use('/films/a_to_e', filmRouter);
 app.use('/films/f_to_j', filmRouter);
 app.use('/films/k_to_o', filmRouter);
@@ -75,7 +90,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 // app.use(cors());
 // // app.use(session({
 // //   secret: 'work harder',
