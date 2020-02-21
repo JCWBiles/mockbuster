@@ -11,21 +11,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
         <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
 
-        <title>MockBuster - Library</title>
+        <title>MockBuster - Account</title>
 </head>
 
 <body>
+  {{#each users.rows}}
 
     <!-- Header -->
     <header>
-      {{#each films.rows}}
-    <div class="each-event">
 
-      <div class="event-description">
-        <li style="color: black;">{{@index}} : {{this.name}}</li>
-      </div>
-    </div>
-    {{/each}}
       <div class="container-fluid header-container">
           <div class="row no-gutters">
               <a class="col-md-2 logo" href="/"></a>
@@ -91,12 +85,10 @@
                                                 <p>{{this.name}}</p>
                                                 <p>£ {{this.price}}</p>
                                             </div>
-                                            <hr>
                                             {{/each}}
-                                            <p>Subtotal: £</p
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn--teal btn-primary" value="Go to Checkout" />
+                                        <button type="button" class="btn btn--teal btn-primary">Send message</button>
                                     </div>
                                 </div>
                             </div>
@@ -121,94 +113,126 @@
   </header>
   <!-- /.Header -->
 
-    <!-- Callout -->
 
-    <div class="container-fluid background-jumbotron callout-container">
-        <div class="opaque-overlay">&nbsp;</div>
-        <div class="row">
-          <div class="tz-gallery">
-            <div class="row">
-              <!-- Callout - Bad Boys -->
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" data-toggle="modal" data-target="#movie">
-                <img src="/images/movies/badBoys.jpg" alt="badBoys">
-                <div class="modal fade" id="movie" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="movieLabel"><b>Bad Boys</b></h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                              <form>
-                                  <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Enter your email address here:</label>
-                                      <input type="text" class="form-control" id="recipient-name">
+
+
+  <div class="each-event" style="padding-left:20px;">
+
+    <h1>Account Details</h1>
+<br>
+  <div class="event-description">
+    <p style="color: black;">First Name: {{this.first_name}}</p>
+    <!-- Header - basket and model -->
+
+                        <a class="nav-link" data-toggle="modal" data-target="#edit1" style=""><span class="fa-lg"><i class="fas fas fa-edit"><span></i></a>
+                        <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
                                   </div>
-                                  <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Enter your phone number here:</label>
-                                      <input type="text" class="form-control" id="recipient-name">
+                                  <div class="modal-body">
+                                    <form style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                      <input type="hidden" name="_method" value="PATCH" />
+                                      <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Edit your first name:</label>
+                                          <input type="text" class="form-control" id="recipient-name" value="{{this.first_name}}">
+                                      </div>
+
                                   </div>
-                              </form>
-                          </div>
-                          <div>
-                            <h4><span>Trailer</span></h4>
-                            <iframe height="150" width="300" src="https://www.youtube.com/watch?v=Xm12NSa8jsM" allowfullscreen frameborder="0"></iframe>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn--teal btn-primary">Send message</button>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                                  </div>
+                                  </form>
+                              </div>
                           </div>
                       </div>
-                  </div>
-              </div>
-            </a>
-                </div>
-              <!-- /Callout - /Bad Boys -->
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" href="#">
-                <img src="/images/movies/bridgetJonesDiary.jpg" alt="bridgetJonesDiary">
-            </a>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" href="#">
-                <img src="/images/movies/deadpool.jpg" alt="deadpool">
-            </a>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" href="#">
-                <img src="/images/movies/elite.jpg" alt="elite">
-            </a>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" href="#">
-                <img src="/images/movies/hustlers.jpg" alt="hustlers">
-            </a>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" href="#">
-                <img src="/images/movies/theFaultInOurStars.png" alt="theFaultInOurStars">
-            </a>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                  <a class="lightbox" href="#">
-              <img src="/images/movies/theNotebook.jpg" alt="theNotebook">
-          </a>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                  <a class="lightbox" href="#">
-              <img src="/images/movies/theSocialNetwork.jpeg" alt="theSocialNetwork">
-          </a>
-              </div>
-            </div>
-        </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Callout -->
 
+      <!-- /Header - /basket and model -->
+
+    <br>
+    <p style="color: black;">Last Name: {{this.last_name}}</p>
+    <!-- Header - basket and model -->
+
+                        <a class="nav-link" data-toggle="modal" data-target="#edit2"><span class="fa-lg"><i class="fas fas fa-edit"></i></span></a>
+                        <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                      <input type="hidden" name="_method" value="PATCH" />
+                                      <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Edit your last name:</label>
+                                          <input type="text" class="form-control" id="recipient-name" value="{{this.last_name}}">
+                                      </div>
+
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                                  </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+
+      <!-- /Header - /basket and model -->
+
+    <br>
+
+    <p style="color: black;">Email: {{this.email}}</p>
+    <!-- Header - basket and model -->
+
+                        <a class="nav-link" data-toggle="modal" data-target="#edit3"><span class="fa-lg"><i class="fas fas fa-edit"></i></span></a>
+                        <div class="modal fade" id="edit3" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                      <input type="hidden" name="_method" value="PATCH" />
+                                      <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Edit your email address:</label>
+                                          <input type="text" class="form-control" id="recipient-name" value="{{this.email}}">
+                                      </div>
+
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                                  </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+
+      <!-- /Header - /basket and model -->
+
+    <br>
+
+    <br>
+    <form style = "display: inline; float: right; margin-top: -20px;, text-align: center;" action="/account/delete/{{this.id}}" method="post">
+      <input type="hidden" name="_method" value="DELETE" />
+      <input type="submit" value="Delete Account" />
+    </form>
+  </div>
+  </div>
+  {{/each}}
     <!-- Footer -->
     <footer class="container-fluid footer-container text-center">
         <div class="col-12">
