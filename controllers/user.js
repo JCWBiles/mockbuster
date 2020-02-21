@@ -1,6 +1,7 @@
 var users = require('../models/user');
 var bcrypt = require('bcrypt');
 var saltCount = 10;
+
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'student',
