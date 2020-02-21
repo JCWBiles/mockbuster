@@ -27,14 +27,14 @@ var UserController = {
       var api_key = '7ba6aad5e239a8c93f7b79df83407788-7238b007-da9e5fd4';
       var domain = 'sandbox27eb7d6811164f6785ce70de1b4509ea.mailgun.org';
       var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-    
+
       var data = {
         from: 'MockBuster <jcbiles@outloook.com>',
         to: req.body.email,
         subject: 'Hello',
         text: 'Testing some Mailgun awesomeness!'
       };
-    
+
       mailgun.messages().send(data, function (error, body) {
         if (error){
           console.log(error);
@@ -64,17 +64,9 @@ var UserController = {
           }
   },
   Logout: function(req, res) {
-    console.log(req.session.userId)
-    req.session.destroy(function(err){
-      if(err){
-        console.log(err);
-        throw err;
-      }
-      else
-      {
-        res.status(201).redirect('/');
-      }
-    });
+    res.clearCookie('email', foundUser.rows[0]['email']);
+    req.session.destroy();
+    res.status(201).redirect('/');
   }
 };
 module.exports = UserController;
