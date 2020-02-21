@@ -42,6 +42,12 @@ app.set('view engine', 'hbs');
 app.use('/', landingRouter);
 app.use('/films', filmRouter);
 app.use('/films/horror', filmRouter);
+app.use('/films/a_to_e', filmRouter);
+app.use('/films/f_to_j', filmRouter);
+app.use('/films/k_to_o', filmRouter);
+app.use('/films/p_to_t', filmRouter);
+app.use('/films/u_to_z', filmRouter);
+app.use('/films/zero_to_nine', filmRouter);
 // app.get('/', (request, response) => {
 //   response.json({ info: 'Node.js, Express, and Postgres API - Testing Mockbuster' })
 // })
