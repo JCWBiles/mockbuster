@@ -21,6 +21,8 @@ var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
 
+var checkoutRouter = require('./routes/checkout');
+
 var port = 3000
 
 var app = express()
@@ -69,6 +71,7 @@ app.use('/films/zero_to_nine', filmRouter);
 app.use('/user', userRouter);
 app.use('/login', authRouter);
 app.use('/auth', authRouter);
+app.use('/checkout', checkoutRouter);
 // // // app.use('/account', accountRouter);
 // // // app.use(methodOverride('_method'));
 // app.get('/films/:id', db.getFilmById)
