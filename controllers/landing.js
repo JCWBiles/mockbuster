@@ -1,7 +1,5 @@
-
 var films = require('../models/films');
 var flash = require('express-flash-messages');
-
 
 const Pool = require('pg').Pool
 const pool = new Pool({
