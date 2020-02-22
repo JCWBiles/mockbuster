@@ -3,6 +3,7 @@ var bcrypt = require('bcrypt');
 var session = require('express-session');
 
 var saltCount = 10;
+
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'student',
