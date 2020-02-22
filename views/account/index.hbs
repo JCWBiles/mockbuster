@@ -151,7 +151,7 @@
           </button>
                                   </div>
                                   <div class="modal-body">
-                                    <form style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                    <form id="new-name-form"style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
                                       <input type="hidden" name="_method" value="PATCH" />
                                       <div class="form-group">
                                           <label for="recipient-name" class="col-form-label">Edit your first name:</label>
@@ -185,7 +185,7 @@
           </button>
                                   </div>
                                   <div class="modal-body">
-                                    <form style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                    <form id="new-lastname-form"style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
                                       <input type="hidden" name="_method" value="PATCH" />
                                       <div class="form-group">
                                           <label for="recipient-name" class="col-form-label">Edit your last name:</label>
@@ -220,7 +220,7 @@
           </button>
                                   </div>
                                   <div class="modal-body">
-                                    <form style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                    <form id="new-email-form"style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
                                       <input type="hidden" name="_method" value="PATCH" />
                                       <div class="form-group">
                                           <label for="recipient-name" class="col-form-label">Edit your email address:</label>
@@ -242,7 +242,7 @@
     <br>
 
     <br>
-    <form style = "display: inline; float: right; margin-top: -20px;, text-align: center;" action="/account/delete/{{this.id}}" method="post">
+    <form id="delete-user-form" style = "display: inline; float: right; margin-top: -20px;, text-align: center;" action="/account/delete/{{this.id}}" method="post">
       <input type="hidden" name="_method" value="DELETE" />
       <input type="submit" value="Delete Account" />
     </form>
