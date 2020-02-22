@@ -20,7 +20,6 @@ var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
 var accountRouter = require('./routes/account');
-
 var checkoutRouter = require('./routes/checkout');
 
 var port = 3000
@@ -71,15 +70,11 @@ app.use('/films/zero_to_nine', filmRouter);
 app.use('/user', userRouter);
 app.use('/login', authRouter);
 app.use('/auth', authRouter);
-<<<<<<< HEAD
 app.use('/account', accountRouter);
-app.use(methodOverride('_method'));
-=======
 app.use('/checkout', checkoutRouter);
-// // // app.use('/account', accountRouter);
-// // // app.use(methodOverride('_method'));
-// app.get('/films/:id', db.getFilmById)
->>>>>>> 502d0940d6c121a1d63c831c1fc31ef142fef5bf
+app.use(methodOverride('_method'));
+
+
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

@@ -12,6 +12,10 @@ var CheckoutController = {
   Index: function(req, res) {
     res.status(201).render('checkout/index');
   },
+
+  Send: function(req, res) {
+    res.status(201).redirect('/checkout');
+  },
 };
 
 
