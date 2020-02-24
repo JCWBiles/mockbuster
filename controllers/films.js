@@ -7,6 +7,13 @@ const pool = new Pool({
   database: 'mockbuster_test',
   port: 5432,
 })
+
+var UserController = {
+  Index: function(req, res) {
+    res.status(201).render('films/index');
+  },
+};
+
 var FilmsController = {
   Index: function(req, res) {
 
@@ -262,4 +269,5 @@ var FilmsController = {
   },
 
 };
+module.exports = UserController;
 module.exports = FilmsController;

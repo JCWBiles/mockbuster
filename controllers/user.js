@@ -76,7 +76,8 @@ var UserController = {
           }
   },
   Logout: function(req, res) {
-    res.clearCookie('connect.sid', 'email');
+    res.clearCookie('email');
+    console.log('logout worked')
     // req.session.destroy();
     res.status(201).redirect('/');
   },

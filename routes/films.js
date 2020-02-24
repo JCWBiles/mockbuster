@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+var UserController = require('../controllers/user');
 var FilmsController = require('../controllers/films');
 
 router.get('/', FilmsController.Index);
+router.get('/', UserController.Index);
 router.get('/action', FilmsController.Action);
 router.get('/biopic', FilmsController.Biopic);
 router.get('/comedy', FilmsController.Comedy);

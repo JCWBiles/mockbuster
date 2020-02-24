@@ -133,11 +133,11 @@
 
     <!-- Callout -->
 
-    {{#each films.rows}}
+    {{#with users}}
     <div>
-        <li style="color: black;">{{this.name}}</li>
+        <li style="color: black;">Welcome {{first_name}}</li>
     </div>
-    {{/each}}
+    {{/with}}
 
     <div class="container-fluid background-jumbotron callout-container">
         <div class="opaque-overlay">&nbsp;</div>
