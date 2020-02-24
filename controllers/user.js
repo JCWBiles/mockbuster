@@ -17,11 +17,11 @@ var UserController = {
     res.status(201).render('user/index');
   },
   Create: async (req, res) => {
-    // var { first_name, last_name, email, password } = req.body;
-     first_name: req.body.first_name
-     last_name: req.body.last_name
-     email: req.body.email
-     password: req.body.password
+    var { first_name, last_name, email, password } = req.body;
+     // first_name: req.body.first_name
+     // last_name: req.body.last_name
+     // email: req.body.email
+     // password: req.body.password
     let hashedPassword = await bcrypt.hash(password, 10)
     newUser = pool.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ('${first_name}','${last_name}', '${email}', '${hashedPassword}') RETURNING *`, (error, user) => {
       console.log(first_name)
@@ -57,7 +57,7 @@ var UserController = {
     //
     })
   },
-  
+
   Login: function(req, res) {
     users.id = req.session.id
     res.status(201).render('login/index');
@@ -83,7 +83,7 @@ var UserController = {
             res.status(201).redirect('/')
           }
   },
-  
+
   Logout: function(req, res) {
     res.clearCookie('email');
     req.session.destroy();
@@ -120,7 +120,7 @@ var UserController = {
 //       res.status(201).redirect('/account');
 //     });
 // },
-  
+
   Edit: function(req, res){
     console.log('EDIT Running')
     users.id = req.session.id
