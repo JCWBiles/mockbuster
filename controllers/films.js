@@ -21,7 +21,8 @@ var FilmsController = {
       if (error) {
         throw error
       }
-      res.render('films/index', { films: results })
+      res.render('films/index', { films: results.rows })
+
     })
   },
 
@@ -32,7 +33,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/action', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -43,7 +43,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/biopic', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -54,7 +53,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/comedy', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -65,7 +63,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/crime', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -76,7 +73,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/drama', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -87,7 +83,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/fantasy', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -98,7 +93,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/history', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -109,7 +103,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/horror', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -120,7 +113,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/kids', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -131,8 +123,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/legal', { films:results })
-
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -143,7 +133,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/musical', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -154,7 +143,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/romance', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -165,7 +153,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/sports', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -176,7 +163,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/superhero', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -187,7 +173,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/thriller', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -198,7 +183,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/war', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -209,7 +193,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/a_to_e', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -220,7 +203,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/f_to_j', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -231,7 +213,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/k_to_o', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -242,7 +223,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/p_to_t', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
@@ -253,7 +233,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/u_to_z', { films:results })
-       // res.status(200).json(results.rows)
     })
   },
 
@@ -264,7 +243,6 @@ var FilmsController = {
         throw error
       }
       res.render('films/zero_to_nine', { films:results })
-      // res.status(200).json(results.rows)
     })
   },
 
