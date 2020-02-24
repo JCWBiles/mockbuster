@@ -25,12 +25,12 @@ var UserController = {
         throw error
       }
 
-      // var api_key = '7ba6aad5e239a8c93f7b79df83407788-7238b007-da9e5fd4';
-      // var domain = 'sandbox27eb7d6811164f6785ce70de1b4509ea.mailgun.org';
+      // var api_key = 'XXxxxxxxxxxxxxxxxxxxxxxxxxxxXX';
+      // var domain = 'XXXXXX';
       // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
       //
       // var data = {
-      //   from: 'MockBuster <jcbiles@outloook.com>',
+      //   from: 'MockBuster <mockbuster2020@gmail.com>',
       //   to: req.body.email,
       //   subject: 'Hello',
       //   text: 'Testing some Mailgun awesomeness!'
@@ -44,7 +44,6 @@ var UserController = {
       // });
     //
       res.status(201).redirect('/films')
-      // res.status(200).json(results.rows)
     })
   },
   Login: function(req, res) {

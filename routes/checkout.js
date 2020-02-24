@@ -4,6 +4,6 @@ var router = express.Router();
 var CheckoutController = require('../controllers/checkout');
 
 router.get('/', CheckoutController.Index);
-
+router.get('/thank_you', CheckoutController.Thank_You);
 
 module.exports = router;

@@ -72,6 +72,8 @@ app.use('/user', userRouter);
 app.use('/login', authRouter);
 app.use('/auth', authRouter);
 app.use('/checkout', checkoutRouter);
+app.use('/checkout/thank_you', checkoutRouter);
+
 // // // app.use('/account', accountRouter);
 // // // app.use(methodOverride('_method'));
 // app.get('/films/:id', db.getFilmById)
