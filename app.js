@@ -36,7 +36,12 @@ app.use(
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
+app.use(session({
+  secret: 'your secret',
+  saveUninitialized: true,
+  cookie: { maxAge: 60 * 60 * 1000 },
+  resave: false}));
+//
 // route setup
 
 app.use('/', landingRouter);
@@ -83,12 +88,7 @@ app.listen(port, () => {
 
 //use sessions for tracking logins
 // var db = mongoose.connection;
-app.use(session({
-  secret: 'your secret',
-  saveUninitialized: true,
-  cookie: { maxAge: 60 * 60 * 1000 },
-  resave: false}));
-//
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

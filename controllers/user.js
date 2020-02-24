@@ -17,7 +17,11 @@ var UserController = {
     res.status(201).render('user/index');
   },
   Create: async (req, res) => {
-    var { first_name, last_name, email, password } = req.body;
+    // var { first_name, last_name, email, password } = req.body;
+     first_name: req.body.first_name
+     last_name: req.body.last_name
+     email: req.body.email
+     password: req.body.password
     let hashedPassword = await bcrypt.hash(password, 10)
     newUser = pool.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ('${first_name}','${last_name}', '${email}', '${hashedPassword}') RETURNING *`, (error, user) => {
       console.log(first_name)
@@ -27,7 +31,12 @@ var UserController = {
       if (error) {
         throw error
       }
+      else {
+        user.id = req.session.id
+        console.log(user.id)
         res.status(201).redirect('/films')
+      }
+
 
 
     //   var api_key = 'YOUR API KEY';
@@ -52,6 +61,7 @@ var UserController = {
     })
   },
   Login: function(req, res) {
+    users.id = req.session.id
     res.status(201).render('login/index');
   },
   Authenticate: async function (req, res) {
@@ -76,17 +86,19 @@ var UserController = {
           }
   },
   Logout: function(req, res) {
-    res.clearCookie('connect.sid', 'email');
-    // req.session.destroy();
+    res.clearCookie('email');
+    req.session.destroy();
     res.status(201).redirect('/');
+    console.log('session destroyed')
   },
 
   Account: function(req, res){
+    users.id = req.session.id
     pool.query(`SELECT * FROM users`, (error, users ) => {
       if (error) {
         throw error
       }
-      res.status(201).render('account/index', { users: users})
+      res.status(201).render('account/index', { users: users.rows })
     });
   },
 
@@ -110,22 +122,43 @@ var UserController = {
   // res.clearCookie(cookie, {path:'/'});
   //
   // },
-
+// Edit: function(req,res){
+//   var id = parseInt(req.params.id)
+//   console.log(id)
+//   var first_name = req.body.first_name
+//   var last_name = req.body.last_name
+//   var email = req.body.email
+//   console.log(first_name)
+//   pool.query(
+//     `UPDATE users SET first_name = ${req.body.first_name}, last_name = ${req.body.last_name}, email = ${req.body.email} WHERE id = ${id}`,
+//     [first_name, last_name, email, id],
+//     (error, results) => {
+//       console.log(first_name)
+//       if (error) {
+//         throw error
+//       }
+//       res.status(201).redirect('/account');
+//     });
+// },
   Edit: function(req, res){
     console.log('EDIT Running')
-      var id = parseInt(req.params.id)
+    users.id = req.session.id
+    console.log(users.id)
+      var id = req.params.id
       console.log(req.params.id)
-      var { first_name, last_name, email } = req.body
-    pool.query(`UPDATE users SET first_name = '${first_name}', last_name = '${last_name}', email = ${email} WHERE id = '${id}' RETURNING id, first_name, last_name, email`, (err, result) => {
+      var { first_name } = req.body
+      console.log(first_name)
+      pool.query(`UPDATE users SET first_name = '${first_name}' WHERE id = '${id}' RETURNING id, first_name, last_name, email`, (err, result) => {
 
       if (err) { throw err }
-      console.log(`User modified with ID: ${id}`)
+
       console.log("finished update");
       res.status(201).redirect('/account');
     });
   },
 
   Delete: function(req, res){
+    users.id = req.session.id
     var id = parseInt(req.params.id)
     pool.query(`DELETE * FROM users WHERE id = '${id}'`, (error, result) => {
       if (error) {

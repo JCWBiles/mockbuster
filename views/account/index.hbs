@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  {{#if users.rows}}
+  {{#each users}}
 
     <!-- Header -->
     <header>
@@ -248,7 +248,7 @@
     </form>
   </div>
   </div>
-  {{/if}}
+  {{/each}}
     <!-- Footer -->
     <footer class="container-fluid footer-container text-center">
         <div class="col-12">
