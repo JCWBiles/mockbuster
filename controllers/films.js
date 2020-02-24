@@ -10,11 +10,11 @@ const pool = new Pool({
 var FilmsController = {
   Index: function(req, res) {
 
-    pool.query('SELECT * FROM films ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM films ORDER BY id ASC', (error, users) => {
       if (error) {
         throw error
       }
-      res.render('films/index', { films: results.rows })
+      res.render('films/index', {  users: req.cookies })
 
     })
   },

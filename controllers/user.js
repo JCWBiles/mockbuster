@@ -18,10 +18,6 @@ var UserController = {
   },
   Create: async (req, res) => {
     var { first_name, last_name, email, password } = req.body;
-     // first_name: req.body.first_name
-     // last_name: req.body.last_name
-     // email: req.body.email
-     // password: req.body.password
     let hashedPassword = await bcrypt.hash(password, 10)
     newUser = pool.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ('${first_name}','${last_name}', '${email}', '${hashedPassword}') RETURNING *`, (error, user) => {
       console.log(first_name)
@@ -34,6 +30,9 @@ var UserController = {
       else {
         user.id = req.session.id
         console.log(user.id)
+        res.cookie.first_name
+        res.cookie.last_name
+        res.cookie.email
         res.status(201).redirect('/films')
       }
 
@@ -73,6 +72,8 @@ var UserController = {
       var compare = await(bcrypt.compare(password, foundUser.rows[0]['password']))
           if (compare === true) {
             res.cookie('email', foundUser.rows[0]['email'])
+            res.cookie.first_name
+            res.cookie.last_name
               // req.session.userId = user.id;
               // console.log(req.session.userId)
             res.redirect('/films');
