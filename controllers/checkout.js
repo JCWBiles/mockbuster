@@ -12,7 +12,11 @@ var CheckoutController = {
   Index: function(req, res) {
     res.status(201).render('checkout/index');
   },
-
+  
+  Send: function(req, res) {
+    res.status(201).redirect('/checkout');
+  },
+  
   Thank_You: function(req, res) {
     // Send order confirmation email
 
@@ -37,7 +41,6 @@ var CheckoutController = {
 
     res.status(201).render('checkout/thank_you');
   },
-
 };
 
 

@@ -11,16 +11,15 @@ var pg_store = require('connect-pg-simple');
 var methodOverride = require('method-override');
 var flash = require('express-flash-messages');
 var bcrypt = require('bcrypt');
-// var cors = require('cors');
 var connectionString = require('pg-connection-string');
-// var crypto = require('crypto');
+
 var db = require('./queries');
 
 var filmRouter = require('./routes/films');
 var landingRouter = require('./routes/landing');
 var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
-
+var accountRouter = require('./routes/account');
 var checkoutRouter = require('./routes/checkout');
 
 var port = 3000
@@ -37,7 +36,12 @@ app.use(
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
+app.use(session({
+  secret: 'your secret',
+  saveUninitialized: true,
+  cookie: { maxAge: 60 * 60 * 1000 },
+  resave: false}));
+//
 // route setup
 
 app.use('/', landingRouter);
@@ -71,32 +75,26 @@ app.use('/films/zero_to_nine', filmRouter);
 app.use('/user', userRouter);
 app.use('/login', authRouter);
 app.use('/auth', authRouter);
+app.use('/account', accountRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/checkout/thank_you', checkoutRouter);
 
-// // // app.use('/account', accountRouter);
-// // // app.use(methodOverride('_method'));
-// app.get('/films/:id', db.getFilmById)
+app.use(methodOverride('_method'));
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
 
 
-// //use sessions for tracking logins
-// // var db = mongoose.connection;
-// app.use(session({
-//   secret: 'work hard',
-//   resave: true,
-//   saveUninitialized: false
-// }));
-//
+//use sessions for tracking logins
+// var db = mongoose.connection;
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/public')));
-// app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
+
 // // app.use(session({
 // //   secret: 'work harder',
 // //   resave: true,

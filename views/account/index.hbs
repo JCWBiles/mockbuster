@@ -9,15 +9,17 @@
         <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
-        <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
+        <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
 
-        <title>MockBuster - Checkout</title>
+        <title>MockBuster - Account</title>
 </head>
 
 <body>
+  {{#each users}}
 
     <!-- Header -->
     <header>
+
       <div class="container-fluid header-container">
           <div class="row no-gutters">
               <a class="col-md-2 logo" href="/"></a>
@@ -58,15 +60,15 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       A-Z
     </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/films/a_to_e">A-E</a>
-                                <a class="dropdown-item" href="/films/f_to_j">F-J</a>
-                                <a class="dropdown-item" href="/films/k_to_o">K-O</a>
-                                <a class="dropdown-item" href="/films/p_to_t">P-T</a>
-                                <a class="dropdown-item" href="/films/u_to_z">U-Z</a>
-                                <hr/>
-                                <a class="dropdown-item" href="/films/zero_to_nine">0-9</a>
-                            </div>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="/films/a_to_e">A-E</a>
+        <a class="dropdown-item" href="/films/f_to_j">F-J</a>
+        <a class="dropdown-item" href="/films/k_to_o">K-O</a>
+        <a class="dropdown-item" href="/films/p_to_t">P-T</a>
+        <a class="dropdown-item" href="/films/u_to_z">U-Z</a>
+        <hr/>
+        <a class="dropdown-item" href="/films/zero_to_nine">0-9</a>
+    </div>
                         </li>
       <!-- Header - search box -->
                         <li class="nav-item">
@@ -98,15 +100,12 @@
                                                 <p>{{this.name}}</p>
                                                 <p>£ {{this.price}}</p>
                                             </div>
-                                            <hr>
                                             {{/each}}
-                                            <p>Subtotal: £</p>
-                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn--teal btn-primary" value="Go to Checkout" />
+                                        <input type="button" class="btn btn--teal btn-primary" value="Go to Checkout">
                                     </div>
-                                    </form>
+                                  </form>
                                 </div>
                             </div>
                         </div>
@@ -131,111 +130,125 @@
   <!-- /.Header -->
 
 
-    <!-- Callout -->
-
-  <div class="container-fluid background-jumbotron callout-container">
-        <div class="opaque-overlay">&nbsp;</div>
-        <div class="row">
-            <div class="col-12">
-        <main class="page payment-page">
-          <section class="payment-form dark">
-            <div class="container">
-              <div class="block-heading">
-                <h2>Check Out</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-              <form>
-                <div class="products">
-                  <h3 class="title">Checkout</h3>
-                  <div class="item">
-                    <span class="price">£4.99</span>
-                    <p class="item-name">Product 1</p>
-                    <p class="item-description">Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <div class="item">
-                    <span class="price">£5.99</span>
-                    <p class="item-name">Product 2</p>
-                    <p class="item-description">Lorem ipsum dolor sit amet</p>
-                  </div>
-                  <div class="total">Total<span class="price">£10.98</span></div>
-                </div>
 
 
-                <!-- <hr/> -->
-                <div class="card-details">
-                <h3 class="title">Address Details</h3>
-                <div class="row">
-                  <div class="form-group col-12">
-                    <label for="card-holder">1'st Line:</label>
-                    <input id="card-holder" type="text" class="form-control" placeholder="Add 1'st line of address" aria-label="Card Holder" aria-describedby="basic-addon1">
-                  </div>
-                  </div>
-                  <!-- <hr/> -->
-                  <div class="row">
-                    <div class="form-group col-12">
-                      <label for="card-holder">2'nd Line:</label>
-                      <input id="card-holder" type="text" class="form-control" placeholder="Add 2'nd line of address" aria-label="Card Holder" aria-describedby="basic-addon1">
-                    </div>
-                    </div>
-                    <!-- <hr/> -->
+  <div class="each-event" style="padding-left:20px;">
 
-                  <div class="row">
-                    <div class="form-group col-12">
-                      <label for="card-holder">Town:</label>
-                      <input id="card-holder" type="text" class="form-control" placeholder="Town" aria-label="Card Holder" aria-describedby="basic-addon1">
-                    </div>
-                    </div>
-                    <!-- <hr/> -->
+    <h1>Account Details</h1>
+<br>
+  <div class="event-description">
+    <p style="color: black;">First Name: {{this.first_name}}</p>
+    <!-- Header - basket and model -->
 
-                    <div class="row">
-                      <div class="form-group col-5">
-                        <label for="card-holder">Post Code:</label>
-                        <input id="card-holder" type="text" class="form-control" placeholder="Post Code" aria-label="Card Holder" aria-describedby="basic-addon1">
+                        <a class="nav-link" data-toggle="modal" data-target="#edit1" style=""><span class="fa-lg"><i class="fas fas fa-edit"><span></i></a>
+                        <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form id="new-name-form"style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                      <input type="hidden" name="_method" value="PATCH" />
+                                      <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Edit your first name:</label>
+                                          <input type="text" class="form-control" id="recipient-name" value="{{this.first_name}}">
+                                      </div>
+
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                                  </div>
+                                  </form>
+                              </div>
+                          </div>
                       </div>
+
+      <!-- /Header - /basket and model -->
+
+    <br>
+    <p style="color: black;">Last Name: {{this.last_name}}</p>
+    <!-- Header - basket and model -->
+
+                        <a class="nav-link" data-toggle="modal" data-target="#edit2"><span class="fa-lg"><i class="fas fas fa-edit"></i></span></a>
+                        <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form id="new-lastname-form"style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                      <input type="hidden" name="_method" value="PATCH" />
+                                      <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Edit your last name:</label>
+                                          <input type="text" class="form-control" id="recipient-name" value="{{this.last_name}}">
+                                      </div>
+
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                                  </div>
+                                  </form>
+                              </div>
+                          </div>
                       </div>
-                    </div>
 
+      <!-- /Header - /basket and model -->
 
-                <div class="card-details">
-                  <h3 class="title">Credit Card Details</h3>
-                  <div class="row">
-                    <div class="form-group col-sm-7">
-                      <label for="card-holder">Card Holder</label>
-                      <input id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="form-group col-sm-5">
-                      <label for="">Expiration Date</label>
-                      <div class="input-group expiration-date">
-                        <input type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
-                        <span class="date-separator">/</span>
-                        <input type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
+    <br>
+
+    <p style="color: black;">Email: {{this.email}}</p>
+    <!-- Header - basket and model -->
+
+                        <a class="nav-link" data-toggle="modal" data-target="#edit3"><span class="fa-lg"><i class="fas fas fa-edit"></i></span></a>
+                        <div class="modal fade" id="edit3" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form id="new-email-form"style = "display: inline; margin-top: -20px;" action="/account/{{this.id}}" method="post">
+                                      <input type="hidden" name="_method" value="PATCH" />
+                                      <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Edit your email address:</label>
+                                          <input type="text" class="form-control" id="recipient-name" value="{{this.email}}">
+                                      </div>
+
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                                  </div>
+                                  </form>
+                              </div>
+                          </div>
                       </div>
-                    </div>
-                    <div class="form-group col-sm-8">
-                      <label for="card-number">Card Number</label>
-                      <input id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="form-group col-sm-4">
-                      <label for="cvc">CVC</label>
-                      <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="form-group col-sm-12">
-                    <button type="button" class="btn btn-primary btn-block"><a style="text-decoration:none; color:inherit;" href="/checkout/thank_you">Confirm Payment</a></button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </section>
-        </main>
 
-        <!-- </div> --> -->
+      <!-- /Header - /basket and model -->
 
-</div>
-</div>
-</div>
+    <br>
 
-    <!-- /Callout -->
-
+    <br>
+    <form id="delete-user-form" style = "display: inline; float: right; margin-top: -20px;, text-align: center;" action="/account/delete/{{this.id}}" method="post">
+      <input type="hidden" name="_method" value="DELETE" />
+      <input type="submit" value="Delete Account" />
+    </form>
+  </div>
+  </div>
+  {{/each}}
     <!-- Footer -->
     <footer class="container-fluid footer-container text-center">
         <div class="col-12">
