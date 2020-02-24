@@ -77,9 +77,9 @@ app.use('/login', authRouter);
 app.use('/auth', authRouter);
 app.use('/account', accountRouter);
 app.use('/checkout', checkoutRouter);
+app.use('/checkout/thank_you', checkoutRouter);
+
 app.use(methodOverride('_method'));
-
-
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

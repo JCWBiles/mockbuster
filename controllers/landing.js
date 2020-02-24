@@ -16,8 +16,6 @@ var LandingController = {
         throw error
       }
       res.render('landing/index', { films: films })
-      // console.log(films);
-      // res.status(200).json(results.rows)
     })
   }
 };

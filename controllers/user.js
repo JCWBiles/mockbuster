@@ -37,8 +37,6 @@ var UserController = {
         res.status(201).redirect('/films')
       }
 
-
-
     //   var api_key = 'YOUR API KEY';
     //   var domain = 'YOUR DOMAIN';
     //   var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
@@ -57,9 +55,9 @@ var UserController = {
     //     console.log(body);
     //   });
     //
-
     })
   },
+  
   Login: function(req, res) {
     users.id = req.session.id
     res.status(201).render('login/index');
@@ -85,6 +83,7 @@ var UserController = {
             res.status(201).redirect('/')
           }
   },
+  
   Logout: function(req, res) {
     res.clearCookie('email');
     req.session.destroy();
@@ -103,25 +102,6 @@ var UserController = {
   },
 
 
-
-
-  // Logout: function(req, res) {
-  //   // var id = parseInt(req.params.id)
-  //   // console.log(req.session.userId)
-  //   // req.session.destroy(function(err)
-  //   res.clearCookie('email', function(err){
-  //     if(err){
-  //       console.log(err);
-  //       throw err;
-  //     }
-  //     else
-  //     {
-  //       res.status(201).redirect('/');
-  //     }
-  //   });
-  // res.clearCookie(cookie, {path:'/'});
-  //
-  // },
 // Edit: function(req,res){
 //   var id = parseInt(req.params.id)
 //   console.log(id)
@@ -140,6 +120,7 @@ var UserController = {
 //       res.status(201).redirect('/account');
 //     });
 // },
+  
   Edit: function(req, res){
     console.log('EDIT Running')
     users.id = req.session.id
