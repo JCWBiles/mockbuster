@@ -7,6 +7,7 @@ var session = require('express-session')
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
+mailgun = require('mailgun-js')
 var flash = require('express-flash-messages')
 
 
