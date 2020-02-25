@@ -1,0 +1,1 @@
+db.yourCollectionName.update({}, {$unset: {yourFieldName:1}}, false, true);
