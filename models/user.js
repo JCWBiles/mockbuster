@@ -10,6 +10,11 @@ var UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   dateCreated: { type: Date, default: Date.now },
+  address:{ first_line: String, second_line: String, town: String, post_code: String},
+  card_holder: String,
+  card_number: Number,
+  expiration:{ month: Number, year: Number},
+  cvc: Number
 });
 
 //authenticating
