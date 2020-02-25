@@ -79,48 +79,18 @@
                           </form>
                         </li>
       <!-- /Header - /search box -->
-      <!-- Header - basket and model -->
-                        <li class="nav-item">
-                          <a class="nav-link" data-toggle="modal" data-target="#basket"><i class="fas fa-shopping-basket"></i></a>
-                          <div class="modal fade" id="basket" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="basketLabel"><b>Basket</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="/checkout" method="post">
-                                          {{#each films.rows}}
-                                            <div class="form-group">
-                                                <p>{{this.name}}</p>
-                                                <p>£ {{this.price}}</p>
-                                            </div>
-                                            <hr>
-                                            {{/each}}
-                                            <p>Subtotal: £</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn--teal btn-primary" value="Go to Checkout" />
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                      </li>
-        <!-- /Header - /basket and model -->
-                          <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Account
-      </a>
-                              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                                <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
-                              </div>
-                          </li>
+
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{#users}}
+            {{this.firstname}}'s Account
+            {{/users}}
+</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+            <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+          </div>
+      </li>
                       </ul>
                   </div>
               </nav>

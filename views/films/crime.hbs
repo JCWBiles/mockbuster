@@ -82,16 +82,17 @@
                         </li>
       <!-- /Header - /search box -->
 
-                          <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Account
-      </a>
-                              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                                <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
-                              </div>
-                          </li>
-                      </ul>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{#users}}
+            {{this.firstname}}'s Account
+            {{/users}}
+</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+            <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+          </div>
+      </li>
                   </div>
               </nav>
 

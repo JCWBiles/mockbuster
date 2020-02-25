@@ -80,49 +80,18 @@
                           </form>
                         </li>
       <!-- /Header - /search box -->
-      <!-- Header - basket and model -->
-                        <li class="nav-item">
-                          <a class="nav-link" data-toggle="modal" data-target="#basket"><i class="fas fa-shopping-basket"></i></a>
-                          <div class="modal fade" id="basket" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="basketLabel"><b>Basket</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Enter your email address here:</label>
-                                                <input type="text" class="form-control" id="recipient-name">
-                                            </div>
 
-                                            <div class="form-group">
-                                                <label for="message-text" class="col-form-label">Message:</label>
-                                                <textarea class="form-control" id="message-text"></textarea>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn--teal btn-primary">Send message</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </li>
-        <!-- /Header - /basket and model -->
-                          <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Account
-      </a>
-                              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                                <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
-                              </div>
-                          </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{#users}}
+            {{this.firstname}}'s Account
+            {{/users}}
+</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+            <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+          </div>
+      </li>
                       </ul>
                   </div>
               </nav>
