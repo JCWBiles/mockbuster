@@ -1,0 +1,1 @@
+db.users.insert({ firstname: String, lastname: String, email: String, password: String, dateCreated: { type: Date, default: Date.now() } });

@@ -1,54 +1,37 @@
 {
-  "name": "mockbuster",
+  "name": "mockbustermongo",
   "version": "1.0.0",
-  "description": "## We are making our version of BlockBuster called MockBuster it is a place to rent/buy movies digitally (no VHS/CD’s here). ``` So user can join the MockBuster community thety will be able to sign up. ``` ``` So user can view their accounts they can sign in. ``` ``` So user can keep their accounts safe they can log out. ``` ``` So user can see a range of movies they are able to see the library. ``` ``` So user can keep their details up to date they can edit their account. ``` ``` So user can review their selected items they can use the basket. ``` ``` So user can purchase or rent their items they can checkout. ``` ``` So user can be sure they signed up correctly and see purchases they receive emails. ``` ``` So user can find their fave films they can use the search function. ``` ``` So user can review their films they can like or dislike. ``` ``` So user can decide if they want the film they can watch a preview/trailer. ```",
-  "main": "app.js",
-  "dependencies": {
-    "bcrypt": "^3.0.8",
-    "connect-pg-simple": "^6.1.0",
-    "cookie-parser": "^1.4.4",
-    "cors": "^2.8.5",
-    "crypto": "^1.0.1",
-    "cypress": "^4.0.2",
-    "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-cypress": "^2.10.1",
-    "eslint-plugin-jest": "^23.7.0",
-    "eslint-plugin-node": "^11.0.0",
-    "express": "^4.17.1",
-    "express-flash-messages": "^0.1.1",
-    "express-session": "^1.17.0",
-    "handlebars": "^4.7.3",
-    "hbs": "^4.1.0",
-    "http-errors": "^1.7.3",
-    "jest": "^24.9.0",
-    "mailgun-js": "^0.22.0",
-    "method-override": "^3.0.0",
-    "morgan": "^1.9.1",
-    "nodemon": "^2.0.2",
-    "path": "^0.12.7",
-    "pg": "^7.18.1",
-    "pg-connection-string": "^2.1.0",
-    "pg-pool": "^2.0.10",
-    "process-env": "^1.1.0"
-  },
-  "devDependencies": {},
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run test:unit && npm run test:integration",
+    "lint": "eslint .",
     "start": "nodemon ./bin/www",
-    "start:test": "PORT=3030 DB_URL='postgres://localhost/mockbuster_test' npm start",
+    "start:test": "PORT=3030 MONGODB_URL='mongodb://localhost/mockbustermongo_test' npm start",
+    "test": "npm run lint && npm run test:unit && npm run test:integration",
     "test:unit": "jest",
     "test:integration": "cypress run"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JCWBiles/mockbuster.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JCWBiles/mockbuster/issues"
+  "dependencies": {
+    "bcrypt": "^4.0.0",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.4",
+    "cypress": "^4.0.2",
+    "express": "^4.17.1",
+    "express-flash-messages": "^0.1.1",
+    "express-session": "^1.17.0",
+    "hbs": "^4.1.0",
+    "http-errors": "^1.7.3",
+    "jest": "^25.1.0",
+    "logger": "0.0.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.2",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
   },
-  "homepage": "https://github.com/JCWBiles/mockbuster#readme"
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
 }

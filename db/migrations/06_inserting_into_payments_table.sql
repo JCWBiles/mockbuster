@@ -1,1 +1,0 @@
-INSERT INTO payments (card_number, expiry_date, security_code, billing_address) VALUES ();

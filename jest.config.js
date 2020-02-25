@@ -21,7 +21,7 @@ module.exports = {
   // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  // collectCoverageFrom: null,
+  // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
@@ -40,10 +40,10 @@ module.exports = {
   // ],
 
   // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: null,
+  // coverageThreshold: undefined,
 
   // A path to a custom dependency extractor
-  // dependencyExtractor: null,
+  // dependencyExtractor: undefined,
 
   // Make calling deprecated APIs throw helpful error messages
   // errorOnDeprecated: false,
@@ -52,10 +52,10 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: null,
+  // globalSetup: undefined,
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  // globalTeardown: null,
+  // globalTeardown: undefined,
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
@@ -91,10 +91,10 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: null,
+  // preset: undefined,
 
   // Run tests from one or more projects
-  // projects: null,
+  // projects: undefined,
 
   // Use this configuration option to add custom reporters to Jest
   // reporters: undefined,
@@ -106,13 +106,13 @@ module.exports = {
   // resetModules: false,
 
   // A path to a custom resolver
-  // resolver: null,
+  // resolver: undefined,
 
   // Automatically restore mock state between every test
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  // rootDir: null,
+  // rootDir: undefined,
 
   // A list of paths to directories that Jest should use to search for files in
   // roots: [
@@ -155,7 +155,7 @@ module.exports = {
   // testRegex: [],
 
   // This option allows the use of a custom results processor
-  // testResultsProcessor: null,
+  // testResultsProcessor: undefined,
 
   // This option allows use of a custom test runner
   // testRunner: "jasmine2",
@@ -167,7 +167,7 @@ module.exports = {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: null,
+  // transform: undefined,
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -178,7 +178,7 @@ module.exports = {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  // verbose: null,
+  // verbose: undefined,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],
