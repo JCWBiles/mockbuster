@@ -1,6 +1,13 @@
+var User = require('../models/user');
+
 var CheckoutController = {
   Index: function(req, res) {
-    res.status(201).render('checkout/index');
+    // res.status(201).render('checkout/index');
+    User.find({_id: req.session.userId}, function(err,users) {
+      if (err) { throw err; }
+      res.render('checkout/index', {  users: users });
+      console.log(req.session.userId);
+    })
   },
   Send: function(req, res) {
      res.status(201).redirect('/checkout');

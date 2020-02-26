@@ -21,7 +21,7 @@ header {
 }
 
 .logo {
-    background: url("/images/blockbuster.png");
+    background: url("/images/logo/mockbuster_logo_4.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -294,7 +294,7 @@ header {
 }
 
 .block-divider--logo {
-    background: url("/images/blockbuster.png");
+    background: url("/images/logo/mockbuster_logo_4.png");
     /* background-color: white; */
     background-position: center;
     background-repeat: no-repeat;
@@ -328,18 +328,6 @@ header {
     margin: 100px;
 }
 
-/*---------------------------------------------------artists*/
-
-.artists-container {}
-
-/*.artists-container img {
-    border-radius: 4px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-width: 100%;
-}*/
-
 /*---------------------------------------------------about*/
 
 .about-container {
@@ -347,7 +335,7 @@ header {
     margin: 20px 0;
 }
 
-/*---------------------------------------------------quotes & Q&A*/
+/*---------------------------------------------------community said*/
 
 .quotes-container {
     font-family: "Nunito", sans-serif;
@@ -388,7 +376,7 @@ header {
     padding: 15px 15px;
 }
 
-/*---------------------------------------------------gallery*/
+/*---------------------------------------------------library*/
 
 .gallery-container {
     background-color: #fff;
@@ -439,13 +427,6 @@ header {
     }
 }
 
-/*---------------------------------------------------guest*/
-
-.guest-container {}
-
-.guest-container li {
-    font-size: 50px;
-}
 
 /*---------------------------------------------------footer*/
 

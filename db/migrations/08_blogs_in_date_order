@@ -1,0 +1,1 @@
+db.blog.find( ).sort( { date: -1 } )

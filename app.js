@@ -17,7 +17,7 @@ var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
 var accountRouter = require('./routes/account');
 var checkoutRouter = require('./routes/checkout');
-
+var blogRouter = require('./routes/blog');
 
 var app = express();
 
@@ -78,6 +78,7 @@ app.use('/films/zero_to_nine', filmRouter);
 app.use('/account', accountRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/checkout/thank_you', checkoutRouter);
+app.use('/blog', blogRouter);
 
 app.use(methodOverride('_method'));
 

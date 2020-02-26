@@ -90,6 +90,8 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                    <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
+                    <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-shopping-cart float-right"></i></a>
                     <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
                 </li>
@@ -114,7 +116,10 @@
         <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
         <!-- Header - basket and model -->
 
-        <a class="nav-link" data-toggle="modal" data-target="#edit1" style=""><span class="fa-lg"><i id="edit" class="fas fas fa-edit"><span></i></a>
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
+        <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+        <span class="fa-lg sr-only">Edit First name</span>
+        </a>
           <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -147,8 +152,10 @@
           <br>
           <p id="user-last-name"style="color: black;">Last Name: {{this.lastname}}</p>
           <!-- Header - basket and model -->
-
-          <a class="nav-link" data-toggle="modal" data-target="#edit2"><span class="fa-lg"><i class="fas fas fa-edit"></i></span></a>
+          <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit2" style="">
+        <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+        <span class="fa-lg sr-only">Edit Last name</span>
+        </a>
           <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -182,8 +189,10 @@
 
           <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
           <!-- Header - basket and model -->
-
-          <a class="nav-link" data-toggle="modal" data-target="#edit3"><span class="fa-lg"><i class="fas fas fa-edit"></i></span></a>
+          <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit3" style="">
+        <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+        <span class="fa-lg sr-only">Edit Last name</span>
+        </a>
           <div class="modal fade" id="edit3" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
