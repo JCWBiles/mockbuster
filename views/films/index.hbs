@@ -5,6 +5,7 @@
   <metacharset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../stylesheets/storestyles.css" />
   <link rel="stylesheet" href="../stylesheets/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
@@ -105,6 +106,7 @@
     <!-- /.Header -->
 
     <!-- Callout -->
+    <h1 style="margin-left:20px;">Library</h1>
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
@@ -141,7 +143,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">
+                          <a href="#0" style="text-decoration: none; color:inherit;" class="js-cd-add-to-cart" data-price="4.99" data-film="{{this.name}}">
                             <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
                               Add To Basket
                             </button>
@@ -162,6 +164,54 @@
     </div>
   </div>
   <!-- /Callout -->
+
+  <!-- <section class="container content-section" style="background-color: white;">
+      <h2 class="section-header">MUSIC</h2>
+      <div class="shop-items">
+          <div class="shop-item">
+              <span class="shop-item-title">Album 1</span>
+              <img class="shop-item-image" src="Images/Album 1.png">
+              <div class="shop-item-details">
+                  <span class="shop-item-price">£2.99</span>
+                  <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+              </div>
+          </div>
+          <div class="shop-item">
+              <span class="shop-item-title">Album 2</span>
+              <img class="shop-item-image" src="Images/Album 2.png">
+              <div class="shop-item-details">
+                  <span class="shop-item-price">£4.99</span>
+                  <button class="btn btn-primary shop-item-button"type="button">ADD TO CART</button>
+              </div>
+          </div>
+
+          <div class="shop-item">
+              <span class="shop-item-title">Album 4</span>
+              <img class="shop-item-image" src="Images/Album 4.png">
+              <div class="shop-item-details">
+                  <span class="shop-item-price">£19.99</span>
+                  <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+              </div>
+          </div>
+      </div>
+  </section>
+  <section class="container content-section">
+      <h2 class="section-header">CART</h2>
+      <div class="cart-row">
+          <span class="cart-item cart-header cart-column">ITEM</span>
+          <span class="cart-price cart-header cart-column">PRICE</span>
+          <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+      </div>
+      <div class="cart-items">
+      </div>
+      <div class="cart-total">
+          <strong class="cart-total-title">Total</strong>
+          <span class="cart-total-price">£0</span>
+      </div>
+      <a href="/checkout"><button class="btn btn-primary btn-purchase" type="button">Go to Checkout</button>
+      </a>
+
+  </section> -->
 
   <div class="cd-cart js-cd-cart">
     <a href="#0" class="cd-cart__trigger text-replace">
@@ -267,6 +317,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="../js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
   <script src="../js/cartjs.js"></script>
+  <script src="../js/store.js" async></script>
   <script type="text/javascript">
 
   $('.like-btn').on('click', function() {
