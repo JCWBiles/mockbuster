@@ -2,34 +2,4 @@ db.users.update({}, { $set: {email: { type: String, required: true, index: { uni
 
 db.users.update({}, { $set: {"dateCreated": {type:Date, default: Date.now()}} }, false, true)
 
-db.users.update({}, {$unset:
-{ address:
-{
-first_line: String, second_line: String, town: String, post_code: String
-},
-
- expiration:{
- month: NumberInt, year: NumberInt,}
-
- }} , false, true)
-
-db.users.aggregate([ { "$addFields": { "card_holder":{type:String} } } ]).;
-
-db.users.update({}, { $set: {card_holder: { type: String }}}, false, true);
-db.users.update({}, { $set: {card_holder: String }}, false, true);
-
-db.users.insert({ address:{ first_line: String, second_line: String, town: String, post_code: String},
- card_holder: String,
- card_number: NumberLong,
- expiration:{
- month: NumberInt, year: NumberInt },
- cvc: NumberInt
- });
-
- db.users.insert({ address:{ first_line: "1 Fake Street", second_line: "Fake Place", town: "My town", post_code: "FA1 K3"},
-  card_holder: "Bob",
-  card_number: 1234567891011121,
-  expiration:{
-  month: 02, year: 20 },
-  cvc: 555
-  });
+db.users.update({}, { $set: {"address_first_line": String, "address_second_line": String, "address_town": String, "address_post_code": String, "card_holder": String, "card_number": Number, "expiration_year": Number, "expiration_month": Number, "cvc": Number }}, false, true)

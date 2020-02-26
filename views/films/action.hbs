@@ -102,382 +102,65 @@
   </header>
   <!-- /.Header -->
 
-    <!-- Callout -->
-
-    {{#users}}
-    <h1>Welcome {{this.firstname}}</h1>
-    {{/users}}
-
-
-    {{#each films}}
-    <div>
-        <li style="color: black;">{{this.name}}</li>
-    </div>
-    {{/each}}
-
-    <div class="container-fluid background-jumbotron callout-container">
-        <div class="opaque-overlay">&nbsp;</div>
+  <!-- Callout -->
+  <div class="container-fluid background-jumbotron callout-container">
+    <div class="opaque-overlay">&nbsp;</div>
+    <div class="row">
+      <div class="tz-gallery">
         <div class="row">
-          <div class="tz-gallery">
-            <div class="row">
-              <!-- Callout - Bad Boys -->
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" data-toggle="modal" data-target="#movie">
-                <img src="/images/movies/badBoys.jpg" alt="badBoys">
-                <div class="modal fade" id="movie" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <!-- <div class="modal-header">
-                            <h5 class="modal-title" id="movieLabel"><b>Bad Boys</b></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+
+          <!-- Callout - Films -->
+          {{#each films}}
+          <div class="col-sm-6 col-md-3">
+            <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
+              <img src="{{this.imageUrl}}" alt="{{this.name}}">
+              <div class="modal fade" id="{{this.modal}}" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="movieLabel"><b>{{this.name}}</b>
+                      </h5>
+                      <div class="buttons">
+                        <span class="like-btn"></span>
+                      </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <p>{{this.description}}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <h4 style="margin:10px;"><span>Trailer</span></h4>
+                        <iframe style="margin:10px;" height="150" width="300" src="{{this.trailerUrl}}" allowfullscreen frameborder="0"></iframe>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">
+                          <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
+                            Add To Basket
                           </button>
-                        </div> -->
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="movieLabel"><b>Bad Boys</b>
-                              </h5>
-                              <div class="buttons">
-                                <span class="like-btn"></span>
-                                </div>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                              <form>
-                                  <div class="form-group">
-                                    <p>When $100 million of seized heroin is stolen from the Miami Police lock-up, Detectives Lowrey (Will Smith) and Burnett (Martin Lawrence), Miami's most mismatched cops, are called upon to solve the case before the FBI close their department.
-                                      Julie is their only lead to the case, but will only speak to Lowrey.
-                                      As Lowrey is not around when she calls, Burnett impersonates his cool slick partner.
-                                      A hilarious role reversal begins …</p>
-                                  </div>
-
-                          </div>
-                          <div>
-                            <h4 style="margin:10px;"><span>Trailer</span></h4>
-                            <iframe style="margin:10px;" height="150" width="300" src="https://www.youtube.com/embed/Xm12NSa8jsM" allowfullscreen frameborder="0"></iframe>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                                <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">Add To Basket</a>
-                                </button>
-                          </div>
-                          </form>
+                        </a>
                       </div>
+                    </form>
                   </div>
+                </div>
               </div>
             </a>
-                </div>
-              <!-- /Callout - /Bad Boys -->
-              <!-- Callout - Bridget Jones Diary -->
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" data-toggle="modal" data-target="#movie2">
-                <img src="/images/movies/bridgetJonesDiary.jpg" alt="bridgetJonesDiary">
-                <div class="modal fade" id="movie2" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="movieLabel"><b>Bridget Jones' Diary</b></h5>
-                              <div class="buttons">
-                                <span class="like-btn"></span>
-                                </div>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                              <form>
-                                  <div class="form-group">
-                                    <p>Bridget, a single woman, writes a diary which focuses on the things she wishes to happen in her life.
-                                      However, her life changes when two men vie for her affection.</p>
-                                  </div>
+          </div>
+          {{/each}}
+          <!-- /Callout - /Films -->
 
-                          </div>
-                          <div>
-                            <h4 style="margin:10px;"><span>Trailer</span></h4>
-                            <iframe style="margin:10px;" height="150" width="300" src="https://www.youtube.com/embed/DQdy98B1nf0" allowfullscreen frameborder="0"></iframe>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                                <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">Add To Basket</a>
-                                </button>
-                          </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-            </a>
-                </div>
-              <!-- /Callout - /Bridget Jones Diary -->
-
-              <!-- Callout - Deadpool -->
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" data-toggle="modal" data-target="#movie3">
-                <img src="/images/movies/deadpool.jpg" alt="deadpool">
-                <div class="modal fade" id="movie3" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="movieLabel"><b>Deadpool</b></h5>
-                              <div class="buttons">
-                                <span class="like-btn"></span>
-                                </div>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                              <form>
-                                  <div class="form-group">
-                                    <p>Wade Wilson (Ryan Reynolds) is a former Special Forces operative who now works as a mercenary.
-                                      His world comes crashing down when evil scientist Ajax (Ed Skrein) tortures, disfigures and transforms him into Deadpool.
-                                      The rogue experiment leaves Deadpool with accelerated healing powers and a twisted sense of humor.
-                                      With help from mutant allies Colossus and Negasonic Teenage Warhead (Brianna Hildebrand),
-                                      Deadpool uses his new skills to hunt down the man who nearly destroyed his life.</p>
-                                  </div>
-
-                          </div>
-                          <div>
-                            <h4 style="margin:10px;"><span>Trailer</span></h4>
-                            <iframe style="margin:10px;" height="150" width="300" src="https://www.youtube.com/embed/ONHBaC-pfsk" allowfullscreen frameborder="0"></iframe>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                                <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">Add To Basket</a>
-                                </button>
-                          </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-            </a>
-                </div>
-              <!-- /Callout - /Deadpool -->
-
-
-                <!-- Callout - Elite -->
-                  <div class="col-sm-6 col-md-3">
-                      <a class="lightbox" data-toggle="modal" data-target="#movie4">
-                  <img src="/images/movies/elite.jpg" alt="elite">
-                  <div class="modal fade" id="movie4" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="movieLabel"><b>Elite</b></h5>
-                                <div class="buttons">
-                                  <span class="like-btn"></span>
-                                  </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                      <p>When three working-class teens enroll in an exclusive private school in Spain,
-                                         the clash between them and the wealthy students leads to murder.</p>
-                                    </div>
-
-                            </div>
-                            <div>
-                              <h4 style="margin:10px;"><span>Trailer</span></h4>
-                              <iframe style="margin:10px;" height="150" width="300" src="https://www.youtube.com/embed/QNwhAdrdwp0" allowfullscreen frameborder="0"></iframe>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                                  <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">Add To Basket</a>
-                                  </button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-              </a>
-                  </div>
-                <!-- /Callout - /Elite -->
-
-
-                <!-- Callout - Hustlers -->
-                  <div class="col-sm-6 col-md-3">
-                      <a class="lightbox" data-toggle="modal" data-target="#movie5">
-                  <img src="/images/movies/hustlers.jpg" alt="hustlers">
-                  <div class="modal fade" id="movie5" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="movieLabel"><b>Hustlers</b></h5>
-                                <div class="buttons">
-                                  <span class="like-btn"></span>
-                                  </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                      <p>Working as a stripper to make ends meet, Destiny's life changes forever when she becomes friends with Ramona -- the club's top money earner.
-                                        Ramona soon shows Destiny how to make her way around the wealthy Wall Street clientele who frequent the club.
-                                        But when the 2008 economic collapse cuts into their profits, the gals and two other dancers devise a daring scheme to turn the tables on their Wall Street clients.</p>
-                                    </div>
-
-                            </div>
-                            <div>
-                              <h4 style="margin:10px;"><span>Trailer</span></h4>
-                              <iframe style="margin:10px;" height="150" width="300" src="https://www.youtube.com/embed/46XaikZ0FSw" allowfullscreen frameborder="0"></iframe>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                                  <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">Add To Basket</a>
-                                  </button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-              </a>
-                  </div>
-                <!-- /Callout - /Hustlers -->
-
-
-                <!-- Callout - The Fault in Our Stars -->
-                  <div class="col-sm-6 col-md-3">
-                      <a class="lightbox" data-toggle="modal" data-target="#movie6">
-                  <img src="/images/movies/theFaultInOurStars.png" alt="theFaultInOurStars">
-                  <div class="modal fade" id="movie6" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="movieLabel"><b>The Fault in our Stars</b></h5>
-                                <div class="buttons">
-                                  <span class="like-btn"></span>
-                                  </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                      <p>Two teenage cancer patients begin a life-affirming journey to visit a reclusive author in Amsterdam.</p>
-                                    </div>
-
-                            </div>
-                            <div>
-                              <h4 style="margin:10px;"><span>Trailer</span></h4>
-                              <iframe style="margin:10px;" height="150" width="300" src="https://www.youtube.com/embed/9ItBvH5J6ss" allowfullscreen frameborder="0"></iframe>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                                  <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">Add To Basket</a>
-                                  </button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-              </a>
-                  </div>
-                <!-- /Callout - /The Fault in our Stars -->
-
-
-                <!-- Callout - The Notebook -->
-                  <div class="col-sm-6 col-md-3">
-                      <a class="lightbox" data-toggle="modal" data-target="#movie7">
-                  <img src="/images/movies/theNotebook.jpg" alt="theNotebook">
-                  <div class="modal fade" id="movie7" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="movieLabel"><b>The Notebook</b></h5>
-                                <div class="buttons">
-                                  <span class="like-btn"></span>
-                                  </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                      <p>A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom,
-                                        but they are soon separated because of their social differences.</p>
-                                    </div>
-
-                            </div>
-                            <div>
-                              <h4 style="margin:10px;"><span>Trailer</span></h4>
-                              <iframe style="margin:10px;" height="150" width="300" src="https://www.youtube.com/embed/FC6biTjEyZw" allowfullscreen frameborder="0"></iframe>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                                  <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">Add To Basket</a>
-                                  </button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-              </a>
-                  </div>
-                <!-- /Callout - /The Notebook -->
-
-              <!-- Callout - The Social Network -->
-                <div class="col-sm-6 col-md-3">
-                    <a class="lightbox" data-toggle="modal" data-target="#movie8">
-                <img src="/images/movies/theSocialNetwork.jpeg" alt="theSocialNetwork">
-                <div class="modal fade" id="movie8" tabindex="-1" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="movieLabel"><b>The Social Network</b></h5>
-                              <div class="buttons">
-                                <span class="like-btn"></span>
-                                </div>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                              <form>
-                                  <div class="form-group">
-                                    <p>Biographical film chronicling the founding of Facebook.
-                                      Mark Zuckerberg creates a social networking site, Facebook, with the help of his friend Eduardo Saverin.
-                                      But soon, a string of lies tears their relationship apart even as Facebook connects people.</p>
-                                  </div>
-
-                          </div>
-                          <div>
-                            <h4 style="margin:10px;"><span>Trailer</span></h4>
-                            <iframe style="margin:10px;" height="150" width="300" src="https://www.youtube.com/embed/lB95KLmpLR4" allowfullscreen frameborder="0"></iframe>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                                <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">Add To Basket</a>
-                                </button>
-                          </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-            </a>
-                </div>
-              <!-- /Callout - /The Social Network -->
-
-            </div>
         </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <!-- /Callout -->
+  </div>
+</div>
+<!-- /Callout -->
+
     <div class="cd-cart js-cd-cart">
   <a href="#0" class="cd-cart__trigger text-replace">
 

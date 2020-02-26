@@ -1,2 +1,2 @@
-use mockbuster
-use mockbuster_test
+use mockbustermongo
+use mockbustermongo_test

@@ -10,13 +10,13 @@ var UserController = {
     var user = new User({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      email: req.body.email,
+      email:  req.body.email,
       password: req.body.password,
 
     });
-  console.log(req.body.firstname);
-  console.log(req.body.email);
-  console.log(req.body._id);
+    console.log(req.body.firstname);
+    console.log(req.body.email);
+    console.log(req.body._id);
     user.save(function(err) {
       if (err) { throw err; }
       else {
@@ -24,23 +24,23 @@ var UserController = {
         res.status(201).redirect('/films')
       }
 
-            // var api_key = 'YOUR API KEY';
-            // var domain = 'YOUR DOMAIN';
-            // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-            //
-            // var data = {
-            //   from: 'MockBuster <mockbuster2020@gmail.com>',
-            //   to: req.body.email,
-            //   subject: 'Welcome to MockBuster!',
-            //   text: `You're all signed up! We hope you enjoy our incredible library of films. To start viewing, please go to localhost:3000.`
-            // };
-            //
-            // mailgun.messages().send(data, function (error, body) {
-            //   if (error){
-            //     console.log(error);
-            //   }
-            //   console.log(body);
-            // });
+      // var api_key = 'YOUR API KEY';
+      // var domain = 'YOUR DOMAIN';
+      // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+      //
+      // var data = {
+      //   from: 'MockBuster <mockbuster2020@gmail.com>',
+      //   to: req.body.email,
+      //   subject: 'Welcome to MockBuster!',
+      //   text: `You're all signed up! We hope you enjoy our incredible library of films. To start viewing, please go to localhost:3000.`
+      // };
+      //
+      // mailgun.messages().send(data, function (error, body) {
+      //   if (error){
+      //     console.log(error);
+      //   }
+      //   console.log(body);
+      // });
     });
 
   },
@@ -87,12 +87,12 @@ var UserController = {
     })
   },
   Account: function(req, res){
-      User.find({_id: req.session.userId}, function(err,users){
-        if (err) {
-          throw err
-        }
-        res.status(201).render('account/index', { users: users })
-      });
+    User.find({_id: req.session.userId}, function(err,users){
+      if (err) {
+        throw err
+      }
+      res.status(201).render('account/index', { users: users })
+    });
   },
 
   Delete: function(req, res){
