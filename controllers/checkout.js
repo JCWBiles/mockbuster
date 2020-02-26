@@ -1,6 +1,5 @@
 var User = require('../models/user');
 
-
 var CheckoutController = {
   Checkout: function(req, res) {
   // res.status(201).render('checkout/index');
