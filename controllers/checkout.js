@@ -2,21 +2,30 @@ var User = require('../models/user');
 
 
 var CheckoutController = {
-  Index: function(req, res) {
-    req.session.userId = user._id
-    res.status(201).render('checkout/index');
-  },
+  Checkout: function(req, res) {
+  // res.status(201).render('checkout/index');
+  User.find({_id: req.session.userId}, function(err,users) {
+    if (err) { throw err; }
+    res.render('checkout/index', {  users: users });
+    console.log(req.session.userId);
+  })
+},
 
-  Send: function(req, res) {
-      User.findOneAndUpdate({_id: req.params._id}, {$set: { first_line: req.body.first_line, second_line: req.body.second_line, town: req.body.town, post_code: req.body.post_code, card_holder: req.body.card_holder, month: req.body.month, year: req.body.year, cvc: req.body.cvc  }, overwrite: true} , function(err){
+  EditPay: function(req, res) {
+      User.findOneAndUpdate({_id: req.params._id}, {$set: { address_first_line: req.body.address_first_line, address_second_line: req.body.address_second_line, address_town: req.body.address_town, address_post_code: req.body.address_post_code, card_holder: req.body.card_holder, card_number: req.body.card_number, expiration_month: req.body.expiration_month, expiration_year: req.body.expiration_year, cvc: req.body.cvc  }, overwrite: true} , function(err){
         // console.log("finished upodate");
         if (err) { throw err; }
 
-     res.status(201).redirect('checkout/thank_you');
+     res.status(201).redirect('/checkout/thank_you');
      })
    },
 
    Thank_You: function(req, res) {
+     User.find({_id: req.session.userId}, function(err,users) {
+       if (err) { throw err; }
+       res.render('checkout/thank_you', {  users: users });
+       console.log(req.session.userId);
+     })
      // req.session.userId = user._id
      // Send order confirmation email
 
@@ -38,8 +47,6 @@ var CheckoutController = {
      //   console.log(body);
      // });
 
-
-     res.status(201).render('checkout/thank_you');
    },
  };
 

@@ -129,24 +129,27 @@
                   </div>
                   <div class="total">Total<span class="price">£10.98</span></div>
                 </div>
+              </form>
 
 {{#users}}
                 <!-- <hr/> -->
-                <form class="" action="/checkout/{{this.id}}" method="post">
+                <form class="" action="/checkout/payment/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                 <div class="card-details">
                 <h3 class="title">Address Details</h3>
                 <div class="row">
+                  <form class="" action="/checkout/payment/{{this._id}}" method="post">
+                    <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group col-12">
                     <label for="card-holder">1'st Line:</label>
-                    <input name="first_line"id="card-holder" type="text" class="form-control" placeholder="Add 1'st line of address" aria-label="Card Holder" aria-describedby="basic-addon1">
+                    <input name="address_first_line"id="card-holder" type="text" class="form-control" placeholder="Add 1'st line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_first_line}}">
                   </div>
                   </div>
                   <!-- <hr/> -->
                   <div class="row">
                     <div class="form-group col-12">
                       <label for="card-holder">2'nd Line:</label>
-                      <input name="second_line" id="card-holder" type="text" class="form-control" placeholder="Add 2'nd line of address" aria-label="Card Holder" aria-describedby="basic-addon1">
+                      <input name="address_second_line" id="card-holder" type="text" class="form-control" placeholder="Add 2'nd line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_second_line}}">
                     </div>
                     </div>
                     <!-- <hr/> -->
@@ -154,7 +157,7 @@
                   <div class="row">
                     <div class="form-group col-12">
                       <label for="card-holder">Town:</label>
-                      <input name="town" id="card-holder" type="text" class="form-control" placeholder="Town" aria-label="Card Holder" aria-describedby="basic-addon1">
+                      <input name="address_town" id="card-holder" type="text" class="form-control" placeholder="Town" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_town}}">
                     </div>
                     </div>
                     <!-- <hr/> -->
@@ -162,40 +165,45 @@
                     <div class="row">
                       <div class="form-group col-5">
                         <label for="card-holder">Post Code:</label>
-                        <input name="post_code" id="card-holder" type="text" class="form-control" placeholder="Post Code" aria-label="Card Holder" aria-describedby="basic-addon1">
+                        <input name="address_post_code" id="card-holder" type="text" class="form-control" placeholder="Post Code" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_post_code}}">
                       </div>
                       </div>
                     </div>
-
-
                 <div class="card-details">
                   <h3 class="title">Credit Card Details</h3>
                   <div class="row">
                     <div class="form-group col-sm-7">
                       <label for="card-holder">Card Holder</label>
-                      <input name="card_holder" id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1">
+                      <input name="card_holder" id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_holder}}">
                     </div>
+
+
                     <div class="form-group col-sm-5">
                       <label for="">Expiration Date</label>
                       <div class="input-group expiration-date">
-                        <input name="month" type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
+                        <input name="expiration_month" type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1" value="{{this.expiration_month}}">
                         <span class="date-separator">/</span>
-                        <input name="year" type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
+                        <input name="expiration_year" type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1" value="{{this.expiration_year}}">
                       </div>
                     </div>
                     <div class="form-group col-sm-8">
                       <label for="card-number">Card Number</label>
-                      <input name="card_number" id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1">
+                      <input name="card_number" id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_number}}">
                     </div>
                     <div class="form-group col-sm-4">
                       <label for="cvc">CVC</label>
-                      <input name="cvc" id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
+                      <input name="cvc" id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.cvc}}">
                     </div>
                     <div class="form-group col-sm-12">
-                    <button type="button" class="btn btn-primary btn-block"><input type="submit" value="Confirm Payment"></button>
+                    <button type="button" class="btn btn-primary btn-block"><input type="submit" class="btn btn-primary btn-block" value="Save Card Details and Confirm Payment"></button>
                   </div>
                 </div>
               </form>
+              <div class="form-group col-sm-12">
+                <p>If you do not wish to save your card details, please click below:</p>
+              <a style="text-decoration:none;" href="/checkout/thank_you"><button type="button" class="btn btn-primary btn-block">Confirm Payment</button>
+                </a>
+            </div>
               {{/users}}
             </div>
           </section>

@@ -10,10 +10,14 @@ var UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   dateCreated: { type: Date, default: Date.now },
-  address:{ first_line: String, second_line: String, town: String, post_code: String},
+  address_first_line: String,
+  address_second_line: String,
+  address_town: String,
+  address_post_code: String,
   card_holder: String,
   card_number: Number,
-  expiration:{ month: Number, year: Number},
+  expiration_year: Number,
+  expiration_month: Number,
   cvc: Number
 });
 

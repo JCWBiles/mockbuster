@@ -2,6 +2,21 @@ db.users.update({}, { $set: {email: { type: String, required: true, index: { uni
 
 db.users.update({}, { $set: {"dateCreated": {type:Date, default: Date.now()}} }, false, true)
 
+db.users.update({}, {$unset:
+{ address:
+{
+first_line: String, second_line: String, town: String, post_code: String
+},
+
+ expiration:{
+ month: NumberInt, year: NumberInt,}
+
+ }} , false, true)
+
+db.users.aggregate([ { "$addFields": { "card_holder":{type:String} } } ]).;
+
+db.users.update({}, { $set: {card_holder: { type: String }}}, false, true);
+db.users.update({}, { $set: {card_holder: String }}, false, true);
 
 db.users.insert({ address:{ first_line: String, second_line: String, town: String, post_code: String},
  card_holder: String,
