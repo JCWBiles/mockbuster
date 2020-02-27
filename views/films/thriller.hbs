@@ -155,7 +155,7 @@
                       <div style="margin-left: 20px; padding-bottom:5px;" class="product-description" data-name="{{this.name}}" data-price="4.99">
                         <h3 class="product-name">{{this.name}}</h3>
                         <p class="product-price">&pound; 4.99</p>
-                        <form class="add-to-cart" action="/films" method="post">
+                        <form class="add-to-cart" action="/films/thriller" method="post">
                           <div>
                             <label for="qty-3">Quantity</label>
                             <input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
@@ -181,7 +181,7 @@
     </div>
     <div id="content" style="background-color: white;">
       <h1>Your Shopping Cart</h1>
-      <form id="shopping-cart" action="/films" method="post">
+      <form id="shopping-cart" action="/films/thriller" method="post">
         <table class="shopping-cart">
           <thead>
           <tr>
