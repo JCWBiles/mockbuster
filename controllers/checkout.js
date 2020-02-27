@@ -36,7 +36,7 @@ var CheckoutController = {
 
      var data = {
        from: 'MockBuster <mockbuster2020@gmail.com>',
-       to: req.params.email,
+       to: 'parkermakers@gmail.com',
        subject: 'Order confirmed',
        text: 'Thank you for your order! We hope you have a premium viewing experience!'
      };
