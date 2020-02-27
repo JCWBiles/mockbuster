@@ -142,12 +142,25 @@
                           <iframe style="margin:10px;" height="150" width="300" src="{{this.trailerUrl}}" allowfullscreen frameborder="0"></iframe>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <a href="#0" style="text-decoration: none; color:inherit;" class="js-cd-add-to-cart" data-price="4.99" data-film="{{this.name}}">
+                          <section class="container content-section">
+                              <div class="shop-items">
+                                  <div class="shop-item">
+                                      <span class="shop-item-title" hidden>{{this.name}}</span>
+                                      <img style="visibility: hidden; width:0%;" class="shop-item-image" src="Images/Album 1.png">
+                                      <div class="shop-item-details" style="text-align: right;">
+                                          <span class="shop-item-price">£4.99</span>
+                                          <br> <br>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          <button class="btn btn--teal btn-primary shop-item-button" type="button">Add to Basket</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </section>
+                          <!-- <a href="#0" style="text-decoration: none; color:inherit;" class="js-cd-add-to-cart" data-price="4.99" data-film="{{this.name}}">
                             <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
                               Add To Basket
                             </button>
-                          </a>
+                          </a> -->
                         </div>
                       </form>
                     </div>
@@ -155,6 +168,7 @@
                 </div>
               </a>
             </div>
+
             {{/each}}
             <!-- /Callout - /Films -->
 
@@ -163,45 +177,73 @@
       </div>
     </div>
   </div>
+
+
+  <div id="site">
+  	<div id="content">
+  		<div id="products">
+        {{#films}}
+  				<li>
+  					<div class="product-description" data-name="{{this.name}}" data-price="4.99">
+  						<h3 class="product-name">{{this.name}}</h3>
+  						<p class="product-price">&pound; 4.99</p>
+  						<form class="add-to-cart" action="/films" method="post">
+  							<div>
+  								<label for="qty-3">Quantity</label>
+  								<input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+  							</div>
+  							<p><input type="submit" value="Add to cart" class="btn" /></p>
+  						</form>
+  					</div>
+  				</li>
+          {{/films}}
+
+
+
+  			</ul>
+  		</div>
+  	</div>
+  	<div id="content">
+  		<h1>Your Shopping Cart</h1>
+  		<form id="shopping-cart" action="/films" method="post">
+  			<table class="shopping-cart">
+  				<thead>
+  				<tr>
+  					<th scope="col">Item</th>
+  					<th scope="col">Qty</th>
+  					<th scope="col" colspan="2">Price</th>
+  				</tr>
+  				</thead>
+  				<tbody>
+
+  				</tbody>
+  			</table>
+  			<p id="sub-total">
+  				<strong>Sub Total</strong>: <span id="stotal"></span>
+  			</p>
+  			<ul id="shopping-cart-actions">
+  				<li>
+  					<input type="submit" name="update" id="update-cart" class="btn" value="Update Cart" />
+  				</li>
+  				<li>
+  					<input type="submit" name="delete" id="empty-cart" class="btn" value="Empty Cart" />
+  				</li>
+  				<li>
+  					<a href="/checkout" class="btn">Go To Checkout</a>
+  				</li>
+
+  		</form>
+  	</div>
+
+  </div>
   <!-- /Callout -->
 
-  <!-- <section class="container content-section" style="background-color: white;">
-      <h2 class="section-header">MUSIC</h2>
-      <div class="shop-items">
-          <div class="shop-item">
-              <span class="shop-item-title">Album 1</span>
-              <img class="shop-item-image" src="Images/Album 1.png">
-              <div class="shop-item-details">
-                  <span class="shop-item-price">£2.99</span>
-                  <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
-              </div>
-          </div>
-          <div class="shop-item">
-              <span class="shop-item-title">Album 2</span>
-              <img class="shop-item-image" src="Images/Album 2.png">
-              <div class="shop-item-details">
-                  <span class="shop-item-price">£4.99</span>
-                  <button class="btn btn-primary shop-item-button"type="button">ADD TO CART</button>
-              </div>
-          </div>
 
-          <div class="shop-item">
-              <span class="shop-item-title">Album 4</span>
-              <img class="shop-item-image" src="Images/Album 4.png">
-              <div class="shop-item-details">
-                  <span class="shop-item-price">£19.99</span>
-                  <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
-              </div>
-          </div>
-      </div>
-  </section>
+
+<!-- CodyHouse  cart code-->
   <section class="container content-section">
-      <h2 class="section-header">CART</h2>
-      <div class="cart-row">
-          <span class="cart-item cart-header cart-column">ITEM</span>
-          <span class="cart-price cart-header cart-column">PRICE</span>
-          <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-      </div>
+      <h2 class="section-header">Basket</h2>
+
       <div class="cart-items">
       </div>
       <div class="cart-total">
@@ -211,7 +253,8 @@
       <a href="/checkout"><button class="btn btn-primary btn-purchase" type="button">Go to Checkout</button>
       </a>
 
-  </section> -->
+  </section>
+
 
   <div class="cd-cart js-cd-cart">
     <a href="#0" class="cd-cart__trigger text-replace">
@@ -318,6 +361,7 @@
   <script src="../js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
   <script src="../js/cartjs.js"></script>
   <script src="../js/store.js" async></script>
+  <script src="../js/jquery.shop.js"></script>
   <script type="text/javascript">
 
   $('.like-btn').on('click', function() {
