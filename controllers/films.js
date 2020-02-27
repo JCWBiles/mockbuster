@@ -2,6 +2,7 @@ var Films = require('../models/films');
 var User = require('../models/user');
 
 var FilmsController = {
+
   Index: function(req, res) {
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
@@ -13,9 +14,6 @@ var FilmsController = {
     });
   },
 
-
-
-  //
   A_to_E: function(req, res){
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
@@ -84,7 +82,6 @@ var FilmsController = {
 
 
   Action: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Action"]}}), function(err, films) {
@@ -95,7 +92,6 @@ var FilmsController = {
   },
 
   Biopic: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Biopic"]}}), function(err, films) {
@@ -106,7 +102,6 @@ var FilmsController = {
   },
 
   Comedy: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Comedy"]}}), function(err, films) {
@@ -117,7 +112,6 @@ var FilmsController = {
   },
 
   Crime: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Crime"]}}), function(err, films) {
@@ -128,7 +122,6 @@ var FilmsController = {
   },
 
   Drama: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Drama"]}}), function(err, films) {
@@ -139,7 +132,6 @@ var FilmsController = {
   },
 
   Fantasy: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Fantasy"]}}), function(err, films) {
@@ -150,7 +142,6 @@ var FilmsController = {
   },
 
   History: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["History"]}}), function(err, films) {
@@ -161,7 +152,6 @@ var FilmsController = {
   },
 
   Horror: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Horror"]}}), function(err, films) {
@@ -172,7 +162,6 @@ var FilmsController = {
   },
 
   Kids: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Kids"]}}), function(err, films) {
@@ -183,7 +172,6 @@ var FilmsController = {
   },
 
   Legal: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Legal"]}}), function(err, films) {
@@ -194,7 +182,6 @@ var FilmsController = {
   },
 
   Musical: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Musical"]}}), function(err, films) {
@@ -205,7 +192,6 @@ var FilmsController = {
   },
 
   Romance: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Romance"]}}), function(err, films) {
@@ -216,7 +202,6 @@ var FilmsController = {
   },
 
   Sports: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Sports"]}}), function(err, films) {
@@ -227,7 +212,6 @@ var FilmsController = {
   },
 
   Superhero: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Superhero"]}}), function(err, films) {
@@ -238,7 +222,6 @@ var FilmsController = {
   },
 
   Thriller: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Thriller"]}}), function(err, films) {
@@ -249,7 +232,6 @@ var FilmsController = {
   },
 
   War: function(req, res) {
-
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["War"]}}), function(err, films) {
@@ -259,4 +241,5 @@ var FilmsController = {
     })
   }
 };
+
 module.exports = FilmsController;

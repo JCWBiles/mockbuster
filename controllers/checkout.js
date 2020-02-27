@@ -27,7 +27,7 @@ var CheckoutController = {
        res.render('checkout/thank_you', {  users: users });
        console.log(req.session.userId);
      })
-     // req.session.userId = user._id
+  
      // Send order confirmation email
 
      var api_key = '';

@@ -7,8 +7,8 @@ var session = require('express-session')
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
-mailgun = require('mailgun-js')
-var flash = require('express-flash-messages')
+mailgun = require('mailgun-js');
+
 
 
 var filmRouter = require('./routes/films');
@@ -45,7 +45,6 @@ app.use(session({
   saveUninitialized: false,
   store: new MongoStore({ mongooseConnection: db })
 }));
-app.use(flash())
 
 // route setup
 app.use('/', landingRouter);

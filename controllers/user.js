@@ -32,7 +32,7 @@ var UserController = {
         from: 'MockBuster <mockbuster2020@gmail.com>',
         to: req.body.email,
         subject: 'Welcome to MockBuster!',
-        text: `You're all signed up! We hope you enjoy our incredible library of films. To start viewing, please go to localhost:3000.`
+        text: `You're all signed up! We hope you enjoy our incredible library of films.`
       };
 
       mailgun.messages().send(data, function (error, body) {
@@ -46,7 +46,6 @@ var UserController = {
   },
 
   Login: function(req, res) {
-
     res.status(201).render('login/index');
   },
 
@@ -96,7 +95,6 @@ var UserController = {
   },
 
   Delete: function(req, res){
-    // console.log('DELETE Running')
     User.findByIdAndRemove({_id: req.params._id}, function(err){
       if (err) { throw err; }
       res.status(201).redirect('/');
@@ -105,30 +103,21 @@ var UserController = {
 
 
   EditFirst: function(req, res){
-    // console.log('EDIT Running')
-    // console.log(req.body.message)
     User.findOneAndUpdate({_id: req.params._id}, {$set: { firstname: req.body.firstname }, overwrite: true} , function(err){
-      // console.log("finished upodate");
       if (err) { throw err; }
       res.status(201).redirect('/account');
     });
   },
 
   EditLast: function(req, res){
-    // console.log('EDIT Running')
-    // console.log(req.body.message)
     User.findOneAndUpdate({_id: req.params._id}, {$set: { lastname: req.body.lastname }, overwrite: true} , function(err){
-      // console.log("finished upodate");
       if (err) { throw err; }
       res.status(201).redirect('/account');
     });
   },
 
   EditEmail: function(req, res){
-    // console.log('EDIT Running')
-    // console.log(req.body.message)
     User.findOneAndUpdate({_id: req.params._id}, {$set: { email: req.body.email }, overwrite: true} , function(err){
-      // console.log("finished upodate");
       if (err) { throw err; }
       res.status(201).redirect('/account');
     });

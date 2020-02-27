@@ -117,204 +117,204 @@
         <!-- Header - basket and model -->
 
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
-        <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-        <span class="fa-lg sr-only">Edit First name</span>
+          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit First name</span>
         </a>
-          <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/first/{{this._id}}" method="post">
-                    <input type="hidden" name="_method" value="PATCH" />
-                    <div class="form-group">
-                      <label for="recipient-name" class="col-form-label">Edit your first name:</label>
-                      <input type="text" class="form-control" id="recipient-name" name="firstname"value="{{this.firstname}}">
-                    </div>
-                    <div class="buttons">
-                      <span class="like-btn"></span>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                  </div>
-                </form>
+        <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
+              <div class="modal-body">
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/first/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Edit your first name:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="firstname"value="{{this.firstname}}">
+                  </div>
+                  <div class="buttons">
+                    <span class="like-btn"></span>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                </div>
+              </form>
             </div>
           </div>
+        </div>
 
-          <!-- /Header - /basket and model -->
+        <!-- /Header - /basket and model -->
 
-          <br>
-          <p id="user-last-name"style="color: black;">Last Name: {{this.lastname}}</p>
-          <!-- Header - basket and model -->
-          <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit2" style="">
-        <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-        <span class="fa-lg sr-only">Edit Last name</span>
+        <br>
+        <p id="user-last-name"style="color: black;">Last Name: {{this.lastname}}</p>
+        <!-- Header - basket and model -->
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit2" style="">
+          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit Last name</span>
         </a>
-          <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form id="new-lastname-form"style = "display: inline; margin-top: -20px;" action="/account/last/{{this._id}}" method="post">
-                    <input type="hidden" name="_method" value="PATCH" />
-                    <div class="form-group">
-                      <label for="recipient-name" class="col-form-label">Edit your last name:</label>
-                      <input type="text" class="form-control" id="recipient-name" name="lastname" value="{{this.lastname}}">
-                    </div>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                  </div>
-                </form>
+        <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
+              <div class="modal-body">
+                <form id="new-lastname-form"style = "display: inline; margin-top: -20px;" action="/account/last/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Edit your last name:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="lastname" value="{{this.lastname}}">
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                </div>
+              </form>
             </div>
           </div>
+        </div>
 
-          <!-- /Header - /basket and model -->
+        <!-- /Header - /basket and model -->
 
-          <br>
+        <br>
 
-          <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
-          <!-- Header - basket and model -->
-          <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit3" style="">
-        <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-        <span class="fa-lg sr-only">Edit Last name</span>
+        <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
+        <!-- Header - basket and model -->
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit3" style="">
+          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit Last name</span>
         </a>
-          <div class="modal fade" id="edit3" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form id="new-email-form"style = "display: inline; margin-top: -20px;" action="/account/email/{{this._id}}" method="post">
-                    <input type="hidden" name="_method" value="PATCH" />
-                    <div class="form-group">
-                      <label for="recipient-name" class="col-form-label">Edit your email address:</label>
-                      <input type="text" class="form-control" id="recipient-name" name="email" value="{{this.email}}">
-                    </div>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                  </div>
-                </form>
+        <div class="modal fade" id="edit3" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
+              <div class="modal-body">
+                <form id="new-email-form"style = "display: inline; margin-top: -20px;" action="/account/email/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Edit your email address:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="email" value="{{this.email}}">
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                </div>
+              </form>
             </div>
           </div>
+        </div>
 
-          <!-- /Header - /basket and model -->
+        <!-- /Header - /basket and model -->
 
-          <br>
+        <br>
 
-          <br>
-          <div style="text-align: center;">
-            <form id="delete-user-form" style = "display: inline;" action="/account/delete/{{this._id}}" method="post">
-              <input type="hidden" name="_method" value="DELETE" />
-              <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
-            </form>
-
-          </div>
+        <br>
+        <div style="text-align: center;">
+          <form id="delete-user-form" style = "display: inline;" action="/account/delete/{{this._id}}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
+          </form>
 
         </div>
+
       </div>
-      {{/users}}
-      <!-- Footer -->
-      <footer class="container-fluid footer-container text-center">
-        <div class="col-12">
-          <p class="inline-block ">
-            <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
-          </p>
-        </div>
-        <div class="col-12">
-          <p class="inline-block ">
-            <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
-          </p>
-        </div>
-        <div class="col-12">
-          <p class="inline-block ">
-            <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
-          </p>
-        </div>
-        <div class="col-12">
-          <p class="inline-block ">
-            <i class="fas fa-phone "></i>0208 12345678
-          </p>
-        </div>
-        <div class="col-12 ">
+    </div>
+    {{/users}}
+    <!-- Footer -->
+    <footer class="container-fluid footer-container text-center">
+      <div class="col-12">
+        <p class="inline-block ">
+          <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
+        </p>
+      </div>
+      <div class="col-12">
+        <p class="inline-block ">
+          <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
+        </p>
+      </div>
+      <div class="col-12">
+        <p class="inline-block ">
+          <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
+        </p>
+      </div>
+      <div class="col-12">
+        <p class="inline-block ">
+          <i class="fas fa-phone "></i>0208 12345678
+        </p>
+      </div>
+      <div class="col-12 ">
 
-          <ul class="list-inline social-links ">
-            <li class="list-inline-item ">
-              <a target="_blank " href="# " class="hvr-icon-bounce">
-                <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
-                <span class="sr-only ">Facebook</span>
-              </a>
-            </li>
-            <li class="list-inline-item ">
-              <a target="_blank " href="# " class="hvr-icon-bounce">
-                <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
-                <span class="sr-only ">Twitter</span>
-              </a>
-            </li>
-            <li class="list-inline-item ">
-              <a target="_blank " href="# " class="hvr-icon-bounce">
-                <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
-                <span class="sr-only ">LinkedIn</span>
-              </a>
-            </li>
-            <li class="list-inline-item ">
-              <a target="_blank " href="# " class="hvr-icon-bounce">
-                <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
-                <span class="sr-only ">Pinterest</span>
-              </a>
-            </li>
-            <li class="list-inline-item ">
-              <a target="_blank " href="# " class="hvr-icon-bounce">
-                <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
-                <span class="sr-only ">Instagram</span>
-              </a>
-            </li>
-            <li class="list-inline-item ">
-              <a target="_blank " href="# " class="hvr-icon-bounce">
-                <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
-                <span class="sr-only ">YouTube</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </footer>
-      <!-- /.Footer -->
+        <ul class="list-inline social-links ">
+          <li class="list-inline-item ">
+            <a target="_blank " href="# " class="hvr-icon-bounce">
+              <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
+              <span class="sr-only ">Facebook</span>
+            </a>
+          </li>
+          <li class="list-inline-item ">
+            <a target="_blank " href="# " class="hvr-icon-bounce">
+              <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
+              <span class="sr-only ">Twitter</span>
+            </a>
+          </li>
+          <li class="list-inline-item ">
+            <a target="_blank " href="# " class="hvr-icon-bounce">
+              <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
+              <span class="sr-only ">LinkedIn</span>
+            </a>
+          </li>
+          <li class="list-inline-item ">
+            <a target="_blank " href="# " class="hvr-icon-bounce">
+              <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
+              <span class="sr-only ">Pinterest</span>
+            </a>
+          </li>
+          <li class="list-inline-item ">
+            <a target="_blank " href="# " class="hvr-icon-bounce">
+              <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
+              <span class="sr-only ">Instagram</span>
+            </a>
+          </li>
+          <li class="list-inline-item ">
+            <a target="_blank " href="# " class="hvr-icon-bounce">
+              <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
+              <span class="sr-only ">YouTube</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <!-- /.Footer -->
 
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      <script src="../js/jquery.shop.js"></script>
-      <script type="text/javascript">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="../js/jquery.shop.js"></script>
+    <script type="text/javascript">
 
-      $('.like-btn').on('click', function() {
-        $(this).toggleClass('is-active');
-      });
+    $('.like-btn').on('click', function() {
+      $(this).toggleClass('is-active');
+    });
 
-      </script>
-    </body>
+    </script>
+  </body>
 
-    </html>
+  </html>

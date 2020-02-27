@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap:100,200,300,400,500,600,700|Nunito&display=swap:100,200,300,400,500,600,700');
-/* I have imported the font I want here in CSS to save repetion. I put it here the once and it will save me putting it in every html file */
 
-/*I have chosen Raleway as it is angular enough to reflect/mirror the lightening bolts but soft enough to welcome you to the site.
-I have chosen Nunito as it is a soft compliment towards Raleway*/
 
 body {
     width: 100%;
