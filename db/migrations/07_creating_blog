@@ -1,2 +1,1 @@
 db.blogs.insert({ movie: String, review: String, user: String, date: { type: Date, default: Date.now() } });
-db.comments.insert({ text: String, date: { type: Date, default: Date.now() }, blog_id: { type: ObjectId, ref: "blog"} });
