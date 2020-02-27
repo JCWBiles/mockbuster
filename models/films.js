@@ -9,6 +9,10 @@ let FilmSchema = new Schema({
   directors: Array,
   date: { type: Date },
   price: Number,
+  imageUrl: String,
+  description: String,
+  trailerUrl: String,
+  modal: String
 });
 
 var Film = mongoose.model('Films', FilmSchema);

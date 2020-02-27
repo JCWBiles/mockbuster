@@ -120,13 +120,13 @@
 
       <h1>Blog </h1>
       <br>
-      
+
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
         <div class="col-12 form-background">
           <form id="new-blog-form" action="/blog" method="post">
-            <h5 style="padding-top: 20px;;">Rate a Movie!</h5>
+            <h5 style="padding-top: 20px;">Rate a Movie!</h5>
             <div class="form-group">
               <label for="movie">Movie</label>
               <input name="movie" type="text" class="form-control" id="movie" placeholder="Movie" >
@@ -151,22 +151,22 @@
 
     <!-- Output of reviews -->
     <h1>Reviews</h1>
-    
+
     <div class="each-event" style="padding-left:20px;">
       <br>
       {{#each blog}}
       <div class="event-description" style="margin:20px;">
         <h2 id="movie" style="color: black;">Movie: {{this.movie}}</h2>
-    
+
 
           <br>
           <h2 id="review"style="color: black;">Review: {{this.review}}</h2>
-          
+
 
           <br>
 
           <h2 id="user"style="color: black;">Name: {{this.user}}</h2>
-          
+
 
           <br>
 
@@ -181,7 +181,7 @@
         </div>
 
             <!-- /Callout -->
-            
+
             <!-- Footer -->
             <footer class="container-fluid footer-container text-center">
               <div class="col-12">
