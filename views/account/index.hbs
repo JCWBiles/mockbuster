@@ -109,10 +109,10 @@
 
     <div class="each-event" style="padding-left:20px;">
 
-      <h1>Account Details</h1>
+      <h1 style="text-align: center;">Account Details</h1>
       <br>
       {{# users}}
-      <div class="event-description">
+      <div class="event-description" style="text-align: center;">
         <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
         <!-- Header - basket and model -->
 
@@ -224,10 +224,14 @@
           <br>
 
           <br>
-          <form id="delete-user-form" style = "display: inline; float: right; margin-top: -20px;, text-align: center;" action="/account/delete/{{this._id}}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            <input type="submit" value="Delete Account" />
-          </form>
+          <div style="text-align: center;">
+            <form id="delete-user-form" style = "display: inline;" action="/account/delete/{{this._id}}" method="post">
+              <input type="hidden" name="_method" value="DELETE" />
+              <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
+            </form>
+
+          </div>
+
         </div>
       </div>
       {{/users}}

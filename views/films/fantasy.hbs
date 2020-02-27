@@ -105,6 +105,7 @@
   <!-- /.Header -->
 
   <!-- Callout -->
+  <div id="site">
   <h1 style="margin-left:20px;">Fantasy</h1>
   <div class="container-fluid background-jumbotron callout-container">
     <div class="opaque-overlay">&nbsp;</div>
@@ -124,7 +125,7 @@
                       <h5 class="modal-title" id="movieLabel"><b>{{this.name}}</b>
                       </h5>
                       <div class="buttons">
-                        <span class="like-btn"></span>
+                        <span class="like-btn"></span> <i class="fas fa-heart-broken"></i>
                       </div>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -141,139 +142,155 @@
                         <iframe style="margin:10px;" height="150" width="300" src="{{this.trailerUrl}}" allowfullscreen frameborder="0"></iframe>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="#0" style="text-decoration: none; color:inherit;" class=" js-cd-add-to-cart" data-price="4.99">
-                          <button type="button" class="btn btn--teal btn-primary" data-dismiss="modal">
-                            Add To Basket
-                          </button>
-                        </a>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       </div>
                     </form>
+
                   </div>
                 </div>
               </div>
             </a>
+            <div id="content" style="background-color:teal; margin-right:85px;">
+              <div id="products">
+                    <div style="margin-left: 20px; padding-bottom:5px;" class="product-description" data-name="{{this.name}}" data-price="4.99">
+                      <h3 class="product-name">{{this.name}}</h3>
+                      <p class="product-price">&pound; 4.99</p>
+                      <form class="add-to-cart" action="/films/fantasy" method="post">
+                        <div>
+                          <label for="qty-3">Quantity</label>
+                          <input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+                        </div>
+                        <p><input type="submit" value="Add to cart" class="btn btn-primary" /></p>
+                      </form>
+                    </div>
+
+              </div>
+            </div>
           </div>
+
+
           {{/each}}
+
           <!-- /Callout - /Films -->
 
         </div>
       </div>
+
     </div>
+
   </div>
-</div>
+  <div id="content" style="background-color: white;">
+    <h1>Your Shopping Cart</h1>
+    <form id="shopping-cart" action="/films/fantasy" method="post">
+      <table class="shopping-cart">
+        <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Qty</th>
+          <th scope="col" colspan="2">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      <p id="sub-total">
+        <strong>Sub Total</strong>: <span id="stotal"></span>
+      </p>
+      <div id="shopping-cart-actions" style="padding-bottom: 20px;">
+
+          <input type="submit" name="update" id="update-cart" class="btn btn-primary" value="Update Cart" />
+
+          <input type="submit" name="delete" id="empty-cart" class="btn btn-primary" value="Empty Cart" />
+
+          <a href="/checkout" class="btn btn-primary">Go To Checkout</a>
+      </div>
+
+    </form>
+  </div>
+
+  </div>
+
+
 <!-- /Callout -->
 
-    <div class="cd-cart js-cd-cart">
-  <a href="#0" class="cd-cart__trigger text-replace">
-
-  <ul class="cd-cart__count"> <!-- cart items count -->
-  <li></li>
-  <li></li>
-  </ul> <!-- .cd-cart__count -->
-  </a>
-
-  <div class="cd-cart__content">
-  <div class="cd-cart__layout">
-  <header class="cd-cart__header">
-  <h2>Basket</h2>
-  <span class="cd-cart__undo">Item removed. <a href="#0">Undo</a></span>
-  </header>
-
-  <div class="cd-cart__body">
-  <ul>
-    <!-- products added to the cart will be inserted here using JavaScript -->
-  </ul>
+<!-- Footer -->
+<footer class="container-fluid footer-container text-center">
+  <div class="col-12">
+    <p class="inline-block ">
+      <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
+    </p>
   </div>
-
-  <footer class="cd-cart__footer">
-  <a href="/checkout" class="cd-cart__checkout">
-    <em>Checkout - £<span>0</span>
-      <svg class="icon icon--sm" viewBox="0 0 24 24"><g fill="none" stroke="currentColor"><line stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="12" x2="21" y2="12"/><polyline stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="15,6 21,12 15,18 "/></g>
-      </svg>
-    </em>
-  </a>
-  </footer>
+  <div class="col-12">
+    <p class="inline-block ">
+      <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
+    </p>
   </div>
-  </div> <!-- .cd-cart__content -->
-  </div> <!-- cd-cart -->
-    <!-- Footer -->
-    <footer class="container-fluid footer-container text-center">
-        <div class="col-12">
-            <p class="inline-block ">
-                <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
-            </p>
-        </div>
-        <div class="col-12">
-            <p class="inline-block ">
-                <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
-            </p>
-        </div>
-        <div class="col-12">
-            <p class="inline-block ">
-                <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
-            </p>
-        </div>
-        <div class="col-12">
-            <p class="inline-block ">
-                <i class="fas fa-phone "></i>0208 12345678
-            </p>
-        </div>
-        <div class="col-12 ">
+  <div class="col-12">
+    <p class="inline-block ">
+      <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
+    </p>
+  </div>
+  <div class="col-12">
+    <p class="inline-block ">
+      <i class="fas fa-phone "></i>0208 12345678
+    </p>
+  </div>
+  <div class="col-12 ">
 
-            <ul class="list-inline social-links ">
-                <li class="list-inline-item ">
-                    <a target="_blank " href="# " class="hvr-icon-bounce">
-                            <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
-                            <span class="sr-only ">Facebook</span>
-                        </a>
-                </li>
-                <li class="list-inline-item ">
-                    <a target="_blank " href="# " class="hvr-icon-bounce">
-                            <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
-                            <span class="sr-only ">Twitter</span>
-                        </a>
-                </li>
-                <li class="list-inline-item ">
-                    <a target="_blank " href="# " class="hvr-icon-bounce">
-                            <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
-                            <span class="sr-only ">LinkedIn</span>
-                        </a>
-                </li>
-                <li class="list-inline-item ">
-                    <a target="_blank " href="# " class="hvr-icon-bounce">
-                            <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
-                            <span class="sr-only ">Pinterest</span>
-                        </a>
-                </li>
-                <li class="list-inline-item ">
-                    <a target="_blank " href="# " class="hvr-icon-bounce">
-                            <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
-                            <span class="sr-only ">Instagram</span>
-                        </a>
-                </li>
-                <li class="list-inline-item ">
-                    <a target="_blank " href="# " class="hvr-icon-bounce">
-                            <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
-                            <span class="sr-only ">YouTube</span>
-                        </a>
-                </li>
-            </ul>
-        </div>
-    </footer>
-    <!-- /.Footer -->
+    <ul class="list-inline social-links ">
+      <li class="list-inline-item ">
+        <a target="_blank " href="# " class="hvr-icon-bounce">
+          <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
+          <span class="sr-only ">Facebook</span>
+        </a>
+      </li>
+      <li class="list-inline-item ">
+        <a target="_blank " href="# " class="hvr-icon-bounce">
+          <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
+          <span class="sr-only ">Twitter</span>
+        </a>
+      </li>
+      <li class="list-inline-item ">
+        <a target="_blank " href="# " class="hvr-icon-bounce">
+          <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
+          <span class="sr-only ">LinkedIn</span>
+        </a>
+      </li>
+      <li class="list-inline-item ">
+        <a target="_blank " href="# " class="hvr-icon-bounce">
+          <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
+          <span class="sr-only ">Pinterest</span>
+        </a>
+      </li>
+      <li class="list-inline-item ">
+        <a target="_blank " href="# " class="hvr-icon-bounce">
+          <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
+          <span class="sr-only ">Instagram</span>
+        </a>
+      </li>
+      <li class="list-inline-item ">
+        <a target="_blank " href="# " class="hvr-icon-bounce">
+          <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
+          <span class="sr-only ">YouTube</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>
+<!-- /.Footer -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="../js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
-    <script src="../js/cartjs.js"></script>
-    <script type="text/javascript">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="../js/jquery.shop.js"></script>
+<script type="text/javascript">
 
-      $('.like-btn').on('click', function() {
-        $(this).toggleClass('is-active');
-      });
-    </script>
+$('.like-btn').on('click', function() {
+  $(this).toggleClass('is-active');
+});
+
+</script>
 </body>
 
 </html>
