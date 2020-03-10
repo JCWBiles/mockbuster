@@ -1,0 +1,2 @@
+alphabetically(A-E): db.films.find({ name: { $in: [ /^A/, /^B/,/^C/, /^D/,/^E/] } })
+by genres(romance): db.films.find({"genres":{"$in":["Romance"]}})

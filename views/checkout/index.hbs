@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <metacharset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+  <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
+
+  <title>MockBuster - Checkout</title>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container-fluid header-container">
+      <div class="row no-gutters">
+        <a class="col-md-2 logo" href="/"></a>
+
+        <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
+          <a class="navbar-brand" href="/films">Library</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <!-- The id name must match the data-target seen in row 27 -->
+              <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Genres
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/films/action">Action<i class="fas fa-radiation-alt float-right"></i></a>
+                    <a class="dropdown-item" href="/films/biopic">Biopic<i class="fas fa-user-tie float-right"></i></a>
+                    <a class="dropdown-item" href="/films/comedy">Comedy<i class="fas fa-theater-masks float-right"></i></a>
+                    <a class="dropdown-item" href="/films/crime">Crime<i class="fas fa-mask float-right"></i></a>
+                    <a class="dropdown-item" href="/films/drama">Drama<i class="fas fa-heartbeat float-right"></i></a>
+                    <a class="dropdown-item" href="/films/fantasy">Fantasy<i class="fas fa-dragon float-right"></i></a>
+                    <a class="dropdown-item" href="/films/history">History<i class="fab fa-fort-awesome float-right"></i></a>
+                    <a class="dropdown-item" href="/films/horror">Horror<i class="fas fa-ghost float-right"></i></a>
+                    <a class="dropdown-item" href="/films/kids">Kids<i class="fas fa-child float-right"></i></a>
+                    <a class="dropdown-item" href="/films/legal">Legal<i class="fas fa-balance-scale float-right"></i></a>
+                    <a class="dropdown-item" href="/films/musical">Musical<i class="fas fa-music float-right"></i></a>
+                    <a class="dropdown-item" href="/films/romance">Romance<i class="fas fa-grin-hearts float-right"></i></a>
+                    <a class="dropdown-item" href="/films/sports">Sports<i class="fas fa-futbol float-right"></i></a>
+                    <a class="dropdown-item" href="/films/superhero">Superhero<i class="fab fa-superpowers float-right"></i></i></a>
+                    <a class="dropdown-item" href="/films/thriller">Thriller<i class="far fa-surprise float-right"></i></a>
+                    <a class="dropdown-item" href="/films/war">War<i class="fas fa-bomb float-right"></i></a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    A-Z
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/films/a_to_e">A-E</a>
+                    <a class="dropdown-item" href="/films/f_to_j">F-J</a>
+                    <a class="dropdown-item" href="/films/k_to_o">K-O</a>
+                    <a class="dropdown-item" href="/films/p_to_t">P-T</a>
+                    <a class="dropdown-item" href="/films/u_to_z">U-Z</a>
+                    <hr/>
+                    <a class="dropdown-item" href="/films/zero_to_nine">0-9</a>
+                  </div>
+                </li>
+                <!-- Header - search box -->
+                <li class="nav-item">
+                  <form class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                      <label for="inputSearch" class="sr-only">Search</label>
+                      <input type="text" class="form-control" id="inputSearch" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                  </form>
+                </li>
+                <!-- /Header - /search box -->
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{#users}}
+                    {{this.firstname}}'s Account
+                    {{/users}}
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                    <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
+                    <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-shopping-cart float-right"></i></a>
+                    <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+        </div>
+      </div>
+    </header>
+    <!-- /.Header -->
+
+
+    <!-- Callout -->
+
+    <div class="container-fluid background-jumbotron callout-container">
+      <div class="opaque-overlay">&nbsp;</div>
+      <div class="row">
+        <div class="col-12">
+          <main class="page payment-page">
+            <section class="payment-form dark">
+              <div class="container">
+                <div class="block-heading">
+                  <h2>Check Out</h2>
+                </div>
+
+                <div id="site">
+                  <div id="content">
+                    <table id="checkout-cart" class="shopping-cart">
+                      <thead>
+                        <tr style="padding-left: 20px;">
+                          <th scope="col">Item</th>
+                          <th scope="col">Qty</th>
+                          <th scope="col">Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                    <div id="pricing">
+
+                      <p id="sub-total">
+                        <strong>Total</strong>: <span id="stotal"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                {{#users}}
+                <!-- <hr/> -->
+                <form class="card-details-form" action="/checkout/payment/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="card-details">
+                    <h3 class="title">Address Details</h3>
+                    <div class="row">
+                      <form class="" action="/checkout/payment/{{this._id}}" method="post">
+                        <input type="hidden" name="_method" value="PATCH" />
+                        <div class="form-group col-12">
+                          <label for="card-holder">1'st Line:</label>
+                          <input name="address_first_line"id="card-holder" type="text" class="form-control" placeholder="Add 1'st line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_first_line}}">
+                        </div>
+                      </div>
+                      <!-- <hr/> -->
+                      <div class="row">
+                        <div class="form-group col-12">
+                          <label for="card-holder">2'nd Line:</label>
+                          <input name="address_second_line" id="card-holder" type="text" class="form-control" placeholder="Add 2'nd line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_second_line}}">
+                        </div>
+                      </div>
+                      <!-- <hr/> -->
+
+                      <div class="row">
+                        <div class="form-group col-12">
+                          <label for="card-holder">Town:</label>
+                          <input name="address_town" id="card-holder" type="text" class="form-control" placeholder="Town" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_town}}">
+                        </div>
+                      </div>
+                      <!-- <hr/> -->
+
+                      <div class="row">
+                        <div class="form-group col-5">
+                          <label for="card-holder">Post Code:</label>
+                          <input name="address_post_code" id="card-holder" type="text" class="form-control" placeholder="Post Code" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_post_code}}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-details">
+                      <h3 class="title">Credit Card Details</h3>
+                      <div class="row">
+                        <div class="form-group col-sm-7">
+                          <label for="card-holder">Card Holder</label>
+                          <input name="card_holder" id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_holder}}">
+                        </div>
+
+
+                        <div class="form-group col-sm-5">
+                          <label for="">Expiration Date</label>
+                          <div class="input-group expiration-date">
+                            <input name="expiration_month" type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1" value="{{this.expiration_month}}">
+                            <span class="date-separator">/</span>
+                            <input name="expiration_year" type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1" value="{{this.expiration_year}}">
+                          </div>
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="card-number">Card Number</label>
+                          <input name="card_number" id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_number}}">
+                        </div>
+                        <div class="form-group col-sm-4">
+                          <label for="cvc">CVC</label>
+                          <input name="cvc" id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.cvc}}">
+                        </div>
+                        <div class="form-group col-sm-12">
+                          <button type="button" class="btn btn-primary btn-block"><input type="submit" class="btn btn-primary btn-block" value="Save Card Details and Confirm Payment"></button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="form-group col-sm-12">
+                      <p>If you do not wish to save your card details, please click below:</p>
+                      <a style="text-decoration:none;" href="/checkout/thank_you"><button type="button" class="btn btn-primary btn-block">Confirm Payment</button>
+                      </a>
+                    </div>
+                    {{/users}}
+                  </div>
+                </section>
+              </main>
+
+              <!-- </div> --> -->
+
+            </div>
+          </div>
+        </div>
+
+        <!-- /Callout -->
+
+        <!-- Footer -->
+        <footer class="container-fluid footer-container text-center">
+          <div class="col-12">
+            <p class="inline-block ">
+              <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
+            </p>
+          </div>
+          <div class="col-12">
+            <p class="inline-block ">
+              <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
+            </p>
+          </div>
+          <div class="col-12">
+            <p class="inline-block ">
+              <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
+            </p>
+          </div>
+          <div class="col-12">
+            <p class="inline-block ">
+              <i class="fas fa-phone "></i>0208 12345678
+            </p>
+          </div>
+          <div class="col-12 ">
+
+            <ul class="list-inline social-links ">
+              <li class="list-inline-item ">
+                <a target="_blank " href="# " class="hvr-icon-bounce">
+                  <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
+                  <span class="sr-only ">Facebook</span>
+                </a>
+              </li>
+              <li class="list-inline-item ">
+                <a target="_blank " href="# " class="hvr-icon-bounce">
+                  <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
+                  <span class="sr-only ">Twitter</span>
+                </a>
+              </li>
+              <li class="list-inline-item ">
+                <a target="_blank " href="# " class="hvr-icon-bounce">
+                  <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
+                  <span class="sr-only ">LinkedIn</span>
+                </a>
+              </li>
+              <li class="list-inline-item ">
+                <a target="_blank " href="# " class="hvr-icon-bounce">
+                  <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
+                  <span class="sr-only ">Pinterest</span>
+                </a>
+              </li>
+              <li class="list-inline-item ">
+                <a target="_blank " href="# " class="hvr-icon-bounce">
+                  <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
+                  <span class="sr-only ">Instagram</span>
+                </a>
+              </li>
+              <li class="list-inline-item ">
+                <a target="_blank " href="# " class="hvr-icon-bounce">
+                  <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
+                  <span class="sr-only ">YouTube</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+        <!-- /.Footer -->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/jquery.shop.js"></script>
+      </body>
+
+      </html>

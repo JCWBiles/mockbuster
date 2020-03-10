@@ -1,0 +1,1 @@
+db.users.update({}, {$unset: {email:1}}, false, true);

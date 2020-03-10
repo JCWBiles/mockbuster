@@ -1,0 +1,3 @@
+db.yourCollectionName.drop();
+
+db.blogs.drop();
