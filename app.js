@@ -19,6 +19,8 @@ var accountRouter = require('./routes/account');
 var checkoutRouter = require('./routes/checkout');
 var blogRouter = require('./routes/blog');
 var basketRouter = require('./routes/basket');
+var employeeRouter = require('./routes/employee');
+var managerRouter = require('./routes/manager');
 
 var app = express();
 
@@ -80,6 +82,9 @@ app.use('/checkout', checkoutRouter);
 app.use('/checkout/thank_you', checkoutRouter);
 app.use('/blog', blogRouter);
 app.use('/films', basketRouter);
+app.use('/employee', employeeRouter);
+app.use('/employee/login', employeeRouter);
+app.use('/manager', managerRouter);
 
 app.use(methodOverride('_method'));
 

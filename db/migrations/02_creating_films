@@ -52,63 +52,22 @@ db.films.insert({ name: "The Firm", date: 1993, description: "Mitch is a lawyer 
 db.films.insert({name: "Erin Brokovich", date: 2000, description: "Erin, a single mother, becomes a legal assistant and comes across a case against Pacific Gas and Electric. When she discovers that the company is poisoning a city's water supply, she seeks justice.", genres: ["Legal"], actors: ["Julia Roberts"], directors: ["Steven Soderbergh"], imageUrl:"", trailerUrl: "https://youtu.be/embed/AcwpbDvQaK8", price: 4.99, modal: "film52"});
 db.films.insert({name: "The Pelican Brief", date: 1993, description:  "A young law student's legal brief about the assassination of two Supreme Court justices causes her to be targeted by killers.", genres: ["Legal", "Thriller"], actors: ["Denzel Washington", "Julia Roberts"], directors: ["Alan J. Pakula"], price: 4.99, imageUrl: "", trailerUrl: "https://youtu.be/embed/N7seUNbY1_w", modal: "film53"});
 db.films.insert({name: "Runaway Jury", date : 2003, description : "Celeste, a widow, sues Vicksburg Firearms, the company responsible for making the weapon that killed her husband. However, the jury is up for sale and it will pass the verdict to the first bidder.", genres:["Legal", "Thriller"], actors: ["John Cusack", "Rachel Weisz", "Gene Hackman", "Dustin Hoffman"], directors: ["Gary Fleder"], price: 4.99, imageUrl:"", trailerUrl: "https://youtu.be/embed/ct2QKRvIYss", modal: "film54"});
-db.films.insert({name: "12 Angry Men",
-date: 1957,
-description: "This courtroom drama tells the story of a jury of 12 men as they deliberate the conviction or acquittal of an 18-year old defendant on the basis of reasonable doubt, forcing the jurors to question their morals and values.",
-genres: ["Legal"],
-actors: ["Henry Fonda"],
-directors: ["Sidney Lumet"], price: 4.99,
-imageUrl: "",
-trailerUrl: "https://youtu.be/embed/Dosg0p7LAB4",
-modal: "film55"
-});
-db.films.insert({name : "To Kill a Mockingbird",
-date: 1962,
-description: "In the Depression era, Atticus Finch, a lawyer, sets out to defend a black man, who is accused of raping a white woman.",
-genres: ["Legal"],
-actors:   ["Gregory Peck", "Mary Badham"],
-directors: ["Robert Mulligan"], price: 4.99,
-imageUrl:"",
-trailerUrl: "https://youtu.be/embed/KR7loA_oziY",
-modal: "film56"});
+db.films.insert({name: "12 Angry Men", date: 1957, description: "This courtroom drama tells the story of a jury of 12 men as they deliberate the conviction or acquittal of an 18-year old defendant on the basis of reasonable doubt, forcing the jurors to question their morals and values.", genres: ["Legal"],
+actors: ["Henry Fonda"], directors: ["Sidney Lumet"], price: 4.99, imageUrl: "", trailerUrl: "https://youtube/embed/Dosg0p7LAB4", modal: "film55"});
+db.films.insert({name : "To Kill a Mockingbird",date: 1962, description: "In the Depression era, Atticus Finch, a lawyer, sets out to defend a black man, who is accused of raping a white woman.", genres: ["Legal"],
+actors:   ["Gregory Peck", "Mary Badham"], directors: ["Robert Mulligan"], price: 4.99, imageUrl:"", trailerUrl: "https://youtube/embed/KR7loA_oziY", modal: "film56"});
 
-db.films.insert({name: "Dunkirk",
-description: "During World War II, soldiers from the British Empire, Belgium and France try to evacuate from the town of Dunkirk during a arduous battle with German forces.",
-date:  2017,
-directors: ["Christopher Nolan"],
-genres: ["War"],
-actors: ["Fionn Whitehead", "Cillian Murphy", "Kenneth Branagh", "Tom Hardy"],
-imageUrl: "",
-trailerUrl: "https://youtu.be/embed/PEFwn19JFKI", price: 4.99,
-modal: "film57"});
+db.films.insert({name: "Dunkirk", description: "During World War II, soldiers from the British Empire, Belgium and France try to evacuate from the town of Dunkirk during a arduous battle with German forces.",
+date:  2017, directors: ["Christopher Nolan"], genres: ["War"], actors: ["Fionn Whitehead", "Cillian Murphy", "Kenneth Branagh", "Tom Hardy"],
+imageUrl: "", trailerUrl: "https://youtube/embed/PEFwn19JFKI", price: 4.99, modal: "film57"});
 
-db.films.insert({name : "1917",
-description: "During World War I, two British soldiers -- Lance Cpl. Schofield and Lance Cpl. Blake -- receive seemingly impossible orders. In a race against time, they must cross over into enemy territory to deliver a message that could potentially save 1,600 of their fellow comrades -- including Blake's own brother.",
-date:  2019,
-directors : ["Sam Mendes"],
-genres : ["War"],
-actors :  ["George Mackay", "Dean-Charles Chapman", "Richard Madden"],
-imageUrl: "",
-trailerUrl: "https://youtu.be/embed/PEFwn19JFKI", price: 4.99,
-modal: "film58"
+db.films.insert({name : "1917", description: "During World War I, two British soldiers -- Lance Cpl. Schofield and Lance Cpl. Blake -- receive seemingly impossible orders. In a race against time, they must cross over into enemy territory to deliver a message that could potentially save 1,600 of their fellow comrades -- including Blake's own brother.",
+date:  2019, directors : ["Sam Mendes"], genres : ["War"], actors :  ["George Mackay", "Dean-Charles Chapman", "Richard Madden"],
+imageUrl: "",trailerUrl: "https://youtube/embed/PEFwn19JFKI", price: 4.99, modal: "film58"
 });
 
-db.films.insert({name : "Saving Private Ryan",
-description: "During the Normandy invasion of World War II, Captain John Miller is assigned the task of searching for Private James Ryan, whose three brothers have already been killed in the war.",
-date:  1998,
-directors: ["Steven Spielberg"],
-genres: ["War"],
-actors : ["Tom Hanks", "Matt Damon", "Edward Burns", "Vin Diesel"],
-imageUrl: "",
-trailerUrl: "https://youtu.be/embed/iQQX-btW9P8", price: 4.99,
-modal: "film59"});
+db.films.insert({name : "Saving Private Ryan",description: "During the Normandy invasion of World War II, Captain John Miller is assigned the task of searching for Private James Ryan, whose three brothers have already been killed in the war.",
+date:  1998, directors: ["Steven Spielberg"], genres: ["War"], actors : ["Tom Hanks", "Matt Damon", "Edward Burns", "Vin Diesel"], imageUrl: "", trailerUrl: "https://youtube/embed/iQQX-btW9P8", price: 4.99, modal: "film59"});
 
-db.films.insert({name : "Pitch Perfect",
-description: "Beca, a freshman at Barden University, is cajoled into joining The Bellas, her school's all-girls singing group. Injecting some much needed energy into their repertoire, The Bellas take on their male rivals in a campus competition.",
-date:  2012,
-directors: [" Jason Moore"],
-genres: ["Musical", "Comedy"],
-actors : ["Anna Kendrick", "Rebel Wilson", " Brittany Snow", "Skylar Astin"],
-imageUrl: "/images/movies/pitchPerfect.jpg",
-trailerUrl: "https://www.youtube.com/embed/8dItOM6eYXY", price: 4.99,
-modal: "film60"});
+db.films.insert({name : "Pitch Perfect", description: "Beca, a freshman at Barden University, is cajoled into joining The Bellas, her school's all-girls singing group. Injecting some much needed energy into their repertoire, The Bellas take on their male rivals in a campus competition.",
+date:  2012, directors: [" Jason Moore"], genres: ["Musical", "Comedy"], actors : ["Anna Kendrick", "Rebel Wilson", " Brittany Snow", "Skylar Astin"], imageUrl: "/images/movies/pitchPerfect.jpg", trailerUrl: "https://www.youtube.com/embed/8dItOM6eYXY", price: 4.99, modal: "film60"});
