@@ -24,23 +24,23 @@ var UserController = {
         res.status(201).redirect('/films')
       }
 
-      var api_key = '';
-      var domain = '';
-      var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+    //   var api_key = '';
+    //   var domain = '';
+    //   var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-      var data = {
-        from: 'MockBuster <mockbuster2020@gmail.com>',
-        to: req.body.email,
-        subject: 'Welcome to MockBuster!',
-        text: `You're all signed up! We hope you enjoy our incredible library of films.`
-      };
+    //   var data = {
+    //     from: 'MockBuster <mockbuster2020@gmail.com>',
+    //     to: req.body.email,
+    //     subject: 'Welcome to MockBuster!',
+    //     text: `You're all signed up! We hope you enjoy our incredible library of films.`
+    //   };
 
-      mailgun.messages().send(data, function (error, body) {
-        if (error){
-          console.log(error);
-        }
-        console.log(body);
-      });
+    //   mailgun.messages().send(data, function (error, body) {
+    //     if (error){
+    //       console.log(error);
+    //     }
+    //     console.log(body);
+    //   });
     });
 
   },
