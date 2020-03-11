@@ -15,6 +15,9 @@ body {
 
 header {
     margin: 0;
+    position: sticky; 
+    top: 0;
+    z-index: 1;
 }
 
 .logo {
@@ -22,7 +25,8 @@ header {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    min-height: 200px;
+    background-color: white;
+    min-height: 100px;
     transition: all .5s ease-in-out;
     /* the above line - a little bit of animation for when the image is loading */
     -moz-transition: all .5s ease-in-out;
