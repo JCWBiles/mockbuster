@@ -3,9 +3,11 @@ var router = express.Router();
 
 var EmployeeController = require('../controllers/employee');
 
-router.get('/', EmployeeController.Index);
-router.post('/password/:_id', EmployeeController.NewPassword);
-router.get('/login', EmployeeController.Login);
+
+router.get('/', EmployeeController.Login);
 router.post('/', EmployeeController.Authenticate);
+router.get('/change', EmployeeController.Change);
+router.post('/password/:_id', EmployeeController.NewPassword);
+
 
 module.exports = router;

@@ -83,7 +83,7 @@ app.use('/checkout/thank_you', checkoutRouter);
 app.use('/blog', blogRouter);
 app.use('/films', basketRouter);
 app.use('/employee', employeeRouter);
-app.use('/employee/login', employeeRouter);
+app.use('/employee/change', employeeRouter);
 app.use('/manager', managerRouter);
 
 app.use(methodOverride('_method'));

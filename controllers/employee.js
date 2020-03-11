@@ -2,14 +2,11 @@ var Employee = require('../models/employee');
 var bcrypt = require('bcrypt');
 
 var EmployeeController = {
-  Index: function(req, res){
-    res.status(201).render('employee/index');
-  },
 
   Create: function(req, res){
     var employee = new Employee({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
+      em_first_name: req.body.em_first_name,
+      em_last_name: req.body.em_last_name,
       employee_number:  req.body.employee_number,
       password: req.body.password,
     });
@@ -22,37 +19,49 @@ var EmployeeController = {
   })
 },
 
-  NewPassword: function(req, res){
-    User.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/employee/login');
-    });
-  },
-
   Login: function(req, res) {
-    res.status(201).render('employee/login');
+    res.status(201).render('employee/index');
   },
 
   Authenticate: function(req, res) {
-    Employee.findOne({employee_number: req.body.employee_number}, function(err,employee){
-      if (employee) {
-        bcrypt.compare(req.body.password, employee.password, function (err, result) {
+    Employee.findOne({employee_number: req.body.employee_number}, function(err,employees){
+      if (employees) {
+        console.log(employees.employee_number)
+        bcrypt.compare(req.body.password, employees.password, function (err, result) {
           if (result == true) {
-            req.session.employeeId = employee._id;
+            req.session.employeeId = employees._id;
             console.log(req.session.employeeId)
-            res.redirect('/films');
+            res.redirect('/employee/change');
           }
           else {
             console.log('wrong password');
-
-            res.status(201).redirect('/')
+            res.status(201).redirect('/employee')
           }
         })
       }
       else {
-        console.log('wrong email');
-        res.status(201).redirect('/')
+        console.log('wrong employee number');
+        res.status(201).redirect('/employee')
       }
+    });
+  },
+
+  Change: function(req, res) {
+    Employee.find({_id: req.session.employeeId}, function(err, employees) {
+      if (err) { throw err; }
+        res.render('employee/change', { employees: employees });
+      console.log(req.session.employeeId);
+    });
+  },
+
+  NewPassword: function(req, res){
+    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err, employee){
+      employee.save(function(err) {
+        if (err) { throw err; }
+        else {
+          res.status(201).redirect('/films')
+        }
+      })
     });
   },
 

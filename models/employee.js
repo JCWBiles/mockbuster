@@ -1,27 +1,27 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt');
 
-let EmployeeSchema = new Schema({
+var EmployeeSchema = new mongoose.Schema({
   id: String,
-  first_name: String,
-  last_name: String,
-  employee_number: Number,
+  em_first_name: String,
+  em_last_name: String,
+  employee_number: {type: Number, index: { unique: true }},
   password: String,
 });
 
 //authenticating
 EmployeeSchema.statics.authenticate = function(employee_number, password, callback){
   Employee.findOne({employee_number: employee_number})
-  .exec(function(err,user){
+  .exec(function(err,employee){
     if(err) {
       return callback(err)
-    } else if (!user) {
+    } else if (!employee) {
       err.status = 401;
       return callback(err);
     }
-    bcrypt.compare(password, user.password, function(err, result){
+    bcrypt.compare(password, employee.password, function(err, result){
       if (result === true) {
-        return callback(null, user);
+        return callback(null, employee);
       } else{
         return callback();
       }
@@ -31,12 +31,12 @@ EmployeeSchema.statics.authenticate = function(employee_number, password, callba
 
 //hashing password
 EmployeeSchema.pre('save', function(next){
-  var user = this;
-  bcrypt.hash(user.password, 10, function(err, hash){
+  var employee = this;
+  bcrypt.hash(employee.password, 10, function(err, hash){
     if(err){
       return next(err);
     }
-    user.password = hash;
+    employee.password = hash;
     next();
   })
 });
