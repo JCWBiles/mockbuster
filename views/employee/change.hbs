@@ -32,6 +32,12 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/employee/login">Login</a>
                 </li>
+                <li style="padding-left: 800px;">
+                  <a class="nav-link" href="/employee/session/destroy">
+                  Log Out
+                  <i style="padding-left: 10px; margin-top: 4px;" class="fas fa-sign-out-alt float-right"></i>
+                </a>
+                </li>
               </ul>
             </div>
           </nav>
@@ -46,7 +52,7 @@
       <div class="row">
         <div class="col-12 form-background">
           {{#employees}}
-          <h2>{{this.employee_number}}</h2>
+          <h2>Employee Number: {{this.employee_number}}</h2>
           <form id="new-password-form" style = "display: inline; margin-top: -20px;" action="/employee/password/{{this._id}}" method="post">
             <input type="hidden" name="_method" value="PATCH" />
             <h5 style="padding-top: 20px;">New Password</h5>
