@@ -14,7 +14,7 @@ var EmployeeController = {
     employee.save(function(err) {
       if (err) { throw err; }
       else {
-        res.status(201).redirect('/films')
+        res.status(201).redirect('/manager/completed')
       }
   })
 },
@@ -55,12 +55,17 @@ var EmployeeController = {
   },
 
   NewPassword: function(req, res){
-    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err, employee){
-      employee.save(function(err) {
+    // retrieve the password field
+    var password = req.body.password
+    // update it with hash
+    bcrypt.hash(req.body.password, 10, function(err, hash){
+      if(err){
+        return(err);
+      }
+      req.body.password = hash;
+      Employee.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err, employee){
         if (err) { throw err; }
-        else {
-          res.status(201).redirect('/films')
-        }
+        res.status(201).redirect('/films')
       })
     });
   },

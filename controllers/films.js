@@ -239,6 +239,28 @@ var FilmsController = {
         res.render('films/war', { films:films, users:users })
       }).sort( { name: 1 });
     })
+  },
+
+  Search: function(req,res){
+    var q = req.query.q;
+
+	// FULL TEXT SEARCH USING $text
+
+
+	// PARTIAL TEXT SEARCH USING REGEX
+
+	Films.find({
+		storeName: {
+			$regex: new RegExp(q)
+		}
+	}, {
+		_id: 0,
+		__v: 0
+	}, function (err, data) {
+		res.json(data);
+	}).limit(20);
+
+});
   }
 };
 

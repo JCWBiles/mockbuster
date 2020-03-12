@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+mongoose.set('useCreateIndex', true);
 
 var EmployeeSchema = new mongoose.Schema({
   id: String,
   em_first_name: String,
   em_last_name: String,
-  employee_number: {type: Number, index: { unique: true }},
+  employee_number: {type: Number, unique: true },
   password: String,
 });
 
