@@ -7,7 +7,7 @@ var showResults = debounce(function (arg) {
   } else {
     $("#search-results").fadeIn();
   };
-  var jqxhr = $.get('/xhr/search?q=' + value, function (data) {
+  var jqxhr = $.get('/films/search?q=' + value, function (data) {
       $("#search-results").html("");
     })
     .done(function (data) {
@@ -15,7 +15,7 @@ var showResults = debounce(function (arg) {
         $("#search-results").append('<p class="lead text-center mt-2">No results</p>');
       } else {
         console.table(data);
-        $("#search-results").append('<p class="text-center m-0 lead">Stores</p>');
+        $("#search-results").append('<p class="text-center m-0 lead">Films</p>');
         data.forEach(x => {
           $("#search-results").append('<a href="#"><p class="m-2 mt-0 lead"><img style="width:60px;" src="images/supreme1.jpg" > ' + x.storeName + '</p> </a>');
         });

@@ -241,27 +241,29 @@ var FilmsController = {
     })
   },
 
+  // Search: function(req,res){
+  //   var q = req.query.q;
+  //   // PARTIAL TEXT SEARCH USING REGEX
+  //
+  //   Films.find({
+  //     name: {
+  //       $regex: new RegExp(q)
+  //     }
+  //   }, {
+  //     _id: 0,
+  //     __v: 0
+  //   }, function (err, data) {
+  //     res.json(data);
+  //   }).limit(20);
+  //
+  // },
+
   Search: function(req,res){
-    var q = req.query.q;
-
-	// FULL TEXT SEARCH USING $text
-
-
-	// PARTIAL TEXT SEARCH USING REGEX
-
-	Films.find({
-		storeName: {
-			$regex: new RegExp(q)
-		}
-	}, {
-		_id: 0,
-		__v: 0
-	}, function (err, data) {
-		res.json(data);
-	}).limit(20);
-
-});
-  }
+    Films.find({ name: { $regex: "s", $options: "i" } }, function(err, films) {
+      console.log("Partial Search Begins");
+      console.log(films);
+    })
+  },
 };
 
 module.exports = FilmsController;

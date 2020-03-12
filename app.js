@@ -77,6 +77,7 @@ app.use('/films/k_to_o', filmRouter);
 app.use('/films/p_to_t', filmRouter);
 app.use('/films/u_to_z', filmRouter);
 app.use('/films/zero_to_nine', filmRouter);
+app.use('films/search', filmRouter);
 app.use('/account', accountRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/checkout/thank_you', checkoutRouter);
@@ -85,6 +86,7 @@ app.use('/films', basketRouter);
 app.use('/employee', employeeRouter);
 app.use('/employee/change', employeeRouter);
 app.use('/manager', managerRouter);
+
 
 app.use(methodOverride('_method'));
 
