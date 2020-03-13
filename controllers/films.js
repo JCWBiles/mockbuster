@@ -241,29 +241,71 @@ var FilmsController = {
     })
   },
 
-  // Search: function(req,res){
-  //   var q = req.query.q;
-  //   // PARTIAL TEXT SEARCH USING REGEX
-  //
-  //   Films.find({
-  //     name: {
-  //       $regex: new RegExp(q)
-  //     }
-  //   }, {
-  //     _id: 0,
-  //     __v: 0
-  //   }, function (err, data) {
-  //     res.json(data);
-  //   }).limit(20);
-  //
-  // },
+  Search: function(req, res, next){
+    var noMatch = null;
+        if(req.query.search) {
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            // Get all campgrounds from DB
+            Films.find({name: regex}, function(err, allFilms){
+               if(err){
+                   console.log(err);
+               } else {
+                  if(allFilms.length < 1) {
+                      noMatch = "No films match that query, please try again.";
+                  }
+                  res.render("films/search",{films:allFilms, noMatch: noMatch});
+               }
+            });
+        } else {
+            // Get all campgrounds from DB
+            Films.find({}, function(err, allFilms){
+               if(err){
+                   console.log(err);
+               } else {
+                  res.render("films/search",{films:allFilms, noMatch: noMatch});
+               }
+            });
+        }
+    // var q = req.query.search;
+    // // PARTIAL TEXT SEARCH USING REGEX
+    //
+    // Films.find({
+    //   name: {
+    //     $regex: new RegExp(q)
+    //   }
+    // }, {
+    //   _id: 0,
+    //   __v: 0
+    // }, function (err, films) {
+    //   res.render('films/search', {films: films});
+    //   console.log("Partial Search Begins");
+    //   console.log(films);
+    // }).limit(20);
 
-  Search: function(req,res){
-    Films.find({ name: { $regex: "s", $options: "i" } }, function(err, films) {
-      console.log("Partial Search Begins");
-      console.log(films);
-    })
+
   },
+//
+//   // Search: function(req,res){
+//   //   Films.find({ name: { $regex: "s", $options: "i" } }, function(err, films) {
+//   //     console.log("Partial Search Begins");
+//   //     console.log(films);
+//   //   })
+//   // },
+Search2: function(req, res){
+  const allfilms = Films.find({}, "name", function(err, films) {
+  if (err) console.log(err);
+  console.log(films);
+  });
+
+
+  Films.find({ name: { $regex: "s", $options: "i" } }, function(err, films) {
+  console.log("Partial Search Begins");
+  console.log(films);
+  });
+},
+};
+function escapeRegex(text){
+  return text.replace(/[-[\]{}()*+?.,\\^$!#\s]{}]/g, "\\$&");
 };
 
 module.exports = FilmsController;

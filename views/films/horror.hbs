@@ -72,10 +72,10 @@
                 </li>
                 <!-- Header - search box -->
                 <li class="nav-item">
-                  <form class="form-inline">
+                  <form class="form-inline" action="/films/search" method="GET">
                     <div class="form-group mx-sm-3 mb-2">
                       <label for="inputSearch" class="sr-only">Search</label>
-                      <input type="text" class="form-control" id="inputSearch" placeholder="Search">
+                      <input type="text" class="form-control" id="inputSearch" name="search" onkeyup="showResults(this.value)" placeholder="Search"/>
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">Search</button>
                   </form>

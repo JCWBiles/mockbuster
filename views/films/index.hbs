@@ -71,13 +71,41 @@
                 </li>
                 <!-- Header - search box -->
                 <li class="nav-item">
-                  <form class="form-inline">
+                  <!-- <form class="form-inline" action="/films" method="GET">
+                    <div class="form-group">
+                      <input type="text" name="search" placeholder="Search Films">
+                      <input type="submit" name="" value="Search" class="btn btn-primary mb-2">
+                    </div>
+                  </form> -->
+                  <form class="form-inline" action="/films/search" method="GET">
                     <div class="form-group mx-sm-3 mb-2">
                       <label for="inputSearch" class="sr-only">Search</label>
-                      <input type="text" class="form-control" id="inputSearch" onkeyup="showResults(this.value)"placeholder="Search">
+                      <input type="text" class="form-control" id="inputSearch" name="search" onkeyup="showResults(this.value)" placeholder="Search"/>
+                      <!-- <input type="submit" class="btn btn-primary mb-2" value="Search"> -->
                     </div>
+<!--
+                      <div class="border" id="search-results">
+                      </div> -->
+
                     <button type="submit" class="btn btn-primary mb-2">Search</button>
                   </form>
+                  <!-- <form class="form-inline my-0 my-lg-0">
+                    <div class="group">
+                      <input aria-label="Search" class="form-control mr-sm-0" onkeyup="showResults(this.value)" placeholder="Search Films" type="search"/>
+                      <span class="highlight">
+                      </span>
+
+                    </div>
+                    {{!--
+                    <button class="btn btn-dark my-2 my-sm-0" type="submit">
+                      Search
+                    </button>
+                    --}}
+                    <div style="position: relative;width: 100%;top:-1px">
+                      <div class="border" id="search-results">
+                      </div>
+                    </div> -->
+                  <!-- </form> -->
                 </li>
                 <!-- /Header - /search box -->
 
