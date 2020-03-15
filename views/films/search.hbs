@@ -13,60 +13,6 @@
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
   <title>MockBuster - Search</title>
-  <style>
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
-}
-
-#myInput {
-  box-sizing: border-box;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
-}
-
-#myInput:focus {outline: 3px solid #ddd;}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  min-width: 230px;
-  overflow: auto;
-  border: 1px solid #ddd;
-  z-index: 1;
-
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-</style>
 </head>
 
 <body>
@@ -134,41 +80,20 @@
                   </div>
                 </li> -->
 
+
                 <!-- Header - search box -->
                 <li class="nav-item">
-                  <form class="form-inline" action="/films/search" method="GET">
-                    <div class="form-group mx-sm-3 mb-2">
-                      <label for="inputSearch" class="sr-only">Search</label>
-                      <input type="text" class="form-control" id="inputSearch" name="search" onkeyup="showResults(this.value)" placeholder="Search"/>
-                      <!-- <input type="submit" class="btn btn-primary mb-2" value="Search"> -->
+                  <form class="form-inline" action="films/search/" id="EmployeeForm" class="form-horizontal" method="get"  role="form">
+                  <div class="">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" id="searchName" class="form-control" name="name" placeholder="Search Films...">
+                        </div>
                     </div>
-<!--
-                      <div class="border" id="search-results">
-                      </div> -->
-
-                    <button type="submit" class="btn btn-primary mb-2">Search</button>
-                    <div style="position: relative;width: 100%;top:-1px">
-                      <div class="border" id="search-results">
-                      </div>
-                    </div>
+                  </div>
+                  <input type="submit" class="form-control btn btn-primary" name="submit" value="Search">
                   </form>
-                  <!-- <form class="form-inline my-0 my-lg-0">
-                    <div class="group">
-                      <input aria-label="Search" class="form-control mr-sm-0" onkeyup="showResults(this.value)" placeholder="Search Films" type="search"/>
-                      <span class="highlight">
-                      </span>
-
-                    </div>
-                    {{!--
-                    <button class="btn btn-dark my-2 my-sm-0" type="submit">
-                      Search
-                    </button>
-                    --}}
-                    <div style="position: relative;width: 100%;top:-1px">
-                      <div class="border" id="search-results">
-                      </div>
-                    </div> -->
-                  <!-- </form> -->
+              </li>
                 </li>
                 <!-- /Header - /search box -->
 
@@ -375,6 +300,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="../js/jquery.shop.js"></script>
   <script src="../js/search.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript">
 
   $('.like-btn').on('click', function() {
@@ -382,24 +309,40 @@
   });
 
   </script>
-  <!-- <script>
-function filterFunction() {
-document.getElementById("myDropdown").classList.toggle("show");
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
+
+  <script>
+  $(function(){
+  $('#searchName').autocomplete({
+  source: function(req,res){
+
+  $.ajax({
+    url:"films/autocomplete/",
+    dataType:"jsonp",
+    type:"GET",
+    data:req,
+    success: function(data){
+      res(data)
+
+    },
+    error: function(err){
+      console.log(err.status);
     }
+  });
+  },
+
+  minLength:1,
+  select: function(event,ui){
+  if(ui.item){
+    $('#searchName').val(ui.item.label);
   }
-}
-</script> -->
+  }
+
+
+
+  });
+
+  });
+  </script>
 </body>
 
 </html>

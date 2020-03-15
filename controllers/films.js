@@ -241,6 +241,28 @@ var FilmsController = {
     })
   },
 
+  Autocomplete: function(req, res, next){
+    var regex = new RegExp(req.query["term"], 'i');
+    var filmFilter = Films.find({name: regex}, {'name': 1}).limit(20);
+    filmFilter.exec(function(err, data){
+      console.log(data);
+      var result = [];
+      if(!err){
+        if(data && data.length && data.length > 0){
+          data.forEach(film=>{
+            let obj = {
+              id: film._id,
+              label: film.name
+            };
+            result.push(obj);
+          });
+          res.jsonp(result)
+        }
+      }
+    })
+
+  },
+
   Search: function(req, res, next){
     var noMatch = null;
         if(req.query.search) {
@@ -252,6 +274,7 @@ var FilmsController = {
                } else {
                   if(allFilms.length < 1) {
                       noMatch = "No films match that query, please try again.";
+                      console.log("No films match that query, please try again.")
                   }
                   res.render("films/search",{films:allFilms, noMatch: noMatch});
                }
@@ -262,6 +285,7 @@ var FilmsController = {
                if(err){
                    console.log(err);
                } else {
+                 // res.json(allFilms);
                   res.render("films/search",{films:allFilms, noMatch: noMatch});
                }
             });
@@ -284,25 +308,8 @@ var FilmsController = {
 
 
   },
-//
-//   // Search: function(req,res){
-//   //   Films.find({ name: { $regex: "s", $options: "i" } }, function(err, films) {
-//   //     console.log("Partial Search Begins");
-//   //     console.log(films);
-//   //   })
-//   // },
-Search2: function(req, res){
-  const allfilms = Films.find({}, "name", function(err, films) {
-  if (err) console.log(err);
-  console.log(films);
-  });
 
 
-  Films.find({ name: { $regex: "s", $options: "i" } }, function(err, films) {
-  console.log("Partial Search Begins");
-  console.log(films);
-  });
-},
 };
 function escapeRegex(text){
   return text.replace(/[-[\]{}()*+?.,\\^$!#\s]{}]/g, "\\$&");
