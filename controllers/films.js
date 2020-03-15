@@ -249,7 +249,7 @@ var FilmsController = {
       var result = [];
       if(!err){
         if(data && data.length && data.length > 0){
-          data.forEach(film=>{
+          data.forEach(film =>{
             let obj = {
               id: film._id,
               label: film.name
@@ -264,55 +264,34 @@ var FilmsController = {
   },
 
   Search: function(req, res, next){
-    var noMatch = null;
-        if(req.query.search) {
-            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            // Get all campgrounds from DB
-            Films.find({name: regex}, function(err, allFilms){
-               if(err){
-                   console.log(err);
-               } else {
-                  if(allFilms.length < 1) {
-                      noMatch = "No films match that query, please try again.";
-                      console.log("No films match that query, please try again.")
-                  }
-                  res.render("films/search",{films:allFilms, noMatch: noMatch});
-               }
-            });
-        } else {
-            // Get all campgrounds from DB
-            Films.find({}, function(err, allFilms){
-               if(err){
-                   console.log(err);
-               } else {
-                 // res.json(allFilms);
-                  res.render("films/search",{films:allFilms, noMatch: noMatch});
-               }
-            });
-        }
-    // var q = req.query.search;
-    // // PARTIAL TEXT SEARCH USING REGEX
-    //
-    // Films.find({
-    //   name: {
-    //     $regex: new RegExp(q)
-    //   }
-    // }, {
-    //   _id: 0,
-    //   __v: 0
-    // }, function (err, films) {
-    //   res.render('films/search', {films: films});
-    //   console.log("Partial Search Begins");
-    //   console.log(films);
-    // }).limit(20);
-
-
-  },
-
-
+   var noMatch = null;
+       if(req.query.search) {
+           const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+           // Get all films from DB
+           Films.find({name: regex}, function(err, allFilms){
+              if(err){
+                  console.log(err);
+              } else {
+                 if(allFilms.length < 1) {
+                     noMatch = "No films match that query, please try again.";
+                 }
+                 res.render("films/search",{films:allFilms, noMatch: noMatch});
+              }
+           });
+       } else {
+           // Get all films from DB
+           Films.find({}, function(err, allFilms){
+              if(err){
+                  console.log(err);
+              } else {
+                 res.render("films/search",{films:allFilms, noMatch: noMatch});
+              }
+           });
+       }
+ },
 };
 function escapeRegex(text){
-  return text.replace(/[-[\]{}()*+?.,\\^$!#\s]{}]/g, "\\$&");
+ return text.replace(/[-[\]{}()*+?.,\\^$!#\s]{}]/g, "\\$&");
 };
 
 module.exports = FilmsController;
