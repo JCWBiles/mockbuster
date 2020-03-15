@@ -86,7 +86,9 @@ app.use('/blog', blogRouter);
 app.use('/films', basketRouter);
 app.use('/employee', employeeRouter);
 app.use('/employee/change', employeeRouter);
+app.use('/employee/account', employeeRouter);
 app.use('/manager', managerRouter);
+
 
 
 app.use(methodOverride('_method'));
