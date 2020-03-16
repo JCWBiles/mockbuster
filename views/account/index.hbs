@@ -130,7 +130,9 @@
 
       <h1 style="text-align: center;">Account Details</h1>
       <br>
-      {{# users}}
+      {{#users}}
+      <img src="{{this.imageUrl}}" alt="{{this.firstname}}" style="width:14%;">
+      <br><br>
       <div class="event-description account-centred" >
         <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
         <!-- Header - basket and model -->
