@@ -147,6 +147,9 @@
 
 
                 {{#users}}
+                <div class="form-group col-sm-12">
+                <a style="text-decoration:none;" href="/films"><button type="button" class="btn btn-primary btn-block">Continue Shopping</button></a>
+                </div>
                 <!-- <hr/> -->
                 <form class="card-details-form" action="/checkout/payment/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
@@ -216,8 +219,7 @@
                     </form>
                     <div class="form-group col-sm-12">
                       <p>If you do not wish to save your card details, please click below:</p>
-                      <a style="text-decoration:none;" href="/checkout/thank_you"><button type="button" class="btn btn-primary btn-block">Confirm Payment</button>
-                      </a>
+                      <a style="text-decoration:none;" href="/checkout/thank_you"><button type="button" class="btn btn-primary btn-block">Confirm Payment</button></a>
                     </div>
                     {{/users}}
                   </div>
