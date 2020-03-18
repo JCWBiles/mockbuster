@@ -8,4 +8,4 @@ router.get('/', ManagerController.Index);
 router.post('/', EmployeeController.Create);
 router.get('/completed', ManagerController.Completed);
 
-module.exports = router;
+module.exports = router; 
