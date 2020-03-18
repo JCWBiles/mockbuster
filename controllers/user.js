@@ -71,13 +71,13 @@ var UserController = {
           else {
             console.log('wrong password');
 
-            res.status(201).redirect('/')
+            res.status(201).redirect('/login')
           }
         })
       }
       else {
         console.log('wrong email');
-        res.status(201).redirect('/')
+        res.status(201).redirect('/login')
       }
     });
   },
