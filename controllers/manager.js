@@ -21,7 +21,7 @@ var ManagerController = {
       if (err) { throw err; }
       else {
         req.session.managerId = manager._id;
-        res.status(201).redirect('/manager')
+        res.status(201).redirect('/manager/login')
       }
 
       // var api_key = '';
@@ -56,7 +56,7 @@ var ManagerController = {
           if (result == true) {
             req.session.managerId = manager._id;
             console.log(req.session.managerId)
-            res.redirect('manager/hub');
+            res.redirect('/manager/hub');
           }
           else {
             console.log('wrong password');
@@ -72,6 +72,13 @@ var ManagerController = {
     });
   },
 
+  Hub: function(req, res) {
+    res.render('manager/hub');
+  },
+  Staff_Creation: function(req, res) {
+    res.render('manager/staff_creation');
+  },
+
   Logout: function(req, res) {
     console.log(req.session.managerId)
     req.session.destroy(function(err){
@@ -85,6 +92,7 @@ var ManagerController = {
       }
     })
   },
+
   Account: function(req, res){
     Manager.find({_id: req.session.managerId}, function(err,managers){
       if (err) {
