@@ -84,27 +84,26 @@ var EmployeeController = {
     })
   },
   Account: function(req, res){
-    Employee.find({_id: req.session.employeeId}, function(err,employee){
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      console.log(req.session.employeeId);
       if (err) {
         throw err
       }
-      res.status(201).render('account/index', { employee: employee })
+      res.status(201).render('employee/account', { employees: employees })
     });
   },
-
-
 
   EditFirst: function(req, res){
     Employee.findOneAndUpdate({_id: req.params._id}, {$set: { firstname: req.body.firstname }, overwrite: true} , function(err){
       if (err) { throw err; }
-      res.status(201).redirect('/account');
+      res.status(201).redirect('employee/account');
     });
   },
 
   EditLast: function(req, res){
     Employee.findOneAndUpdate({_id: req.params._id}, {$set: { lastname: req.body.lastname }, overwrite: true} , function(err){
       if (err) { throw err; }
-      res.status(201).redirect('/account');
+      res.status(201).redirect('employee/account');
     });
   },
 

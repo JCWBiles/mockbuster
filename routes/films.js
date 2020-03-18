@@ -27,5 +27,6 @@ router.get('/p_to_t', FilmsController.P_to_T);
 router.get('/u_to_z', FilmsController.U_to_Z);
 router.get('/zero_to_nine', FilmsController.Zero_to_Nine);
 router.get('/search', FilmsController.Search);
+router.get('/autocomplete', FilmsController.Autocomplete);
 
 module.exports = router;
