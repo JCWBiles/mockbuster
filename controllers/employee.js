@@ -70,6 +70,16 @@ var EmployeeController = {
     });
   },
 
+Hub: function(req, res) {
+  Employee.find({_id: req.session.employeeId}, function(err,employees){
+    console.log(req.session.employeeId);
+    if (err) {
+      throw err
+    }
+    res.status(201).render('employee/em_hub', { employees: employees })
+  });
+},
+
   Logout: function(req, res) {
     console.log(req.session.employeeId)
     req.session.destroy(function(err){

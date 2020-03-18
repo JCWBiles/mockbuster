@@ -9,6 +9,7 @@ router.post('/', EmployeeController.Authenticate);
 router.get('/change', EmployeeController.Change);
 router.post('/password/:_id', EmployeeController.NewPassword);
 router.get('/account', EmployeeController.Account);
+router.get('/em_hub', EmployeeController.Hub);
 router.get('/session/destroy', EmployeeController.Logout);
 
 
