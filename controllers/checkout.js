@@ -30,23 +30,23 @@ var CheckoutController = {
   
      // Send order confirmation email
 
-     var api_key = '';
-     var domain = '';
-     var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+  //    var api_key = '';
+  //    var domain = '';
+  //    var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-     var data = {
-       from: 'MockBuster <mockbuster2020@gmail.com>',
-       to: 'parkermakers@gmail.com',
-       subject: 'Order confirmed',
-       text: 'Thank you for your order! We hope you have a premium viewing experience!'
-     };
+  //    var data = {
+  //      from: 'MockBuster <mockbuster2020@gmail.com>',
+  //      to: 'parkermakers@gmail.com',
+  //      subject: 'Order confirmed',
+  //      text: 'Thank you for your order! We hope you have a premium viewing experience!'
+  //    };
 
-     mailgun.messages().send(data, function (error, body) {
-       if (error){
-         console.log(error);
-       }
-       console.log(body);
-     });
+  //    mailgun.messages().send(data, function (error, body) {
+  //      if (error){
+  //        console.log(error);
+  //      }
+  //      console.log(body);
+  //    });
 
    },
  };

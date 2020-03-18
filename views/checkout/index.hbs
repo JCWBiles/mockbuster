@@ -23,7 +23,7 @@
         <a class="col-md-2 logo" href="/"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
-          <a class="navbar-brand" href="/films">Library</a>
+          <a class="navbar-brand" href="/films"><i class="fas fa-photo-video"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
 
@@ -52,6 +52,8 @@
                     <a class="dropdown-item" href="/films/superhero">Superhero<i class="fab fa-superpowers float-right"></i></i></a>
                     <a class="dropdown-item" href="/films/thriller">Thriller<i class="far fa-surprise float-right"></i></a>
                     <a class="dropdown-item" href="/films/war">War<i class="fas fa-bomb float-right"></i></a>
+                    <hr/>
+                    <a class="dropdown-item" href="/films">Library<i class="fas fa-photo-video float-right"></i></a>
                   </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -66,6 +68,8 @@
                     <a class="dropdown-item" href="/films/u_to_z">U-Z</a>
                     <hr/>
                     <a class="dropdown-item" href="/films/zero_to_nine">0-9</a>
+                    <hr/>
+                    <a class="dropdown-item" href="/films">Library<i class="fas fa-photo-video float-right"></i></a>
                   </div>
                 </li>
                 <!-- Header - search box -->
@@ -143,6 +147,9 @@
 
 
                 {{#users}}
+                <div class="form-group col-sm-12">
+                <a style="text-decoration:none;" href="/films"><button type="button" class="btn btn-primary btn-block">Continue Shopping</button></a>
+                </div>
                 <!-- <hr/> -->
                 <form class="card-details-form" action="/checkout/payment/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
@@ -153,7 +160,7 @@
                         <input type="hidden" name="_method" value="PATCH" />
                         <div class="form-group col-12">
                           <label for="card-holder">1'st Line:</label>
-                          <input name="address_first_line"id="card-holder" type="text" class="form-control" placeholder="Add 1'st line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_first_line}}">
+                          <input name="address_first_line" id="card-holder" type="text" class="form-control" placeholder="Add 1'st line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_first_line}}" required>
                         </div>
                       </div>
                       <!-- <hr/> -->
@@ -168,7 +175,7 @@
                       <div class="row">
                         <div class="form-group col-12">
                           <label for="card-holder">Town:</label>
-                          <input name="address_town" id="card-holder" type="text" class="form-control" placeholder="Town" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_town}}">
+                          <input name="address_town" id="card-holder" type="text" class="form-control" placeholder="Town" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_town}}" required>
                         </div>
                       </div>
                       <!-- <hr/> -->
@@ -176,7 +183,7 @@
                       <div class="row">
                         <div class="form-group col-5">
                           <label for="card-holder">Post Code:</label>
-                          <input name="address_post_code" id="card-holder" type="text" class="form-control" placeholder="Post Code" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_post_code}}">
+                          <input name="address_post_code" id="card-holder" type="text" class="form-control" placeholder="Post Code" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_post_code}}" required>
                         </div>
                       </div>
                     </div>
@@ -185,25 +192,25 @@
                       <div class="row">
                         <div class="form-group col-sm-7">
                           <label for="card-holder">Card Holder</label>
-                          <input name="card_holder" id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_holder}}">
+                          <input name="card_holder" id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_holder}}" required>
                         </div>
 
 
                         <div class="form-group col-sm-5">
                           <label for="">Expiration Date</label>
                           <div class="input-group expiration-date">
-                            <input name="expiration_month" type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1" value="{{this.expiration_month}}">
+                            <input name="expiration_month" type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1" value="{{this.expiration_month}}" required>
                             <span class="date-separator">/</span>
-                            <input name="expiration_year" type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1" value="{{this.expiration_year}}">
+                            <input name="expiration_year" type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1" value="{{this.expiration_year}}" required>
                           </div>
                         </div>
                         <div class="form-group col-sm-8">
                           <label for="card-number">Card Number</label>
-                          <input name="card_number" id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_number}}">
+                          <input name="card_number" id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_number}}" required>
                         </div>
                         <div class="form-group col-sm-4">
                           <label for="cvc">CVC</label>
-                          <input name="cvc" id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.cvc}}">
+                          <input name="cvc" id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.cvc}}" required>
                         </div>
                         <div class="form-group col-sm-12">
                           <button type="button" class="btn btn-primary btn-block"><input type="submit" class="btn btn-primary btn-block" value="Save Card Details and Confirm Payment"></button>
@@ -212,8 +219,7 @@
                     </form>
                     <div class="form-group col-sm-12">
                       <p>If you do not wish to save your card details, please click below:</p>
-                      <a style="text-decoration:none;" href="/checkout/thank_you"><button type="button" class="btn btn-primary btn-block">Confirm Payment</button>
-                      </a>
+                      <a style="text-decoration:none;" href="/checkout/thank_you"><button type="button" class="btn btn-primary btn-block">Confirm Payment</button></a>
                     </div>
                     {{/users}}
                   </div>
