@@ -21,6 +21,7 @@ var blogRouter = require('./routes/blog');
 var basketRouter = require('./routes/basket');
 var employeeRouter = require('./routes/employee');
 var managerRouter = require('./routes/manager');
+var man_authRouter = require('./routes/man_auth');
 
 var app = express();
 
@@ -86,9 +87,14 @@ app.use('/blog', blogRouter);
 app.use('/films', basketRouter);
 app.use('/employee', employeeRouter);
 app.use('/employee/change', employeeRouter);
-app.use('/employee/account', employeeRouter);
+app.use('/employee/em_hub', employeeRouter);
 app.use('/manager', managerRouter);
-
+app.use('/manager/login', managerRouter);
+app.use('/manager/account', managerRouter);
+app.use('/manager/hub', managerRouter);
+app.use('/manager/staff_creation', managerRouter);
+app.use('/manager/completed', managerRouter);
+app.use('/man_auth', man_authRouter);
 
 
 app.use(methodOverride('_method'));
