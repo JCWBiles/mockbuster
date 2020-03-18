@@ -257,12 +257,13 @@
       <div class="feedback">
         <h3>Make a Suggestion</h3>
         <p>Can't find the film you're looking for? Suggest it below!!</p>
-        <form action="/employee/suggestions" id="usrform">
+        <form action="/employee/suggestions" id="usrform" onsubmit="myFunction()">
           Name: <input type="text" name="name" value="{{this.firstname}}">
           <input type="submit">
         </form>
         <br>
         <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Suggest a Movie..."></textarea>
+        <p id="demo1"></p>
       </div>
 
       <br> <br>
@@ -270,12 +271,13 @@
       <div class="feedback">
         <h3>Feedback</h3>
         <p>Got some ideas on how we can make MockBuster even better? Let us know below!!</p>
-        <form action="/employee/complaints" id="complaintform">
+        <form action="/employee/complaints" id="complaintform" onsubmit="myFunction2()">
           Name: <input type="text" name="name" value="{{this.firstname}}">
           <input type="submit">
         </form>
         <br>
         <textarea rows="4" cols="50" name="comment" form="complaintform" placeholder="What could we do better?"></textarea>
+        <p id="demo2"></p>
       </div>
       <br> <br>
     </div>
@@ -361,6 +363,15 @@
     });
 
     </script>
+    <script>
+    function myFunction() {
+      document.getElementById("demo1").innerHTML = "Suggestion submitted!";
+    }
+
+    function myFunction2() {
+      document.getElementById("demo2").innerHTML = "Feedback submitted!";
+    }
+  </script>
   </body>
 
   </html>
