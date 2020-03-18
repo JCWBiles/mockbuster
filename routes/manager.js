@@ -5,7 +5,11 @@ var EmployeeController = require('../controllers/employee');
 var ManagerController = require('../controllers/manager');
 
 router.get('/', ManagerController.Index);
-router.post('/', EmployeeController.Create);
+router.post('/', ManagerController.Create);
+router.get('/login', ManagerController.Login);
+router.get('/login/:_id', ManagerController.Authenticate);
+
+router.post('/staff_creation', EmployeeController.Create);
 router.get('/completed', ManagerController.Completed);
 
 module.exports = router;
