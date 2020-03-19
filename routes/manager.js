@@ -8,8 +8,10 @@ router.get('/', ManagerController.Index);
 router.post('/', ManagerController.Create);
 router.get('/login', ManagerController.Login);
 router.get('/login/:_id', ManagerController.Authenticate);
-
+router.get('/hub', ManagerController.Hub);
 router.post('/staff_creation', EmployeeController.Create);
+router.get('/staff_creation', ManagerController.Staff_Creation);
 router.get('/completed', ManagerController.Completed);
+router.get('/session/destroy', ManagerController.Logout);
 
 module.exports = router;
