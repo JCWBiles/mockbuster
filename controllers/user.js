@@ -12,6 +12,16 @@ var UserController = {
       lastname: req.body.lastname,
       email:  req.body.email,
       password: req.body.password,
+      address_first_line: req.body.address_first_line,
+      address_second_line: req.body.address_second_line,
+      address_town: req.body.address_town,
+      address_post_code: req.body.address_post_code,
+      card_holder: req.body.card_holder,
+      card_number: req.body.card_number,
+      expiration_year: req.body.expiration_year,
+      expiration_month: req.body.expiration_month,
+      cvc: req.body.cvc,
+      imageUrl: req.body.imageUrl,
 
     });
     console.log(req.body.firstname);
@@ -61,13 +71,13 @@ var UserController = {
           else {
             console.log('wrong password');
 
-            res.status(201).redirect('/')
+            res.status(201).redirect('/login')
           }
         })
       }
       else {
         console.log('wrong email');
-        res.status(201).redirect('/')
+        res.status(201).redirect('/login')
       }
     });
   },

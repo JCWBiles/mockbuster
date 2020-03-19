@@ -16,7 +16,8 @@ var UserSchema = new mongoose.Schema({
   card_number: Number,
   expiration_year: Number,
   expiration_month: Number,
-  cvc: Number
+  cvc: Number,
+  imageUrl: String
 });
 
 //authenticating

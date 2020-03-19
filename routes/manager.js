@@ -19,4 +19,4 @@ router.post('/man_first/:_id', ManagerController.EditManFirst);
 router.post('/man_last/:_id', ManagerController.EditManLast);
 router.post('/man_email/:_id', ManagerController.EditManEmail);
 
-module.exports = router;
+module.exports = router; 

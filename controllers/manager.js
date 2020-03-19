@@ -56,7 +56,7 @@ var ManagerController = {
           if (result == true) {
             req.session.managerId = manager._id;
             console.log(req.session.managerId)
-            res.redirect('manager/hub');
+            res.redirect('/manager/hub');
           }
           else {
             console.log('wrong password');
@@ -81,7 +81,7 @@ var ManagerController = {
     });
   },
 
-  Staff_Creation: function(req,res) {
+  Staff_Creation: function(req, res) {
     res.render('manager/staff_creation');
   },
 
