@@ -32,16 +32,14 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/manager/login">Manager Login</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/">Customer Portal</a>
-                </li>
-                <li class="nav-item dropdown" style="padding-left: 600px;">
+                <li class="nav-item dropdown" style="padding-left: 700px;">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-key"></i>
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="margin-left: 550px;">
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="margin-left: 650px;">
                     <a class="dropdown-item" href="/employee">Employees</a>
                     <a class="dropdown-item" href="/manager">Managers</a>
+                    <a class="dropdown-item" href="/">Customer Portal<i class="fas fa-passport" style="padding-left: 20px;"></i></a>
                     </div>
                 </li>
               </ul>
@@ -59,7 +57,10 @@
       <div class="row">
         <div class="col-12 form-background">
           <form action="/manager" method="post" onsubmit='return validate()'>
-            <h5 style="padding-top: 20px;">Manager's Personal Details</h5>
+            <p style="padding-top: 10px;">If you do not yet have an account set up please fill out 
+            </br>the below, otherwise <a href="/manager/login">click here</a> to log in.</p>
+            <hr>
+            <h5 style="padding-top: 5px;">Manager's Personal Details</h5>
             <div class="form-group">
               <label for="exampleManFirstName">Manager First Name</label>
               <input name="man_firstname" type="text" class="form-control" id="Man_FirstName" required>
