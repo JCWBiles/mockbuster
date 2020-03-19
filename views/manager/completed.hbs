@@ -23,14 +23,30 @@
         <a class="col-md-2 logo" href="/"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
-          <a class="navbar-brand" href="/">Customer Portal</a>
+          <a class="navbar-brand" href="/manager/completed">Sign Up Completed</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <!-- The id name must match the data-target seen in row 27 -->
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="/manager">Create new staff account</a>
+                  <a class="nav-link" href="/manager/staff_creation">Create new staff account</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/manager/hub">Manager Hub</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Customer Portal</a>
+                </li>
+                <li class="nav-item dropdown" style="padding-left: 400px;">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-key"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="margin-left: 350px;">
+                    <a class="dropdown-item" href="/employee">Employees</a>
+                    <a class="dropdown-item" href="/manager">Managers</a>
+                    <a class="dropdown-item" href="/manager/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                    </div>
                 </li>
               </ul>
             </div>

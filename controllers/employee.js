@@ -65,12 +65,13 @@ var EmployeeController = {
       req.body.password = hash;
       Employee.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err, employee){
         if (err) { throw err; }
-        res.status(201).redirect('employee/em_hub')
+        res.status(201).redirect('/employee/em_hub')
       })
     });
   },
 
-Hub: function(req, res) {
+
+Em_Hub: function(req, res) {
   Employee.find({_id: req.session.employeeId}, function(err,employees){
     console.log(req.session.employeeId);
     if (err) {

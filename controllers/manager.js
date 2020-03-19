@@ -72,9 +72,15 @@ var ManagerController = {
     });
   },
 
-  Hub: function(req, res) {
-    res.render('manager/hub');
+  Hub: function(req,res) {
+    Manager.find({_id: req.session.managerId}, function(err,managers){
+      if (err) {
+        throw err
+      }
+      res.status(201).render('manager/hub', { managers: managers })
+    });
   },
+
   Staff_Creation: function(req, res) {
     res.render('manager/staff_creation');
   },
@@ -88,7 +94,7 @@ var ManagerController = {
       }
       else
       {
-        res.status(201).redirect('/manager');
+        res.status(201).redirect('/');
       }
     })
   },
@@ -110,30 +116,30 @@ var ManagerController = {
   },
 
 
-  EditFirst: function(req, res){
+  EditManFirst: function(req, res){
     Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname }, overwrite: true} , function(err){
       if (err) { throw err; }
-      res.status(201).redirect('manager/account');
+      res.status(201).redirect('/manager/account');
     });
   },
 
-  EditLast: function(req, res){
+  EditManLast: function(req, res){
     Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_lastname: req.body.man_lastname }, overwrite: true} , function(err){
       if (err) { throw err; }
-      res.status(201).redirect('manager/account');
+      res.status(201).redirect('/manager/account');
     });
   },
 
-  EditEmail: function(req, res){
+  EditManEmail: function(req, res){
     Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_email: req.body.man_email }, overwrite: true} , function(err){
       if (err) { throw err; }
-      res.status(201).redirect('manager/account');
+      res.status(201).redirect('/manager/account');
     });
   },
 
   Completed: function(req, res) {
     res.render('manager/completed');
-  }
+  },
 };
 
 module.exports = ManagerController;

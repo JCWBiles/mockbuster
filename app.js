@@ -97,7 +97,6 @@ app.use('/manager/staff_creation', managerRouter);
 app.use('/manager/completed', managerRouter);
 app.use('/man_auth', man_authRouter);
 
-
 app.use(methodOverride('_method'));
 
 // catch 404 and forward to error handler
