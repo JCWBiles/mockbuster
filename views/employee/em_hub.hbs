@@ -49,16 +49,17 @@
     <!-- /.Header -->
 
     <!-- Callout -->
+    {{#employees}}
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
         <div class="row">
-          <h1 class="col-12 justify-content-md-center" style="color: white; z-index: 1; ">Welcome to the Employee Hub</h1>
-          </div>
-          {{!-- <div class="container"> --}}
-          <div class="row">
+          <div class="col-12 justify-content-md-center" >
+          <h1 style="color: white; margin-top:20px;">Welcome to the Employee Hub, {{this.em_first_name}} </h1>
+<br>
+      <div class="row" style="z-index: 1; margin-top: 100px; margin-bottom:150px;">
           <div class="col-12">
             <a href="/employee/account"><button type="button" class="btn btn-primary btn-lg">Account</button></a>
-            <button type="button" class="btn btn-secondary btn-lg">Customer Suggestions</button>
+            <a href="#"><button type="button" class="btn btn-secondary btn-lg">Customer Suggestions</button></a>
             {{!-- <div class="w-100"></div> --}}
             <button type="button" class="btn btn-success btn-lg">HR</button>
             <button type="button" class="btn btn-danger btn-lg">Film Library</button>
@@ -67,11 +68,14 @@
             <button type="button" class="btn btn-info btn-lg">Button</button>
             {{!-- <div class="w-100"></div> --}}
             <button type="button" class="btn btn-light btn-lg">Button</button>
-            <a href="/employee/session/destroy"><button type="button" class="btn btn-dark btn-lg"><i class="fas fa-sign-out-alt float-right"></i></button></a>
+            <a href="/auth/session/destroy"><button type="button" class="btn btn-dark btn-lg"><i class="fas fa-sign-out-alt float-right"></i></button></a>
           </div>
         </div>
-      {{!-- </div> --}}
+<br>
     </div>
+    </div>
+    </div>
+    {{/employees}}
 
 <!-- Footer -->
 <footer class="container-fluid footer-container text-center">
@@ -143,20 +147,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<script>
-function validate() {
-  var n1 = document.getElementById('email');
-  var n2 = document.getElementById('email2');
-  if(n1.value != '' && n2.value != '') {
-    if(n1.value == n2.value) {
-      return true;
-    }
-  }
-  alert("The email addresses do not match - please try again");
-  return false;
-};
-</script>
 
 </body>
 </html>

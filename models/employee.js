@@ -7,6 +7,7 @@ var EmployeeSchema = new mongoose.Schema({
   em_first_name: String,
   em_last_name: String,
   employee_number: {type: Number, unique: true },
+  em_email: {type: String, required: true},
   password: String,
 });
 

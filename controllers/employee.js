@@ -8,6 +8,7 @@ var EmployeeController = {
       em_first_name: req.body.em_first_name,
       em_last_name: req.body.em_last_name,
       employee_number:  req.body.employee_number,
+      em_email: req.body.em_email,
       password: req.body.password,
     });
 
@@ -104,24 +105,13 @@ Em_Hub: function(req, res) {
     });
   },
 
-  EditFirst: function(req, res){
-    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { firstname: req.body.firstname }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('employee/account');
-    });
-  },
-
-  EditLast: function(req, res){
-    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { lastname: req.body.lastname }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('employee/account');
-    });
-  },
-
-  EditEmployeeNumber: function(req, res){
-    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { email: req.body.email }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/account');
+  RequestUpdate: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      console.log(req.session.employeeId);
+      if (err) {
+        throw err
+      }
+      res.status(201).render('employee/update', { employees: employees });
     });
   },
 };

@@ -89,6 +89,7 @@ app.use('/employee', employeeRouter);
 app.use('/employee/change', employeeRouter);
 app.use('/employee/em_hub', employeeRouter);
 app.use('/employee/account', employeeRouter);
+app.use('/employee/update', employeeRouter);
 app.use('/manager', managerRouter);
 app.use('/manager/login', managerRouter);
 app.use('/manager/account', managerRouter);
