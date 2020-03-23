@@ -512,3 +512,29 @@ nav div a i {
   left: 0;
   display: none;
 }
+.profilePic {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+}
+.pic-edit{
+  position: relative;
+  left: 5%;
+  margin-left: 95px;
+  margin-top: -52px;
+}
+
+.textbox {
+  width: 100%;
+  height: auto;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+}
