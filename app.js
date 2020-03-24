@@ -8,7 +8,7 @@ var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 mailgun = require('mailgun-js');
-
+var multer = require('multer');
 
 
 var filmRouter = require('./routes/films');

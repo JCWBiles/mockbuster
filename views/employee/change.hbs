@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
-  <title>MockBuster</title>
+  <title>MockBuster - Employee Portal - Change Password</title>
 </head>
 
 <body>
@@ -19,32 +19,16 @@
   <header>
     <div class="container-fluid header-container">
       <div class="row no-gutters">
-        <a class="col-md-2 logo" href="/"></a>
+        <a class="col-md-2 logo" href="/employee/session/destroy"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white" >
-          <a class="navbar-brand" href="/employee">Staff Login</a>
+          <a class="navbar-brand">Staff Login</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <!-- The id name must match the data-target seen in row 27 -->
               <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="/">Customer Portal</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{#employees}}
-                    {{this.em_first_name}}'s Account
-                    {{/employees}}
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                    <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-shopping-cart float-right"></i></a>
-                    <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
-                  </div>
-                </li>
                 <li style="padding-left: 800px;">
                   <a class="nav-link" href="/employee/session/destroy">
                   Log Out
@@ -54,7 +38,6 @@
               </ul>
             </div>
           </nav>
-
         </div>
       </div>
     </header>
@@ -65,14 +48,19 @@
       <div class="row">
         <div class="col-12 form-background">
           {{#employees}}
-          <h2>Employee Number: {{this.employee_number}}</h2>
+          <h2 style="padding-top: 10px;">Employee Number: {{this.employee_number}}</h2>
+          <hr>
+          <h3>Welcome back {{this.em_first_name}}</h3>
+          <hr>
           <form id="new-password-form" style = "display: inline; margin-top: -20px;" action="/employee/password/{{this._id}}" method="post">
             <input type="hidden" name="_method" value="PATCH" />
-            <h5 style="padding-top: 20px;">New Password</h5>
+            <p>To continue to the employee hub please click <a href="/employee/em_hub">here</a>:</p>
+            <a href="/employee/em_hub"><button type="button" class="btn btn-primary">Continue to employee hub</button></a>
+            <hr>
+            <h5>New Password</h5>
             <div class="form-group">
-              <label for="exampleInputPassword1">Please create a new Password or <a href="/employee/em_hub">Continue</a>
-              </label>
-              <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+              <label for="exampleInputPassword1">To update your password please enter in the space provided below and press submit.</label>
+              <input name="password" type="password" placeholder="Enter new password here" class="form-control" id="exampleInputPassword1" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -84,85 +72,7 @@
     </div>
 
   <!-- Quotes -->
-  {{!-- <div class="quotes-container">
-    <div class="row">
-      <div class="col-12 section-header">
-        <h2 class="text-uppercase">MockBuster Community Said...</h2>
-      </div>
-    </div>
-
-    <div id="quotescarouselIndicators" class="carousel slide" data-ride="carousel" data-pause="hover">
-      <!-- data-interval="false" -->
-      <ol class="carousel-indicators">
-        <li data-target="#quotescarouselIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#quotescarouselIndicators" data-slide-to="1"></li>
-        <li data-target="#quotescarouselIndicators" data-slide-to="2"></li>
-        <li data-target="#quotescarouselIndicators" data-slide-to="3"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <blockquote>
-            <div class="row justify-content-center">
-              <div class="col-sm-2 text-center">
-                <img class="rounded-circle mr-3" height=100 width=100 alt="T.Crews" src="/images/community/terry.jpg">
-              </div>
-              <div class="col-sm-8 hvr-reveal">
-                <p>"I couldn't be happier with the service! Great selection of movies, easy to use amnd fantastic technical support!"</p>
-                <small>T.Crews</small>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-        <div class="carousel-item">
-          <blockquote>
-            <div class="row justify-content-center">
-              <div class="col-sm-2 text-center">
-                <img class="rounded-circle mr-3" height=100 width=100 alt="Scarlet J" src="/images/community/scarlet.jpeg">
-              </div>
-              <div class="col-sm-8 hvr-reveal">
-                <p>"Thank you so much for the stunning selection of movies. Now I can watch all my favourite movies in one place."</p>
-                <small>Scarlet J</small>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-        <div class="carousel-item">
-          <blockquote>
-            <div class="row justify-content-center">
-              <div class="col-sm-2 text-center">
-                <img class="rounded-circle mr-3" height=100 width=100 alt="Joker Phenoix" src="/images/community/joaquin.jpg">
-              </div>
-              <div class="col-sm-8 hvr-reveal">
-                <p>"I will now forever more watch my hero "The Joker" on loop."</p>
-                <small>Joker Phenoix</small>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-        <div class="carousel-item">
-          <blockquote>
-            <div class="row justify-content-center">
-              <div class="col-sm-2 text-center">
-                <img class="rounded-circle mr-3" height=100 width=100 alt="B Man" src="/images/community/batman.png">
-              </div>
-              <div class="col-sm-8 hvr-reveal">
-                <p>"I'm just hear to watch the Joker, don't ever trust him!"</p>
-                <small>B Man</small>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-      <a class="carousel-control-prev hvr-icon-back" href="#quotescarouselIndicators" role="button" data-slide="prev">
-        <i class="fas fa-angle-left hvr-icon" aria-hidden="true"></i>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next hvr-icon-forward" href="#quotescarouselIndicators" role="button" data-slide="next">
-        <i class="fas fa-angle-right hvr-icon" aria-hidden="true"></i>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </div> --}}
+  
   <!-- /.Quotes -->
 
   <!-- Footer -->
