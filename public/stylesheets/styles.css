@@ -32,6 +32,7 @@ header {
     -moz-transition: all .5s ease-in-out;
     -webkit-transition: all .5s ease-in-out;
     /* the above 2 lines - need to add the broswer prefixes & vendor prefixes (-moz- & -webkit-) to make sure it works in all broswers */
+    z-index: 2;
 }
 
 .header-container {
@@ -41,6 +42,40 @@ header {
     font-family: "Raleway", sans-serif;
     font-weight: 100;
 }
+
+#navbarhide {
+    border-left: 40px solid transparent;
+    background-color: white;
+    /* border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent; */
+    width: 0;
+    height: 8%;
+    position: fixed;
+    left: 205px;
+    top: 0;
+    z-index: 1;
+  }
+  
+  #navbar {
+    border-left: 40px solid transparent;
+    background-color: white;
+    /* border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent; */
+    width: -1px;
+    height: 100%;
+    position: absolute;
+    left: -1000px;
+    transition: all 0.9s ease;
+  }
+  
+  #navbarhide:hover > #navbar,
+  #navbar.open {
+    left: 0px;
+  }
+
+  /* #primary_nav_wrap ul li:hover > ul {
+    display: block;
+  } */
 
 nav a i {
     font-size: xx-large;

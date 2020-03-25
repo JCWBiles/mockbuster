@@ -21,7 +21,10 @@
     <div class="container-fluid header-container">
       <div class="row no-gutters">
         <a class="col-md-2 logo" href="/"></a>
-        <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
+          {{!-- <div id="navbarhide"> --}}
+          {{!-- <div id="navbar" class="open"> --}}
+        <nav id="navbarhide" class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
+          <nav id="navbar" class="open">
           <a class="navbar-brand" href="/">Welcome</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
@@ -46,7 +49,10 @@
               </ul>
             </div>
           </nav>
-        </div>
+          </nav>
+        {{!-- </div> --}}
+      {{!-- </div> --}}
+      </div>
       </div>
     </header>
     <!-- /.Header -->
@@ -233,6 +239,14 @@
      }
 
     });
+  </script>
+
+  <script>
+  $(window).scroll(function() {
+  $("#navbar").toggleClass("open", document.scrollingElement.scrollTop < 50)
+  //  console.log(document.scrollingElement.scrollTop)
+
+  })
   </script>
 
 </body>
