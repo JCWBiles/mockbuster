@@ -7,8 +7,9 @@ var session = require('express-session')
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
-mailgun = require('mailgun-js');
+var mailgun = require('mailgun-js');
 var multer = require('multer');
+
 
 
 var filmRouter = require('./routes/films');
@@ -89,6 +90,7 @@ app.use('/employee', employeeRouter);
 app.use('/employee/change', employeeRouter);
 app.use('/employee/em_hub', employeeRouter);
 app.use('/employee/account', employeeRouter);
+app.use('/employee/update', employeeRouter);
 app.use('/manager', managerRouter);
 app.use('/manager/login', managerRouter);
 app.use('/manager/account', managerRouter);

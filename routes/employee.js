@@ -9,6 +9,7 @@ router.get('/change', EmployeeController.Change);
 router.post('/password/:_id', EmployeeController.NewPassword);
 router.get('/em_hub', EmployeeController.Em_Hub);
 router.get('/account', EmployeeController.Account);
+router.get('/update', EmployeeController.RequestUpdate);
 router.get('/session/destroy', EmployeeController.Logout);
 
 module.exports = router;

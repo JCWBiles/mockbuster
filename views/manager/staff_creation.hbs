@@ -58,7 +58,7 @@
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
-        <div class="col-12 form-background">
+        <div class="col-8 form-background">
           <form action="/manager/staff_creation" method="post">
             <h5 style="padding-top: 20px;">Employee Details</h5>
             <div class="form-group">
@@ -68,6 +68,10 @@
             <div class="form-group">
               <label for="exampleLastName">Employee Last Name</label>
               <input name="em_last_name" type="text" class="form-control" id="LastName" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmployeeNumber">Employee Email</label>
+              <input name="em_email" type="text" class="form-control" id="exampleInputEmployeeEmail" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,}$" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmployeeNumber">Employee Number</label>

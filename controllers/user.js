@@ -132,6 +132,13 @@ var UserController = {
       res.status(201).redirect('/account');
     });
   },
+
+  EditPic: function(req, res){
+    User.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.body.imageUrl }, overwrite: true} , function(err){
+      if (err) { throw err; }
+      res.status(201).redirect('/account');
+    });
+  },
 };
 
 module.exports = UserController;
