@@ -50,7 +50,7 @@
           {{#employees}}
           <h2 style="padding-top: 10px;">Employee Number: {{this.employee_number}}</h2>
           <hr>
-          <h3>Welcome back {{this.em_first_name}}</h3>
+          <h3>Welcome {{this.em_first_name}}</h3>
           <hr>
           <form id="new-password-form" style = "display: inline; margin-top: -20px;" action="/employee/password/{{this._id}}" method="post">
             <input type="hidden" name="_method" value="PATCH" />
@@ -72,7 +72,7 @@
     </div>
 
   <!-- Quotes -->
-  
+
   <!-- /.Quotes -->
 
   <!-- Footer -->

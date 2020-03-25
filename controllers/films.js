@@ -264,44 +264,36 @@ var FilmsController = {
   },
 
   Search: function(req, res, next){
-   var noMatch = null;
-       if(req.query.search) {
-           const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-           // Get all films from DB
-           Films.find({name: regex}, function(err, allFilms){
-              if(err){
-                  console.log(err);
-              } else {
-                 if(allFilms.length < 1) {
-                     noMatch = "No films match that query, please try again.";
-                 }
-                 res.render("films/search",{films:allFilms, noMatch: noMatch});
-              }
-           });
-       } else {
-           // Get all films from DB
-           Films.find({}, function(err, allFilms){
-              if(err){
-                  console.log(err);
-              } else {
-                 res.render("films/search",{films:allFilms, noMatch: noMatch});
-              }
-           });
-       }
-      //  User.find({_id: req.session.userId}, function(err,users){
-      //   if (err) {
-      //     throw err
-      //   }
-      //   res.status(201).render('films/search', { users: users })
-      // });
-      //      User.find({_id: req.session.userId}, function(err,users) {
-      // if (err) { throw err; }
-      //  res.render('films/search', { users:users })
-      // })
- },
+    User.find({_id: req.session.userId}, function(err,users) {
+      var noMatch = null;
+      if(req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        // Get all films from DB
+        Films.find({name: regex}, function(err, allFilms){
+          if(err){
+            console.log(err);
+          } else {
+            if(allFilms.length < 1) {
+              noMatch = "No films match that query, please try again.";
+            }
+            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users});
+          }
+        });
+      } else {
+        // Get all films from DB
+        Films.find({}, function(err, allFilms){
+          if(err){
+            console.log(err);
+          } else {
+            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users});
+          }
+        });
+      }
+    });
+  },
 };
 function escapeRegex(text){
- return text.replace(/[-[\]{}()*+?.,\\^$!#\s]{}]/g, "\\$&");
+  return text.replace(/[-[\]{}()*+?.,\\^$!#\s]{}]/g, "\\$&");
 }
 
 module.exports = FilmsController;
