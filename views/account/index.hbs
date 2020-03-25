@@ -19,20 +19,16 @@
 
   <!-- Header -->
   <header>
-
     <div class="container-fluid header-container">
       <div class="row no-gutters">
         <a class="col-md-2 logo" href="/films"></a>
-
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
           <a class="navbar-brand" href="/films"><i class="fas fa-photo-video"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
-
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <!-- The id name must match the data-target seen in row 27 -->
+              <!-- The id name must match the data-target seen in row 28 -->
               <ul class="navbar-nav">
-
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Genres
@@ -74,6 +70,7 @@
                     <a class="dropdown-item" href="/films">Library<i class="fas fa-photo-video float-right"></i></a>
                   </div>
                 </li>
+
                 <!-- Header - search box -->
                 <li class="nav-item">
                   <form class="form-inline" action="/films/search"  method="get">
@@ -105,12 +102,12 @@
               </ul>
             </div>
           </nav>
-
         </div>
       </div>
     </header>
-
     <!-- /.Header -->
+
+    <!-- Callout -->
     <div class="each-event">
       <div class="container-fluid background-jumbotron callout-container">
         <div class="opaque-overlay">&nbsp;</div>
@@ -118,12 +115,13 @@
       <h1 style="text-align: center;">Account Details</h1>
       <br>
       {{#users}}
-
       <img src="{{this.imageUrl}}" alt="{{this.firstname}}" class="profilePic" style="">
       <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
         <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
         <span class="fa-lg sr-only">Edit Profile Pic</span>
       </a>
+      
+      <!-- Callout - edit img modal -->
       <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -134,7 +132,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/upload/{{this._id}}" method="post">
+              <form id="new-name-form" style="display: inline; margin-top: -20px;" action="/account/upload/{{this._id}}" method="post">
                 <input type="hidden" name="_method" value="PATCH" />
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
@@ -149,15 +147,18 @@
           </div>
         </div>
       </div>
-      <br><br>
+      <!-- /.Callout - edit img modal -->
+
+      <br>
+      <br>
       <div class="event-description" style="text-align: center;">
         <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
-        <!-- Header - basket and model -->
-
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
           <span class="fa-lg sr-only">Edit First name</span>
         </a>
+
+        <!-- Callout - edit first name modal -->
         <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -168,7 +169,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/first/{{this._id}}" method="post">
+                <form id="new-name-form" style="display: inline; margin-top: -20px;" action="/account/first/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Edit your first name:</label>
@@ -183,16 +184,16 @@
             </div>
           </div>
         </div>
-
-        <!-- /Header - /basket and model -->
+        <!-- /.Callout - edit first name modal -->
 
         <br>
         <p id="user-last-name"style="color: black;">Last Name: {{this.lastname}}</p>
-        <!-- Header - basket and model -->
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit2" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
           <span class="fa-lg sr-only">Edit Last name</span>
         </a>
+
+        <!-- Callout - edit last name modal -->
         <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -209,7 +210,6 @@
                     <label for="recipient-name" class="col-form-label">Edit your last name:</label>
                     <input type="text" class="form-control" id="recipient-name" name="lastname" value="{{this.lastname}}">
                   </div>
-
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -219,17 +219,16 @@
             </div>
           </div>
         </div>
-
-        <!-- /Header - /basket and model -->
+        <!-- /.Callout - edit last name modal -->
 
         <br>
-
         <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
-        <!-- Header - basket and model -->
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit3" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
           <span class="fa-lg sr-only">Edit Last name</span>
         </a>
+
+        <!-- Callout - edit email modal -->
         <div class="modal fade" id="edit3" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -246,7 +245,6 @@
                     <label for="recipient-name" class="col-form-label">Edit your email address:</label>
                     <input type="text" class="form-control" id="recipient-name" name="email" value="{{this.email}}">
                   </div>
-
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -256,11 +254,9 @@
             </div>
           </div>
         </div>
-
-        <!-- /Header - /basket and model -->
+        <!-- /.Callout - edit email modal -->
 
         <br>
-
         <br>
         <div style="text-align: center;">
           <form id="delete-user-form" style = "display: inline;" action="/account/delete/{{this._id}}" method="post">
@@ -280,9 +276,8 @@
             <textarea class="textbox" rows="4" cols="35" name="comment" form="usrform" placeholder="Suggest a Movie..."></textarea>
             <p id="demo1"></p>
           </div>
-
-          <br> <br>
-
+          <br>
+          <br>
           <div class="feedback">
             <h3>Feedback</h3>
             <p>Got some ideas on how we can make MockBuster even better? Let us know below!!</p>
@@ -294,14 +289,15 @@
             <textarea class="textbox" rows="4" cols="35" name="comment" form="complaintform" placeholder="What could we do better?"></textarea>
             <p id="demo2"></p>
           </div>
-          <br> <br>
+          <br>
+          <br>
         </div>
       </div>
     </div>
     </div>
     </div>
-
     {{/users}}
+    <!-- /.Callout -->
 
     <!-- Footer -->
     <footer class="container-fluid footer-container text-center">
@@ -326,7 +322,6 @@
         </p>
       </div>
       <div class="col-12 ">
-
         <ul class="list-inline social-links ">
           <li class="list-inline-item ">
             <a target="_blank " href="# " class="hvr-icon-bounce">
@@ -379,7 +374,6 @@
     $('.like-btn').on('click', function() {
       $(this).toggleClass('is-active');
     });
-
     </script>
 
     <script>
@@ -408,13 +402,21 @@
             $('#searchName').val(ui.item.label);
           }
         }
-
-
-
       });
-
     });
     </script>
+
+      <!-- jquery to shrink logo and navbar on scroll -->
+      <script>
+        $( window ).scroll(function() {
+        if($(window).scrollTop() > 70){
+          $('.logo').css({'height': '70'}); 
+        }else{
+            $('.logo').css({'height': '120'}); 
+        }
+
+        });
+      </script>
 
     <script type="text/javascript">
     $('.like-btn').on('click', function() {

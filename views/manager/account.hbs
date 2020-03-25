@@ -9,6 +9,7 @@
   <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
   <title>MockBuster - Manager Portal - Account Details</title>
@@ -21,7 +22,6 @@
     <div class="container-fluid header-container">
       <div class="row no-gutters">
         <a class="col-md-2 logo" href="/manager/hub"></a>
-
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
           <a class="navbar-brand" href="/manager/account">My Details</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,7 @@
     </header>
     <!-- /.Header -->
 
+    <!-- Callout -->
     <div class="each-event">
       <div class="container-fluid background-jumbotron callout-container">
         <div class="opaque-overlay">&nbsp;</div>
@@ -62,13 +63,14 @@
       <br>
       {{#managers}}
       <div class="event-description" style="text-align: center;">
+        <img src="{{this.imageUrl}}" alt="{{this.man_firstname}}" class="profilePic" style="">
         <p id="user-first-name" style="color: black;">First Name: {{this.man_firstname}}</p>
-        <!-- Header - basket and model -->
-
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
           <span class="fa-lg sr-only">Edit First name</span>
         </a>
+
+        <!-- Callout - edit first name modal -->
         <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -94,16 +96,16 @@
             </div>
           </div>
         </div>
-
-        <!-- /Header - /basket and model -->
+        <!-- /.Callout - edit first name modal -->
 
         <br>
         <p id="user-last-name" style="color: black;">Last Name: {{this.man_lastname}}</p>
-        <!-- Header - basket and model -->
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit2" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
           <span class="fa-lg sr-only">Edit Last name</span>
         </a>
+
+        <!-- Callout - edit last name modal -->
         <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -120,7 +122,6 @@
                     <label for="recipient-name" class="col-form-label">Edit your last name:</label>
                     <input type="text" class="form-control" id="recipient-name" name="man_lastname" value="{{this.man_lastname}}">
                   </div>
-
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -130,17 +131,16 @@
             </div>
           </div>
         </div>
-
-        <!-- /Header - /basket and model -->
+        <!-- /.Callout - edit last name modal -->
 
         <br>
-
         <p id="user-email-name"style="color: black;">Email: {{this.man_email}}</p>
-        <!-- Header - basket and model -->
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit3" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
           <span class="fa-lg sr-only">Edit Last name</span>
         </a>
+
+        <!-- Callout - edit email modal -->
         <div class="modal fade" id="edit3" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -157,7 +157,6 @@
                     <label for="recipient-name" class="col-form-label">Edit your email address:</label>
                     <input type="text" class="form-control" id="recipient-name" name="man_email" value="{{this.man_email}}">
                   </div>
-
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -167,25 +166,22 @@
             </div>
           </div>
         </div>
-
-        <!-- /Header - /basket and model -->
+        <!-- Callout - edit email modal -->
 
         <br>
-
         <br>
         <div style="text-align: center;">
           <form id="delete-user-form" style = "display: inline;" action="/manager/account/delete/{{this._id}}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
           </form>
-
         </div>
-
       </div>
     </div>
     </div>
     </div>
     {{/managers}}
+    <!-- /.Callout -->
 
     <!-- Footer -->
     <footer class="container-fluid footer-container text-center">
@@ -210,7 +206,6 @@
         </p>
       </div>
       <div class="col-12 ">
-
         <ul class="list-inline social-links ">
           <li class="list-inline-item ">
             <a target="_blank " href="# " class="hvr-icon-bounce">
@@ -258,12 +253,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="../js/jquery.shop.js"></script>
     <script type="text/javascript">
-
     $('.like-btn').on('click', function() {
       $(this).toggleClass('is-active');
     });
-
     </script>
+
+      <!-- jquery to shrink logo and navbar on scroll -->
+    <script>
+      $( window ).scroll(function() {
+      if($(window).scrollTop() > 70){
+        $('.logo').css({'height': '70'}); 
+      }else{
+          $('.logo').css({'height': '120'}); 
+      }
+
+      });
+    </script>
+    
   </body>
 
   </html>

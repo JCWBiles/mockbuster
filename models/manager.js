@@ -8,6 +8,7 @@ var ManagerSchema = new mongoose.Schema({
   man_lastname: String,
   man_email: String,
   man_password: String,
+  imageUrl: String
 });
 
 //authenticating
