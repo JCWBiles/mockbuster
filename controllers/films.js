@@ -288,10 +288,20 @@ var FilmsController = {
               }
            });
        }
+      //  User.find({_id: req.session.userId}, function(err,users){
+      //   if (err) {
+      //     throw err
+      //   }
+      //   res.status(201).render('films/search', { users: users })
+      // });
+      //      User.find({_id: req.session.userId}, function(err,users) {
+      // if (err) { throw err; }
+      //  res.render('films/search', { users:users })
+      // })
  },
 };
 function escapeRegex(text){
  return text.replace(/[-[\]{}()*+?.,\\^$!#\s]{}]/g, "\\$&");
-};
+}
 
 module.exports = FilmsController;

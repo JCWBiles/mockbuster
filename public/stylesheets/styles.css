@@ -289,6 +289,12 @@ nav div a i {
     border-color: #088484;
 }
 
+.hub-buttons {
+    min-height: 160px;
+    min-width: 160px;
+    margin: 5px 5px;
+}
+
 /*---------------------------------------------------block dividers*/
 
 .block-divider-container {}
@@ -337,6 +343,8 @@ nav div a i {
     margin: 100px;
     border-radius: 25px;
 }
+
+
 
 /*---------------------------------------------------about*/
 
@@ -405,6 +413,8 @@ nav div a i {
     margin-bottom: 30px;
     transition: 0.2s ease-in-out;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+    min-height: 420px;
 }
 
 
@@ -437,6 +447,12 @@ nav div a i {
     }
 }
 
+.add-to-cart-box {
+    background-color:teal; 
+    margin-right:85px; 
+    min-width: 300px;
+    
+}
 
 /*---------------------------------------------------footer*/
 

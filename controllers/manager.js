@@ -81,8 +81,13 @@ var ManagerController = {
     });
   },
 
-  Staff_Creation: function(req, res) {
-    res.render('manager/staff_creation');
+  Staff_Creation: function(req,res) {
+    Manager.find({_id: req.session.managerId}, function(err,managers){
+      if (err) {
+        throw err
+      }
+      res.status(201).render('manager/staff_creation', { managers: managers })
+    });
   },
 
   Logout: function(req, res) {
@@ -134,11 +139,16 @@ var ManagerController = {
     Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_email: req.body.man_email }, overwrite: true} , function(err){
       if (err) { throw err; }
       res.status(201).redirect('/manager/account');
-    });
+    }); 
   },
 
   Completed: function(req, res) {
-    res.render('manager/completed');
+    Manager.find({_id: req.session.managerId}, function(err,managers){
+      if (err) {
+        throw err
+      }
+      res.status(201).render('manager/completed', { managers: managers })
+    });
   },
 };
 

@@ -3,7 +3,6 @@ var router = express.Router();
 
 var EmployeeController = require('../controllers/employee');
 
-
 router.get('/', EmployeeController.Login);
 router.post('/', EmployeeController.Authenticate);
 router.get('/change', EmployeeController.Change);
