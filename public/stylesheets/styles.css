@@ -335,6 +335,7 @@ nav div a i {
 .form-background {
     background-color: #fff;
     margin: 100px;
+    border-radius: 25px;
 }
 
 /*---------------------------------------------------about*/
