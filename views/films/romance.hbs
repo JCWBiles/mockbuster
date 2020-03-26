@@ -323,18 +323,24 @@
           }
         });
       },
-
       minLength:1,
       select: function(event,ui){
         if(ui.item){
           $('#searchName').val(ui.item.label);
         }
       }
-
-
-
     });
+  });
+  </script>
 
+  <!-- jquery to shrink logo and navbar on scroll -->
+  <script>
+  $( window ).scroll(function() {
+   if($(window).scrollTop() > 70){
+     $('.logo').css({'height': '70'});
+   }else{
+     $('.logo').css({'height': '120'});
+   }
   });
   </script>
 </body>
