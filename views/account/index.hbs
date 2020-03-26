@@ -186,8 +186,7 @@
         </div>
         <!-- /.Callout - edit first name modal -->
 
-        <br>
-        <p id="user-last-name"style="color: black;">Last Name: {{this.lastname}}</p>
+        <p id="user-last-name" style="color: black;">Last Name: {{this.lastname}}</p>
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit2" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
           <span class="fa-lg sr-only">Edit Last name</span>
@@ -222,10 +221,11 @@
         <!-- /.Callout - edit last name modal -->
 
         <br>
+        <br>
         <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit3" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-          <span class="fa-lg sr-only">Edit Last name</span>
+          <span class="fa-lg sr-only">Edit Email</span>
         </a>
 
         <!-- Callout - edit email modal -->
@@ -255,6 +255,41 @@
           </div>
         </div>
         <!-- /.Callout - edit email modal -->
+
+        <br>
+        <p id="user-password"style="color: black;">To update your password please click the edit button:</p>
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit4" style="">
+          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit Password</span>
+        </a>
+
+        <!-- Callout - edit password modal -->
+        <div class="modal fade" id="edit4" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/account/password/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- /.Callout - edit password modal -->
 
         <br>
         <br>
@@ -423,6 +458,7 @@
       $(this).toggleClass('is-active');
     });
     </script>
+
     <script>
     function myFunction() {
       document.getElementById("demo1").innerHTML = "Suggestion submitted!";
@@ -430,7 +466,7 @@
     function myFunction2() {
       document.getElementById("demo2").innerHTML = "Feedback submitted!";
     }
-  </script>
+    </script>
 
   </body>
 
