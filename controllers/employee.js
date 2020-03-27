@@ -9,6 +9,7 @@ var EmployeeController = {
       em_last_name: req.body.em_last_name,
       employee_number:  req.body.employee_number,
       em_email: req.body.em_email,
+      staff_id: req.body.staff_id,
       password: req.body.password,
     });
 
