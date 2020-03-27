@@ -1,4 +1,5 @@
 var Manager = require('../models/manager');
+var Employee = require('../models/employee');
 var bcrypt = require('bcrypt');
 
 // var Manager = require('../models/films');
@@ -81,6 +82,38 @@ var ManagerController = {
     });
   },
 
+  HR: function(req, res) {
+    Manager.find({_id: req.session.managerId}, function(err,managers) {
+      if (err) { throw err; }
+      Employee.find(function(err, employees) {
+        if (err) { throw err; }
+        res.render('manager/hr', {  managers: managers, employees: employees });
+        console.log(req.session.managerId);
+      })
+    });
+  },
+
+  EditEmFirstName: function(req, res){
+    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_first_name: req.body.em_first_name }, overwrite: true} , function(err, employee){
+      if (err) { throw err; }
+      res.status(201).redirect('/manager/hr');
+    });
+  },
+
+  EditEmLastName: function(req, res){
+    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_last_name: req.body.em_last_name }, overwrite: true} , function(err, employee){
+      if (err) { throw err; }
+      res.status(201).redirect('/manager/hr');
+    });
+  },
+
+  EditEmEmail: function(req, res){
+    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_email: req.body.em_email }, overwrite: true} , function(err, employee){
+      if (err) { throw err; }
+      res.status(201).redirect('/manager/hr');
+    }); 
+  },
+
   Staff_Creation: function(req,res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){
       if (err) {
@@ -120,7 +153,6 @@ var ManagerController = {
     })
   },
 
-
   EditManFirst: function(req, res){
     Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname }, overwrite: true} , function(err){
       if (err) { throw err; }
@@ -150,6 +182,7 @@ var ManagerController = {
       res.status(201).render('manager/completed', { managers: managers })
     });
   },
+
 };
 
 module.exports = ManagerController;

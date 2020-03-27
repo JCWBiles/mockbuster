@@ -9,3 +9,5 @@ db.users.update({}, { $set: {"imageUrl": "/images/account/avatarGIF.gif" } }, fa
 
 
 db.managers.update({}, { $set: {"imageUrl": "/images/account/avatarGIF.gif" } }, false, true)
+
+db.employees.update({}, { $set: {"staff_id": "String" } }, false, true)

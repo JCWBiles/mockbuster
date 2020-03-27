@@ -95,6 +95,7 @@ app.use('/manager', managerRouter);
 app.use('/manager/login', managerRouter);
 app.use('/manager/account', managerRouter);
 app.use('/manager/hub', managerRouter);
+app.use('/manager/hr', managerRouter);
 app.use('/manager/staff_creation', managerRouter);
 app.use('/manager/completed', managerRouter);
 app.use('/man_auth', man_authRouter);
