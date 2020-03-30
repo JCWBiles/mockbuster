@@ -6,3 +6,9 @@ db.users.update({}, { $set: {"address_first_line": String, "address_second_line"
 
 db.users.update({}, { $set: {"profilePic": "String" } }, false, true)
 db.users.update({}, { $set: {"imageUrl": "/images/account/avatarGIF.gif" } }, false, true)
+
+
+db.managers.update({}, { $set: {"imageUrl": "/images/account/avatarGIF.gif" } }, false, true)
+
+db.employees.update({}, { $set: {"staff_id": "String" } }, false, true)
+db.employees.update({}, { $set: {"em_email": "String" } }, false, true)

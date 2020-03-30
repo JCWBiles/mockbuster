@@ -7,11 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
-  <title>MockBuster - Staff Creation Complete</title>
+  <title>MockBuster - HR</title>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
         <a class="col-md-2 logo" href="/manager/hub"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
-          <a class="navbar-brand" href="/manager/completed">Sign Up Completed</a>
+          <a class="navbar-brand" href="/manager/hr">Human Resources</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -58,15 +59,81 @@
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
-        <div class="col-12 form-background">
-          <br>
-          <h2 style="text-align: center;">Account Created!</h2>
-          <br>
-         <i class="fa fa-check-circle fa-5x" aria-hidden="true" style="margin-left: 200px; color: green;"></i>
-         <br><br><br>
-       </div>
-     </div>
-   </div>
+      <div class="col-12 justify-content-md-center" >
+        <h1 style="color: white;">Welcome to HR {{#managers}}{{this.man_firstname}}{{/managers}}</h1>
+      <div class="col-4 form-background">
+      <h5 style="text-align: center;">To make changes to employee details please find the staff member below and click on the edit icon</h5>
+      <br>
+      {{#each employees}}
+      <div class="event-description" style="text-align: center;">
+        <p id="employee-name" style="color: black;">Employee: {{this.em_first_name}} {{this.em_last_name}}</p>
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#{{this.staff_id}}" style="">
+          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit Employee Details</span>
+        </a>
+
+        <!-- Callout - edit employee details modal -->
+        <div class="modal fade" id="{{this.staff_id}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="basketLabel"><b>Please Edit Details For Staff Number:</b></h5>
+                <hr>
+                <h3>{{this.employee_number}}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <img src="{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" style="">
+              <div class="modal-body">
+
+                
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/em_first_name/{{this._id}}" method="post">       
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-first-name" class="col-form-label">Edit employee first name:</label>
+                    <input type="text" class="form-control" id="em-first-name" name="em_first_name"value="{{this.em_first_name}}">
+                  </div>
+               
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-last-name" class="col-form-label">Edit employee last name:</label>
+                    <input type="text" class="form-control" id="em-last-name" name="em_last_name"value="{{this.em_last_name}}">
+                  </div>
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-email" class="col-form-label">Edit employee email:</label>
+                    <input type="text" class="form-control" id="em-email" name="em_email"value="{{this.em_email}}">
+                    {{!-- <input type="submit" class="btn btn--teal btn-primary" value="Edit" /> --}}
+                  </div>
+                
+
+                <div class="modal-footer">
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+                </form>
+
+              
+                <!-- /.Callout - edit employee details modal -->
+              </div>
+            </div>
+            </div>
+            </div>
+          
+            </div>
+            <hr>
+            {{/each}}
+            
+          </div>
+          
+        </div>
+      </div>
+      </div>
+    <!-- /Callout -->
 
 <!-- Footer -->
 <footer class="container-fluid footer-container text-center">
@@ -137,15 +204,26 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<!-- jquery to shrink logo and navbar on scroll -->
-   <script>
-     $( window ).scroll(function() {
-      if($(window).scrollTop() > 70){
-        $('.logo').css({'height': '70'});
-      }else{
-          $('.logo').css({'height': '120'});
-      }
-     });
-   </script>
+
+  <!-- jquery to shrink logo and navbar on scroll -->
+  <script>
+    $( window ).scroll(function() {
+     if($(window).scrollTop() > 70){
+       $('.logo').css({'height': '70'}); 
+     }else{
+         $('.logo').css({'height': '120'}); 
+     }
+
+    });
+  </script>
+
 </body>
 </html>
+                
+  {{!-- <div action="/manager/account/em_first_name/{{this._id}}" method="post">
+    <input type="hidden" name="_method" value="PATCH" />
+    <div class="form-group">
+      <label for="em-first-name" class="col-form-label">Edit employee first name:</label>
+      <input type="text" class="form-control" id="em-first-name" name="em_first_name"value="{{this.em_first_name}}">
+    </div>
+  </div> --}}

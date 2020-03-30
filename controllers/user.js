@@ -137,6 +137,22 @@ var UserController = {
   //     res.status(201).redirect('/account');
   //   });
   // },
+
+  NewPassword: function(req, res){
+    // retrieve the password field
+    var password = req.body.password
+    // update it with hash
+    bcrypt.hash(req.body.password, 10, function(err, hash){
+      if(err){
+        return(err);
+      }
+      req.body.password = hash;
+      User.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err){
+        if (err) { throw err; }
+        res.status(201).redirect('/account')
+      })
+    });
+  },
 };
 
 module.exports = UserController;

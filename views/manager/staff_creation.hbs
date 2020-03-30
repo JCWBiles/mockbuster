@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
-  <title>MockBuster - Manager Portal - Staff Creation</title>
+  <title>MockBuster - Staff Creation</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/manager/account">My Details<i class="fas fa-info-circle float-right"></i></a>
                     <a class="dropdown-item" href="#">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="#">HR<i class="fas fa-person-booth float-right"></i></a>
+                    <a class="dropdown-item" href="/manager/hr">HR<i class="fas fa-person-booth float-right"></i></a>
                     <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
                     <a class="dropdown-item" href="/manager/staff_creation">Staff Creation<i class="fab fa-creative-commons-remix float-right"></i></a>
                     <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
@@ -76,6 +76,10 @@
             <div class="form-group">
               <label for="exampleInputEmployeeNumber">Employee Number</label>
               <input name="employee_number" type="text" class="form-control" id="exampleInputEmployeeNumber" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputStaffID">Staff ID</label>
+              <input name="staff_id" type="text" class="form-control" id="exampleInputStaffID" required>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Employee Starter Password</label>
@@ -116,7 +120,6 @@
     </p>
   </div>
   <div class="col-12 ">
-
     <ul class="list-inline social-links ">
       <li class="list-inline-item ">
         <a target="_blank " href="# " class="hvr-icon-bounce">
