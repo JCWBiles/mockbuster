@@ -93,26 +93,26 @@ var ManagerController = {
     });
   },
 
-  EditEmFirstName: function(req, res){
-    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_first_name: req.body.em_first_name }, overwrite: true} , function(err, employee){
+  EditEmployee: function(req, res){
+    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_first_name: req.body.em_first_name, em_last_name: req.body.em_last_name, em_email: req.body.em_email }, overwrite: true} , function(err, employee){
       if (err) { throw err; }
       res.status(201).redirect('/manager/hr');
     });
   },
 
-  EditEmLastName: function(req, res){
-    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_last_name: req.body.em_last_name }, overwrite: true} , function(err, employee){
-      if (err) { throw err; }
-      res.status(201).redirect('/manager/hr');
-    });
-  },
+  // EditEmLastName: function(req, res){
+  //   Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_last_name: req.body.em_last_name }, overwrite: true} , function(err, employee){
+  //     if (err) { throw err; }
+  //     res.status(201).redirect('/manager/hr');
+  //   });
+  // },
 
-  EditEmEmail: function(req, res){
-    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_email: req.body.em_email }, overwrite: true} , function(err, employee){
-      if (err) { throw err; }
-      res.status(201).redirect('/manager/hr');
-    }); 
-  },
+  // EditEmEmail: function(req, res){
+  //   Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_email: req.body.em_email }, overwrite: true} , function(err, employee){
+  //     if (err) { throw err; }
+  //     res.status(201).redirect('/manager/hr');
+  //   }); 
+  // },
 
   Staff_Creation: function(req,res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){

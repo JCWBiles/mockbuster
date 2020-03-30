@@ -58,10 +58,11 @@
     <!-- Callout -->
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
+      <div class="row">
       <div class="col-12 justify-content-md-center" >
         <h1 style="color: white;">Welcome to HR {{#managers}}{{this.man_firstname}}{{/managers}}</h1>
       <div class="col-4 form-background">
-      <h4 style="text-align: center;">To make changes to employee details please find the staff member below and click on the edit icon</h4>
+      <h5 style="text-align: center;">To make changes to employee details please find the staff member below and click on the edit icon</h5>
       <br>
       {{#each employees}}
       <div class="event-description" style="text-align: center;">
@@ -76,7 +77,8 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                <h5 class="modal-title" id="basketLabel"><b>Please Edit Details For Staff Number:</b></h5>
+                <hr>
                 <h3>{{this.employee_number}}</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -85,45 +87,51 @@
               <img src="{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" style="">
               <div class="modal-body">
 
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/em_first_name/{{this._id}}" method="post">
+                
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/em_first_name/{{this._id}}" method="post">       
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="em-first-name" class="col-form-label">Edit employee first name:</label>
                     <input type="text" class="form-control" id="em-first-name" name="em_first_name"value="{{this.em_first_name}}">
-                    <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
                   </div>
-                </form>
+               
 
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/em_last_name/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="em-last-name" class="col-form-label">Edit employee last name:</label>
                     <input type="text" class="form-control" id="em-last-name" name="em_last_name"value="{{this.em_last_name}}">
-                    <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
                   </div>
-                </form>
 
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/em_email/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-email" class="col-form-label">Edit employee Email:</label>
+                    <label for="em-email" class="col-form-label">Edit employee email:</label>
                     <input type="text" class="form-control" id="em-email" name="em_email"value="{{this.em_email}}">
-                    <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                    {{!-- <input type="submit" class="btn btn--teal btn-primary" value="Edit" /> --}}
                   </div>
-                </form>
+                
 
                 <div class="modal-footer">
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
+
+                </form>
+
+              
                 <!-- /.Callout - edit employee details modal -->
               </div>
             </div>
             </div>
             </div>
+          
             </div>
+            <hr>
             {{/each}}
+            
           </div>
+          
         </div>
+      </div>
       </div>
     <!-- /Callout -->
 

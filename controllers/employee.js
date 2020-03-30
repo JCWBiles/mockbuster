@@ -72,7 +72,6 @@ var EmployeeController = {
     });
   },
 
-
 Em_Hub: function(req, res) {
   Employee.find({_id: req.session.employeeId}, function(err,employees){
     console.log(req.session.employeeId);
