@@ -63,7 +63,7 @@
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
         <div class="col-8 form-background">
-          <form action="/user" method="post" onsubmit='return validate()'>
+          <form action="/user" method="post" onsubmit='return validate()' enctype="multipart/form-data">
           <p style="padding-top: 10px;">If you do not yet have an account set up please fill out
             </br>the below, otherwise <a href="/login">click here</a> to log in.</p>
             <hr>
@@ -88,6 +88,10 @@
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
               <input name="password" type="password" placeholder="*********" class="form-control" id="exampleInputPassword1" required>
+            </div>
+            <div class="form-group">
+              <label for="profilePic">Profile Pic</label>
+              <input name="imageUrl" type="file" class="form-control" enctype="multipart/form-data">
             </div>
       <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">

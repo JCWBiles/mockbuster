@@ -8,8 +8,18 @@ var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var mailgun = require('mailgun-js');
-var multer = require('multer');
 
+//Image upload setup
+var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, './public/uploads/');
+  },
+  filename: function(req, file, cb){
+    cb(null, file.originalname);
+  },
+});
+var upload = multer({ storage:storage })
 
 
 var filmRouter = require('./routes/films');
@@ -43,6 +53,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public/uploads', express.static('public/uploads'))
 app.use(session({
   secret: 'work harder',
   resave: true,
@@ -98,8 +109,74 @@ app.use('/manager/hub', managerRouter);
 app.use('/manager/staff_creation', managerRouter);
 app.use('/manager/completed', managerRouter);
 app.use('/man_auth', man_authRouter);
-
 app.use(methodOverride('_method'));
+
+//route for initial image upload
+var User = require('./models/user');
+app.post('/user', upload.single('imageUrl'), function(req, res){
+  if(req.file){
+  var user = new User({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email:  req.body.email,
+    password: req.body.password,
+    address_first_line: req.body.address_first_line,
+    address_second_line: req.body.address_second_line,
+    address_town: req.body.address_town,
+    address_post_code: req.body.address_post_code,
+    card_holder: req.body.card_holder,
+    card_number: req.body.card_number,
+    expiration_year: req.body.expiration_year,
+    expiration_month: req.body.expiration_month,
+    cvc: req.body.cvc,
+    imageUrl: req.file.path,
+  });
+    console.log(req.body.firstname);
+    console.log(req.body.email);
+    console.log(req.file);
+    user.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.userId = user._id;
+        res.status(201).redirect('/films')
+      }
+  });
+} else {
+  var user = new User({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email:  req.body.email,
+    password: req.body.password,
+    address_first_line: req.body.address_first_line,
+    address_second_line: req.body.address_second_line,
+    address_town: req.body.address_town,
+    address_post_code: req.body.address_post_code,
+    card_holder: req.body.card_holder,
+    card_number: req.body.card_number,
+    expiration_year: req.body.expiration_year,
+    expiration_month: req.body.expiration_month,
+    cvc: req.body.cvc,
+  });
+    console.log(req.body.firstname);
+    console.log(req.body.email);
+    user.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.userId = user._id;
+        res.status(201).redirect('/films')
+      }
+    });
+  }
+});
+
+//route for editing account image
+app.post('/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
+  console.log(req.file)
+  User.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/account');
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -119,7 +119,7 @@
       <br>
       {{#users}}
 
-      <img src="./uploads/{{this.imageUrl}}" alt="{{this.firstname}}" class="profilePic" style="">
+      <img src="{{this.imageUrl}}" alt="{{this.firstname}}" id="blah" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
       <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
         <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
         <span class="fa-lg sr-only">Edit Profile Pic</span>
@@ -134,11 +134,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/upload/{{this._id}}" method="post">
+              <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/upload/{{this._id}}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PATCH" />
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
-                  <input type="file" class="form-control" id="recipient-name" accept="image/*" name="imageUrl" value="{{this.imageUrl}}">
+                  <input type='file' accept="image/*" name="imageUrl"/>
                 </div>
               </div>
               <div class="modal-footer">
@@ -415,6 +415,21 @@
 
     });
     </script>
+
+    <script type="text/javascript">
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
     <!-- jquery to shrink logo and navbar on scroll -->
    <script>
      $( window ).scroll(function() {
@@ -440,7 +455,6 @@
       document.getElementById("demo2").innerHTML = "Feedback submitted!";
     }
   </script>
-
   </body>
 
   </html>

@@ -1,59 +1,57 @@
 var User = require('../models/user');
 var bcrypt = require('bcrypt');
-
 var UserController = {
   Index: function(req, res) {
     res.render('user/index');
   },
 
-  Create: function(req, res) {
-    var user = new User({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email:  req.body.email,
-      password: req.body.password,
-      address_first_line: req.body.address_first_line,
-      address_second_line: req.body.address_second_line,
-      address_town: req.body.address_town,
-      address_post_code: req.body.address_post_code,
-      card_holder: req.body.card_holder,
-      card_number: req.body.card_number,
-      expiration_year: req.body.expiration_year,
-      expiration_month: req.body.expiration_month,
-      cvc: req.body.cvc,
-      imageUrl: req.body.imageUrl,
-
-    });
-    console.log(req.body.firstname);
-    console.log(req.body.email);
-    console.log(req.body._id);
-    user.save(function(err) {
-      if (err) { throw err; }
-      else {
-        req.session.userId = user._id;
-        res.status(201).redirect('/films')
-      }
-
-      // var api_key = '';
-      // var domain = '';
-      // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-      //
-      // var data = {
-      //   from: 'MockBuster <mockbuster2020@gmail.com>',
-      //   to: req.body.email,
-      //   subject: 'Welcome to MockBuster!',
-      //   text: `You're all signed up! We hope you enjoy our incredible library of films.`
-      // };
-      //
-      // mailgun.messages().send(data, function (error, body) {
-      //   if (error){
-      //     console.log(error);
-      //   }
-      //   console.log(body);
-      // });
-    });
-
-  },
+  // Create: function(req, res) {
+  //   var user = new User({
+  //     firstname: req.body.firstname,
+  //     lastname: req.body.lastname,
+  //     email:  req.body.email,
+  //     password: req.body.password,
+  //     address_first_line: req.body.address_first_line,
+  //     address_second_line: req.body.address_second_line,
+  //     address_town: req.body.address_town,
+  //     address_post_code: req.body.address_post_code,
+  //     card_holder: req.body.card_holder,
+  //     card_number: req.body.card_number,
+  //     expiration_year: req.body.expiration_year,
+  //     expiration_month: req.body.expiration_month,
+  //     cvc: req.body.cvc,
+  //     imageUrl: req.file.path,
+  //
+  //   });
+  //   console.log(req.body.firstname);
+  //   console.log(req.body.email);
+  //   user.save(function(err) {
+  //     if (err) { throw err; }
+  //     else {
+  //       req.session.userId = user._id;
+  //       res.status(201).redirect('/films')
+  //     }
+  //
+  //     // var api_key = '';
+  //     // var domain = '';
+  //     // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+  //     //
+  //     // var data = {
+  //     //   from: 'MockBuster <mockbuster2020@gmail.com>',
+  //     //   to: req.body.email,
+  //     //   subject: 'Welcome to MockBuster!',
+  //     //   text: `You're all signed up! We hope you enjoy our incredible library of films.`
+  //     // };
+  //     //
+  //     // mailgun.messages().send(data, function (error, body) {
+  //     //   if (error){
+  //     //     console.log(error);
+  //     //   }
+  //     //   console.log(body);
+  //     // });
+  //   });
+  //
+  // },
 
   Login: function(req, res) {
     res.status(201).render('login/index');
@@ -70,8 +68,8 @@ var UserController = {
           }
           else {
             console.log('wrong password');
-
-            res.status(201).redirect('/login')
+            // res.send('wrong password');
+            res.status(201).redirect('/login' )
           }
         })
       }
@@ -133,12 +131,12 @@ var UserController = {
     });
   },
 
-  EditPic: function(req, res){
-    User.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.body.imageUrl }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/account');
-    });
-  },
+  // EditPic: function(req, res){
+  //   User.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.body.imageUrl }, overwrite: true} , function(err){
+  //     if (err) { throw err; }
+  //     res.status(201).redirect('/account');
+  //   });
+  // },
 };
 
 module.exports = UserController;
