@@ -38,7 +38,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/manager/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                    <a class="dropdown-item" href="#">Blog<i class="fas fa-blog float-right"></i></a>
+                    <a class="dropdown-item" href="/blog?role=manager">Blog<i class="fas fa-blog float-right"></i></a>
                     <a class="dropdown-item" href="/manager/hr">HR<i class="fas fa-person-booth float-right"></i></a>
                     <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
                     <a class="dropdown-item" href="/manager/staff_creation">Staff Creation<i class="fab fa-creative-commons-remix float-right"></i></a>
@@ -87,14 +87,14 @@
               <img src="{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" style="">
               <div class="modal-body">
 
-                
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/em_first_name/{{this._id}}" method="post">       
+
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/em_first_name/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="em-first-name" class="col-form-label">Edit employee first name:</label>
                     <input type="text" class="form-control" id="em-first-name" name="em_first_name"value="{{this.em_first_name}}">
                   </div>
-               
+
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
@@ -108,7 +108,7 @@
                     <input type="text" class="form-control" id="em-email" name="em_email"value="{{this.em_email}}">
                     {{!-- <input type="submit" class="btn btn--teal btn-primary" value="Edit" /> --}}
                   </div>
-                
+
 
                 <div class="modal-footer">
                   <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
@@ -117,19 +117,19 @@
 
                 </form>
 
-              
+
                 <!-- /.Callout - edit employee details modal -->
               </div>
             </div>
             </div>
             </div>
-          
+
             </div>
             <hr>
             {{/each}}
-            
+
           </div>
-          
+
         </div>
       </div>
       </div>
@@ -209,9 +209,9 @@
   <script>
     $( window ).scroll(function() {
      if($(window).scrollTop() > 70){
-       $('.logo').css({'height': '70'}); 
+       $('.logo').css({'height': '70'});
      }else{
-         $('.logo').css({'height': '120'}); 
+         $('.logo').css({'height': '120'});
      }
 
     });
@@ -219,7 +219,7 @@
 
 </body>
 </html>
-                
+
   {{!-- <div action="/manager/account/em_first_name/{{this._id}}" method="post">
     <input type="hidden" name="_method" value="PATCH" />
     <div class="form-group">
