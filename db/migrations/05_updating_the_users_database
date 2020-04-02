@@ -12,3 +12,4 @@ db.managers.update({}, { $set: {"imageUrl": "/images/account/avatarGIF.gif" } },
 
 db.employees.update({}, { $set: {"staff_id": "String" } }, false, true)
 db.employees.update({}, { $set: {"em_email": "String" } }, false, true)
+db.users.update({}, { $set: {"wishlist": ["String"] } }, false, true)

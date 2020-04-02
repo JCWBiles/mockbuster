@@ -6,6 +6,7 @@ var FilmsController = require('../controllers/films');
 
 router.get('/', BlogController.Index);
 router.post('/', BlogController.Create);
+router.post('/delete/:_id', BlogController.Delete);
 router.get('/search', FilmsController.Search);
 router.get('/autocomplete', FilmsController.Autocomplete);
 
