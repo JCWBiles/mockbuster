@@ -97,14 +97,14 @@
                     {{/managers}}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                    <a class="dropdown-item" href="/manager/account">My Details<i class="fas fa-info-circle float-right"></i></a>
                     <a class="dropdown-item" href="/blog?role=manager">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="#">HR<i class="fas fa-person-booth float-right"></i></a>
+                    <a class="dropdown-item" href="/manager/hr">HR<i class="fas fa-person-booth float-right"></i></a>
                     <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
-                    <a class="dropdown-item" href="#">Customer Feedback<i class="fas fa-comments float-right"></i></a>
+                    <a class="dropdown-item" href="/manager/staff_creation">Staff Creation<i class="fab fa-creative-commons-remix float-right"></i></a>
                     <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
-                    <a class="dropdown-item" href="/employee/em_hub">Hub<i class="fas fa-backspace float-right"></i></a>
-                    <a class="dropdown-item" href="/employee/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                    <a class="dropdown-item" href="/manager/hub">Hub<i class="fas fa-backspace float-right"></i></a>
+                    <a class="dropdown-item" href="/manager/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
                 </li>
               </ul>
@@ -119,12 +119,13 @@
     <div class="each-event">
       <h1 style="padding-left:20px;">Welcome to Blogbuster! (insert Blogbuster logo) </h1>
       <br>
-    
+
       <!-- Output of reviews -->
       <h1 style="padding-left:20px;">Reviews</h1>
 
       <div class="each-event" style="padding-left:20px;" id="blogs">
         <br>
+        <hr>
         {{#each blog}}
         <div class="event-description" style="margin:20px;">
           <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
@@ -389,6 +390,7 @@
 
       <div class="each-event" style="padding-left:20px;">
         <br>
+        <hr>
         {{#each blog}}
         <div class="event-description" style="margin:20px;" id="blogs">
           <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
@@ -679,6 +681,7 @@
 
           <div class="each-event" style="padding-left:20px;">
             <br>
+            <hr>
             {{#each blog}}
             <div class="event-description" style="margin:20px;">
               <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
