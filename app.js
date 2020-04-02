@@ -112,7 +112,7 @@ app.use('/manager/completed', managerRouter);
 app.use('/man_auth', man_authRouter);
 app.use(methodOverride('_method'));
 
-//route for initial image upload
+//route for initial USER image upload
 var User = require('./models/user');
 app.post('/user', upload.single('imageUrl'), function(req, res){
   if(req.file){
@@ -170,12 +170,61 @@ app.post('/user', upload.single('imageUrl'), function(req, res){
   }
 });
 
-//route for editing account image
+//route for editing USER account image
 app.post('/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
   console.log(req.file)
   User.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
     if (err) { throw err; }
     res.status(201).redirect('/account');
+  });
+});
+
+//route for initial MANAGER image upload
+var Manager = require('./models/manager');
+app.post('/manager', upload.single('imageUrl'), function(req, res){
+  if(req.file){
+  var manager = new Manager({
+    man_firstname: req.body.man_firstname,
+    man_lastname: req.body.man_lastname,
+    man_email: req.body.man_email,
+    man_password: req.body.man_password,
+    imageUrl: req.file.path,
+  });
+    console.log(req.body.man_firstname);
+    console.log(req.body.man_email);
+    console.log(req.file);
+    manager.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.managerId = manager._id;
+        res.status(201).redirect('/manager/hub')
+      }
+  });
+} else {
+  var manager = new Manager({
+    man_firstname: req.body.man_firstname,
+    man_lastname: req.body.man_lastname,
+    man_email: req.body.man_email,
+    man_password: req.body.man_password,
+  });
+    console.log(req.body.man_firstname);
+    console.log(req.body.Man_email);
+    manager.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.managerId = manager._id;
+        res.status(201).redirect('/manager/hub')
+      }
+    });
+  }
+});
+
+//route for editing MANAGER account image
+app.post('/manager/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
+  console.log(req.file)
+  Manager.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/manager/account');
   });
 });
 
