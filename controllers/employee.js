@@ -1,4 +1,5 @@
 var Employee = require('../models/employee');
+var Films = require('../models/films');
 var bcrypt = require('bcrypt');
 
 var EmployeeController = {
@@ -114,6 +115,17 @@ Em_Hub: function(req, res) {
       res.status(201).render('employee/update', { employees: employees });
     });
   },
+
+  EmFilms: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      console.log(req.session.employeeId);
+      if (err) {
+        throw err
+      }
+      res.status(201).render('employee/em_films', { employees: employees });
+    });
+  },
+
 };
 
 module.exports = EmployeeController;
