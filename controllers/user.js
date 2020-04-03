@@ -1,5 +1,15 @@
 var User = require('../models/user');
 var bcrypt = require('bcrypt');
+
+// var messages = getMessages()
+//
+// if messages.notify
+//     each msg in messages.info
+//         .info= msg
+// if messages.error
+//     each msg in messages.error
+//         .error= msg
+
 var UserController = {
   Index: function(req, res) {
     res.render('user/index');
@@ -54,6 +64,7 @@ var UserController = {
   // },
 
   Login: function(req, res) {
+
     res.status(201).render('login/index');
   },
 
@@ -68,14 +79,15 @@ var UserController = {
           }
           else {
             console.log('wrong password');
-            // res.send('wrong password');
-            res.status(201).redirect('/login' )
+
+            res.render('login/index', { sessionFlash: res.locals.passworderror });
           }
         })
       }
       else {
         console.log('wrong email');
-        res.status(201).redirect('/login')
+
+        res.render('login/index', { sessionFlash: res.locals.emailerror });
       }
     });
   },

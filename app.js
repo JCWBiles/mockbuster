@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var session = require('express-session')
+var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var mailgun = require('mailgun-js');
+var flash = require('express-flash-messages');
 
 //Image upload setup
 var multer = require('multer');
@@ -48,12 +49,42 @@ app.use(session({
   saveUninitialized: false
 }));
 
+//setup flash
+app.use(flash());
+// Custom flash middleware -- from Ethan Brown's book, 'Web Development with Node & Express'
+app.use(function(req, res, next){
+    // if there's a flash message in the session request, make it available in the response, then delete it
+req.session.emailerror = {type: 'info',
+message: 'Incorrect email, please try again.' };
+    res.locals.emailerror = req.session.emailerror;
+    delete req.session.emailerror;
+    next();
+});
+
+app.use(function(req, res, next){
+    // if there's a flash message in the session request, make it available in the response, then delete it
+req.session.passworderror = {type: 'info',
+message: 'Incorrect password, please try again.' };
+    res.locals.passworderror = req.session.passworderror;
+    delete req.session.passworderror;
+    next();
+});
+
+app.use(function(req, res, next){
+    // if there's a flash message in the session request, make it available in the response, then delete it
+req.session.logoutmsg = {type: 'success',
+message: 'You have successfully logged out.' };
+    res.locals.logoutmsg = req.session.logoutmsg;
+    delete req.session.logoutmsg;
+    next();
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/public/uploads', express.static('public/uploads'))
+app.use('/public/uploads', express.static('public/uploads'));
 app.use(session({
   secret: 'work harder',
   resave: true,
@@ -111,6 +142,7 @@ app.use('/manager/staff_creation', managerRouter);
 app.use('/manager/completed', managerRouter);
 app.use('/man_auth', man_authRouter);
 app.use(methodOverride('_method'));
+
 
 //route for initial image upload
 var User = require('./models/user');
