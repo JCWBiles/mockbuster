@@ -1,5 +1,6 @@
 var Manager = require('../models/manager');
 var Employee = require('../models/employee');
+var Message = require('../models/message');
 var bcrypt = require('bcrypt');
 
 // var Manager = require('../models/films');
@@ -75,10 +76,11 @@ var ManagerController = {
 
   Hub: function(req,res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){
-      if (err) {
-        throw err
-      }
-      res.status(201).render('manager/hub', { managers: managers })
+      if (err) {throw err;}
+      Message.find(function(err, messages) {
+        if (err) { throw err; }
+      res.status(201).render('manager/hub', {messages: messages, managers: managers })
+    })
     });
   },
 
@@ -111,7 +113,7 @@ var ManagerController = {
   //   Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_email: req.body.em_email }, overwrite: true} , function(err, employee){
   //     if (err) { throw err; }
   //     res.status(201).redirect('/manager/hr');
-  //   }); 
+  //   });
   // },
 
   Staff_Creation: function(req,res) {
@@ -171,7 +173,7 @@ var ManagerController = {
     Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_email: req.body.man_email }, overwrite: true} , function(err){
       if (err) { throw err; }
       res.status(201).redirect('/manager/account');
-    }); 
+    });
   },
 
   Completed: function(req, res) {

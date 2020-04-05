@@ -42,7 +42,6 @@
                     <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
                     <a class="dropdown-item" href="#">Customer Feedback<i class="fas fa-comments float-right"></i></a>
                     <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
-                    <a class="dropdown-item" href="/employee/em_hub">Hub<i class="fas fa-backspace float-right"></i></a>
                     <a class="dropdown-item" href="/employee/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
                 </li>
@@ -63,6 +62,7 @@
 
           <h1 style="color: white;">Welcome to the Employee Hub {{this.em_first_name}}</h1>
 
+          {{/employees}}
           <div class="row" style="z-index: 1;">
             <div class="container-fluid">
               <a href="/employee/account"><button type="button" class="col-1 hub-buttons btn btn-primary btn-lg">My Details<br><i class="fas fa-info-circle"></i></button></a>
@@ -72,14 +72,12 @@
               <div class="w-100"></div>
               <a href="#"><button type="button" class="col-1 hub-buttons btn btn-warning btn-lg">Customer Feedback<br><i class="fas fa-comments"></i></button></a>
               <a href="#"><button type="button" class="col-1 hub-buttons btn btn-info btn-lg">Customer Suggestions<br><i class="fas fa-comment-dots"></i></button></a>
-              <a href="/employee/em_hub"><button type="button" class="col-1 hub-buttons btn btn-light btn-lg">Hub<br><i class="fas fa-backspace"></i></button></a>
               <a href="/employee/session/destroy"><button type="button" class="col-1 hub-buttons btn btn-dark btn-lg">Log Out<br><i class="fas fa-sign-out-alt"></i></button></a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    {{/employees}}
     <!-- /Callout -->
 
 

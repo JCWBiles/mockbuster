@@ -1,15 +1,6 @@
 var User = require('../models/user');
 var bcrypt = require('bcrypt');
 
-// var messages = getMessages()
-//
-// if messages.notify
-//     each msg in messages.info
-//         .info= msg
-// if messages.error
-//     each msg in messages.error
-//         .error= msg
-
 var UserController = {
   Index: function(req, res) {
     res.render('user/index');

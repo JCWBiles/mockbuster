@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var mailgun = require('mailgun-js');
 var flash = require('express-flash-messages');
-
+var Handlebars = require('hbs');
 //Image upload setup
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -41,6 +41,17 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+Handlebars.registerHelper('each_upto', function(ary, max, options)
+{
+  if(!ary || ary.length == 0)
+        return options.inverse(this);
+
+    var result = [ ];
+    for(var i = 0; i < max && i < ary.length; ++i)
+        result.push(options.fn(ary[i]));
+    return result.join('');
+});
+
 //use sessions for tracking logins
 var db = mongoose.connection;
 app.use(session({
@@ -51,6 +62,7 @@ app.use(session({
 
 //setup flash
 app.use(flash());
+
 // Custom flash middleware -- from Ethan Brown's book, 'Web Development with Node & Express'
 app.use(function(req, res, next){
     // if there's a flash message in the session request, make it available in the response, then delete it
