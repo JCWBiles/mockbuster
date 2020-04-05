@@ -1,1 +1,1 @@
-db.messages.insert({ name: "String", message: "String", dateCreated: { type: Date, default: Date.now() }, read: { type: Boolean }, user: { type: ObjectId(), ref: users }});
+db.messages.insert({ name: "String", message: "String", dateCreated: { type: Date, default: Date.now() }, read: { type: Boolean }, employee: { type: ObjectId(), ref: employees }});

@@ -7,8 +7,8 @@ var MessageSchema = new mongoose.Schema({
   message: String,
   dateCreated: { type: Date, default: Date.now },
   read: Boolean,
-  user: {type: mongoose.ObjectId,
-  ref: "Users"}
+  employee: {type: mongoose.ObjectId,
+  ref: "Employees"}
 });
 
 
