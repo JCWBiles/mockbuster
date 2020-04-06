@@ -100,7 +100,7 @@ var ManagerController = {
     });
   },
 
-  Staff_Creation: function(req,res) {
+  Staff_Creation: function(req, res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){
       if (err) {
         throw err
@@ -139,25 +139,11 @@ var ManagerController = {
     })
   },
 
-  EditManFirst: function(req, res){
-    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname }, overwrite: true} , function(err){
+  EditMan: function(req, res){
+    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname, man_lastname: req.body.man_lastname, man_email: req.body.man_email }, overwrite: true} , function(err){
       if (err) { throw err; }
       res.status(201).redirect('/manager/account');
     });
-  },
-
-  EditManLast: function(req, res){
-    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_lastname: req.body.man_lastname }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/manager/account');
-    });
-  },
-
-  EditManEmail: function(req, res){
-    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_email: req.body.man_email }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/manager/account');
-    }); 
   },
 
   Completed: function(req, res) {
@@ -166,6 +152,22 @@ var ManagerController = {
         throw err
       }
       res.status(201).render('manager/completed', { managers: managers })
+    });
+  },
+
+  ManNewPassword: function(req, res){
+    // retrieve the password field
+    var man_password = req.body.man_password
+    // update it with hash
+    bcrypt.hash(req.body.man_password, 10, function(err, hash){
+      if(err){
+        return(err);
+      }
+      req.body.man_password = hash;
+      Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_password: req.body.man_password }, overwrite: true} , function(err, manager){
+        if (err) { throw err; }
+        res.status(201).redirect('/manager/account')
+      })
     });
   },
 

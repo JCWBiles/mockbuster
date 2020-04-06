@@ -84,11 +84,11 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <img src="{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" style="">
+              <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
               <div class="modal-body">
 
 
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/em_first_name/{{this._id}}" method="post">
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/edit_em/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="em-first-name" class="col-form-label">Edit employee first name:</label>
@@ -106,7 +106,12 @@
                   <div class="form-group">
                     <label for="em-email" class="col-form-label">Edit employee email:</label>
                     <input type="text" class="form-control" id="em-email" name="em_email"value="{{this.em_email}}">
-                    {{!-- <input type="submit" class="btn btn--teal btn-primary" value="Edit" /> --}}
+                  </div>
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
                   </div>
 
 

@@ -53,7 +53,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/public/uploads', express.static('public/uploads'))
+app.use('/public/uploads', express.static('public/uploads'));
 app.use(session({
   secret: 'work harder',
   resave: true,
@@ -225,6 +225,59 @@ app.post('/manager/account/upload/:_id', upload.single('imageUrl'), function (re
   Manager.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
     if (err) { throw err; }
     res.status(201).redirect('/manager/account');
+  });
+});
+
+//route for initial EMPLOYEE image upload
+var Employee = require('./models/employee');
+app.post('/manager/staff_creation', upload.single('imageUrl'), function(req, res){
+  if(req.file){
+  var employee = new Employee({
+    em_first_name: req.body.em_first_name,
+    em_last_name: req.body.em_last_name,
+    employee_number: req.body.employee_number,
+    em_email: req.body.em_email,
+    staff_id: req.body.staff_id,
+    password: req.body.password,
+    imageUrl: req.file.path,
+  });
+    console.log(req.body.em_first_name);
+    console.log(req.body.em_email);
+    console.log(req.file);
+    employee.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.employeeId = employee._id;
+        res.status(201).redirect('/manager/completed')
+      }
+  });
+} else {
+  var employee = new Employee({
+    em_first_name: req.body.em_first_name,
+    em_last_name: req.body.em_last_name,
+    employee_number: req.body.employee_number,
+    em_email: req.body.em_email,
+    staff_id: req.body.staff_id,
+    password: req.body.password,
+  });
+    console.log(req.body.em_first_name);
+    console.log(req.body.em_email);
+    employee.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.employeeId = employee._id;
+        res.status(201).redirect('/manager/completed')
+      }
+    });
+  }
+});
+
+//route for editing EMPLOYEE account image
+app.post('/employee/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
+  console.log(req.file)
+  Employee.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/employee/account');
   });
 });
 

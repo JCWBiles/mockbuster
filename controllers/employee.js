@@ -3,23 +3,23 @@ var bcrypt = require('bcrypt');
 
 var EmployeeController = {
 
-  Create: function(req, res){
-    var employee = new Employee({
-      em_first_name: req.body.em_first_name,
-      em_last_name: req.body.em_last_name,
-      employee_number:  req.body.employee_number,
-      em_email: req.body.em_email,
-      staff_id: req.body.staff_id,
-      password: req.body.password,
-    });
+//   Create: function(req, res){
+//     var employee = new Employee({
+//       em_first_name: req.body.em_first_name,
+//       em_last_name: req.body.em_last_name,
+//       employee_number:  req.body.employee_number,
+//       em_email: req.body.em_email,
+//       staff_id: req.body.staff_id,
+//       password: req.body.password,
+//     });
 
-    employee.save(function(err) {
-      if (err) { throw err; }
-      else {
-        res.status(201).redirect('/manager/completed')
-      }
-  })
-},
+//     employee.save(function(err) {
+//       if (err) { throw err; }
+//       else {
+//         res.status(201).redirect('/manager/completed')
+//       }
+//   })
+// },
 
   Login: function(req, res) {
     res.status(201).render('employee/index');
@@ -72,15 +72,15 @@ var EmployeeController = {
     });
   },
 
-Em_Hub: function(req, res) {
-  Employee.find({_id: req.session.employeeId}, function(err,employees){
-    console.log(req.session.employeeId);
-    if (err) {
-      throw err
-    }
-    res.status(201).render('employee/em_hub', { employees: employees })
-  });
-},
+  Em_Hub: function(req, res) {
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      console.log(req.session.employeeId);
+      if (err) {
+        throw err
+      }
+      res.status(201).render('employee/em_hub', { employees: employees })
+    });
+  },
 
   Logout: function(req, res) {
     console.log(req.session.employeeId)
@@ -95,6 +95,7 @@ Em_Hub: function(req, res) {
       }
     })
   },
+
   Account: function(req, res){
     Employee.find({_id: req.session.employeeId}, function(err,employees){
       console.log(req.session.employeeId);
@@ -114,6 +115,7 @@ Em_Hub: function(req, res) {
       res.status(201).render('employee/update', { employees: employees });
     });
   },
+
 };
 
 module.exports = EmployeeController;

@@ -56,7 +56,109 @@
     </header>
     <!-- /.Header -->
 
-    <div class="each-event" style="padding-left:20px;">
+    <!-- Callout -->
+    <div class="each-event">
+      <div class="container-fluid background-jumbotron callout-container">
+        <div class="opaque-overlay">&nbsp;</div>
+        <div class="col-4 form-background">
+          {{#employees}}
+      <h1 style="text-align: center;">Account Details</h1>
+      <br>
+      <h2 id="employee-number" style="color: black;">Employee Number: {{this.employee_number}}</h2>
+      <br>
+      
+        <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
+        <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
+        <span class="fa-lg sr-only">Edit Profile Pic</span>
+      </a>
+
+      <!-- Callout - edit img modal -->
+      <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/account/upload/{{this._id}}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="PATCH" />
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
+                  <input type='file' accept="image/*" name="imageUrl"/>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn--teal btn-primary" value="Edit"/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.Callout - edit img modal -->
+
+      <br>
+      <br>
+      <div class="event-description" style="text-align: center;">
+        <p id="user-first-name" style="color: black;">First Name: {{this.em_first_name}}</p>
+        <p id="user-last-name" style="color: black;">Last Name: {{this.em_last_name}}</p>
+        <p id="user-email-name"style="color: black;">Email: {{this.em_email}}</p>
+        <hr>
+        <div style="text-align: center;">
+        <p id="user-password"style="color: black;">To update your password please click the edit button:</p>
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit4" style="">
+          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit Password</span>
+        </a>
+
+        <!-- Callout - edit password modal -->
+        <div class="modal fade" id="edit4" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/employee/account/password/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- /.Callout - edit password modal -->
+
+        <hr>
+        <div style="text-align: center;">
+        <a href="/employee/update"><button type="button" class="btn btn-primary btn-lg">Request Details Update</button></a>
+        </div>
+        <br>
+        </div>
+      </div>
+      {{/employees}}
+    </div>
+    </div>
+    </div>
+    
+    <!-- /.Callout -->
+
+
+    {{!-- <div class="each-event" style="padding-left:20px;">
 
       <h1 style="text-align: center;">Account Details</h1>
       <br>
@@ -66,7 +168,7 @@
     <div class="event-description account" style="text-align: center; border: 10px solid black; margin-left: 200px; margin-right: 200px; padding-top:20px;">
       <h2 id="employee-number" style="color: black;">Employee Number: {{this.employee_number}}</h2>
       <br>
-      <img src="{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" style="">
+      <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
       <br><br>
       <p id="user-first-name" style="color: black;">First Name: {{this.em_first_name}}</p>
       <p id="user-last-name"style="color: black;">Last Name: {{this.em_last_name}}</p>
@@ -85,7 +187,7 @@
   </div>
   </div>
   </div>
-  <br>
+  <br> --}}
 
 
 
