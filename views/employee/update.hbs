@@ -67,19 +67,31 @@
 
             <div class="form-group">
               <label for="exampleFirstName">Employee First Name</label>
-              <input name="em_first_name" type="text" class="form-control textbox" id="FirstName"  value="{{this.em_first_name}}" required>
+              <input name="em_first_name" type="text" class="form-control textbox" id="FirstName"  value="{{this.em_first_name}}">
             </div>
             <div class="form-group">
               <label for="exampleLastName">Employee Last Name</label>
-              <input name="em_last_name" type="text" class="form-control textbox" id="LastName" value="{{this.em_last_name}}" required>
+              <input name="em_last_name" type="text" class="form-control textbox" id="LastName" value="{{this.em_last_name}}">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmployeeNumber">Employee Email</label>
-              <input name="em_email" type="text" class="form-control textbox" id="exampleInputEmployeeEmail" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,}$" value="{{this.em_email}}" required>
+              <label for="exampleInputEmployeeEmail">Employee Email</label>
+              <input name="em_email" type="text" class="form-control textbox" id="exampleInputEmployeeEmail" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,}$" value="{{this.em_email}}">
             </div>
+            <div class="form-group">
+              <label for="exampleInputEmployeeAddress">Employee Address</label>
+              <input name="em_address_line1" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_line1}}">
+              <input name="em_address_line2" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_line2}}">
+              <input name="em_address_city" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_city}}">
+              <input name="em_address_postcode" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_postcode}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmployeeTel">Employee Telephone</label>
+              <input name="em_tel" type="text" class="form-control textbox" id="exampleInputEmployeeTel" value="{{this.em_tel}}">
+            </div>
+            <input hidden name="employeeId" type="text" class="form-control textbox" id="exampleInputEmployeeId" value="{{this._id}}">
 
       <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
         <label class="form-check-label" for="exampleCheck1">Tick to confirm details are correct</label>
       </div>
       <button type="text" class="btn btn-primary">Submit</button>
@@ -161,7 +173,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  <script>
+  <!-- <script>
   function myFunction() {
     document.getElementById("update").innerHTML = "Request sent!";
   }
@@ -175,7 +187,7 @@
     });
   });
 });
-</script>
+</script> -->
 <!-- jquery to shrink logo and navbar on scroll -->
    <script>
      $( window ).scroll(function() {

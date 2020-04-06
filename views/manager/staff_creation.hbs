@@ -42,6 +42,7 @@
                     <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
                     <a class="dropdown-item" href="/manager/staff_creation">Staff Creation<i class="fab fa-creative-commons-remix float-right"></i></a>
                     <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
+                    <a class="dropdown-item" href="/manager/messages">Messages<i class="fas fa-inbox float-right"></i></a>
                     <a class="dropdown-item" href="/manager/hub">Hub<i class="fas fa-backspace float-right"></i></a>
                     <a class="dropdown-item" href="/manager/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
@@ -74,6 +75,17 @@
               <input name="em_email" type="text" class="form-control" id="exampleInputEmployeeEmail" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,}$" required>
             </div>
             <div class="form-group">
+              <label for="exampleInputEmployeeAddress">Employee Address</label>
+              <input name="em_address_line1" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_line1}}">
+              <input name="em_address_line2" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_line2}}">
+              <input name="em_address_city" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_city}}">
+              <input name="em_address_postcode" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_postcode}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmployeeTel">Employee Telephone</label>
+              <input name="em_tel" type="text" class="form-control textbox" id="exampleInputEmployeeTel" value="{{this.em_tel}}">
+            </div>
+            <div class="form-group">
               <label for="exampleInputEmployeeNumber">Employee Number</label>
               <input name="employee_number" type="text" class="form-control" id="exampleInputEmployeeNumber" required>
             </div>
@@ -87,7 +99,7 @@
             </div>
 
       <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
         <label class="form-check-label" for="exampleCheck1">Tick to confirm details are correct</label>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>

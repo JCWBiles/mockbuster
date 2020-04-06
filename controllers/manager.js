@@ -185,6 +185,47 @@ var ManagerController = {
     });
   },
 
+  Message: function (req, res){
+    Manager.find({_id: req.session.managerId}, function(err, managers){
+      if (err) { throw err }
+      Message.find(function(err, messages){
+        if (err) { throw err }
+        res.status(201).render('manager/messages', { messages: messages, managers: managers })
+        console.log(messages)
+      })
+    })
+  },
+
+  Message: function (req, res){
+    Manager.find({_id: req.session.managerId}, function(err, managers){
+      if (err) { throw err }
+      Message.find().populate('employee').exec(function (err, messages) {
+        if (err) { throw err };
+        res.status(201).render('manager/messages', { messages: messages, managers: managers })
+  });
+    })
+  },
+
+  IndividualMsg:function(req, res){
+    Manager.find({_id: req.session.managerId}, function(err, managers){
+      if (err) { throw err }
+      Message.findById({_id: req.params._id}).populate('employee').exec(function (err, messages) {
+        if (err) { throw err };
+        res.status(201).render('manager/individualmsg', { messages: messages, managers: managers })
+      })
+    })
+  },
+
+  DeleteMsg: function(req, res){
+    Manager.find({_id: req.session.managerId}, function(err, managers){
+      if (err) { throw err }
+      Message.findByIdAndRemove({_id: req.params._id}, function(err, messages){
+        if (err) { throw err }
+        res.status(201).redirect('/manager/messages')
+      })
+    })
+  },
+
 };
 
 module.exports = ManagerController;

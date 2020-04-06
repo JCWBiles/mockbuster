@@ -1,4 +1,5 @@
 var Employee = require('../models/employee');
+var Message = require('../models/message');
 var bcrypt = require('bcrypt');
 
 var EmployeeController = {
@@ -9,6 +10,11 @@ var EmployeeController = {
       em_last_name: req.body.em_last_name,
       employee_number:  req.body.employee_number,
       em_email: req.body.em_email,
+      em_address_line1: req.body.em_address_line1,
+      em_address_line2: req.body.em_address_line2,
+      em_address_city: req.body.em_address_city,
+      em_address_postcode: req.body.em_address_postcode,
+      em_tel: req.body.em_tel,
       staff_id: req.body.staff_id,
       password: req.body.password,
     });
@@ -114,6 +120,48 @@ Em_Hub: function(req, res) {
       res.status(201).render('employee/update', { employees: employees });
     });
   },
+  Message: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      console.log(req.session.employeeId);
+      if (err) {
+        throw err
+      }
+    var message = new Message({
+      message: {
+      em_first_name: req.body.em_first_name,
+      em_last_name: req.body.em_last_name,
+      employee_number:  req.body.employee_number,
+      em_email: req.body.em_email,
+      em_address_line1: req.body.em_address_line1,
+      em_address_line2: req.body.em_address_line2,
+      em_address_city: req.body.em_address_city,
+      em_address_postcode: req.body.em_address_postcode,
+      em_tel: req.body.em_tel,
+    },
+      staff_id: req.body.staff_id,
+      password: req.body.password,
+      employee: req.body.employeeId
+
+    });
+
+    message.save(function(err) {
+      if (err) { throw err; }
+      else {
+        console.log(message);
+        res.status(201).redirect('/employee/completed')
+      }
+  })
+})
+},
+
+Completed: function(req, res){
+  Employee.find({_id: req.session.employeeId}, function(err,employees){
+    if (err) {
+      throw err
+    }
+    res.status(201).render('employee/completed', { employees: employees })
+  });
+}
 };
 
 module.exports = EmployeeController;

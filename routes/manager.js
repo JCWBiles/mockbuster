@@ -22,5 +22,7 @@ router.post('/delete/:_id', ManagerController.Delete);
 router.post('/man_first/:_id', ManagerController.EditManFirst);
 router.post('/man_last/:_id', ManagerController.EditManLast);
 router.post('/man_email/:_id', ManagerController.EditManEmail);
-
-module.exports = router; 
+router.get('/messages', ManagerController.Message);
+router.get('/individualmsg/:_id', ManagerController.IndividualMsg);
+router.post('/message/delete/:_id', ManagerController.DeleteMsg);
+module.exports = router;

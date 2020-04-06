@@ -152,6 +152,8 @@ app.use('/manager/hub', managerRouter);
 app.use('/manager/hr', managerRouter);
 app.use('/manager/staff_creation', managerRouter);
 app.use('/manager/completed', managerRouter);
+app.use('/manager/messages', managerRouter);
+app.use('/manager/individualmsg', managerRouter);
 app.use('/man_auth', man_authRouter);
 app.use(methodOverride('_method'));
 
