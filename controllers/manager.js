@@ -100,6 +100,22 @@ var ManagerController = {
     });
   },
 
+  EditEmPassword: function(req, res){
+    // retrieve the password field
+    var password = req.body.password
+    // update it with hash
+    bcrypt.hash(req.body.password, 10, function(err, hash){
+      if(err){
+        return(err);
+      }
+      req.body.password = hash;
+      Employee.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err, employee){
+        if (err) { throw err; }
+        res.status(201).redirect('/manager/hr')
+      })
+    });
+  },
+
   Staff_Creation: function(req, res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){
       if (err) {

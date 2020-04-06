@@ -97,6 +97,7 @@
       </div>
       <!-- /.Callout - edit img modal -->
 
+      <br>
       <div class="event-description" style="text-align: center;">
         <p id="user-first-name" style="color: black;">First Name: {{this.man_firstname}}</p>
         <p id="user-last-name" style="color: black;">Last Name: {{this.man_lastname}}</p>
@@ -106,7 +107,7 @@
           <span class="fa-lg sr-only">Edit Details</span>
         </a>
 
-        <!-- Callout - edit first name modal -->
+        <!-- Callout - edit MANAGER modal -->
         <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -147,7 +148,7 @@
             </div>
           </div>
         </div>
-        <!-- /.Callout - edit first name modal -->
+        <!-- /.Callout - edit MANAGER modal -->
 
         <hr>
         <p id="user-password"style="color: black;">To update your password please click the edit button:</p>
@@ -171,7 +172,7 @@
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="man_password" placeholder="Enter new password here">
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -192,10 +193,10 @@
           </form>
         </div>
       </div>
+      {{/managers}}
     </div>
     </div>
     </div>
-    {{/managers}}
     <!-- /.Callout -->
 
     <!-- Footer -->

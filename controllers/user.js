@@ -110,22 +110,8 @@ var UserController = {
   },
 
 
-  EditFirst: function(req, res){
-    User.findOneAndUpdate({_id: req.params._id}, {$set: { firstname: req.body.firstname }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/account');
-    });
-  },
-
-  EditLast: function(req, res){
-    User.findOneAndUpdate({_id: req.params._id}, {$set: { lastname: req.body.lastname }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/account');
-    });
-  },
-
-  EditEmail: function(req, res){
-    User.findOneAndUpdate({_id: req.params._id}, {$set: { email: req.body.email }, overwrite: true} , function(err){
+  EditUser: function(req, res){
+    User.findOneAndUpdate({_id: req.params._id}, {$set: { firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email }, overwrite: true} , function(err){
       if (err) { throw err; }
       res.status(201).redirect('/account');
     });

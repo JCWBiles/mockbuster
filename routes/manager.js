@@ -19,6 +19,6 @@ router.get('/account', ManagerController.Account);
 router.post('/delete/:_id', ManagerController.Delete);
 router.post('/edit_man/:_id', ManagerController.EditMan);
 router.post('/man_password/:_id', ManagerController.ManNewPassword);
-router.post('/password/:_id', EmployeeController.NewPassword);
+router.post('/em_password/:_id', ManagerController.EditEmPassword);
 
 module.exports = router; 

@@ -66,6 +66,7 @@
       <br>
       {{#each employees}}
       <div class="event-description" style="text-align: center;">
+        <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
         <p id="employee-name" style="color: black;">Employee: {{this.em_first_name}} {{this.em_last_name}}</p>
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#{{this.staff_id}}" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
@@ -80,21 +81,18 @@
                 <h5 class="modal-title" id="basketLabel"><b>Please Edit Details For Staff Number:</b></h5>
                 <hr>
                 <h3>{{this.employee_number}}</h3>
+                <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
               <div class="modal-body">
-
-
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/edit_em/{{this._id}}" method="post">
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/hr/edit_em/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="em-first-name" class="col-form-label">Edit employee first name:</label>
                     <input type="text" class="form-control" id="em-first-name" name="em_first_name"value="{{this.em_first_name}}">
                   </div>
-
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
@@ -108,33 +106,36 @@
                     <input type="text" class="form-control" id="em-email" name="em_email"value="{{this.em_email}}">
                   </div>
 
-                  <input type="hidden" name="_method" value="PATCH" />
-                  <div class="form-group">
-                    <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
-                  </div>
+                <div class="modal-footer">
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </form>
+                <hr>
 
+              <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/manager/hr/em_password/{{this._id}}" method="post">
+                <input type="hidden" name="_method" value="PATCH" />
+                <div class="form-group">
+                  <label for="exampleInputPassword1" class="col-form-label">Employee password reset - enter a new password below and press edit.</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
+                </div>
+                </div>
 
                 <div class="modal-footer">
                   <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-
-                </form>
-
+              </form>
 
                 <!-- /.Callout - edit employee details modal -->
               </div>
             </div>
             </div>
             </div>
-
-            </div>
             <hr>
             {{/each}}
-
+            </div>
           </div>
-
         </div>
       </div>
       </div>
