@@ -1,4 +1,5 @@
 var Employee = require('../models/employee');
+var Films = require('../models/films');
 var bcrypt = require('bcrypt');
 
 var EmployeeController = {
@@ -115,6 +116,41 @@ var EmployeeController = {
       res.status(201).render('employee/update', { employees: employees });
     });
   },
+
+  EmFilmLib: function(req, res) {
+    Employee.find({_id: req.session.employeeId}, function(err,employees) {
+      if (err) { throw err; }
+      Films.find(function(err, films) {
+        if (err) { throw err; }
+        res.render('employee/em_film_lib', {  films: films, employees: employees });
+        console.log(req.session.employeeId);
+      })
+    });
+  },
+
+  EmFilmCreation: function(req, res) {
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      if (err) {
+        throw err
+      }
+      res.status(201).render('employee/em_film_creation', { employees: employees })
+    });
+  },
+
+  EmEditFilm: function(req, res){
+    Films.findOneAndUpdate({_id: req.params._id}, {$set: { name: req.body.name, genres: req.body.genres, actors: req.body.actors, directors: req.body.directors, date: req.body.date, price: req.body.price, description: req.body.description }, overwrite: true} , function(err, film){
+      if (err) { throw err; }
+      res.status(201).redirect('/employee/em_film_lib');
+    });
+  },
+
+  EmDeleteFilm: function(req, res){
+    Films.findByIdAndRemove({_id: req.params._id}, function(err){
+      if (err) { throw err; }
+      res.status(201).redirect('/employee/em_film_lib');
+    })
+  },
+
 
 };
 

@@ -116,13 +116,20 @@ var ManagerController = {
     });
   },
 
-  Staff_Creation: function(req, res) {
+  StaffCreation: function(req, res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){
       if (err) {
         throw err
       }
       res.status(201).render('manager/staff_creation', { managers: managers })
     });
+  },
+
+  DeleteEm: function(req, res){
+    Employee.findByIdAndRemove({_id: req.params._id}, function(err){
+      if (err) { throw err; }
+      res.status(201).redirect('/manager/hr');
+    })
   },
 
   Logout: function(req, res) {
