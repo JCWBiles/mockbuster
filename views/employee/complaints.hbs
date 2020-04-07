@@ -39,10 +39,9 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
                     <a class="dropdown-item" href="/blog?role=employee">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="#">HR<i class="fas fa-person-booth float-right"></i></a>
+                    <a class="dropdown-item" href="#">Customer Directory<i class="fas fa-person-booth float-right"></i></a>
                     <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
-                    <a class="dropdown-item" href="/employee/feedback">Customer Feedback<i class="fas fa-comments float-right"></i></a>
-                    <a class="dropdown-item" href="/employee/suggestions">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
+                    <a class="dropdown-item" href="/employee/feedback">Customer Feedback<i style="padding-left: 15px;" class="fas fa-comments"></i></a>
                     <a class="dropdown-item" href="/employee/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
                 </li>
@@ -67,11 +66,12 @@
               <h1>Complaints</h1>
               <br>
               {{#each feedback}}
-              <div class="event-description" style="text-align: center;">
+              <div class="event-description">
                 <ul style="list-style-type: none; padding-left:10px;">
-                  <a href="/employee/individualfeedback/{{_id}}"><li id="feedback" style="color: black;"><i style="padding-right: 10px;"class="fas fa-frown"></i> Complaint from: {{this.user.firstname}} {{this.user.lastname}} ({{this.user.email}})</li></a>                </ul>
+                  <a style="font-weight: bold;" href="/employee/individualfeedback/{{_id}}"><li style="color: black;" id="feedback"><i style="padding-right: 10px;"class="fas fa-frown"></i> Complaint from: {{this.user.firstname}} {{this.user.lastname}} ({{this.user.email}})</li></a>                </ul>
                 <br>
               </div>
+              <hr>
               {{/each}}
             </div>
           </div>

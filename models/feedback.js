@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 
-
 var FeedbackSchema = new mongoose.Schema({
   id: String,
   movieSuggestion: String,

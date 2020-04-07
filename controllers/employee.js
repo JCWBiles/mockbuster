@@ -1,5 +1,5 @@
 var Employee = require('../models/employee');
-var Film = require('../models/films');
+var Films = require('../models/films');
 var Message = require('../models/message');
 var Feedback = require('../models/feedback');
 var bcrypt = require('bcrypt');
@@ -137,7 +137,7 @@ var EmployeeController = {
   EmFilmLib: function(req, res) {
     Employee.find({_id: req.session.employeeId}, function(err,employees) {
       if (err) { throw err; }
-      Film.find(function(err, films) {
+      Films.find(function(err, films) {
         if (err) { throw err; }
         res.render('employee/em_film_lib', {  films: films, employees: employees });
         console.log(req.session.employeeId);
@@ -155,14 +155,14 @@ var EmployeeController = {
   },
 
   EmEditFilm: function(req, res){
-    Film.findOneAndUpdate({_id: req.params._id}, {$set: { name: req.body.name, genres: req.body.genres, actors: req.body.actors, directors: req.body.directors, date: req.body.date, price: req.body.price, description: req.body.description }, overwrite: true} , function(err, film){
+    Films.findOneAndUpdate({_id: req.params._id}, {$set: { name: req.body.name, genres: req.body.genres, actors: req.body.actors, directors: req.body.directors, date: req.body.date, price: req.body.price, description: req.body.description }, overwrite: true} , function(err, film){
       if (err) { throw err; }
       res.status(201).redirect('/employee/em_film_lib');
     });
   },
 
   EmDeleteFilm: function(req, res){
-    Film.findByIdAndRemove({_id: req.params._id}, function(err){
+    Films.findByIdAndRemove({_id: req.params._id}, function(err){
       if (err) { throw err; }
       res.status(201).redirect('/employee/em_film_lib');
     })
@@ -203,7 +203,6 @@ var EmployeeController = {
 
   Completed: function(req, res){
       res.status(201).render('employee/completed', { employees: employees })
-    });
   },
 
   Feedback: function (req, res){
@@ -219,7 +218,7 @@ var EmployeeController = {
   Suggestion: function(req, res){
     Employee.find({_id: req.session.employeeId}, function(err, employees){
       if (err) { throw err }
-      Feedback.find({}).select('movieSuggestion').populate('user').exec(function (err, feedback) {
+      Feedback.find({"movieSuggestion":{$ne:null}}).populate('user').exec(function (err, feedback) {
         if (err) { throw err };
         res.status(201).render('employee/suggestions', { feedback: feedback, employees: employees })
       })
@@ -229,7 +228,7 @@ var EmployeeController = {
   Complaint: function(req, res){
     Employee.find({_id: req.session.employeeId}, function(err, employees){
       if (err) { throw err }
-      Feedback.find({}).select('complaint').populate('user').exec(function (err, feedback) {
+      Feedback.find({"complaint":{$ne:null}}).populate('user').exec(function (err, feedback) {
         if (err) { throw err };
         res.status(201).render('employee/complaints', { feedback: feedback, employees: employees })
       })
@@ -255,7 +254,7 @@ var EmployeeController = {
       })
     })
   },
-    
+
 };
 
 module.exports = EmployeeController;

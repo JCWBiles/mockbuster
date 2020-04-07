@@ -39,10 +39,9 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
                     <a class="dropdown-item" href="/blog?role=employee">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="#">HR<i class="fas fa-person-booth float-right"></i></a>
+                    <a class="dropdown-item" href="#">Customer Directory<i class="fas fa-person-booth float-right"></i></a>
                     <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
-                    <a class="dropdown-item" href="/employee/feedback">Customer Feedback<i class="fas fa-comments float-right"></i></a>
-                    <a class="dropdown-item" href="/employee/suggestions">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
+                    <a class="dropdown-item" href="/employee/feedback">Customer Feedback<i style="padding-left: 15px;" class="fas fa-comments"></i></a>
                     <a class="dropdown-item" href="/employee/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
                 </li>
@@ -63,16 +62,20 @@
             <h1 style="color: white;">Suggestions</h1>
             {{/employees}}
           <div class="row" style="z-index: 1;">
-            <div class="container-fluid form-background">
+            <div class="container-fluid form-background" style="padding:20px;">
               <h1>Suggestions</h1>
               <br>
               {{#each feedback}}
-              <div class="event-description" style="text-align: center;">
-                <ul style="list-style-type: none; padding-left:10px;">
-                  <li id="feedback" style="color: black;"><i style="padding-right: 10px;"class="fas fa-film"></i> {{this.movieSuggestion}} - {{this.user.firstname}} {{this.user.lastname}} ({{this.user.email}})</li>
+              <div class="event-description" style="display: inline;">
+                <ul style="list-style-type: none; padding-left:10px; display: inline;">
+                  <li id="feedback" style="color: black; display: inline; padding-right: 10px;"><i style="padding-right: 10px;"class="fas fa-film"></i> {{this.movieSuggestion}} - {{this.user.firstname}} {{this.user.lastname}} ({{this.user.email}})</li>
                 </ul>
-                <br>
+                <form id="delete-suggestion" style="display: inline;" action="/employee/feedback/delete/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <button class="btn-danger" style="text-align: center; margin-bottom: 20px; float:right" type="submit"/><i class="fas fa-times-circle"></i></button>
+                </form>
               </div>
+              <hr>
               {{/each}}
             </div>
           </div>

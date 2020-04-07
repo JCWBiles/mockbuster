@@ -24,7 +24,7 @@
         <a class="col-md-2 logo" href="/manager/hub"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
-          <a class="navbar-brand" href="/manager/messages">Messages</a>
+          <a class="navbar-brand" href="/employee/individualfeedback">Complaint</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -37,13 +37,11 @@
                     {{/employees}}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/manager/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                    <a class="dropdown-item" href="/blog?role=manager">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="/manager/hr">HR<i class="fas fa-person-booth float-right"></i></a>
-                    <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
-                    <a class="dropdown-item" href="/manager/staff_creation">Staff Creation<i class="fab fa-creative-commons-remix float-right"></i></a>
-                    <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
-                    <a class="dropdown-item" href="/manager/messages">Messages<i class="fas fa-inbox float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                    <a class="dropdown-item" href="/blog?role=employee">Blog<i class="fas fa-blog float-right"></i></a>
+                    <a class="dropdown-item" href="#">Customer Directory<i class="fas fa-person-booth float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/em_flim_lib">Film Library<i class="fas fa-photo-video float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/feedback">Customer Feedback<i style="padding-left: 15px;" class="fas fa-comments float-right"></i></a>
                     <a class="dropdown-item" href="/manager/hub">Hub<i class="fas fa-backspace float-right"></i></a>
                     <a class="dropdown-item" href="/manager/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
@@ -60,11 +58,10 @@
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
-        <div class="col-12 justify-content-md-center" >
-          <h1 style="color: white;">Complaints</h1>
+        <div class="col-12 justify-content-md-center">
           <div style="margin-right:-300px;padding-bottom:20px;" class="col-9 form-background">
             {{#feedback}}
-            <h1 style="text-align:center; overflow: scroll;" >Complaint From: <br> {{this.user.firstname}} {{this.user.lastname}} (Email: {{this.user.email}})</h1>
+            <h1 style="text-align:center; overflow: scroll;"> Complaint From: <br> {{this.user.firstname}} {{this.user.lastname}} (Email: {{this.user.email}})</h1>
             <hr>
             <div class="event-description" style="text-align: center;">
               <p id="complaint" style="color: black;">Complaint: {{this.complaint}}</p>
@@ -74,7 +71,7 @@
             <div style="text-align: center;">
               <form id="delete-employee-msg" style = "display: inline;" action="/employee/feedback/delete/{{this._id}}" method="post">
                 <input type="hidden" name="_method" value="DELETE" />
-                <p>Once this complaint has been actioned, please:</p>
+                <p><em><strong>Once this complaint has been actioned, please:</strong></em></p>
                 <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Complaint" />
               </form>
             </div>

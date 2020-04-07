@@ -39,10 +39,9 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
                     <a class="dropdown-item" href="/blog?role=employee">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="#">HR<i class="fas fa-person-booth float-right"></i></a>
+                    <a class="dropdown-item" href="#">Customer Directory<i class="fas fa-person-booth float-right"></i></a>
                     <a class="dropdown-item" href="/employee/em_film_lib">Film Library<i class="fas fa-photo-video float-right"></i></a>
-                    <a class="dropdown-item" href="/employee/feedback">Customer Feedback<i class="fas fa-comments float-right"></i></a>
-                    <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
+                    <a class="dropdown-item" href="/employee/feedback">Customer Feedback<i style="padding-left: 15px;" class="fas fa-comments"></i></a>
                     <a class="dropdown-item" href="/employee/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
                 </li>
@@ -72,7 +71,6 @@
               {{#each_upto feedback 1}}
               <a href="/employee/feedback"><button type="button" class="col-1 hub-buttons btn btn-warning btn-lg">Customer Feedback ({{../feedback.length}})<br><i class="fas fa-comments"></i></button></a>
               {{/each_upto}}
-              <a href="#"><button type="button" class="col-1 hub-buttons btn btn-info btn-lg">Customer Suggestions<br><i class="fas fa-comment-dots"></i></button></a>
               <a href="/employee/session/destroy"><button type="button" class="col-1 hub-buttons btn btn-dark btn-lg">Log Out<br><i class="fas fa-sign-out-alt"></i></button></a>
             </div>
           </div>

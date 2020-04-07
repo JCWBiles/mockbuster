@@ -313,10 +313,10 @@ app.post('/employee/account/upload/:_id', upload.single('imageUrl'), function (r
 });
 
 //route for initial FILMS image upload
-var Film = require('./models/films');
+var Films = require('./models/films');
 app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, res){
   if(req.file){
-  var film = new Film({
+  var film = new Films({
     name: req.body.name,
     genres: req.body.genres,
     actors: req.body.actors,
@@ -338,7 +338,7 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
       }
   });
 } else {
-  var film = new Film({
+  var film = new Films({
     name: req.body.name,
     genres: req.body.genres,
     actors: req.body.actors,
