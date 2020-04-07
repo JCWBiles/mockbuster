@@ -297,7 +297,7 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
     description: req.body.description,
     trailerUrl: req.body.trailerUrl,
     modal: req.body.modal,
-    imageUrl: req.file.path,  
+    imageUrl: req.file.path,
   });
     console.log(req.body.name);
     console.log(req.body.actors);
