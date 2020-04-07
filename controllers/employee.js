@@ -1,5 +1,6 @@
 var Employee = require('../models/employee');
 var Message = require('../models/message');
+var Feedback = require('../models/feedback');
 var bcrypt = require('bcrypt');
 
 var EmployeeController = {
@@ -39,7 +40,7 @@ var EmployeeController = {
           if (result == true) {
             req.session.employeeId = employees._id;
             console.log(req.session.employeeId)
-            res.redirect({ sessionFlash: req.session.employeeNumError },'/employee/change');
+            res.redirect('/employee/change');
           }
           else {
             console.log('wrong password');
@@ -91,8 +92,11 @@ var EmployeeController = {
       console.log(req.session.employeeId);
       if (err) {
         throw err
-      }
-      res.status(201).render('employee/em_hub', { employees: employees })
+      };
+      Feedback.find(function(err, feedback){
+        if (err){throw err};
+      res.status(201).render('employee/em_hub', { feedback: feedback })
+      })
     });
   },
 
@@ -170,7 +174,58 @@ var EmployeeController = {
       }
       res.status(201).render('employee/completed', { employees: employees })
     });
-  }
+  },
+
+
+  Feedback: function (req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.find().populate('user').exec(function (err, feedback) {
+        if (err) { throw err };
+        res.status(201).render('employee/feedback', { feedback: feedback, employees: employees })
+      });
+    })
+  },
+
+  Suggestion:function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.find({}).select('movieSuggestion').populate('user').exec(function (err, feedback) {
+        if (err) { throw err };
+        res.status(201).render('employee/suggestions', { feedback: feedback, employees: employees })
+      })
+    })
+  },
+
+  Complaint:function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.find({}).select('complaint').populate('user').exec(function (err, feedback) {
+        if (err) { throw err };
+        res.status(201).render('employee/complaints', { feedback: feedback, employees: employees })
+      })
+    })
+  },
+
+  IndividualFeedback:function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.findById({_id: req.params._id}).populate('user').exec(function (err, feedback) {
+        if (err) { throw err };
+        res.status(201).render('employee/individualfeedback', { feedback: feedback, employees: employees })
+      })
+    })
+  },
+
+  DeleteFeedback: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.findByIdAndRemove({_id: req.params._id}, function(err, feedback){
+        if (err) { throw err }
+        res.status(201).redirect('/employee/feedback')
+      })
+    })
+  },
 };
 
 module.exports = EmployeeController;

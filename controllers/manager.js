@@ -83,7 +83,7 @@ var ManagerController = {
 
   Hub: function(req,res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){
-      if (err) {throw err;}
+      if (err) {throw err};
       Message.find(function(err, messages) {
         if (err) { throw err; }
       res.status(201).render('manager/hub', {messages: messages, managers: managers })
@@ -192,16 +192,16 @@ var ManagerController = {
     });
   },
 
-  Message: function (req, res){
-    Manager.find({_id: req.session.managerId}, function(err, managers){
-      if (err) { throw err }
-      Message.find(function(err, messages){
-        if (err) { throw err }
-        res.status(201).render('manager/messages', { messages: messages, managers: managers })
-        console.log(messages)
-      })
-    })
-  },
+  // Message: function (req, res){
+  //   Manager.find({_id: req.session.managerId}, function(err, managers){
+  //     if (err) { throw err }
+  //     Message.find(function(err, messages){
+  //       if (err) { throw err }
+  //       res.status(201).render('manager/messages', { messages: messages, managers: managers })
+  //       console.log(messages)
+  //     })
+  //   })
+  // },
 
   Message: function (req, res){
     Manager.find({_id: req.session.managerId}, function(err, managers){
@@ -209,7 +209,7 @@ var ManagerController = {
       Message.find().populate('employee').exec(function (err, messages) {
         if (err) { throw err };
         res.status(201).render('manager/messages', { messages: messages, managers: managers })
-  });
+      });
     })
   },
 

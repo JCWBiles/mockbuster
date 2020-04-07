@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Feedback = require('../models/feedback');
 var bcrypt = require('bcrypt');
 
 var UserController = {
@@ -166,6 +167,40 @@ var UserController = {
       })
     });
   },
+
+  Feedback: function(req, res){
+    User.find({_id: req.session.userId}, function(err, users){
+      console.log(req.session.userId);
+      if (err) {
+        throw err
+      }
+      var feedback = new Feedback({
+        complaint: req.body.complaint,
+        movieSuggestion: req.body.movieSuggestion,
+        user: req.body.userId
+      });
+      feedback.save(function(err) {
+        if (err) { throw err; }
+        else {
+          req.session.sessionFlash = {
+            type: 'success',
+            message: 'Feedback Sent!'
+          }
+          console.log(feedback);
+          res.status(201).redirect('/account')
+        }
+      })
+    })
+  },
+
+  Completed: function(req, res){
+    User.find({_id: req.session.userId}, function(err, users){
+      if (err) {
+        throw err
+      }
+      res.status(201).render('account/completed', { users: users })
+    });
+  }
 };
 
 module.exports = UserController;

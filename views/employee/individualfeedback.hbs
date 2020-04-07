@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css" />
 
-  <title>MockBuster - Messages</title>
+  <title>MockBuster - Feedback</title>
 </head>
 
 <body>
@@ -32,9 +32,9 @@
               <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{#managers}}
-                    {{this.man_firstname}}'s Account
-                    {{/managers}}
+                    {{#employees}}
+                    {{this.em_first_name}}'s Account
+                    {{/employees}}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/manager/account">My Details<i class="fas fa-info-circle float-right"></i></a>
@@ -61,27 +61,24 @@
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
         <div class="col-12 justify-content-md-center" >
-          <h1 style="color: white;">Welcome to Messages {{#managers}}{{this.man_firstname}}{{/managers}}</h1>
+          <h1 style="color: white;">Complaints</h1>
           <div style="margin-right:-300px;padding-bottom:20px;" class="col-9 form-background">
-            {{# messages}}
-            <h1 style="text-align:center; overflow: scroll;" >Update Details Request From: <br> {{this.employee.em_first_name}} {{this.employee.em_last_name}} (Staff ID: {{this.employee.staff_id}})</h1>
+            {{#feedback}}
+            <h1 style="text-align:center; overflow: scroll;" >Complaint From: <br> {{this.user.firstname}} {{this.user.lastname}} (Email: {{this.user.email}})</h1>
             <hr>
             <div class="event-description" style="text-align: center;">
-              <p id="message" style="color: black;">First Name: {{this.message.em_first_name}}</p>
-              <p id="message" style="color: black;">Last Name: {{this.message.em_last_name}}</p>
-              <p id="message" style="color: black;">Email: {{this.message.em_email}}</p>
-              <p id="message" style="color: black;">Address: {{this.message.em_address_line1}} <br> {{this.message.em_address_line2}} <br> {{this.message.em_address_city}} <br> {{this.message.em_address_postcode}} </p>
-              <p id="message" style="color: black;">Telephone: {{this.message.em_tel}}</p>
+              <p id="complaint" style="color: black;">Complaint: {{this.complaint}}</p>
+
             </div>
             <hr>
             <div style="text-align: center;">
-              <form id="delete-employee-msg" style = "display: inline;" action="/manager/message/delete/{{this._id}}" method="post">
+              <form id="delete-employee-msg" style = "display: inline;" action="/employee/feedback/delete/{{this._id}}" method="post">
                 <input type="hidden" name="_method" value="DELETE" />
-                <p>Once employee's records have been updated, please:</p>
-                <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Message" />
+                <p>Once this complaint has been actioned, please:</p>
+                <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Complaint" />
               </form>
             </div>
-            {{/messages}}
+            {{/feedback}}
           </div>
         </div>
       </div>
