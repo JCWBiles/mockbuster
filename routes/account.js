@@ -6,9 +6,7 @@ var FilmsController = require('../controllers/films');
 
 router.get('/', UserController.Account);
 router.post('/delete/:_id', UserController.Delete);
-router.post('/first/:_id', UserController.EditFirst);
-router.post('/last/:_id', UserController.EditLast);
-router.post('/email/:_id', UserController.EditEmail);
+router.post('/edit_user/:_id', UserController.EditUser);
 // router.post('/upload/:_id', UserController.EditPic);
 router.post('/password/:_id', UserController.NewPassword);
 router.post('/feedback', UserController.Feedback);

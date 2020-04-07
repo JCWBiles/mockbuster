@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
-  <title>MockBuster - HR</title>
+  <title>MockBuster - Employee Film Library</title>
 </head>
 
 <body>
@@ -21,10 +21,10 @@
   <header>
     <div class="container-fluid header-container">
       <div class="row no-gutters">
-        <a class="col-md-2 logo" href="/manager/hub"></a>
+        <a class="col-md-2 logo" href="/employee/em_hub"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
-          <a class="navbar-brand" href="/manager/hr">Human Resources</a>
+          <a class="navbar-brand" href="/manager/hr">Film Library</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -32,20 +32,19 @@
               <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{#managers}}
-                    {{this.man_firstname}}'s Account
-                    {{/managers}}
+                    {{#employees}}
+                    {{this.em_first_name}}'s Account
+                    {{/employees}}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/manager/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                    <a class="dropdown-item" href="/blog?role=manager">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="/manager/hr">HR<i class="fas fa-person-booth float-right"></i></a>
-                    <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
-                    <a class="dropdown-item" href="/manager/staff_creation">Staff Creation<i class="fab fa-creative-commons-remix float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                    <a class="dropdown-item" href="/blog?role=employee">Blog<i class="fas fa-blog float-right"></i></a>
+                    <a class="dropdown-item" href="#">HR<i class="fas fa-person-booth float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/film_lib">Film Library<i class="fas fa-photo-video float-right"></i></a>
+                    <a class="dropdown-item" href="#">Customer Feedback<i class="fas fa-comments float-right"></i></a>
                     <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
-                    <a class="dropdown-item" href="/manager/messages">Messages<i class="fas fa-inbox float-right"></i></a>
-                    <a class="dropdown-item" href="/manager/hub">Hub<i class="fas fa-backspace float-right"></i></a>
-                    <a class="dropdown-item" href="/manager/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/em_hub">Hub<i class="fas fa-backspace float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
                 </li>
               </ul>
@@ -61,50 +60,83 @@
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
       <div class="col-12 justify-content-md-center" >
-        <h1 style="color: white;">Welcome to HR {{#managers}}{{this.man_firstname}}{{/managers}}</h1>
+        <h1 style="color: white;">Welcome to Film Library {{#employees}}{{this.em_first_name}}{{/employees}}</h1>
       <div class="col-4 form-background">
-      <h5 style="text-align: center;">To make changes to employee details please find the staff member below and click on the edit icon</h5>
-      <br>
-      {{#each employees}}
+      <h5 style="text-align: center;">Here you can view all the films availble to the public. You can add and
+        remove films. You can also edit film details. To edit please find the film below and click on the edit icon.</h5>
+      <hr>
+      <a href="/employee/em_film_creation"><button type="button" class="btn btn-danger btn-lg">Film Creation<br><i class="fas fa-folder-plus"></i></button></a>
+      {{#each films}}
       <div class="event-description" style="text-align: center;">
-        <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
-        <p id="employee-name" style="color: black;">Employee: {{this.em_first_name}} {{this.em_last_name}}</p>
-        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#{{this.staff_id}}" style="">
+        <img src="../{{this.imageUrl}}" alt="{{this.name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
+        <p id="employee-name" style="color: black;">Film: {{this.name}}</p>
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#{{this.modal}}" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-          <span class="fa-lg sr-only">Edit Employee Details</span>
+          <span class="fa-lg sr-only">Edit Film Details</span>
         </a>
 
         <!-- Callout - edit employee details modal -->
-        <div class="modal fade" id="{{this.staff_id}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+        <div class="modal fade" id="{{this.modal}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="basketLabel"><b>Please Edit Details For Staff Number:</b></h5>
+                <h5 class="modal-title" id="basketLabel"><b>Film Details:</b></h5>
                 <hr>
-                <h3>{{this.employee_number}}</h3>
-                <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
+                <h3>Film modal ref: {{this.modal}}</h3>
+                <img src="../{{this.imageUrl}}" alt="{{this.name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/hr/edit_em/{{this._id}}" method="post">
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/em_film_lib/em_edit_film/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-first-name" class="col-form-label">Edit employee first name:</label>
-                    <input type="text" class="form-control" id="em-first-name" name="em_first_name"value="{{this.em_first_name}}">
+                    <label for="FilmImage" class="col-form-label">Film Image:</label>
+                    <input type="file" class="form-control" id="FilmImage" name="imageUrl"value="{{this.imageUrl}}">
+                  </div>
+                  
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-first-name" class="col-form-label">Film Title:</label>
+                    <input type="text" class="form-control" id="em-first-name" name="name"value="{{this.name}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-last-name" class="col-form-label">Edit employee last name:</label>
-                    <input type="text" class="form-control" id="em-last-name" name="em_last_name"value="{{this.em_last_name}}">
+                    <label for="em-last-name" class="col-form-label">Actor(s):</label>
+                    <input type="text" class="form-control" id="em-last-name" name="actors"value="{{this.actors}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-email" class="col-form-label">Edit employee email:</label>
-                    <input type="text" class="form-control" id="em-email" name="em_email"value="{{this.em_email}}">
+                    <label for="em-last-name" class="col-form-label">Director(s):</label>
+                    <input type="text" class="form-control" id="em-last-name" name="directors"value="{{this.directors}}">
+                  </div>
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-email" class="col-form-label">Genre(s):</label>
+                    <input type="text" class="form-control" id="em-email" name="genres"value="{{this.genres}}">
+                    <input type="text" class="form-control" id="em-email" name="genres"value="{{this.genres}}">
+                  </div>
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-email" class="col-form-label">Date:</label>
+                    <input type="text" class="form-control" id="em-email" name="date"value="{{this.date}}">
+                  </div>
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-email" class="col-form-label">Description:</label>
+                    <input type="text" class="form-control" id="em-email" name="description"value="{{this.description}}">
+                  </div>
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-email" class="col-form-label">Price:</label>
+                    <input type="text" class="form-control" id="em-email" name="price"value="{{this.price}}">
                   </div>
 
                 <div class="modal-footer">
@@ -112,37 +144,23 @@
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
                 </form>
+
                 <hr>
 
-              <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/manager/hr/em_password/{{this._id}}" method="post">
-                <input type="hidden" name="_method" value="PATCH" />
-                <div class="form-group">
-                  <label for="exampleInputPassword1" class="col-form-label">Employee password reset - enter a new password below and press edit.</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
-                </div>
-                </div>
-
-                <div class="modal-footer">
-                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </form>
-
-              <hr>
-
-              <form id="delete-user-form" style = "display: inline;" action="/manager/hr/delete_em/{{this._id}}" method="post">
-                <input type="hidden" name="_method" value="DELETE" />
-                <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Employee Account" />
-              </form>
-
+                <form id="delete-film-form" style = "display: inline;" action="/employee/em_film_lib/em_delete_film/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Film" />
+                </form>
+                
                 <!-- /.Callout - edit employee details modal -->
               </div>
             </div>
             </div>
             </div>
-            <hr>
-            {{/each}}
+           
             </div>
+             <hr>
+            {{/each}}
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ let FilmSchema = new Schema({
   genres: Array,
   actors: Array,
   directors: Array,
-  date: { type: Date },
+  date: Number,
   price: Number,
   imageUrl: String,
   description: String,

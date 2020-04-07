@@ -10,42 +10,42 @@ var ManagerController = {
       res.render('manager/index');
   },
 
-  Create: function(req, res) {
-    var manager = new Manager({
-      man_firstname: req.body.man_firstname,
-      man_lastname: req.body.man_lastname,
-      man_email: req.body.man_email,
-      man_password: req.body.man_password,
-    });
-    console.log(req.body.man_firstname);
-    console.log(req.body.man_email);
-    manager.save(function(err) {
-      if (err) { throw err; }
-      else {
-        req.session.managerId = manager._id;
-        res.status(201).redirect('/manager/login')
-      }
+  // Create: function(req, res) {
+  //   var manager = new Manager({
+  //     man_firstname: req.body.man_firstname,
+  //     man_lastname: req.body.man_lastname,
+  //     man_email: req.body.man_email,
+  //     man_password: req.body.man_password,
+  //   });
+  //   console.log(req.body.man_firstname);
+  //   console.log(req.body.man_email);
+  //   manager.save(function(err) {
+  //     if (err) { throw err; }
+  //     else {
+  //       req.session.managerId = manager._id;
+  //       res.status(201).redirect('/manager/login')
+  //     }
 
-      // var api_key = '';
-      // var domain = '';
-      // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-      //
-      // var data = {
-      //   from: 'MockBuster <mockbuster2020@gmail.com>',
-      //   to: req.body.email,
-      //   subject: 'Welcome to MockBuster!',
-      //   text: `You're all signed up! We hope you enjoy our incredible library of films.`
-      // };
-      //
-      // mailgun.messages().send(data, function (error, body) {
-      //   if (error){
-      //     console.log(error);
-      //   }
-      //   console.log(body);
-      // });
-    });
+  //     // var api_key = '';
+  //     // var domain = '';
+  //     // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+  //     //
+  //     // var data = {
+  //     //   from: 'MockBuster <mockbuster2020@gmail.com>',
+  //     //   to: req.body.email,
+  //     //   subject: 'Welcome to MockBuster!',
+  //     //   text: `You're all signed up! We hope you enjoy our incredible library of films.`
+  //     // };
+  //     //
+  //     // mailgun.messages().send(data, function (error, body) {
+  //     //   if (error){
+  //     //     console.log(error);
+  //     //   }
+  //     //   console.log(body);
+  //     // });
+  //   });
 
-  },
+  // },
 
   Login: function(req, res) {
     res.status(201).render('manager/login');
@@ -109,27 +109,36 @@ var ManagerController = {
     });
   },
 
-  // EditEmLastName: function(req, res){
-  //   Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_last_name: req.body.em_last_name }, overwrite: true} , function(err, employee){
-  //     if (err) { throw err; }
-  //     res.status(201).redirect('/manager/hr');
-  //   });
-  // },
+  EditEmPassword: function(req, res){
+    // retrieve the password field
+    var password = req.body.password
+    // update it with hash
+    bcrypt.hash(req.body.password, 10, function(err, hash){
+      if(err){
+        return(err);
+      }
+      req.body.password = hash;
+      Employee.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err, employee){
+        if (err) { throw err; }
+        res.status(201).redirect('/manager/hr')
+      })
+    });
+  },
 
-  // EditEmEmail: function(req, res){
-  //   Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_email: req.body.em_email }, overwrite: true} , function(err, employee){
-  //     if (err) { throw err; }
-  //     res.status(201).redirect('/manager/hr');
-  //   });
-  // },
-
-  Staff_Creation: function(req,res) {
+  StaffCreation: function(req, res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){
       if (err) {
         throw err
       }
       res.status(201).render('manager/staff_creation', { managers: managers })
     });
+  },
+
+  DeleteEm: function(req, res){
+    Employee.findByIdAndRemove({_id: req.params._id}, function(err){
+      if (err) { throw err; }
+      res.status(201).redirect('/manager/hr');
+    })
   },
 
   Logout: function(req, res) {
@@ -162,22 +171,8 @@ var ManagerController = {
     })
   },
 
-  EditManFirst: function(req, res){
-    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/manager/account');
-    });
-  },
-
-  EditManLast: function(req, res){
-    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_lastname: req.body.man_lastname }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/manager/account');
-    });
-  },
-
-  EditManEmail: function(req, res){
-    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_email: req.body.man_email }, overwrite: true} , function(err){
+  EditMan: function(req, res){
+    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname, man_lastname: req.body.man_lastname, man_email: req.body.man_email }, overwrite: true} , function(err){
       if (err) { throw err; }
       res.status(201).redirect('/manager/account');
     });
@@ -192,16 +187,21 @@ var ManagerController = {
     });
   },
 
-  // Message: function (req, res){
-  //   Manager.find({_id: req.session.managerId}, function(err, managers){
-  //     if (err) { throw err }
-  //     Message.find(function(err, messages){
-  //       if (err) { throw err }
-  //       res.status(201).render('manager/messages', { messages: messages, managers: managers })
-  //       console.log(messages)
-  //     })
-  //   })
-  // },
+  ManNewPassword: function(req, res){
+    // retrieve the password field
+    var man_password = req.body.man_password
+    // update it with hash
+    bcrypt.hash(req.body.man_password, 10, function(err, hash){
+      if(err){
+        return(err);
+      }
+      req.body.man_password = hash;
+      Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_password: req.body.man_password }, overwrite: true} , function(err, manager){
+        if (err) { throw err; }
+        res.status(201).redirect('/manager/account')
+      })
+    })
+  },
 
   Message: function (req, res){
     Manager.find({_id: req.session.managerId}, function(err, managers){
@@ -213,7 +213,7 @@ var ManagerController = {
     })
   },
 
-  IndividualMsg:function(req, res){
+  IndividualMsg: function(req, res){
     Manager.find({_id: req.session.managerId}, function(err, managers){
       if (err) { throw err }
       Message.findById({_id: req.params._id}).populate('employee').exec(function (err, messages) {

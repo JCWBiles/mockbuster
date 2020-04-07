@@ -125,6 +125,8 @@ app.use('/employee/change', employeeRouter);
 app.use('/employee/em_hub', employeeRouter);
 app.use('/employee/account', employeeRouter);
 app.use('/employee/update', employeeRouter);
+app.use('/employee/em_film_lib', employeeRouter);
+app.use('/employee/em_film_creation', employeeRouter);
 app.use('/employee/feedback', employeeRouter);
 app.use('/employee/individualfeedback', employeeRouter);
 app.use('/employee/suggestions', employeeRouter);
@@ -141,8 +143,7 @@ app.use('/manager/individualmsg', managerRouter);
 app.use('/man_auth', man_authRouter);
 app.use(methodOverride('_method'));
 
-
-//route for initial image upload
+//route for initial USER image upload
 var User = require('./models/user');
 app.post('/user', upload.single('imageUrl'), function(req, res){
   if(req.file){
@@ -200,12 +201,171 @@ app.post('/user', upload.single('imageUrl'), function(req, res){
   }
 });
 
-//route for editing account image
+//route for editing USER account image
 app.post('/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
   console.log(req.file)
   User.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
     if (err) { throw err; }
     res.status(201).redirect('/account');
+  });
+});
+
+//route for initial MANAGER image upload
+var Manager = require('./models/manager');
+app.post('/manager', upload.single('imageUrl'), function(req, res){
+  if(req.file){
+  var manager = new Manager({
+    man_firstname: req.body.man_firstname,
+    man_lastname: req.body.man_lastname,
+    man_email: req.body.man_email,
+    man_password: req.body.man_password,
+    imageUrl: req.file.path,
+  });
+    console.log(req.body.man_firstname);
+    console.log(req.body.man_email);
+    console.log(req.file);
+    manager.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.managerId = manager._id;
+        res.status(201).redirect('/manager/hub')
+      }
+  });
+} else {
+  var manager = new Manager({
+    man_firstname: req.body.man_firstname,
+    man_lastname: req.body.man_lastname,
+    man_email: req.body.man_email,
+    man_password: req.body.man_password,
+  });
+    console.log(req.body.man_firstname);
+    console.log(req.body.Man_email);
+    manager.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.managerId = manager._id;
+        res.status(201).redirect('/manager/hub')
+      }
+    });
+  }
+});
+
+//route for editing MANAGER account image
+app.post('/manager/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
+  console.log(req.file)
+  Manager.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/manager/account');
+  });
+});
+
+//route for initial EMPLOYEE image upload
+var Employee = require('./models/employee');
+app.post('/manager/staff_creation', upload.single('imageUrl'), function(req, res){
+  if(req.file){
+  var employee = new Employee({
+    em_first_name: req.body.em_first_name,
+    em_last_name: req.body.em_last_name,
+    employee_number: req.body.employee_number,
+    em_email: req.body.em_email,
+    staff_id: req.body.staff_id,
+    password: req.body.password,
+    imageUrl: req.file.path,
+  });
+    console.log(req.body.em_first_name);
+    console.log(req.body.em_email);
+    console.log(req.file);
+    employee.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.employeeId = employee._id;
+        res.status(201).redirect('/manager/completed')
+      }
+  });
+} else {
+  var employee = new Employee({
+    em_first_name: req.body.em_first_name,
+    em_last_name: req.body.em_last_name,
+    employee_number: req.body.employee_number,
+    em_email: req.body.em_email,
+    staff_id: req.body.staff_id,
+    password: req.body.password,
+  });
+    console.log(req.body.em_first_name);
+    console.log(req.body.em_email);
+    employee.save(function(err) {
+      if (err) { throw err; }
+      else {
+        req.session.employeeId = employee._id;
+        res.status(201).redirect('/manager/completed')
+      }
+    });
+  }
+});
+
+//route for editing EMPLOYEE account image
+app.post('/employee/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
+  console.log(req.file)
+  Employee.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/employee/account');
+  });
+});
+
+//route for initial FILMS image upload
+var Film = require('./models/films');
+app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, res){
+  if(req.file){
+  var film = new Film({
+    name: req.body.name,
+    genres: req.body.genres,
+    actors: req.body.actors,
+    directors: req.body.directors,
+    date: req.body.date,
+    price: req.body.price,
+    description: req.body.description,
+    trailerUrl: req.body.trailerUrl,
+    modal: req.body.modal,
+    imageUrl: req.file.path,
+  });
+    console.log(req.body.name);
+    console.log(req.body.actors);
+    console.log(req.file);
+    film.save(function(err) {
+      if (err) { throw err; }
+      else {
+        res.status(201).redirect('/employee/em_film_lib')
+      }
+  });
+} else {
+  var film = new Film({
+    name: req.body.name,
+    genres: req.body.genres,
+    actors: req.body.actors,
+    directors: req.body.directors,
+    date: req.body.date,
+    price: req.body.price,
+    description: req.body.description,
+    trailerUrl: req.body.trailerUrl,
+    modal: req.body.modal,
+  });
+    console.log(req.body.name);
+    console.log(req.body.actors);
+    film.save(function(err) {
+      if (err) { throw err; }
+      else {
+        res.status(201).redirect('/employee/em_film_lib')
+      }
+    });
+  }
+});
+
+//route for editing FILMS image
+app.post('/employee/em_film_lib/em_edit_film/:_id', upload.single('imageUrl'), function (req, res, next) {
+  console.log(req.file)
+  Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/employee/em_film_lib');
   });
 });
 
