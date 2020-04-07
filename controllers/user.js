@@ -97,11 +97,11 @@ var UserController = {
       }
       else
       {
-        req.session.sessionFlash = {
-          type: 'success',
-          message: 'You have successfully logged out.'
-        }
-        console.log('flash message')
+        // req.session.sessionFlash = {
+        //   type: 'success',
+        //   message: 'You have successfully logged out.'
+        // }
+        // console.log('flash message')
         res.status(201).redirect('/');
       }
     })
