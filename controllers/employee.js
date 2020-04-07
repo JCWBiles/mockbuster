@@ -128,6 +128,15 @@ var EmployeeController = {
     });
   },
 
+  // EmFilmCreation: function(req, res) {
+  //   Films.find({_id: req.session.filmId}, function(err,films){
+  //     if (err) {
+  //       throw err
+  //     }
+  //     res.status(201).render('employee/em_film_creation', { films: films })
+  //   });
+  // },
+
   EmFilmCreation: function(req, res) {
     Employee.find({_id: req.session.employeeId}, function(err,employees){
       if (err) {
