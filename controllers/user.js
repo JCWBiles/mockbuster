@@ -55,7 +55,6 @@ var UserController = {
   // },
 
   Login: function(req, res) {
-
     res.status(201).render('login/index');
   },
 
@@ -69,16 +68,22 @@ var UserController = {
             res.redirect('/films');
           }
           else {
+            req.session.sessionFlash = {
+              type: 'info',
+              message: 'Incorrect password, please try again'
+            }
             console.log('wrong password');
-
-            res.render('login/index', { sessionFlash: res.locals.passworderror });
+            res.redirect('/login');
           }
         })
       }
       else {
+        req.session.sessionFlash = {
+          type: 'info',
+          message: 'Incorrect email, please try again'
+        }
         console.log('wrong email');
-
-        res.render('login/index', { sessionFlash: res.locals.emailerror });
+        res.redirect('/login');
       }
     });
   },
@@ -92,6 +97,11 @@ var UserController = {
       }
       else
       {
+        req.session.sessionFlash = {
+          type: 'success',
+          message: 'You have successfully logged out.'
+        }
+        console.log('flash message')
         res.status(201).redirect('/');
       }
     })

@@ -24,8 +24,8 @@ var EmployeeController = {
       else {
         res.status(201).redirect('/manager/completed')
       }
-  })
-},
+    })
+  },
 
   Login: function(req, res) {
     res.status(201).render('employee/index');
@@ -39,16 +39,24 @@ var EmployeeController = {
           if (result == true) {
             req.session.employeeId = employees._id;
             console.log(req.session.employeeId)
-            res.redirect('/employee/change');
+            res.redirect({ sessionFlash: req.session.employeeNumError },'/employee/change');
           }
           else {
             console.log('wrong password');
+            req.session.sessionFlash = {
+              type: 'info',
+              message: 'Incorrect password, please try again'
+            }
             res.status(201).redirect('/employee')
           }
         })
       }
       else {
         console.log('wrong employee number');
+        req.session.sessionFlash = {
+          type: 'info',
+          message: 'Incorrect employee number, please try again'
+        }
         res.status(201).redirect('/employee')
       }
     });
@@ -57,7 +65,7 @@ var EmployeeController = {
   Change: function(req, res) {
     Employee.find({_id: req.session.employeeId}, function(err, employees) {
       if (err) { throw err; }
-        res.render('employee/change', { employees: employees });
+      res.render('employee/change', { employees: employees });
       console.log(req.session.employeeId);
     });
   },
@@ -78,15 +86,15 @@ var EmployeeController = {
     });
   },
 
-Em_Hub: function(req, res) {
-  Employee.find({_id: req.session.employeeId}, function(err,employees){
-    console.log(req.session.employeeId);
-    if (err) {
-      throw err
-    }
-    res.status(201).render('employee/em_hub', { employees: employees })
-  });
-},
+  Em_Hub: function(req, res) {
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      console.log(req.session.employeeId);
+      if (err) {
+        throw err
+      }
+      res.status(201).render('employee/em_hub', { employees: employees })
+    });
+  },
 
   Logout: function(req, res) {
     console.log(req.session.employeeId)
@@ -101,6 +109,7 @@ Em_Hub: function(req, res) {
       }
     })
   },
+
   Account: function(req, res){
     Employee.find({_id: req.session.employeeId}, function(err,employees){
       console.log(req.session.employeeId);
@@ -120,48 +129,48 @@ Em_Hub: function(req, res) {
       res.status(201).render('employee/update', { employees: employees });
     });
   },
+
   Message: function(req, res){
     Employee.find({_id: req.session.employeeId}, function(err,employees){
       console.log(req.session.employeeId);
       if (err) {
         throw err
       }
-    var message = new Message({
-      message: {
-      em_first_name: req.body.em_first_name,
-      em_last_name: req.body.em_last_name,
-      employee_number:  req.body.employee_number,
-      em_email: req.body.em_email,
-      em_address_line1: req.body.em_address_line1,
-      em_address_line2: req.body.em_address_line2,
-      em_address_city: req.body.em_address_city,
-      em_address_postcode: req.body.em_address_postcode,
-      em_tel: req.body.em_tel,
-    },
-      staff_id: req.body.staff_id,
-      password: req.body.password,
-      employee: req.body.employeeId
+      var message = new Message({
+        message: {
+          em_first_name: req.body.em_first_name,
+          em_last_name: req.body.em_last_name,
+          employee_number:  req.body.employee_number,
+          em_email: req.body.em_email,
+          em_address_line1: req.body.em_address_line1,
+          em_address_line2: req.body.em_address_line2,
+          em_address_city: req.body.em_address_city,
+          em_address_postcode: req.body.em_address_postcode,
+          em_tel: req.body.em_tel,
+        },
+        staff_id: req.body.staff_id,
+        password: req.body.password,
+        employee: req.body.employeeId
 
-    });
+      });
+      message.save(function(err) {
+        if (err) { throw err; }
+        else {
+          console.log(message);
+          res.status(201).redirect('/employee/completed')
+        }
+      })
+    })
+  },
 
-    message.save(function(err) {
-      if (err) { throw err; }
-      else {
-        console.log(message);
-        res.status(201).redirect('/employee/completed')
+  Completed: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      if (err) {
+        throw err
       }
-  })
-})
-},
-
-Completed: function(req, res){
-  Employee.find({_id: req.session.employeeId}, function(err,employees){
-    if (err) {
-      throw err
-    }
-    res.status(201).render('employee/completed', { employees: employees })
-  });
-}
+      res.status(201).render('employee/completed', { employees: employees })
+    });
+  }
 };
 
 module.exports = EmployeeController;

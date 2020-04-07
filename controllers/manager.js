@@ -61,13 +61,20 @@ var ManagerController = {
             res.redirect('/manager/hub');
           }
           else {
+            req.session.sessionFlash = {
+              type: 'info',
+              message: 'Incorrect password, please try again'
+            }
             console.log('wrong password');
-
             res.status(201).redirect('/manager')
           }
         })
       }
       else {
+        req.session.sessionFlash = {
+          type: 'info',
+          message: 'Incorrect password, please try again'
+        }
         console.log('wrong email');
         res.status(201).redirect('/manager')
       }

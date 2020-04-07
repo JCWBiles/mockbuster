@@ -63,32 +63,11 @@ app.use(session({
 //setup flash
 app.use(flash());
 
-// Custom flash middleware -- from Ethan Brown's book, 'Web Development with Node & Express'
 app.use(function(req, res, next){
-    // if there's a flash message in the session request, make it available in the response, then delete it
-req.session.emailerror = {type: 'info',
-message: 'Incorrect email, please try again.' };
-    res.locals.emailerror = req.session.emailerror;
-    delete req.session.emailerror;
-    next();
-});
-
-app.use(function(req, res, next){
-    // if there's a flash message in the session request, make it available in the response, then delete it
-req.session.passworderror = {type: 'info',
-message: 'Incorrect password, please try again.' };
-    res.locals.passworderror = req.session.passworderror;
-    delete req.session.passworderror;
-    next();
-});
-
-app.use(function(req, res, next){
-    // if there's a flash message in the session request, make it available in the response, then delete it
-req.session.logoutmsg = {type: 'success',
-message: 'You have successfully logged out.' };
-    res.locals.logoutmsg = req.session.logoutmsg;
-    delete req.session.logoutmsg;
-    next();
+// if there's a flash message in the session request, make it available in the response, then delete it
+  res.locals.sessionFlash = req.session.sessionFlash;
+  delete req.session.sessionFlash;
+  next();
 });
 
 app.use(logger('dev'));
