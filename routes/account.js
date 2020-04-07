@@ -9,7 +9,10 @@ router.post('/delete/:_id', UserController.Delete);
 router.post('/edit_user/:_id', UserController.EditUser);
 // router.post('/upload/:_id', UserController.EditPic);
 router.post('/password/:_id', UserController.NewPassword);
+router.post('/feedback', UserController.Feedback);
+router.get('/completed', UserController.Completed);
 router.get('/search', FilmsController.Search);
 router.get('/autocomplete', FilmsController.Autocomplete);
+
 
 module.exports = router;

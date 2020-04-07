@@ -7,11 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
-  <title>MockBuster - Update details</title>
+  <title>MockBuster - Customer Feedback</title>
 </head>
 
 <body>
@@ -20,10 +21,10 @@
   <header>
     <div class="container-fluid header-container">
       <div class="row no-gutters">
-        <a class="col-md-2 logo" href="/"></a>
+        <a class="col-md-2 logo" href="/manager/hub"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
-          <a class="navbar-brand" href="/employee/update">Update Details</a>
+          <a class="navbar-brand" href="/employee/feedback">Customer Feedback</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -39,9 +40,8 @@
                     <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
                     <a class="dropdown-item" href="/blog?role=employee">Blog<i class="fas fa-blog float-right"></i></a>
                     <a class="dropdown-item" href="#">HR<i class="fas fa-person-booth float-right"></i></a>
-                    <a class="dropdown-item" href="/employee/em_film_lib">Film Library<i class="fas fa-photo-video float-right"></i></a>
-                    <a class="dropdown-item" href="#">Customer Feedback<i class="fas fa-comments float-right"></i></a>
-                    <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
+                    <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/feedback">Customer Feedback<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
                     <a class="dropdown-item" href="/employee/em_hub">Hub<i class="fas fa-backspace float-right"></i></a>
                     <a class="dropdown-item" href="/employee/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
@@ -49,7 +49,6 @@
               </ul>
             </div>
           </nav>
-
         </div>
       </div>
     </header>
@@ -59,48 +58,21 @@
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
-        <div class="col-12 form-background">
-          {{#employees}}
-          <form action="/employee/updatedetails" method="post" id="update" onsubmit="myFunction()">
-            <h5 style="padding-top: 20px;">Request for Employee Details Update</h5>
-            <p>Please amend the details to be updated:</p>
-
-            <div class="form-group">
-              <label for="exampleFirstName">Employee First Name</label>
-              <input name="em_first_name" type="text" class="form-control textbox" id="FirstName"  value="{{this.em_first_name}}">
-            </div>
-            <div class="form-group">
-              <label for="exampleLastName">Employee Last Name</label>
-              <input name="em_last_name" type="text" class="form-control textbox" id="LastName" value="{{this.em_last_name}}">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmployeeEmail">Employee Email</label>
-              <input name="em_email" type="text" class="form-control textbox" id="exampleInputEmployeeEmail" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,}$" value="{{this.em_email}}">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmployeeAddress">Employee Address</label>
-              <input name="em_address_line1" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_line1}}">
-              <input name="em_address_line2" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_line2}}">
-              <input name="em_address_city" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_city}}">
-              <input name="em_address_postcode" type="text" class="form-control textbox" id="exampleInputEmployeeAddress" value="{{this.em_address_postcode}}">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmployeeTel">Employee Telephone</label>
-              <input name="em_tel" type="text" class="form-control textbox" id="exampleInputEmployeeTel" value="{{this.em_tel}}">
-            </div>
-            <input hidden name="employeeId" type="text" class="form-control textbox" id="exampleInputEmployeeId" value="{{this._id}}">
-
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-        <label class="form-check-label" for="exampleCheck1">Tick to confirm details are correct</label>
+        <div class="col-12 justify-content-md-center" >
+          <h1 style="color: white; margin-top:40px;">Welcome to Customer Feedback {{#employees}}{{this.em_first_name}}{{/employees}}</h1>
+          <div class="row" style="margin-bottom: 90px;">
+            <div class="container-fluid" style="margin-left: 110px;">
+              <a href="/employee/suggestions"><button  type="button" class="col-10 hub-buttons btn btn-warning btn-lg">Suggestions<br><i class="fas fa-info-circle"></i></button></a>
+              <br>
+              <a href="/employee/complaints"><button type="button" class="col-10 hub-buttons btn btn-danger btn-lg">Complaints<br><i class="fas fa-blog"></i></button></a>
+              </div>
+          </div>
+          </div>
+        </div>
       </div>
-      <button type="text" class="btn btn-primary">Submit</button>
-    </form>
-    {{/employees}}
-    <br>
-  </div>
-</div>
-</div>
+    </div>
+
+    <!-- /Callout -->
 
 <!-- Footer -->
 <footer class="container-fluid footer-container text-center">
@@ -125,7 +97,6 @@
     </p>
   </div>
   <div class="col-12 ">
-
     <ul class="list-inline social-links ">
       <li class="list-inline-item ">
         <a target="_blank " href="# " class="hvr-icon-bounce">
@@ -173,31 +144,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  <!-- <script>
-  function myFunction() {
-    document.getElementById("update").innerHTML = "Request sent!";
-  }
-  $('#update').submit(function() {
-    $('#update').css({
-      'padding-top': '20px',
-      'padding-right': '200px',
-      'margin-left': '200px',
-      'margin-right': '-200px',
-      'font-size': '44px'
-    });
-  });
-});
-</script> -->
-<!-- jquery to shrink logo and navbar on scroll -->
-   <script>
-     $( window ).scroll(function() {
-      if($(window).scrollTop() > 70){
-        $('.logo').css({'height': '70'});
-      }else{
-          $('.logo').css({'height': '120'});
-      }
+  <!-- jquery to shrink logo and navbar on scroll -->
+  <script>
+    $( window ).scroll(function() {
+     if($(window).scrollTop() > 70){
+       $('.logo').css({'height': '70'});
+     }else{
+         $('.logo').css({'height': '120'});
+     }
 
-     });
-   </script>
+    });
+  </script>
+
 </body>
 </html>

@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
-  <title>MockBuster - HR</title>
+  <title>MockBuster - Messages</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
         <a class="col-md-2 logo" href="/manager/hub"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
-          <a class="navbar-brand" href="/manager/hr">Human Resources</a>
+          <a class="navbar-brand" href="/manager/messages">Messages</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -60,93 +60,20 @@
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
       <div class="row">
-      <div class="col-12 justify-content-md-center" >
-        <h1 style="color: white;">Welcome to HR {{#managers}}{{this.man_firstname}}{{/managers}}</h1>
-      <div class="col-4 form-background">
-      <h5 style="text-align: center;">To make changes to employee details please find the staff member below and click on the edit icon</h5>
-      <br>
-      {{#each employees}}
-      <div class="event-description" style="text-align: center;">
-        <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
-        <p id="employee-name" style="color: black;">Employee: {{this.em_first_name}} {{this.em_last_name}}</p>
-        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#{{this.staff_id}}" style="">
-          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-          <span class="fa-lg sr-only">Edit Employee Details</span>
-        </a>
-
-        <!-- Callout - edit employee details modal -->
-        <div class="modal fade" id="{{this.staff_id}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="basketLabel"><b>Please Edit Details For Staff Number:</b></h5>
-                <hr>
-                <h3>{{this.employee_number}}</h3>
-                <img src="../{{this.imageUrl}}" alt="{{this.em_first_name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/hr/edit_em/{{this._id}}" method="post">
-                  <input type="hidden" name="_method" value="PATCH" />
-                  <div class="form-group">
-                    <label for="em-first-name" class="col-form-label">Edit employee first name:</label>
-                    <input type="text" class="form-control" id="em-first-name" name="em_first_name"value="{{this.em_first_name}}">
-                  </div>
-
-                  <input type="hidden" name="_method" value="PATCH" />
-                  <div class="form-group">
-                    <label for="em-last-name" class="col-form-label">Edit employee last name:</label>
-                    <input type="text" class="form-control" id="em-last-name" name="em_last_name"value="{{this.em_last_name}}">
-                  </div>
-
-                  <input type="hidden" name="_method" value="PATCH" />
-                  <div class="form-group">
-                    <label for="em-email" class="col-form-label">Edit employee email:</label>
-                    <input type="text" class="form-control" id="em-email" name="em_email"value="{{this.em_email}}">
-                  </div>
-
-                <div class="modal-footer">
-                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-                </form>
-                <hr>
-
-              <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/manager/hr/em_password/{{this._id}}" method="post">
-                <input type="hidden" name="_method" value="PATCH" />
-                <div class="form-group">
-                  <label for="exampleInputPassword1" class="col-form-label">Employee password reset - enter a new password below and press edit.</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
-                </div>
-                </div>
-
-                <div class="modal-footer">
-                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </form>
-
-              <hr>
-
-              <form id="delete-user-form" style = "display: inline;" action="/manager/hr/delete_em/{{this._id}}" method="post">
-                <input type="hidden" name="_method" value="DELETE" />
-                <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Employee Account" />
-              </form>
-
-                <!-- /.Callout - edit employee details modal -->
-              </div>
-            </div>
-            </div>
+        <div class="col-12 justify-content-md-center" >
+          <h1 style="color: white;">Welcome to Messages {{#managers}}{{this.man_firstname}}{{/managers}}</h1>
+          <div style="padding-top:10px; padding-bottom:10px;" class="col-8 form-background">
+            {{#each messages}}
+            <div class="event-description" style="text-align: center;">
+              <a href="/manager/individualmsg/{{this._id}}"><p id="message" style="color: black;">Update details request from: {{this.employee.em_first_name}} {{this.employee.em_last_name}} (Staff ID: {{this.employee.staff_id}})</p></a>
             </div>
             <hr>
             {{/each}}
-            </div>
           </div>
         </div>
       </div>
-      </div>
+    </div>
+    <hr>
     <!-- /Callout -->
 
 <!-- Footer -->

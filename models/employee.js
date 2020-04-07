@@ -8,9 +8,14 @@ var EmployeeSchema = new mongoose.Schema({
   em_last_name: String,
   employee_number: {type: Number, unique: true },
   em_email: {type: String, required: true},
+  em_address_line1: String,
+  em_address_line2: String,
+  em_address_city: String,
+  em_address_postcode: String,
+  em_tel: Number,
   password: String,
   imageUrl: String,
-  staff_id: String
+  staff_id: { type: String, unique:true }
 });
 
 //authenticating

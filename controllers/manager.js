@@ -1,5 +1,6 @@
 var Manager = require('../models/manager');
 var Employee = require('../models/employee');
+var Message = require('../models/message');
 var bcrypt = require('bcrypt');
 
 // var Manager = require('../models/films');
@@ -60,13 +61,20 @@ var ManagerController = {
             res.redirect('/manager/hub');
           }
           else {
+            req.session.sessionFlash = {
+              type: 'info',
+              message: 'Incorrect password, please try again'
+            }
             console.log('wrong password');
-
             res.status(201).redirect('/manager')
           }
         })
       }
       else {
+        req.session.sessionFlash = {
+          type: 'info',
+          message: 'Incorrect password, please try again'
+        }
         console.log('wrong email');
         res.status(201).redirect('/manager')
       }
@@ -75,10 +83,11 @@ var ManagerController = {
 
   Hub: function(req,res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){
-      if (err) {
-        throw err
-      }
-      res.status(201).render('manager/hub', { managers: managers })
+      if (err) {throw err};
+      Message.find(function(err, messages) {
+        if (err) { throw err; }
+      res.status(201).render('manager/hub', {messages: messages, managers: managers })
+    })
     });
   },
 
@@ -191,7 +200,37 @@ var ManagerController = {
         if (err) { throw err; }
         res.status(201).redirect('/manager/account')
       })
-    });
+    })
+  },
+
+  Message: function (req, res){
+    Manager.find({_id: req.session.managerId}, function(err, managers){
+      if (err) { throw err }
+      Message.find().populate('employee').exec(function (err, messages) {
+        if (err) { throw err };
+        res.status(201).render('manager/messages', { messages: messages, managers: managers })
+      });
+    })
+  },
+
+  IndividualMsg: function(req, res){
+    Manager.find({_id: req.session.managerId}, function(err, managers){
+      if (err) { throw err }
+      Message.findById({_id: req.params._id}).populate('employee').exec(function (err, messages) {
+        if (err) { throw err };
+        res.status(201).render('manager/individualmsg', { messages: messages, managers: managers })
+      })
+    })
+  },
+
+  DeleteMsg: function(req, res){
+    Manager.find({_id: req.session.managerId}, function(err, managers){
+      if (err) { throw err }
+      Message.findByIdAndRemove({_id: req.params._id}, function(err, messages){
+        if (err) { throw err }
+        res.status(201).redirect('/manager/messages')
+      })
+    })
   },
 
 };

@@ -3,12 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var session = require('express-session')
+var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var mailgun = require('mailgun-js');
-
+var flash = require('express-flash-messages');
+var Handlebars = require('hbs');
 //Image upload setup
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -40,6 +41,17 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+Handlebars.registerHelper('each_upto', function(ary, max, options)
+{
+  if(!ary || ary.length == 0)
+        return options.inverse(this);
+
+    var result = [ ];
+    for(var i = 0; i < max && i < ary.length; ++i)
+        result.push(options.fn(ary[i]));
+    return result.join('');
+});
+
 //use sessions for tracking logins
 var db = mongoose.connection;
 app.use(session({
@@ -47,6 +59,16 @@ app.use(session({
   resave: true,
   saveUninitialized: false
 }));
+
+//setup flash
+app.use(flash());
+
+app.use(function(req, res, next){
+// if there's a flash message in the session request, make it available in the response, then delete it
+  res.locals.sessionFlash = req.session.sessionFlash;
+  delete req.session.sessionFlash;
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -93,6 +115,7 @@ app.use('/films/zero_to_nine', filmRouter);
 app.use('films/search', filmRouter);
 app.use('films/autocomplete', filmRouter);
 app.use('/account', accountRouter);
+app.use('/account/completed', accountRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/checkout/thank_you', checkoutRouter);
 app.use('/blog', blogRouter);
@@ -104,6 +127,10 @@ app.use('/employee/account', employeeRouter);
 app.use('/employee/update', employeeRouter);
 app.use('/employee/em_film_lib', employeeRouter);
 app.use('/employee/em_film_creation', employeeRouter);
+app.use('/employee/feedback', employeeRouter);
+app.use('/employee/individualfeedback', employeeRouter);
+app.use('/employee/suggestions', employeeRouter);
+app.use('/employee/complaints', employeeRouter);
 app.use('/manager', managerRouter);
 app.use('/manager/login', managerRouter);
 app.use('/manager/account', managerRouter);
@@ -111,6 +138,8 @@ app.use('/manager/hub', managerRouter);
 app.use('/manager/hr', managerRouter);
 app.use('/manager/staff_creation', managerRouter);
 app.use('/manager/completed', managerRouter);
+app.use('/manager/messages', managerRouter);
+app.use('/manager/individualmsg', managerRouter);
 app.use('/man_auth', man_authRouter);
 app.use(methodOverride('_method'));
 

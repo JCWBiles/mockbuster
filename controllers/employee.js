@@ -1,26 +1,32 @@
 var Employee = require('../models/employee');
-var Films = require('../models/films');
+var Film = require('../models/films');
+var Message = require('../models/message');
+var Feedback = require('../models/feedback');
 var bcrypt = require('bcrypt');
 
 var EmployeeController = {
 
-//   Create: function(req, res){
-//     var employee = new Employee({
-//       em_first_name: req.body.em_first_name,
-//       em_last_name: req.body.em_last_name,
-//       employee_number:  req.body.employee_number,
-//       em_email: req.body.em_email,
-//       staff_id: req.body.staff_id,
-//       password: req.body.password,
-//     });
-
-//     employee.save(function(err) {
-//       if (err) { throw err; }
-//       else {
-//         res.status(201).redirect('/manager/completed')
-//       }
-//   })
-// },
+  Create: function(req, res){
+    var employee = new Employee({
+      em_first_name: req.body.em_first_name,
+      em_last_name: req.body.em_last_name,
+      employee_number:  req.body.employee_number,
+      em_email: req.body.em_email,
+      em_address_line1: req.body.em_address_line1,
+      em_address_line2: req.body.em_address_line2,
+      em_address_city: req.body.em_address_city,
+      em_address_postcode: req.body.em_address_postcode,
+      em_tel: req.body.em_tel,
+      staff_id: req.body.staff_id,
+      password: req.body.password,
+    });
+    employee.save(function(err) {
+      if (err) { throw err; }
+      else {
+        res.status(201).redirect('/manager/completed')
+      }
+    })
+  },
 
   Login: function(req, res) {
     res.status(201).render('employee/index');
@@ -38,12 +44,20 @@ var EmployeeController = {
           }
           else {
             console.log('wrong password');
+            req.session.sessionFlash = {
+              type: 'info',
+              message: 'Incorrect password, please try again'
+            }
             res.status(201).redirect('/employee')
           }
         })
       }
       else {
         console.log('wrong employee number');
+        req.session.sessionFlash = {
+          type: 'info',
+          message: 'Incorrect employee number, please try again'
+        }
         res.status(201).redirect('/employee')
       }
     });
@@ -52,7 +66,7 @@ var EmployeeController = {
   Change: function(req, res) {
     Employee.find({_id: req.session.employeeId}, function(err, employees) {
       if (err) { throw err; }
-        res.render('employee/change', { employees: employees });
+      res.render('employee/change', { employees: employees });
       console.log(req.session.employeeId);
     });
   },
@@ -78,8 +92,11 @@ var EmployeeController = {
       console.log(req.session.employeeId);
       if (err) {
         throw err
-      }
-      res.status(201).render('employee/em_hub', { employees: employees })
+      };
+      Feedback.find(function(err, feedback){
+        if (err){throw err};
+      res.status(201).render('employee/em_hub', { feedback: feedback, employees:employees })
+      })
     });
   },
 
@@ -120,7 +137,7 @@ var EmployeeController = {
   EmFilmLib: function(req, res) {
     Employee.find({_id: req.session.employeeId}, function(err,employees) {
       if (err) { throw err; }
-      Films.find(function(err, films) {
+      Film.find(function(err, films) {
         if (err) { throw err; }
         res.render('employee/em_film_lib', {  films: films, employees: employees });
         console.log(req.session.employeeId);
@@ -138,20 +155,107 @@ var EmployeeController = {
   },
 
   EmEditFilm: function(req, res){
-    Films.findOneAndUpdate({_id: req.params._id}, {$set: { name: req.body.name, genres: req.body.genres, actors: req.body.actors, directors: req.body.directors, date: req.body.date, price: req.body.price, description: req.body.description }, overwrite: true} , function(err, film){
+    Film.findOneAndUpdate({_id: req.params._id}, {$set: { name: req.body.name, genres: req.body.genres, actors: req.body.actors, directors: req.body.directors, date: req.body.date, price: req.body.price, description: req.body.description }, overwrite: true} , function(err, film){
       if (err) { throw err; }
       res.status(201).redirect('/employee/em_film_lib');
     });
   },
 
   EmDeleteFilm: function(req, res){
-    Films.findByIdAndRemove({_id: req.params._id}, function(err){
+    Film.findByIdAndRemove({_id: req.params._id}, function(err){
       if (err) { throw err; }
       res.status(201).redirect('/employee/em_film_lib');
     })
   },
 
+  Message: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      console.log(req.session.employeeId);
+      if (err) {
+        throw err
+      }
+      var message = new Message({
+        message: {
+          em_first_name: req.body.em_first_name,
+          em_last_name: req.body.em_last_name,
+          employee_number:  req.body.employee_number,
+          em_email: req.body.em_email,
+          em_address_line1: req.body.em_address_line1,
+          em_address_line2: req.body.em_address_line2,
+          em_address_city: req.body.em_address_city,
+          em_address_postcode: req.body.em_address_postcode,
+          em_tel: req.body.em_tel,
+        },
+        staff_id: req.body.staff_id,
+        password: req.body.password,
+        employee: req.body.employeeId
 
+      });
+      message.save(function(err) {
+        if (err) { throw err; }
+        else {
+          console.log(message);
+          res.status(201).redirect('/employee/completed')
+        }
+      })
+    })
+  },
+
+  Completed: function(req, res){
+      res.status(201).render('employee/completed', { employees: employees })
+    });
+  },
+
+  Feedback: function (req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.find().populate('user').exec(function (err, feedback) {
+        if (err) { throw err };
+        res.status(201).render('employee/feedback', { feedback: feedback, employees: employees })
+      });
+    })
+  },
+
+  Suggestion: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.find({}).select('movieSuggestion').populate('user').exec(function (err, feedback) {
+        if (err) { throw err };
+        res.status(201).render('employee/suggestions', { feedback: feedback, employees: employees })
+      })
+    })
+  },
+
+  Complaint: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.find({}).select('complaint').populate('user').exec(function (err, feedback) {
+        if (err) { throw err };
+        res.status(201).render('employee/complaints', { feedback: feedback, employees: employees })
+      })
+    })
+  },
+
+  IndividualFeedback: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.findById({_id: req.params._id}).populate('user').exec(function (err, feedback) {
+        if (err) { throw err };
+        res.status(201).render('employee/individualfeedback', { feedback: feedback, employees: employees })
+      })
+    })
+  },
+
+  DeleteFeedback: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err, employees){
+      if (err) { throw err }
+      Feedback.findByIdAndRemove({_id: req.params._id}, function(err, feedback){
+        if (err) { throw err }
+        res.status(201).redirect('/employee/feedback')
+      })
+    })
+  },
+    
 };
 
 module.exports = EmployeeController;

@@ -18,6 +18,12 @@
 
   <!-- Header -->
   <header>
+    {{#if sessionFlash.message}}
+    <div class="alert alert-{{ sessionFlash.type }} alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Something went wrong:</strong> {{ sessionFlash.message }}
+    </div>
+    {{/if}}
     <div class="container-fluid header-container">
       <div class="row no-gutters">
         <a class="col-md-2 logo" href="/"></a>

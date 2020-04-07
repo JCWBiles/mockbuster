@@ -14,6 +14,7 @@ var FilmsController = {
     });
   },
 
+
   A_to_E: function(req, res){
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
