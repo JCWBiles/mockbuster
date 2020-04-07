@@ -95,7 +95,7 @@ var EmployeeController = {
       };
       Feedback.find(function(err, feedback){
         if (err){throw err};
-      res.status(201).render('employee/em_hub', { feedback: feedback })
+      res.status(201).render('employee/em_hub', { feedback: feedback, employees:employees })
       })
     });
   },
