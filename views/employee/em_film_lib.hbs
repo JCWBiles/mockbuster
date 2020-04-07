@@ -92,6 +92,12 @@
                 <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/em_film_lib/em_edit_film/{{this._id}}" method="post">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
+                    <label for="FilmImage" class="col-form-label">Film Image:</label>
+                    <input type="file" class="form-control" id="FilmImage" name="imageUrl"value="{{this.imageUrl}}">
+                  </div>
+                  
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
                     <label for="em-first-name" class="col-form-label">Film Title:</label>
                     <input type="text" class="form-control" id="em-first-name" name="name"value="{{this.name}}">
                   </div>
@@ -111,6 +117,7 @@
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="em-email" class="col-form-label">Genre(s):</label>
+                    <input type="text" class="form-control" id="em-email" name="genres"value="{{this.genres}}">
                     <input type="text" class="form-control" id="em-email" name="genres"value="{{this.genres}}">
                   </div>
 

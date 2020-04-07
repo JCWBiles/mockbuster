@@ -284,10 +284,10 @@ app.post('/employee/account/upload/:_id', upload.single('imageUrl'), function (r
 });
 
 //route for initial FILMS image upload
-var Films = require('./models/films');
+var Film = require('./models/films');
 app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, res){
   if(req.file){
-  var films = new Films({
+  var film = new Film({
     name: req.body.name,
     genres: req.body.genres,
     actors: req.body.actors,
@@ -302,15 +302,14 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
     console.log(req.body.name);
     console.log(req.body.actors);
     console.log(req.file);
-    films.save(function(err) {
+    film.save(function(err) {
       if (err) { throw err; }
       else {
-        req.session.filmsId = films._id;
         res.status(201).redirect('/employee/em_film_lib')
       }
   });
 } else {
-  var films = new Films({
+  var film = new Film({
     name: req.body.name,
     genres: req.body.genres,
     actors: req.body.actors,
@@ -323,10 +322,9 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
   });
     console.log(req.body.name);
     console.log(req.body.actors);
-    films.save(function(err) {
+    film.save(function(err) {
       if (err) { throw err; }
       else {
-        req.session.filmsId = films._id;
         res.status(201).redirect('/employee/em_film_lib')
       }
     });
@@ -334,11 +332,11 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
 });
 
 //route for editing FILMS image
-app.post('/employee/film_lib/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
+app.post('/employee/em_film_lib/em_edit_film/:_id', upload.single('imageUrl'), function (req, res, next) {
   console.log(req.file)
   Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
     if (err) { throw err; }
-    res.status(201).redirect('/employee/film_lib');
+    res.status(201).redirect('/employee/em_film_lib');
   });
 });
 
