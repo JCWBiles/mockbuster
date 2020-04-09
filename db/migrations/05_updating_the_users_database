@@ -13,3 +13,6 @@ db.managers.update({}, { $set: {"imageUrl": "/images/account/avatarGIF.gif" } },
 db.employees.update({}, { $set: {"staff_id": "String" } }, false, true)
 db.employees.update({}, { $set: {"em_email": "String" } }, false, true)
 db.users.update({}, { $set: {"wishlist": ["String"] } }, false, true)
+
+
+db.employees.update({}, { $set: {"em_address_line1": "String", "em_address_line2": "String", "em_address_city": "String", "em_address_postcode": "String", "em_tel": "String" } }, false, true)

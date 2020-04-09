@@ -67,7 +67,43 @@
       <a href="/employee/em_film_creation"><button type="button" class="btn btn-danger btn-lg">Film Creation<br><i class="fas fa-folder-plus"></i></button></a>
       {{#each films}}
       <div class="event-description" style="text-align: center;">
+
         <img src="../{{this.imageUrl}}" alt="{{this.name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
+        
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
+          <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit Film Pic</span>
+        </a>
+
+              <!-- Callout - edit img modal -->
+      <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/em_film_lib/upload/{{this._id}}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="PATCH" />
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
+                  <input type='file' accept="image/*" name="imageUrl" />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn--teal btn-primary" value="Edit"/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.Callout - edit img modal -->
+
+
         <p id="employee-name" style="color: black;">Film: {{this.name}}</p>
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#{{this.modal}}" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
@@ -89,11 +125,11 @@
               </div>
               <div class="modal-body">
                 <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/em_film_lib/em_edit_film/{{this._id}}" method="post">
-                  <input type="hidden" name="_method" value="PATCH" />
+                  {{!-- <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="FilmImage" class="col-form-label">Film Image:</label>
                     <input type="file" class="form-control" id="FilmImage" name="imageUrl"value="{{this.imageUrl}}">
-                  </div>
+                  </div> --}}
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
@@ -103,22 +139,24 @@
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-last-name" class="col-form-label">Actor(s):</label>
-                    <input type="text" class="form-control" id="em-last-name" name="actors"value="{{this.actors}}">
+                    <label for="actors" class="col-form-label">Actor(s): <button onclick="addActor()" style="display:inline;" class="btn"><i class="fas fa-plus"></i></button><button onclick="removeActor()" style="display:inline;" class="btn"><i class="fas fa-minus"></i></button></label>
+                    {{#each actors}}<input type="text" class="form-control" id="actors" name="actors" value="{{this}}">{{/each}}
+                    <p id="actor"></p>
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-last-name" class="col-form-label">Director(s):</label>
-                    <input type="text" class="form-control" id="em-last-name" name="directors"value="{{this.directors}}">
+                    <label for="directors" class="col-form-label">Director(s): <button onclick="addDirector()" style="display:inline;" class="btn"><i class="fas fa-plus"></i></button><button onclick="removeDirector()" style="display:inline;" class="btn"><i class="fas fa-minus"></i></button></label>
+                    {{#each directors}}<input type="text" class="form-control" id="directors" name="directors" value="{{this}}">{{/each}}
+                    <p id="director"></p>
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-email" class="col-form-label">Genre(s): <button onclick="addGenre()" style="display:inline;" class="btn"><i class="fas fa-plus"></i></button></label>
-                    <input type="text" class="form-control" id="em-email" name="genres"value="{{this.genres}}">
-                    <p id="demo"></p>
-                  </div>
+                    <label for="genres" class="col-form-label">Genre(s): <button onclick="addGenre()" style="display:inline;" class="btn"><i class="fas fa-plus"></i></button><button onclick="removeGenre()" style="display:inline;" class="btn"><i class="fas fa-minus"></i></button></label>
+                    {{#each genres}}<input type="text" class="form-control" id="genres" name="genres" value="{{this}}">{{/each}}
+                    <p id="genre"></p>
+                  </div>       
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
@@ -247,10 +285,37 @@
 
     });
   </script>
+
+  <script>
+    function addActor() {
+    event.preventDefault();
+    document.getElementById("actor").innerHTML += "<input type='text' class='form-control' name='actors' placeholder='add another actor'></input>";
+  }
+  function removeActor() {
+    event.preventDefault();
+    document.getElementById("actor").innerHTML -= "<input type='text' class='form-control' name='actors' placeholder='remove additional actor'></input>";
+  }
+  </script>
+
+  <script>
+  function addDirector() {
+    event.preventDefault();
+    document.getElementById("director").innerHTML += "<input type='text' class='form-control' name='directors' placeholder='add another director'></input>";
+  }
+  function removeDirector() {
+    event.preventDefault();
+    document.getElementById("director").innerHTML -= "<input type='text' class='form-control' name='directors' placeholder='remove additional director'></input>";
+  }
+  </script>
+
   <script>
   function addGenre() {
-    document.getElementById("demo").innerHTML = "<input type='text' class='form-control' name='genres' placeholder='add another genre'></input>";
-
+    event.preventDefault();
+    document.getElementById("genre").innerHTML += "<input type='text' class='form-control' name='genres' placeholder='add another genre'></input>";
+  }
+  function removeGenre() {
+    event.preventDefault();
+    document.getElementById("genre").innerHTML -= "<input type='text' class='form-control' name='genres' placeholder='remove additional genre'></input>";
   }
   </script>
 </body>

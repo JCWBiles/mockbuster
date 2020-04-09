@@ -270,6 +270,11 @@ app.post('/manager/staff_creation', upload.single('imageUrl'), function(req, res
     em_email: req.body.em_email,
     staff_id: req.body.staff_id,
     password: req.body.password,
+    em_address_line1: req.body.em_address_line1,
+    em_address_line2: req.body.em_address_line2,
+    em_address_city: req.body.em_address_city,
+    em_address_postcode: req.body.em_address_postcode,
+    em_tel: req.body.em_tel,
     imageUrl: req.file.path,
   });
     console.log(req.body.em_first_name);
@@ -290,6 +295,11 @@ app.post('/manager/staff_creation', upload.single('imageUrl'), function(req, res
     em_email: req.body.em_email,
     staff_id: req.body.staff_id,
     password: req.body.password,
+    em_address_line1: req.body.em_address_line1,
+    em_address_line2: req.body.em_address_line2,
+    em_address_city: req.body.em_address_city,
+    em_address_postcode: req.body.em_address_postcode,
+    em_tel: req.body.em_tel,
   });
     console.log(req.body.em_first_name);
     console.log(req.body.em_email);
@@ -314,7 +324,7 @@ app.post('/employee/account/upload/:_id', upload.single('imageUrl'), function (r
 
 //route for initial FILMS image upload
 var Films = require('./models/films');
-app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, res){
+app.post('/employee/emfilm_creation', upload.single('imageUrl'), function(req, res){
   if(req.file){
   var film = new Films({
     name: req.body.name,
@@ -361,7 +371,7 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
 });
 
 //route for editing FILMS image
-app.post('/employee/em_film_lib/em_edit_film/:_id', upload.single('imageUrl'), function (req, res, next) {
+app.post('/employee/em_film_lib/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
   console.log(req.file)
   Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
     if (err) { throw err; }
