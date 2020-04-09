@@ -14,7 +14,7 @@ router.get('/update', EmployeeController.RequestUpdate);
 router.get('/em_film_lib', EmployeeController.EmFilmLib);
 router.get('/em_film_creation', EmployeeController.EmFilmCreation);
 // router.post('/em_film_creation', FilmsController.Create);
-router.post('/em_edit_film/:_id', EmployeeController.EmEditFilm);
+// router.post('/upload/:_id', EmployeeController.EmEditFilm);
 router.post('/em_delete_film/:_id', EmployeeController.EmDeleteFilm);
 router.post('/updatedetails', EmployeeController.Message);
 router.get('/session/destroy', EmployeeController.Logout);

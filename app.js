@@ -361,14 +361,35 @@ app.post('/employee/film_creation', upload.single('imageUrl'), function(req, res
   }
 });
 
-// //route for editing FILMS image
-// app.post('/employee/em_film_lib/em_edit_film/:_id', upload.single('imageUrl'), function (req, res, next) {
-//   console.log(req.file)
-//   Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
-//     if (err) { throw err; }
-//     res.status(201).redirect('/employee/em_film_lib');
-//   });
-// });
+//route for editing FILMS image
+app.post('/employee/film/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
+  console.log(req.file)
+  if(req.file){
+  Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path,
+     name: req.body.name,
+     genres: req.body.genres,
+     actors: req.body.actors,
+     directors: req.body.directors,
+     date: req.body.date,
+     price: req.body.price,
+     description: req.body.description }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/employee/em_film_lib');
+  });
+}else{
+  Films.findOneAndUpdate({_id: req.params._id}, {$set: {
+     name: req.body.name,
+     genres: req.body.genres,
+     actors: req.body.actors,
+     directors: req.body.directors,
+     date: req.body.date,
+     price: req.body.price,
+     description: req.body.description }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/employee/em_film_lib');
+  });
+}
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

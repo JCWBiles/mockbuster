@@ -89,11 +89,11 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/em_film_lib/em_edit_film/{{this._id}}" method="post">
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/film/upload/{{this._id}}" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="FilmImage" class="col-form-label">Film Image:</label>
-                    <input type="file" class="form-control" id="FilmImage" name="imageUrl"value="{{this.imageUrl}}">
+                    <input type="file" class="form-control" id="FilmImage" name="imageUrl" value="{{this.imageUrl}}" enctype="multipart/form-data">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
