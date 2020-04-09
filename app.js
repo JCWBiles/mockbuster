@@ -323,10 +323,11 @@ app.post('/employee/account/upload/:_id', upload.single('imageUrl'), function (r
 });
 
 //route for initial FILMS image upload
+
 var Films = require('./models/films');
-app.post('/employee/emfilm_creation', upload.single('imageUrl'), function(req, res){
+app.post('/employee/film_creation', upload.single('imageUrl'), function(req, res){
   if(req.file){
-  var film = new Films({
+  var films = new Films({
     name: req.body.name,
     genres: req.body.genres,
     actors: req.body.actors,
@@ -339,16 +340,16 @@ app.post('/employee/emfilm_creation', upload.single('imageUrl'), function(req, r
     imageUrl: req.file.path,
   });
     console.log(req.body.name);
-    console.log(req.body.actors);
+    console.log(req.body.date);
     console.log(req.file);
-    film.save(function(err) {
+    films.save(function(err) {
       if (err) { throw err; }
       else {
         res.status(201).redirect('/employee/em_film_lib')
       }
   });
 } else {
-  var film = new Films({
+  var films = new Films({
     name: req.body.name,
     genres: req.body.genres,
     actors: req.body.actors,
@@ -360,8 +361,8 @@ app.post('/employee/emfilm_creation', upload.single('imageUrl'), function(req, r
     modal: req.body.modal,
   });
     console.log(req.body.name);
-    console.log(req.body.actors);
-    film.save(function(err) {
+    console.log(req.body.date);
+    films.save(function(err) {
       if (err) { throw err; }
       else {
         res.status(201).redirect('/employee/em_film_lib')
@@ -371,12 +372,33 @@ app.post('/employee/emfilm_creation', upload.single('imageUrl'), function(req, r
 });
 
 //route for editing FILMS image
-app.post('/employee/em_film_lib/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
+app.post('/employee/film/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
   console.log(req.file)
-  Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+  if(req.file){
+  Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path,
+     name: req.body.name,
+     genres: req.body.genres,
+     actors: req.body.actors,
+     directors: req.body.directors,
+     date: req.body.date,
+     price: req.body.price,
+     description: req.body.description }, overwrite: true} , function(err){
     if (err) { throw err; }
     res.status(201).redirect('/employee/em_film_lib');
   });
+}else{
+  Films.findOneAndUpdate({_id: req.params._id}, {$set: {
+     name: req.body.name,
+     genres: req.body.genres,
+     actors: req.body.actors,
+     directors: req.body.directors,
+     date: req.body.date,
+     price: req.body.price,
+     description: req.body.description }, overwrite: true} , function(err){
+    if (err) { throw err; }
+    res.status(201).redirect('/employee/em_film_lib');
+  });
+}
 });
 
 // catch 404 and forward to error handler

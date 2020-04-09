@@ -14,6 +14,29 @@ var FilmsController = {
     });
   },
 
+  // Create: function(req, res) {
+  //   var films = new Films({
+  //     name: req.body.name,
+  //     genres: req.body.genres,
+  //     actors: req.body.actors,
+  //     directors: req.body.directors,
+  //     date: req.body.date,
+  //     price: req.body.price,
+  //     imageUrl: req.body.imageUrl,
+  //     description: req.body.description,
+  //     trailerUrl: req.body.trailerUrl,
+  //     modal: req.body.modal,
+  //   });
+  //   console.log(req.body.modal);
+  //   console.log(req.body.date);
+  //   films.save(function(err) {
+  //     if (err) { throw err; }
+  //     else {
+  //
+  //       res.status(201).redirect('/employee/em_film_lib')
+  //     }
+  //   })
+  // },
 
   A_to_E: function(req, res){
     User.find({_id: req.session.userId}, function(err,users) {

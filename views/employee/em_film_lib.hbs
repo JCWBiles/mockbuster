@@ -65,6 +65,7 @@
         remove films. You can also edit film details. To edit please find the film below and click on the edit icon.</h5>
       <hr>
       <a href="/employee/em_film_creation"><button type="button" class="btn btn-danger btn-lg">Film Creation<br><i class="fas fa-folder-plus"></i></button></a>
+      <hr>
       {{#each films}}
       <div class="event-description" style="text-align: center;">
 
@@ -124,56 +125,56 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/em_film_lib/em_edit_film/{{this._id}}" method="post">
-                  {{!-- <input type="hidden" name="_method" value="PATCH" />
+
+                <form id="new-film-form" style = "display: inline; margin-top: -20px;" action="/employee/film/upload/{{this._id}}" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="FilmImage" class="col-form-label">Film Image:</label>
-                    <input type="file" class="form-control" id="FilmImage" name="imageUrl"value="{{this.imageUrl}}">
-                  </div> --}}
-
+                    <input type="file" class="form-control" id="FilmImage" name="imageUrl" value="{{this.imageUrl}}" enctype="multipart/form-data">
+                  </div>
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-first-name" class="col-form-label">Film Title:</label>
-                    <input type="text" class="form-control" id="em-first-name" name="name"value="{{this.name}}">
+                    <label for="film-name" class="col-form-label">Film Title:</label>
+                    <input type="text" class="form-control" id="film-name" name="name" value="{{this.name}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="actors" class="col-form-label">Actor(s): <button onclick="addActor()" style="display:inline;" class="btn"><i class="fas fa-plus"></i></button><button onclick="removeActor()" style="display:inline;" class="btn"><i class="fas fa-minus"></i></button></label>
-                    {{#each actors}}<input type="text" class="form-control" id="actors" name="actors" value="{{this}}">{{/each}}
-                    <p id="actor"></p>
+                    <label for="em-actors" class="col-form-label">Actor(s): <button style="display:inline;" id="btn1" class="btn"><i class="fas fa-plus"></i></button></label>
+                    {{#each actors}}<input type="text" class="form-control" id="em-actors" name="actors"value="{{this}}">{{/each}}
+                    <p class="actors" id="demo"></p>
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="directors" class="col-form-label">Director(s): <button onclick="addDirector()" style="display:inline;" class="btn"><i class="fas fa-plus"></i></button><button onclick="removeDirector()" style="display:inline;" class="btn"><i class="fas fa-minus"></i></button></label>
-                    {{#each directors}}<input type="text" class="form-control" id="directors" name="directors" value="{{this}}">{{/each}}
-                    <p id="director"></p>
+                    <label for="em-directors" class="col-form-label" style="display: block;">Director(s): <button style="display:inline;" id="btn2" class="btn"><i class="fas fa-plus"></i></button></label>
+                    {{#each directors}}<input type="text" class="form-control" id="em-directors" name="directors"value="{{this}}">{{/each}}
+                    <p class="directors" id="demo"></p>
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="genres" class="col-form-label">Genre(s): <button onclick="addGenre()" style="display:inline;" class="btn"><i class="fas fa-plus"></i></button><button onclick="removeGenre()" style="display:inline;" class="btn"><i class="fas fa-minus"></i></button></label>
-                    {{#each genres}}<input type="text" class="form-control" id="genres" name="genres" value="{{this}}">{{/each}}
-                    <p id="genre"></p>
-                  </div>       
-
-                  <input type="hidden" name="_method" value="PATCH" />
-                  <div class="form-group">
-                    <label for="em-email" class="col-form-label">Date:</label>
-                    <input type="text" class="form-control" id="em-email" name="date"value="{{this.date}}">
+                    <label for="em-genres" class="col-form-label">Genre(s): <button style="display:inline;" id="btn3" class="btn"><i class="fas fa-plus"></i></button></label>
+                    {{#each genres}}<input type="text" class="form-control" id="em-genres" name="genres"value="{{this}}">{{/each}}
+                    <p class="genres" id="demo"></p>
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-email" class="col-form-label">Description:</label>
-                    <input type="text" class="form-control" id="em-email" name="description"value="{{this.description}}">
+                    <label for="em-date" class="col-form-label">Date:</label>
+                    <input type="text" class="form-control" id="em-date" name="date"value="{{this.date}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-email" class="col-form-label">Price:</label>
-                    <input type="text" class="form-control" id="em-email" name="price"value="{{this.price}}">
+                    <label for="em-description" class="col-form-label">Description:</label>
+                    <input type="text" class="form-control" id="em-description" name="description"value="{{this.description}}">
+                  </div>
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="em-price" class="col-form-label">Price:</label>
+                    <input type="text" class="form-control" id="em-price" name="price"value="{{this.price}}">
                   </div>
 
                 <div class="modal-footer">
@@ -273,6 +274,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
   <!-- jquery to shrink logo and navbar on scroll -->
   <script>
@@ -286,37 +288,63 @@
     });
   </script>
 
+
   <script>
-    function addActor() {
-    event.preventDefault();
-    document.getElementById("actor").innerHTML += "<input type='text' class='form-control' name='actors' placeholder='add another actor'></input>";
-  }
-  function removeActor() {
-    event.preventDefault();
-    document.getElementById("actor").innerHTML -= "<input type='text' class='form-control' name='actors' placeholder='remove additional actor'></input>";
-  }
+  $(document).ready(function(){
+    var max_fields = 10;
+    var x = 1;
+    $("#btn1").click(function(){
+      event.preventDefault();
+      if (x < max_fields) {
+        x++;
+        $("p.actors").append("<div>" + "<input type='text' class='form-control' name='actors' placeholder='add another actor'/>" + "<a href='#' style='display: inline; float: right;' class='remove_field'><i class='fa fa-times'></i></a></div>");
+      }
+    });
+    $("p.actors").on("click", ".remove_field", function() { //user click on remove text
+        event.preventDefault();
+        $(this).parent("div").remove();
+        x--;
+    });
+  });
   </script>
 
   <script>
-  function addDirector() {
-    event.preventDefault();
-    document.getElementById("director").innerHTML += "<input type='text' class='form-control' name='directors' placeholder='add another director'></input>";
-  }
-  function removeDirector() {
-    event.preventDefault();
-    document.getElementById("director").innerHTML -= "<input type='text' class='form-control' name='directors' placeholder='remove additional director'></input>";
-  }
+  $(document).ready(function(){
+    var max_fields = 10;
+    var x = 1;
+    $("#btn2").click(function(){
+      event.preventDefault();
+      if (x < max_fields) {
+        x++;
+        $("p.directors").append("<div>" + "<input type='text' class='form-control' name='directors' placeholder='add another director'/>" + "<a href='#' style='display: inline; float: right;' class='remove_field'><i class='fa fa-times'></i></a></div>");
+      }
+    });
+    $("p.directors").on("click", ".remove_field", function() { //user click on remove text
+        event.preventDefault();
+        $(this).parent("div").remove();
+        x--;
+    });
+  });
   </script>
 
   <script>
-  function addGenre() {
-    event.preventDefault();
-    document.getElementById("genre").innerHTML += "<input type='text' class='form-control' name='genres' placeholder='add another genre'></input>";
-  }
-  function removeGenre() {
-    event.preventDefault();
-    document.getElementById("genre").innerHTML -= "<input type='text' class='form-control' name='genres' placeholder='remove additional genre'></input>";
-  }
+  $(document).ready(function(){
+    var max_fields = 10;
+    var x = 1;
+    $("#btn3").click(function(){
+      event.preventDefault();
+      if (x < max_fields) {
+        x++;
+        $("p.genres").append("<div>" + "<input type='text' class='form-control' name='genres' placeholder='add another genre'/>" + "<a href='#' style='display: inline; float: right;' class='remove_field'><i class='fa fa-times'></i></a></div>");
+      }
+    });
+    $("p.genres").on("click", ".remove_field", function() { //user click on remove text
+        event.preventDefault();
+        $(this).parent("div").remove();
+        x--;
+    });
+  });
   </script>
+
 </body>
 </html>
