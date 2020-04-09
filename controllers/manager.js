@@ -103,7 +103,7 @@ var ManagerController = {
   },
 
   EditEmployee: function(req, res){
-    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_first_name: req.body.em_first_name, em_last_name: req.body.em_last_name, em_email: req.body.em_email }, overwrite: true} , function(err, employee){
+    Employee.findOneAndUpdate({_id: req.params._id}, {$set: { em_first_name: req.body.em_first_name, em_last_name: req.body.em_last_name, em_email: req.body.em_email, em_address_line1: req.body.em_address_line1, em_address_line2: req.body.em_address_line2, em_address_city: req.body.em_address_city, em_address_postcode: req.body.em_address_postcode, em_tel: req.body.em_tel }, overwrite: true} , function(err, employee){
       if (err) { throw err; }
       res.status(201).redirect('/manager/hr');
     });

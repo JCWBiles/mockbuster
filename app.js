@@ -270,6 +270,11 @@ app.post('/manager/staff_creation', upload.single('imageUrl'), function(req, res
     em_email: req.body.em_email,
     staff_id: req.body.staff_id,
     password: req.body.password,
+    em_address_line1: req.body.em_address_line1,
+    em_address_line2: req.body.em_address_line2,
+    em_address_city: req.body.em_address_city,
+    em_address_postcode: req.body.em_address_postcode,
+    em_tel: req.body.em_tel,
     imageUrl: req.file.path,
   });
     console.log(req.body.em_first_name);
@@ -290,6 +295,11 @@ app.post('/manager/staff_creation', upload.single('imageUrl'), function(req, res
     em_email: req.body.em_email,
     staff_id: req.body.staff_id,
     password: req.body.password,
+    em_address_line1: req.body.em_address_line1,
+    em_address_line2: req.body.em_address_line2,
+    em_address_city: req.body.em_address_city,
+    em_address_postcode: req.body.em_address_postcode,
+    em_tel: req.body.em_tel,
   });
     console.log(req.body.em_first_name);
     console.log(req.body.em_email);
