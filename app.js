@@ -313,10 +313,11 @@ app.post('/employee/account/upload/:_id', upload.single('imageUrl'), function (r
 });
 
 //route for initial FILMS image upload
+
 var Films = require('./models/films');
-app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, res){
+app.post('/employee/film_creation', upload.single('imageUrl'), function(req, res){
   if(req.file){
-  var film = new Films({
+  var films = new Films({
     name: req.body.name,
     genres: req.body.genres,
     actors: req.body.actors,
@@ -329,16 +330,16 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
     imageUrl: req.file.path,
   });
     console.log(req.body.name);
-    console.log(req.body.actors);
+    console.log(req.body.date);
     console.log(req.file);
-    film.save(function(err) {
+    films.save(function(err) {
       if (err) { throw err; }
       else {
         res.status(201).redirect('/employee/em_film_lib')
       }
   });
 } else {
-  var film = new Films({
+  var films = new Films({
     name: req.body.name,
     genres: req.body.genres,
     actors: req.body.actors,
@@ -350,8 +351,8 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
     modal: req.body.modal,
   });
     console.log(req.body.name);
-    console.log(req.body.actors);
-    film.save(function(err) {
+    console.log(req.body.date);
+    films.save(function(err) {
       if (err) { throw err; }
       else {
         res.status(201).redirect('/employee/em_film_lib')
@@ -360,14 +361,14 @@ app.post('/employee/em_film_creation', upload.single('imageUrl'), function(req, 
   }
 });
 
-//route for editing FILMS image
-app.post('/employee/em_film_lib/em_edit_film/:_id', upload.single('imageUrl'), function (req, res, next) {
-  console.log(req.file)
-  Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
-    if (err) { throw err; }
-    res.status(201).redirect('/employee/em_film_lib');
-  });
-});
+// //route for editing FILMS image
+// app.post('/employee/em_film_lib/em_edit_film/:_id', upload.single('imageUrl'), function (req, res, next) {
+//   console.log(req.file)
+//   Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+//     if (err) { throw err; }
+//     res.status(201).redirect('/employee/em_film_lib');
+//   });
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

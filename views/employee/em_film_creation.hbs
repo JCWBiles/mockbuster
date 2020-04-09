@@ -60,7 +60,7 @@
       <div class="row">
         <h1 style="color: white;">Welcome to Film Creation {{#employees}}{{this.em_first_name}}{{/employees}}</h1>
         <div class="col-8 form-background">
-          <form action="/employee/em_film_creation" method="post" enctype="multipart/form-data">
+          <form action="/employee/film_creation" method="post" enctype="multipart/form-data">
             <h5 style="padding-top: 20px;">Film Details</h5>
             <div class="form-group">
               <label for="FilmName">Film Title</label>
@@ -68,19 +68,19 @@
             </div>
             <div class="form-group">
               <label for="FilmGenres">Film Genre(s)</label>
-              <input name="genres" type="text" placeholder="enter film genre(s) here" class="form-control" id="FilmGenres" required>
+              <input name="genres" type="text" placeholder="enter film genre(s) here" class="form-control" id="FilmGenres">
             </div>
             <div class="form-group">
               <label for="FilmActors">Film Actors</label>
-              <input name="actors" type="text" placeholder="enter film actors here" class="form-control" id="FilmActors" required>
+              <input name="actors" type="text" placeholder="enter film actors here" class="form-control" id="FilmActors">
             </div>
             <div class="form-group">
               <label for="FilmDirectors">Film Director(s)</label>
-              <input name="directors" type="text" placeholder="enter film director(s) here" class="form-control" id="FilmDirectors" required>
+              <input name="directors" type="text" placeholder="enter film director(s) here" class="form-control" id="FilmDirectors">
             </div>
             <div class="form-group">
               <label for="FilmReleaseDate">Film Release Date</label>
-              <input name="date" type="text" placeholder="enter the YEAR the film was release here" class="form-control" id="FilmReleaseDate" required>
+              <input name="date" type="text" placeholder="enter the YEAR the film was released here" class="form-control" id="FilmReleaseDate">
             </div>
             <div class="form-group">
               <label for="FilmPrice">Film Price</label>
@@ -100,11 +100,11 @@
             </div>
             <div class="form-group">
               <label for="FilmPic">Film Pic</label>
-              <input name="imageUrl" type="file" class="form-control" enctype="multipart/form-data">
+              <input name="imageUrl" type="file" class="form-control" placeholder="enter film trailer url here" enctype="multipart/form-data">
             </div>
 
       <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
         <label class="form-check-label" for="exampleCheck1">Tick to confirm details are correct</label>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
