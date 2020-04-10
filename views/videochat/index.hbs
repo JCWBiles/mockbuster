@@ -144,8 +144,10 @@
       <div class="ui form">
         <div class="fields">
           <div class="field">
+            {{#users}}
             <label>User Name</label>
-            <input type="text" placeholder="{{this.firstname}}" id="username" name="firstname">
+            <input type="text" value="{{this.firstname}} {{this.lastname}}" id="username" name="firstname">
+            {{/users}}
           </div>
           <br>
           <div class="field">

@@ -68,43 +68,7 @@
       <hr>
       {{#each films}}
       <div class="event-description" style="text-align: center;">
-
         <img src="../{{this.imageUrl}}" alt="{{this.name}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
-        
-        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
-          <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
-          <span class="fa-lg sr-only">Edit Film Pic</span>
-        </a>
-
-              <!-- Callout - edit img modal -->
-      <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/em_film_lib/upload/{{this._id}}" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="_method" value="PATCH" />
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
-                  <input type='file' accept="image/*" name="imageUrl" />
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn--teal btn-primary" value="Edit"/>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- /.Callout - edit img modal -->
-
-
         <p id="employee-name" style="color: black;">Film: {{this.name}}</p>
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#{{this.modal}}" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
@@ -125,23 +89,23 @@
                 </button>
               </div>
               <div class="modal-body">
-
-                <form id="new-film-form" style = "display: inline; margin-top: -20px;" action="/employee/film/upload/{{this._id}}" method="post" enctype="multipart/form-data">
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/employee/film/upload/{{this._id}}" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="FilmImage" class="col-form-label">Film Image:</label>
                     <input type="file" class="form-control" id="FilmImage" name="imageUrl" value="{{this.imageUrl}}" enctype="multipart/form-data">
                   </div>
+
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="film-name" class="col-form-label">Film Title:</label>
-                    <input type="text" class="form-control" id="film-name" name="name" value="{{this.name}}">
+                    <label for="em-first-name" class="col-form-label">Film Title:</label>
+                    <input type="text" class="form-control" id="em-first-name" name="name"value="{{this.name}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="em-actors" class="col-form-label">Actor(s): <button style="display:inline;" id="btn1" class="btn"><i class="fas fa-plus"></i></button></label>
-                    {{#each actors}}<input type="text" class="form-control" id="em-actors" name="actors"value="{{this}}">{{/each}}
+                    {{#each actors}}<input type="text" class="form-control" id="em-lactors" name="actors"value="{{this}}">{{/each}}
                     <p class="actors" id="demo"></p>
                   </div>
 
@@ -161,20 +125,20 @@
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-date" class="col-form-label">Date:</label>
-                    <input type="text" class="form-control" id="em-date" name="date"value="{{this.date}}">
+                    <label for="em-email" class="col-form-label">Date:</label>
+                    <input type="text" class="form-control" id="em-email" name="date"value="{{this.date}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-description" class="col-form-label">Description:</label>
-                    <input type="text" class="form-control" id="em-description" name="description"value="{{this.description}}">
+                    <label for="em-email" class="col-form-label">Description:</label>
+                    <input type="text" class="form-control" id="em-email" name="description"value="{{this.description}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="em-price" class="col-form-label">Price:</label>
-                    <input type="text" class="form-control" id="em-price" name="price"value="{{this.price}}">
+                    <label for="em-email" class="col-form-label">Price:</label>
+                    <input type="text" class="form-control" id="em-email" name="price"value="{{this.price}}">
                   </div>
 
                 <div class="modal-footer">
@@ -288,7 +252,6 @@
     });
   </script>
 
-
   <script>
   $(document).ready(function(){
     var max_fields = 10;
@@ -330,7 +293,7 @@
   <script>
   $(document).ready(function(){
     var max_fields = 10;
-    var x = 1;
+    var x = 1;manager
     $("#btn3").click(function(){
       event.preventDefault();
       if (x < max_fields) {
