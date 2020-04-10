@@ -68,9 +68,13 @@
               <a href="#"><button type="button" class="col-1 hub-buttons btn btn-success btn-lg">Customer Directory<br><i class="fas fa-person-booth"></i></button></a>
               <a href="/employee/em_film_lib"><button type="button" class="col-1 hub-buttons btn btn-danger btn-lg">Film Library<br><i class="fas fa-photo-video"></i></button></a>
               <div class="w-100"></div>
+              {{#if feedback}}
               {{#each_upto feedback 1}}
               <a href="/employee/feedback"><button type="button" class="col-1 hub-buttons btn btn-warning btn-lg">Customer Feedback ({{../feedback.length}})<br><i class="fas fa-comments"></i></button></a>
               {{/each_upto}}
+              {{else}}
+              <a href="/employee/feedback"><button type="button" class="col-1 hub-buttons btn btn-warning btn-lg">Customer Feedback (0)<br><i class="fas fa-comments"></i></button></a>
+              {{/if}}
               <a href="/employee/session/destroy"><button type="button" class="col-1 hub-buttons btn btn-dark btn-lg">Log Out<br><i class="fas fa-sign-out-alt"></i></button></a>
             </div>
           </div>

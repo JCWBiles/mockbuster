@@ -10,6 +10,8 @@ var methodOverride = require('method-override');
 var mailgun = require('mailgun-js');
 var flash = require('express-flash-messages');
 var Handlebars = require('hbs');
+// var simpleWebRTC = require('simplewebrtc');
+// var adapter = require('webrtc-adapter');
 //Image upload setup
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -30,6 +32,7 @@ var authRouter = require('./routes/auth');
 var accountRouter = require('./routes/account');
 var checkoutRouter = require('./routes/checkout');
 var blogRouter = require('./routes/blog');
+var videoRouter = require('./routes/videochat');
 var basketRouter = require('./routes/basket');
 var employeeRouter = require('./routes/employee');
 var managerRouter = require('./routes/manager');
@@ -119,6 +122,7 @@ app.use('/account/completed', accountRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/checkout/thank_you', checkoutRouter);
 app.use('/blog', blogRouter);
+app.use('/videochat', videoRouter);
 app.use('/films', basketRouter);
 app.use('/employee', employeeRouter);
 app.use('/employee/change', employeeRouter);
