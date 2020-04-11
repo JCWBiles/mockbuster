@@ -18,7 +18,7 @@ var CartController = {
       cart.save(function(err) {
         if (err) { throw err; }
         else {
-          res.status(201).redirect('/films')
+          res.status(201).redirect('back')
         }
       })
     })
@@ -29,7 +29,7 @@ var CartController = {
       if (err) { throw err  };
       Cart.remove({_id: req.params._id}, function(err, cartusers){
         if (err) { throw err }
-        res.redirect('/films');
+        res.redirect('back');
       })
     })
   },
