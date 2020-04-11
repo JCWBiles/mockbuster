@@ -1,5 +1,6 @@
 var Blog = require('../models/blog');
 var User = require('../models/user');
+var Cart = require('../models/cart');
 var Employee = require('../models/employee');
 var Manager = require('../models/manager');
 
@@ -11,8 +12,10 @@ var BlogController = {
         if (err) { throw err; }
         Blog.find(function(err, blog) {
           if (err) { throw err; }
-          res.render('blog/index', { qs:req.query, blog: blog, users: users});
-          console.log(req.session.userId);
+          Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+            res.render('blog/index', { qs:req.query, blog: blog, users: users, cartusers:cartusers});
+            console.log(req.session.userId);
+          })
         }).sort( { date: -1 } );
       });
     }else if (req.session.employeeId) {
@@ -34,35 +37,35 @@ var BlogController = {
         }).sort( { date: -1 } );
       });
     }
-    },
+  },
 
 
-    Create: function(req, res) {
-      User.find({_id: req.session.userId}, function(err) {
+  Create: function(req, res) {
+    User.find({_id: req.session.userId}, function(err) {
+      if (err) { throw err; }
+      var blog = new Blog({
+        movie: req.body.movie,
+        review: req.body.review,
+        date: req.body.date,
+        user: req.body.user,
+
+      });
+      console.log(req.body.movie);
+      console.log(req.session.userId);
+
+      blog.save(function(err) {
         if (err) { throw err; }
-        var blog = new Blog({
-          movie: req.body.movie,
-          review: req.body.review,
-          date: req.body.date,
-          user: req.body.user,
 
-        });
-        console.log(req.body.movie);
-        console.log(req.session.userId);
-
-        blog.save(function(err) {
-          if (err) { throw err; }
-
-          res.redirect('/blog');
-        })
+        res.redirect('/blog');
       })
-    },
+    })
+  },
 
-    Delete: function(req, res){
-      Blog.findByIdAndRemove({_id: req.params._id}, function(err){
-        if (err) { throw err; }
-        res.status(201).redirect('/blog');
-      })
-    },
+  Delete: function(req, res){
+    Blog.findByIdAndRemove({_id: req.params._id}, function(err){
+      if (err) { throw err; }
+      res.status(201).redirect('/blog');
+    })
+  },
 };
 module.exports = BlogController;

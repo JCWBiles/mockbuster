@@ -1,5 +1,7 @@
 var User = require('../models/user');
 var Feedback = require('../models/feedback');
+var Cart = require('../models/cart');
+
 var bcrypt = require('bcrypt');
 
 var UserController = {
@@ -112,7 +114,9 @@ var UserController = {
       if (err) {
         throw err
       }
-      res.status(201).render('account/index', { users: users })
+      Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+      res.status(201).render('account/index', { users: users, cartusers:cartusers })
+    })
     });
   },
 
@@ -187,7 +191,7 @@ var UserController = {
       res.status(201).render('account/completed', { users: users })
     });
   },
-  
+
 };
 
 module.exports = UserController;
