@@ -22,7 +22,17 @@ var CartController = {
         }
       })
     })
-  }
+  },
+
+  Delete: function(req, res){
+    User.find({id:req.session.userId}, function(err, users){
+      if (err) { throw err  };
+      Cart.remove({_id: req.params._id}, function(err, cartusers){
+        if (err) { throw err }
+        res.redirect('/films');
+      })
+    })
+  },
 };
 
 module.exports = CartController;

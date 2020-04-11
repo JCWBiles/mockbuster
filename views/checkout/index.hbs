@@ -91,9 +91,15 @@
                     <i class="fas fa-shopping-cart">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
-                    {{#if cartusers}}{{#each cartusers}}<a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}<i style="margin-right: -40px;" class="fas fa-times float-right"></i></a>{{/each}}
-                    <hr/>
-                    {{/if}}
+                    {{#if cartusers}}
+                    {{#each cartusers}}<form class="" action="/cart/delete/{{this._id}}" method="post">
+                      <a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}
+                      <input type="hidden" name="_method" value="DELETE" />
+                      <button type="submit" class="btn-danger" style=" margin-right: -40px; float:right"><i class="fas fa-times float-right"></i></button>
+                    </a></form>
+                    {{/each}}
+                  <hr/>
+                  {{/if}}
                     <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
                     <hr> -->
                     <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
@@ -133,31 +139,11 @@
                 <div class="block-heading">
                   <h2>Check Out</h2>
                 </div>
-                <div id="site">
-                  <div id="content">
-                    <table id="checkout-cart" class="shopping-cart">
-                      <thead>
-                        <tr style="padding-left: 20px;">
-                          <th scope="col">Item</th>
-                          <th scope="col">Qty</th>
-                          <th scope="col">Price</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      </tbody>
-                    </table>
-                    <div id="pricing">
-                      <p id="sub-total">
-                        <strong>Total</strong>: <span id="stotal"></span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
 
                 <div class="">
 
                   {{#each cartusers}}
-                  <li>{{this.film.name}} - {{this.film.price}}</li>
+                  <li>{{this.film.name}} - {{this.film.price}} <button type="submit" style="display inline; "class="btn-danger float-right"><i style="" class="fas fa-times"></i></button></li><br>
                   {{/each}}
 
                   {{#count}}

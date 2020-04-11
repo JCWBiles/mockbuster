@@ -30,5 +30,6 @@ router.get('/zero_to_nine', FilmsController.Zero_to_Nine);
 router.get('/search', FilmsController.Search);
 router.get('/autocomplete', FilmsController.Autocomplete);
 router.post('/add', CartController.Create);
+router.post('/delete/:_id', CartController.Delete);
 
 module.exports = router;
