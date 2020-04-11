@@ -90,6 +90,19 @@
               </li>
               <!-- /Header - /search box -->
 
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-shopping-cart">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
+                  {{#if cartusers}}{{#each cartusers}}<a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}<i style="margin-right: -40px;" class="fas fa-times float-right"></i></a>{{/each}}
+                  <hr/>
+                  {{/if}}
+                  <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
+                  <hr> -->
+                  <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
+                </div>
+              </li>
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -112,116 +125,80 @@
       </header>
       <!-- /.Header -->
 
-      <!-- Callout -->
-      <div id="site">
-      <h1 style="margin-left:20px;">Crime</h1>
-        <div class="container-fluid background-jumbotron callout-container">
-          <div class="opaque-overlay">&nbsp;</div>
-          <div class="row">
-            <div class="tz-gallery">
+
+          <!-- Callout -->
+          <div id="site">
+
+            <h1 style="margin-left:20px;">Crime</h1>
+            <div class="container-fluid background-jumbotron callout-container">
+              <div class="opaque-overlay">&nbsp;</div>
               <div class="row">
+                <div class="tz-gallery">
+                  <div class="row">
 
-                <!-- Callout - Films -->
-                {{#each films}}
-                <div class="col-sm-6 col-md-3">
-                  <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
-                    <img src="../{{this.imageUrl}}" alt="{{this.name}}">
-                    <div class="modal fade" id="{{this.modal}}" tabindex="-1" data-backdrop="static"role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="movieLabel"><b>{{this.name}}</b>
-                            </h5>
-                            <div class="buttons">
-                              <span class="like-btn"></span>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form>
-                              <div class="form-group">
-                                <p>{{this.description}}</p>
+                    <!-- Callout - Films -->
+                    {{#users}}
+                    <input type="hidden" name="userId" value="{{this._id}}">
+                    {{/users}}
+                    {{#each films}}
+                    <div class="col-sm-6 col-md-3">
+                      <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/cart/add" method="post">
+                      <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
+                        <img src="{{this.imageUrl}}" alt="{{this.name}}">
+                      </a>
+
+                      <!-- Callout - film details modal -->
+                      <div class="modal fade" id="{{this.modal}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="movieLabel"><b>{{this.name}}</b>
+                              </h5>
+                              <div class="buttons">
+                                <span class="like-btn"></span>
                               </div>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                             </div>
-                            <div>
-                              <h4 style="margin:10px;"><span>Trailer</span></h4>
-                              <iframe style="margin:10px;" height="150" width="300" src="{{this.trailerUrl}}" allowfullscreen frameborder="0"></iframe>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                          </form>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                  <input type="hidden" class="form-control" name="filmId" value="{{this._id}}">
+                                </div>
+                                <div class="form-group">
+                                  <p>{{this.description}}</p>
+                                </div>
+                              <div>
+                                <h4 style="margin:10px;"><span>Trailer</span></h4>
+                                <iframe style="margin:10px;" height="150" width="300" src="{{this.trailerUrl}}" allowfullscreen frameborder="0"></iframe>
+                              </div>
 
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <div id="content" style="background-color:teal; margin-right:85px;">
-                    <div id="products">
-                      <div style="margin-left: 20px; padding-bottom:5px;" class="product-description" data-name="{{this.name}}" data-price="4.99">
-                        <h3 class="product-name">{{this.name}}</h3>
-                        <p class="product-price">&pound; 4.99</p>
-                        <form class="add-to-cart" action="/films/crime" method="post">
-                          <div>
-                            <label for="qty-3">Quantity</label>
-                            <input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+                              <div class="modal-footer">
+                                <input type="submit" class="btn btn--teal btn-primary" value="Add to Cart" />
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                              </form>
+                              <!-- /.Callout -  film details modal -->
+                            </div>
                           </div>
-                          <p><input type="submit" value="Add to cart" class="btn btn-primary" /></p>
-                        </form>
-                      </div>
+                          </div>
+                          </div>
+
 
                     </div>
+                    {{/each}}
+
+                    <!-- /Callout - /Films -->
+
                   </div>
                 </div>
 
-
-                {{/each}}
-
-                <!-- /Callout - /Films -->
-
               </div>
-            </div>
 
           </div>
 
-        </div>
-        <div id="content" style="background-color: white;">
-          <h1>Your Shopping Cart</h1>
-          <form id="shopping-cart" action="/films/crime" method="post">
-            <table class="shopping-cart">
-              <thead>
-                <tr>
-                  <th scope="col">Item</th>
-                  <th scope="col">Qty</th>
-                  <th scope="col" colspan="2">Price</th>
-                </tr>
-              </thead>
-              <tbody>
 
-              </tbody>
-            </table>
-            <p id="sub-total">
-              <strong>Sub Total</strong>: <span id="stotal"></span>
-            </p>
-            <div id="shopping-cart-actions" style="padding-bottom: 20px;">
-
-              <input type="submit" name="update" id="update-cart" class="btn btn-primary" value="Update Cart" />
-
-              <input type="submit" name="delete" id="empty-cart" class="btn btn-primary" value="Empty Cart" />
-
-              <a href="/checkout" class="btn btn-primary">Go To Checkout</a>
-            </div>
-
-          </form>
-        </div>
-
-      </div>
-
-
-      <!-- /Callout -->
-
+          <!-- /Callout -->
       <!-- Footer -->
       <footer class="container-fluid footer-container text-center">
         <div class="col-12">

@@ -11,10 +11,10 @@ var CartController = {
       }
       var cart = new Cart({
         film: req.body.filmId,
-        user: req.body.userId,
+        user: req.session.userId,
       });
       console.log(req.body.filmId);
-      console.log(req.body.userId);
+      console.log(req.session.userId);
       cart.save(function(err) {
         if (err) { throw err; }
         else {

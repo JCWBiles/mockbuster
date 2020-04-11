@@ -9,10 +9,23 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(function(err, films) {
         if (err) { throw err };
-        Cart.find().populate('film').exec(function(err, cart){
-          if (err) { throw err };
-          res.render('films/index', {  films: films, users: users, cart: cart });
-          console.log(req.session.userId);
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          Cart.find().populate('film').exec(function(err, cart){
+            if (err) { throw err };
+            Cart.aggregate([ {
+              $unwind: '$film'},
+              {$group: {
+                _id: null,
+                total: {
+                  $sum: "$film.price"
+                }
+              }
+            } ] , function(err, total){
+              res.render('films/index', {  films: films, users: users, cart: cart, cartusers: cartusers, total:total});
+              console.log( "Total price : ", total );
+              console.log(req.session.userId);
+            })
+          })
         })
       })
     });
@@ -47,8 +60,10 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({ name: { $in: [ /^A/, /^B/,/^C/, /^D/,/^E/] } }), function(err, films) {
         if (err) { throw err; }
-        res.render('films/a_to_e', {  films: films, users: users });
-        console.log(req.session.userId);
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/a_to_e', {  films: films, users: users, cartusers: cartusers });
+          console.log(req.session.userId);
+        })
       }).sort( { name: 1 });
     })
   },
@@ -58,8 +73,10 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({ name: { $in: [ /^F/, /^G/,/^H/, /^I/,/^J/] } }), function(err, films) {
         if (err) { throw err; }
-        res.render('films/f_to_j', {  films: films, users: users });
-        console.log(req.session.userId);
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/f_to_j', {  films: films, users: users, cartusers: cartusers});
+          console.log(req.session.userId);
+        })
       }).sort( { name: 1 });
     })
   },
@@ -69,8 +86,10 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({ name: { $in: [ /^K/, /^L/,/^M/, /^N/,/^O/] } }), function(err, films) {
         if (err) { throw err; }
-        res.render('films/k_to_o', {  films: films, users: users });
-        console.log(req.session.userId);
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/k_to_o', {  films: films, users: users, cartusers: cartusers });
+          console.log(req.session.userId);
+        })
       }).sort( { name: 1 });
     })
   },
@@ -80,8 +99,10 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({ name: { $in: [ /^P/, /^Q/,/^R/, /^S/,/^T/] } }), function(err, films) {
         if (err) { throw err; }
-        res.render('films/p_to_t', {  films: films, users: users });
-        console.log(req.session.userId);
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/p_to_t', {  films: films, users: users, cartusers: cartusers});
+          console.log(req.session.userId);
+        })
       }).sort( { name: 1 });
     })
   },
@@ -91,8 +112,10 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({ name: { $in: [ /^U/, /^V/,/^W/, /^X/,/^Y/,/^Z/] } }), function(err, films) {
         if (err) { throw err; }
-        res.render('films/u_to_z', {  films: films, users: users });
-        console.log(req.session.userId);
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/u_to_z', {  films: films, users: users, cartusers: cartusers });
+          console.log(req.session.userId);
+        })
       }).sort( { name: 1 });
     })
   },
@@ -102,8 +125,10 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({ name: { $in: [ /^0/, /^1/,/^2/, /^3/,/^4/,/^5/,/^6/,/^7/,/^8/,/^9/] } }), function(err, films) {
         if (err) { throw err; }
-        res.render('films/zero_to_nine', {  films: films, users: users });
-        console.log(req.session.userId);
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/zero_to_nine', {  films: films, users: users, cartusers: cartusers });
+          console.log(req.session.userId);
+        })
       }).sort( { name: 1 });
     })
   },
@@ -114,7 +139,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Action"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/action', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/action', { films:films, users: users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -124,7 +151,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Biopic"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/biopic', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/biopic', { films:films, users:users, cartusers: cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -134,7 +163,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Comedy"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/comedy', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/comedy', { films:films, users:users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -144,7 +175,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Crime"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/crime', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/crime', { films:films, users:users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -154,7 +187,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Drama"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/drama', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/drama', { films:films, users:users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -164,7 +199,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Fantasy"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/fantasy', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/fantasy', { films:films, users:users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -174,7 +211,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["History"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/history', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/history', { films:films, users:users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -184,7 +223,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Horror"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/horror', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/horror', { films:films, users:users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -194,7 +235,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Kids"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/kids', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/kids', { films:films, users:users, cartusers: cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -204,7 +247,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Legal"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/legal', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/legal', { films:films, users:users, cartusers: cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -214,7 +259,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Musical"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/musical', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/musical', { films:films, users:users, cartusers: cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -224,7 +271,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Romance"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/romance', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/romance', { films:films, users:users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -234,7 +283,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Sports"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/sports', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/sports', { films:films, users:users, cartusers:cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -244,7 +295,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Superhero"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/superhero', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/superhero', { films:films, users:users, cartusers: cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -254,7 +307,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["Thriller"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/thriller', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/thriller', { films:films, users:users, cartusers: cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -264,7 +319,9 @@ var FilmsController = {
       if (err) { throw err; }
       Films.find(({"genres":{"$in":["War"]}}), function(err, films) {
         if (err) { throw err; }
-        res.render('films/war', { films:films, users:users })
+        Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render('films/war', { films:films, users:users, cartusers: cartusers })
+        })
       }).sort( { name: 1 });
     })
   },
@@ -300,25 +357,28 @@ var FilmsController = {
         Films.find({name: regex}, function(err, allFilms){
           if(err){
             console.log(err);
-          } else {
+          } else {Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
             if(allFilms.length < 1) {
               noMatch = "No films match that query, please try again.";
             }
-            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users});
-          }
-        });
-      } else {
-        // Get all films from DB
-        Films.find({}, function(err, allFilms){
-          if(err){
-            console.log(err);
-          } else {
-            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users});
-          }
-        });
+            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users, cartusers: cartusers});
+          })
+        }
+
+      });
+    } else {
+      // Get all films from DB
+      Films.find({}, function(err, allFilms){
+        if(err){
+          console.log(err);
+        } else {Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+          res.render("films/search",{films:allFilms, noMatch: noMatch, users:users, cartusers: cartusers});
+        })
       }
     });
-  },
+  }
+});
+},
 };
 function escapeRegex(text){
   return text.replace(/[-[\]{}()*+?.,\\^$!#\s]{}]/g, "\\$&");

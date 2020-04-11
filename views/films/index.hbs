@@ -87,14 +87,18 @@
                   </form>
                 </li>
                 <!-- /Header - /search box -->
+
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-shopping-cart">{{#if cart}} {{#each_upto cart 1}} ({{../cart.length}}) {{/each_upto}} {{/if}}</i>
+                    <i class="fas fa-shopping-cart">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
-                    {{#each cart}}<a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}<i style="margin-right: -40px; " class="fas fa-times float-right"></i></a>{{/each}}
+                    {{#if cartusers}}{{#each cartusers}}<a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}<i style="margin-right: -40px;" class="fas fa-times float-right"></i></a>{{/each}}
                     <hr/>
-                    <a class="dropdown-item" href="/checkout">Go to Checkout<i class="fas fa-cart-arrow-down float-right"></i></a>
+                    {{/if}}
+                    <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
+                    <hr> -->
+                    <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
                   </div>
                 </li>
 
@@ -138,7 +142,7 @@
               {{#each films}}
               <div class="col-sm-6 col-md-3">
                 <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/cart/add" method="post">
-                <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#{{this.modal}}" style="">
+                <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
                   <img src="{{this.imageUrl}}" alt="{{this.name}}">
                 </a>
 

@@ -88,6 +88,20 @@
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-shopping-cart">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
+                    {{#if cartusers}}{{#each cartusers}}<a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}<i style="margin-right: -40px;" class="fas fa-times float-right"></i></a>{{/each}}
+                    <hr/>
+                    {{/if}}
+                    <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
+                    <hr> -->
+                    <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
+                  </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{#users}}
                     {{this.firstname}}'s Account
                     {{/users}}
@@ -138,12 +152,16 @@
                     </div>
                   </div>
                 </div>
-                {{#cart}}
-                <li>{{this.film.name}} - {{this.film.price}}</li>
-                Total: {{this.total}}
-                {{/cart}}
+
                 <div class="">
 
+                  {{#each cartusers}}
+                  <li>{{this.film.name}} - {{this.film.price}}</li>
+                  {{/each}}
+
+                  {{#count}}
+                  Quantity: {{this}}
+                  {{/count}}
                 </div>
                 {{#users}}
                 <div class="form-group col-sm-12">
@@ -216,7 +234,10 @@
                     </form>
                     <div class="form-group col-sm-12">
                       <p>If you do not wish to save your card details, please click below:</p>
-                      <a style="text-decoration:none;" href="/checkout/thank_you"><button type="button" class="btn btn-primary btn-block">Confirm Payment</button></a>
+                      <form id="delete-cart" style = "display: inline;" action="/checkout/cart/delete/{{this._id}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <a style="text-decoration:none;" href="/checkout/thank_you"><button type="submit" class="btn btn-primary btn-block">Confirm Payment</button></a>
+                      </form>
                     </div>
                     {{/users}}
                   </div>

@@ -62,9 +62,11 @@
           <h1 style="color: white; margin-top:40px;">Welcome to Customer Feedback {{#employees}}{{this.em_first_name}}{{/employees}}</h1>
           <div class="row" style="margin-bottom: 90px;">
             <div class="container-fluid" style="margin-left: 110px;">
-              <a href="/employee/suggestions"><button  type="button" class="col-10 hub-buttons btn btn-warning btn-lg">Suggestions<br><i class="fas fa-info-circle"></i></button></a>
+              <a href="/employee/suggestions"><button  type="button" class="col-10 hub-buttons btn btn-warning btn-lg">Suggestions {{#if countSug}}{{#countSug}}({{this}}){{/countSug}} {{else}}(0) {{/if}}
+                <br><i class="fas fa-info-circle"></i></button></a>
               <br>
-              <a href="/employee/complaints"><button type="button" class="col-10 hub-buttons btn btn-danger btn-lg">Complaints<br><i class="fas fa-frown"></i></button></a>
+              <a href="/employee/complaints"><button type="button" class="col-10 hub-buttons btn btn-danger btn-lg">Complaints {{#if countCom}} {{#countCom}}({{this}}){{/countCom}} {{else}}(0) {{/if}}
+                <br><i class="fas fa-frown"></i></button></a>
               </div>
           </div>
           </div>

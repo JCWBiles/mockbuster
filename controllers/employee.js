@@ -216,9 +216,17 @@ var EmployeeController = {
       if (err) { throw err }
       Feedback.find().populate('user').exec(function (err, feedback) {
         if (err) { throw err };
-        res.status(201).render('employee/feedback', { feedback: feedback, employees: employees })
+        Feedback.countDocuments({movieSuggestion: {$ne: null} }, (err, countSug) => {
+          console.log( "Number of docs: ", countSug );
+          Feedback.countDocuments({complaint: {$ne: null} }, (err, countCom) => {
+            console.log( "Number of docs: ", countCom );
+            if (countCom) res.render('employee/feedback', { feedback: feedback, employees: employees, countSug:countSug, countCom: countCom });
+            else res.send(err);
+            console.log(req.session.employeeId);
+          });
+        });
       });
-    })
+    });
   },
 
   Suggestion: function(req, res){
