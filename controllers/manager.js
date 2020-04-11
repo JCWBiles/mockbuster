@@ -216,7 +216,7 @@ var ManagerController = {
   IndividualMsg: function(req, res){
     Manager.find({_id: req.session.managerId}, function(err, managers){
       if (err) { throw err }
-      Message.findById({_id: req.params._id}).populate('employee').exec(function (err, messages) {
+      Message.findByIdAndUpdate({_id: req.params._id}, {$set: { read: true }, overwrite: true}).populate('employee').exec(function (err, messages) {
         if (err) { throw err };
         res.status(201).render('manager/individualmsg', { messages: messages, managers: managers })
       })

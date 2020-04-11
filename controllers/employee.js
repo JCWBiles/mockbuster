@@ -153,7 +153,7 @@ var EmployeeController = {
       res.status(201).render('employee/em_film_creation', { employees: employees })
     });
   },
-  // 
+  //
   // EmEditFilm: function(req, res){
   //   Films.findOneAndUpdate({_id: req.params._id}, {$set: { name: req.body.name, genres: req.body.genres, actors: req.body.actors, directors: req.body.directors, date: req.body.date, price: req.body.price, description: req.body.description }, overwrite: true} , function(err, film){
   //     if (err) { throw err; }
@@ -202,7 +202,13 @@ var EmployeeController = {
   },
 
   Completed: function(req, res){
+    Employee.find({_id: req.session.employeeId}, function(err,employees){
+      console.log(req.session.employeeId);
+      if (err) {
+        throw err
+      }
       res.status(201).render('employee/completed', { employees: employees })
+    })
   },
 
   Feedback: function (req, res){
@@ -238,7 +244,7 @@ var EmployeeController = {
   IndividualFeedback: function(req, res){
     Employee.find({_id: req.session.employeeId}, function(err, employees){
       if (err) { throw err }
-      Feedback.findById({_id: req.params._id}).populate('user').exec(function (err, feedback) {
+      Feedback.findByIdAndUpdate({_id: req.params._id}, {$set: { read: true }, overwrite: true}).populate('user').exec(function (err, feedback) {
         if (err) { throw err };
         res.status(201).render('employee/individualfeedback', { feedback: feedback, employees: employees })
       })

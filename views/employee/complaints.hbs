@@ -66,12 +66,23 @@
               <h1>Complaints</h1>
               <br>
               {{#each feedback}}
+              {{#if read}}
               <div class="event-description">
                 <ul style="list-style-type: none; padding-left:10px;">
-                  <a style="font-weight: bold;" href="/employee/individualfeedback/{{_id}}"><li style="color: black;" id="feedback"><i style="padding-right: 10px;"class="fas fa-frown"></i> Complaint from: {{this.user.firstname}} {{this.user.lastname}} ({{this.user.email}})</li></a>                </ul>
+                  <a style="font-weight: bold;" href="/employee/individualfeedback/{{this._id}}"><li style="color: black;" id="feedback"><i style="padding-right: 10px;"class="fas fa-frown"></i> Complaint from: {{this.user.firstname}} {{this.user.lastname}} ({{this.user.email}})</li></a>
+                </ul>
                 <br>
               </div>
               <hr>
+              {{else}}
+              <div class="event-description">
+                <ul style="list-style-type: none; padding-left:10px;">
+                  <a style="font-weight: bold;" href="/employee/individualfeedback/{{this._id}}"><li style="color: black;" id="feedback"><i style="padding-right: 10px;"class="fas fa-frown"></i> Complaint from: {{this.user.firstname}} {{this.user.lastname}} ({{this.user.email}})</li><div style="margin-top:10px; margin-bottom:-40px;" class="btn btn-primary">Unread</div></a>
+                </ul>
+                <br>
+              </div>
+              <hr>
+              {{/if}}
               {{/each}}
             </div>
           </div>

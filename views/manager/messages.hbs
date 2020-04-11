@@ -64,10 +64,17 @@
           <h1 style="color: white;">Welcome to Messages {{#managers}}{{this.man_firstname}}{{/managers}}</h1>
           <div style="padding-top:10px; padding-bottom:10px;" class="col-8 form-background">
             {{#each messages}}
+            {{#if read}}
             <div class="event-description" style="text-align: center;">
               <a href="/manager/individualmsg/{{this._id}}"><p id="message" style="color: black;">Update details request from: {{this.employee.em_first_name}} {{this.employee.em_last_name}} (Staff ID: {{this.employee.staff_id}})</p></a>
             </div>
             <hr>
+            {{else}}
+            <div class="event-description" style="text-align: center;">
+              <a href="/manager/individualmsg/{{this._id}}"><p id="message" style="color: black;">Update details request from: {{this.employee.em_first_name}} {{this.employee.em_last_name}} (Staff ID: {{this.employee.staff_id}})</p><div class="btn btn-primary">Unread</div></a>
+            </div>
+            <hr>
+            {{/if}}
             {{/each}}
           </div>
         </div>
