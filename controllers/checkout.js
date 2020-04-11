@@ -1,16 +1,24 @@
 var User = require('../models/user');
 var Films = require('../models/films');
+var Cart = require('../models/cart');
+
 var CheckoutController = {
   Checkout: function(req, res) {
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(function(err, films) {
         if (err) { throw err; }
-        res.render('checkout/index', {  films: films, users: users });
-        console.log(req.session.userId);
+        Cart.find().populate('film').exec(function(err, cart) {
+          Cart.aggregate([{$group : {_id : null, total : {sum: "$film"}}}], function(err, total){
+          res.render('checkout/index', {  films: films, users: users, cart: cart, total: total });
+          console.log(req.session.userId);
+          console.log(total);
+          console.log(users);
+        })
       })
-    });
-  },
+    })
+  });
+},
 
   EditPay: function(req, res) {
       User.findOneAndUpdate({_id: req.params._id}, {$set: { address_first_line: req.body.address_first_line, address_second_line: req.body.address_second_line, address_town: req.body.address_town, address_post_code: req.body.address_post_code, card_holder: req.body.card_holder, card_number: req.body.card_number, expiration_month: req.body.expiration_month, expiration_year: req.body.expiration_year, cvc: req.body.cvc  }, overwrite: true} , function(err){
@@ -48,7 +56,7 @@ var CheckoutController = {
   //      console.log(body);
   //    });
 
-   },   
+   },
 };
 
 module.exports = CheckoutController;

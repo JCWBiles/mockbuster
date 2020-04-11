@@ -117,6 +117,7 @@ app.use('/films/u_to_z', filmRouter);
 app.use('/films/zero_to_nine', filmRouter);
 app.use('films/search', filmRouter);
 app.use('films/autocomplete', filmRouter);
+app.use('/cart', filmRouter);
 app.use('/account', accountRouter);
 app.use('/account/completed', accountRouter);
 app.use('/checkout', checkoutRouter);

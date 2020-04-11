@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var FilmsController = require('../controllers/films');
+var CartController = require('../controllers/cart');
 
 router.get('/', FilmsController.Index);
 router.get('/action', FilmsController.Action);
@@ -28,5 +29,6 @@ router.get('/u_to_z', FilmsController.U_to_Z);
 router.get('/zero_to_nine', FilmsController.Zero_to_Nine);
 router.get('/search', FilmsController.Search);
 router.get('/autocomplete', FilmsController.Autocomplete);
+router.post('/add', CartController.Create);
 
 module.exports = router;

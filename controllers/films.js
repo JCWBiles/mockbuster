@@ -1,5 +1,6 @@
 var Films = require('../models/films');
 var User = require('../models/user');
+var Cart = require('../models/cart');
 
 var FilmsController = {
 
@@ -7,9 +8,12 @@ var FilmsController = {
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
       Films.find(function(err, films) {
-        if (err) { throw err; }
-        res.render('films/index', {  films: films, users: users });
-        console.log(req.session.userId);
+        if (err) { throw err };
+        Cart.find().populate('film').exec(function(err, cart){
+          if (err) { throw err };
+          res.render('films/index', {  films: films, users: users, cart: cart });
+          console.log(req.session.userId);
+        })
       })
     });
   },

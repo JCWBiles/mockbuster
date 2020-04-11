@@ -138,6 +138,13 @@
                     </div>
                   </div>
                 </div>
+                {{#cart}}
+                <li>{{this.film.name}} - {{this.film.price}}</li>
+                Total: {{this.total}}
+                {{/cart}}
+                <div class="">
+
+                </div>
                 {{#users}}
                 <div class="form-group col-sm-12">
                 <a style="text-decoration:none;" href="/films"><button type="button" class="btn btn-primary btn-block">Continue Shopping</button></a>
@@ -326,9 +333,9 @@
         <script>
           $( window ).scroll(function() {
           if($(window).scrollTop() > 70){
-            $('.logo').css({'height': '70'}); 
+            $('.logo').css({'height': '70'});
           }else{
-              $('.logo').css({'height': '120'}); 
+              $('.logo').css({'height': '120'});
           }
 
           });

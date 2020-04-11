@@ -50,6 +50,9 @@ nav div a i {
     font-size: large;
 }
 
+nav a{
+  outline: none;
+}
 /*---------------------------------------------------callout*/
 
 .background-jumbotron {
