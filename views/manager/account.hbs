@@ -64,41 +64,7 @@
       <br>
       {{#managers}}
         <img src="../{{this.imageUrl}}" alt="{{this.man_firstname}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
-        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
-        <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
-        <span class="fa-lg sr-only">Edit Profile Pic</span>
-      </a>
-      <hr>
-
-      <!-- Callout - edit img modal -->
-      <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/upload/{{this._id}}" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="_method" value="PATCH" />
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
-                  <input type='file' accept="image/*" name="imageUrl"/>
-                </div>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn--teal btn-primary" value="Edit"/>
-                </div>
-             </form>
-          </div>
-        </div>
-      </div>
-      <!-- /.Callout - edit img modal -->
-
-      <br>
+      <br><br>
       <div class="event-description" style="text-align: center;">
         <p id="user-first-name" style="color: black;">First Name: {{this.man_firstname}}</p>
         <p id="user-last-name" style="color: black;">Last Name: {{this.man_lastname}}</p>
@@ -117,10 +83,16 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
+                <img src="../{{this.imageUrl}}" alt="{{this.man_firstname}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
               </div>
 
               <div class="modal-body">
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/edit_man/{{this._id}}" method="post">
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/manager/account/upload/{{this._id}}" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
+                    <input type='file' class="form-control" accept="image/*" name="imageUrl"/>
+                  </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">

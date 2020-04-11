@@ -18,11 +18,11 @@ router.get('/completed', ManagerController.Completed);
 router.get('/session/destroy', ManagerController.Logout);
 router.get('/account', ManagerController.Account);
 router.post('/delete/:_id', ManagerController.Delete);
-router.post('/edit_man/:_id', ManagerController.EditMan);
+// router.post('/edit_man/:_id', ManagerController.EditMan);
 router.post('/man_password/:_id', ManagerController.ManNewPassword);
 router.post('/em_password/:_id', ManagerController.EditEmPassword);
 router.get('/messages', ManagerController.Message);
 router.get('/individualmsg/:_id', ManagerController.IndividualMsg);
 router.post('/message/delete/:_id', ManagerController.DeleteMsg);
 
-module.exports = router; 
+module.exports = router;

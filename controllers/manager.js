@@ -170,13 +170,13 @@ var ManagerController = {
       res.status(201).redirect('/manager');
     })
   },
-
-  EditMan: function(req, res){
-    Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname, man_lastname: req.body.man_lastname, man_email: req.body.man_email }, overwrite: true} , function(err){
-      if (err) { throw err; }
-      res.status(201).redirect('/manager/account');
-    });
-  },
+  // 
+  // EditMan: function(req, res){
+  //   Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname, man_lastname: req.body.man_lastname, man_email: req.body.man_email }, overwrite: true} , function(err){
+  //     if (err) { throw err; }
+  //     res.status(201).redirect('/manager/account');
+  //   });
+  // },
 
   Completed: function(req, res) {
     Manager.find({_id: req.session.managerId}, function(err,managers){

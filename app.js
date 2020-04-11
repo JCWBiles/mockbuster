@@ -258,7 +258,7 @@ app.post('/manager', upload.single('imageUrl'), function(req, res){
 //route for editing MANAGER account image
 app.post('/manager/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
   console.log(req.file)
-  Manager.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path }, overwrite: true} , function(err){
+  Manager.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path, man_firstname: req.body.man_firstname, man_lastname: req.body.man_lastname, man_email: req.body.man_email }, overwrite: true} , function(err){
     if (err) { throw err; }
     res.status(201).redirect('/manager/account');
   });
