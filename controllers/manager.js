@@ -73,7 +73,7 @@ var ManagerController = {
       else {
         req.session.sessionFlash = {
           type: 'info',
-          message: 'Incorrect password, please try again'
+          message: 'Incorrect email, please try again'
         }
         console.log('wrong email');
         res.status(201).redirect('/manager')
@@ -170,7 +170,7 @@ var ManagerController = {
       res.status(201).redirect('/manager');
     })
   },
-  // 
+  //
   // EditMan: function(req, res){
   //   Manager.findOneAndUpdate({_id: req.params._id}, {$set: { man_firstname: req.body.man_firstname, man_lastname: req.body.man_lastname, man_email: req.body.man_email }, overwrite: true} , function(err){
   //     if (err) { throw err; }

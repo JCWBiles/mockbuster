@@ -56,7 +56,7 @@ var BlogController = {
       blog.save(function(err) {
         if (err) { throw err; }
 
-        res.redirect('/blog');
+        res.redirect('back');
       })
     })
   },
@@ -64,7 +64,7 @@ var BlogController = {
   Delete: function(req, res){
     Blog.findByIdAndRemove({_id: req.params._id}, function(err){
       if (err) { throw err; }
-      res.status(201).redirect('/blog');
+      res.status(201).redirect('back');
     })
   },
 };
