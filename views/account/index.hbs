@@ -94,219 +94,224 @@
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-shopping-cart">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
+                    <i class="fas fa-shopping-basket">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
                   </a>
+                  {{#if cartusers}}
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
-                    {{#if cartusers}}
+
                     {{#each cartusers}}<form class="" action="/cart/delete/{{this._id}}" method="post">
                       <a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}
-                      <input type="hidden" name="_method" value="DELETE" />
-                      <button type="submit" class="btn-danger" style=" margin-right: -40px; float:right"><i class="fas fa-times float-right"></i></button>
-                    </a></form>
-                    {{/each}}
-                  <hr/>
-                  {{/if}}
-                    <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
-                    <hr> -->
-                    <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
-                  </div>
-                </li>
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit" class="btn-danger" style=" margin-right: -40px; float:right"><i class="fas fa-times float-right"></i></button>
+                      </a></form>
+                      {{/each}}
+                      <hr/>
+                      <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
+                      <hr> -->
+                      <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
+                    </div>
+                    {{else}}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
+                      <a class="dropdown-item" href="#"> Basket is empty </a>
+                    </div>
+                    {{/if}}
+                  </li>
 
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{#users}}
-                    {{this.firstname}}'s Account
-                    {{/users}}
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                    <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="/videochat">Video Chat<i class="fas fa-video float-right"></i></a>
-                    <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-shopping-cart float-right"></i></a>
-                    <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <!-- /.Header -->
-
-    <!-- Callout -->
-    <div class="each-event">
-      <div class="container-fluid background-jumbotron callout-container">
-        <div class="opaque-overlay">&nbsp;</div>
-        <div class="col-4 form-background">
-      <h1 style="text-align: center;">Account Details</h1>
-      <br>
-      {{#users}}
-      <img src="{{this.imageUrl}}" alt="{{this.firstname}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
-      <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
-        <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
-        <span class="fa-lg sr-only">Edit Profile Pic</span>
-      </a>
-      <hr>
-
-      <!-- Callout - edit img modal -->
-      <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/upload/{{this._id}}" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="_method" value="PATCH" />
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
-                  <input type='file' accept="image/*" name="imageUrl"/>
-                </div>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{#users}}
+                      {{this.firstname}}'s Account
+                      {{/users}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                      <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
+                      <a class="dropdown-item" href="/videochat">Video Chat<i class="fas fa-video float-right"></i></a>
+                      <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-cart-arrow-down float-right"></i></a>
+                      <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn--teal btn-primary" value="Edit"/>
-              </div>
-            </form>
+            </nav>
           </div>
         </div>
-      </div>
-      <!-- /.Callout - edit img modal -->
+      </header>
+      <!-- /.Header -->
 
-      <br>
-      <div class="event-description" style="text-align: center;">
-        <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
-        <p id="user-last-name" style="color: black;">Last Name: {{this.lastname}}</p>
-        <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
-        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
-          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-          <span class="fa-lg sr-only">Edit Details</span>
-        </a>
-
-        <!-- Callout - edit USER modal -->
-        <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-              <div class="modal-body">
-                <form id="new-name-form" style="display: inline; margin-top: -20px;" action="/account/edit_user/{{this._id}}" method="post">
-
-                  <input type="hidden" name="_method" value="PATCH" />
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Edit your first name:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="firstname"value="{{this.firstname}}">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Edit your last name:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="lastname" value="{{this.lastname}}">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Edit your email address:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="email" value="{{this.email}}">
-                  </div>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- /.Callout - edit USER modal -->
-
-        <hr>
-        <p id="user-password"style="color: black;">To update your password please click the edit button:</p>
-        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit4" style="">
-          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-          <span class="fa-lg sr-only">Edit Password</span>
-        </a>
-
-        <!-- Callout - edit password modal -->
-        <div class="modal fade" id="edit4" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/account/password/{{this._id}}" method="post">
-                  <input type="hidden" name="_method" value="PATCH" />
-                  <div class="form-group">
-                    <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- /.Callout - edit password modal -->
-
-        <hr>
-        <br>
-        <div style="text-align: center;">
-          <form id="delete-user-form" style = "display: inline;" action="/account/delete/{{this._id}}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
-          </form>
-        </div>
-        <br>
-        <hr>
-        <h1>Feedback</h1>
-        <br>
-        <div class="feedback">
-            <h3>Make a Suggestion</h3>
-            <p>Can't find the film you're looking for? Suggest it below!!</p>
-            <form action="/account/feedback" id="usrform" method="post">
-            <p style="text-align:center;"> Name: {{this.firstname}}</p>
+      <!-- Callout -->
+      <div class="each-event">
+        <div class="container-fluid background-jumbotron callout-container">
+          <div class="opaque-overlay">&nbsp;</div>
+          <div class="col-4 form-background">
+            <h1 style="text-align: center;">Account Details</h1>
             <br>
-            <textarea class="textbox" rows="4" cols="35" name="movieSuggestion" form="usrform" placeholder="Suggest a Movie..."></textarea>
-            <p id="demo1"></p>
-            <input hidden name="userId" type="text" class="form-control textbox" id="exampleInputUserId" value="{{this._id}}">
-            <input type="submit" style="margin-top:10px;">
-          </form>
-          </div>
-          <br>
-          <br>
-          <div class="feedback">
-            <h3>Complaints</h3>
-            <p> At MockBuster we strive to give a wonderful viewing experience. However, if you are not satisfied or have ideas on how we can make MockBuster even better, please let us know below!!</p>
-            <form action="/account/feedback" id="complaintform" method="post">
-              <p style="text-align:center;">Name: {{this.firstname}}</p>
+            {{#users}}
+            <img src="{{this.imageUrl}}" alt="{{this.firstname}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
+            <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
+              <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
+              <span class="fa-lg sr-only">Edit Profile Pic</span>
+            </a>
+            <hr>
+
+            <!-- Callout - edit img modal -->
+            <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/upload/{{this._id}}" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="_method" value="PATCH" />
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
+                        <input type='file' accept="image/*" name="imageUrl"/>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <input type="submit" class="btn btn--teal btn-primary" value="Edit"/>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- /.Callout - edit img modal -->
+
             <br>
-            <textarea class="textbox" rows="4" cols="35" name="complaint" form="complaintform" placeholder="What could we do better?"></textarea>
-            <p id="demo2"></p>
-            <input hidden name="userId" type="text" class="form-control textbox" id="exampleInputUserId" value="{{this._id}}">
-            <input type="submit" style="margin-top:10px;">
-          </form>
+            <div class="event-description" style="text-align: center;">
+              <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
+              <p id="user-last-name" style="color: black;">Last Name: {{this.lastname}}</p>
+              <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
+              <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
+                <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+                <span class="fa-lg sr-only">Edit Details</span>
+              </a>
+
+              <!-- Callout - edit USER modal -->
+              <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form id="new-name-form" style="display: inline; margin-top: -20px;" action="/account/edit_user/{{this._id}}" method="post">
+
+                        <input type="hidden" name="_method" value="PATCH" />
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Edit your first name:</label>
+                          <input type="text" class="form-control" id="recipient-name" name="firstname"value="{{this.firstname}}">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Edit your last name:</label>
+                          <input type="text" class="form-control" id="recipient-name" name="lastname" value="{{this.lastname}}">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Edit your email address:</label>
+                          <input type="text" class="form-control" id="recipient-name" name="email" value="{{this.email}}">
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- /.Callout - edit USER modal -->
+
+              <hr>
+              <p id="user-password"style="color: black;">To update your password please click the edit button:</p>
+              <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit4" style="">
+                <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+                <span class="fa-lg sr-only">Edit Password</span>
+              </a>
+
+              <!-- Callout - edit password modal -->
+              <div class="modal fade" id="edit4" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/account/password/{{this._id}}" method="post">
+                        <input type="hidden" name="_method" value="PATCH" />
+                        <div class="form-group">
+                          <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- /.Callout - edit password modal -->
+
+              <hr>
+              <br>
+              <div style="text-align: center;">
+                <form id="delete-user-form" style = "display: inline;" action="/account/delete/{{this._id}}" method="post">
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
+                </form>
+              </div>
+              <br>
+              <hr>
+              <h1>Feedback</h1>
+              <br>
+              <div class="feedback">
+                <h3>Make a Suggestion</h3>
+                <p>Can't find the film you're looking for? Suggest it below!!</p>
+                <form action="/account/feedback" id="usrform" method="post">
+                  <p style="text-align:center;"> Name: {{this.firstname}}</p>
+                  <br>
+                  <textarea class="textbox" rows="4" cols="35" name="movieSuggestion" form="usrform" placeholder="Suggest a Movie..."></textarea>
+                  <p id="demo1"></p>
+                  <input hidden name="userId" type="text" class="form-control textbox" id="exampleInputUserId" value="{{this._id}}">
+                  <input type="submit" style="margin-top:10px;">
+                </form>
+              </div>
+              <br>
+              <br>
+              <div class="feedback">
+                <h3>Complaints</h3>
+                <p> At MockBuster we strive to give a wonderful viewing experience. However, if you are not satisfied or have ideas on how we can make MockBuster even better, please let us know below!!</p>
+                <form action="/account/feedback" id="complaintform" method="post">
+                  <p style="text-align:center;">Name: {{this.firstname}}</p>
+                  <br>
+                  <textarea class="textbox" rows="4" cols="35" name="complaint" form="complaintform" placeholder="What could we do better?"></textarea>
+                  <p id="demo2"></p>
+                  <input hidden name="userId" type="text" class="form-control textbox" id="exampleInputUserId" value="{{this._id}}">
+                  <input type="submit" style="margin-top:10px;">
+                </form>
+              </div>
+              <br>
+              <br>
+            </div>
           </div>
-          <br>
-          <br>
         </div>
       </div>
-    </div>
-    </div>
     </div>
     {{/users}}
     <!-- /.Callout -->
@@ -418,17 +423,17 @@
     });
     </script>
 
-      <!-- jquery to shrink logo and navbar on scroll -->
-      <script>
-        $( window ).scroll(function() {
-        if($(window).scrollTop() > 70){
-          $('.logo').css({'height': '70'});
-        }else{
-            $('.logo').css({'height': '120'});
-        }
+    <!-- jquery to shrink logo and navbar on scroll -->
+    <script>
+    $( window ).scroll(function() {
+      if($(window).scrollTop() > 70){
+        $('.logo').css({'height': '70'});
+      }else{
+        $('.logo').css({'height': '120'});
+      }
 
-        });
-      </script>
+    });
+    </script>
   </body>
 
   </html>

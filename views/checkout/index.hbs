@@ -88,282 +88,290 @@
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-shopping-cart">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
+                    <i class="fas fa-shopping-basket">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
                   </a>
+                  {{#if cartusers}}
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
-                    {{#if cartusers}}
+
                     {{#each cartusers}}<form class="" action="/cart/delete/{{this._id}}" method="post">
                       <a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}
-                      <input type="hidden" name="_method" value="DELETE" />
-                      <button type="submit" class="btn-danger" style=" margin-right: -40px; float:right"><i class="fas fa-times float-right"></i></button>
-                    </a></form>
-                    {{/each}}
-                  <hr/>
-                  {{/if}}
-                    <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
-                    <hr> -->
-                    <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
-                  </div>
-                </li>
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit" class="btn-danger" style=" margin-right: -40px; float:right"><i class="fas fa-times float-right"></i></button>
+                      </a></form>
+                      {{/each}}
+                      <hr/>
+                      <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
+                      <hr> -->
+                      <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
+                    </div>
+                    {{else}}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
+                      <a class="dropdown-item" href="#"> Basket is empty </a>
+                    </div>
+                    {{/if}}
+                  </li>
 
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{#users}}
-                    {{this.firstname}}'s Account
-                    {{/users}}
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                    <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="/videochat">Video Chat<i class="fas fa-video float-right"></i></a>
-                    <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-shopping-cart float-right"></i></a>
-                    <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{#users}}
+                      {{this.firstname}}'s Account
+                      {{/users}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                      <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
+                      <a class="dropdown-item" href="/videochat">Video Chat<i class="fas fa-video float-right"></i></a>
+                      <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-cart-arrow-down float-right"></i></a>
+                      <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <!-- /.Header -->
+
+      <!-- Callout -->
+      <div class="container-fluid background-jumbotron callout-container">
+        <div class="opaque-overlay">&nbsp;</div>
+        <div class="row">
+          <div class="col-12">
+            <main class="page payment-page">
+              <section class="payment-form dark">
+                <div class="container">
+                  <div class="block-heading">
+                    <h2>Check Out</h2>
                   </div>
+
+                  <div class="">
+
+                    {{#each cartusers}}
+                    <form class="" action="/cart/delete/{{this._id}}" method="post">
+                      <input type="hidden" name="_method" value="DELETE" />
+                      <li>{{this.film.name}} - {{this.film.price}} <button type="submit" style="display inline; "class="btn-danger float-right"><i style="" class="fas fa-times"></i></button></li><br>
+                    </form>
+                    {{/each}}
+
+                    {{#count}}
+                    Quantity: {{this}}
+                    {{/count}}
+                  </div>
+                  {{#users}}
+                  <div class="form-group col-sm-12">
+                    <a style="text-decoration:none;" href="/films"><button type="button" class="btn btn-primary btn-block">Continue Shopping</button></a>
+                  </div>
+                  <!-- <hr/> -->
+                  <form class="card-details-form" action="/checkout/payment/{{this._id}}" method="post">
+                    <input type="hidden" name="_method" value="PATCH" />
+                    <div class="card-details">
+                      <h3 class="title">Address Details</h3>
+                      <div class="row">
+                        <form class="" action="/checkout/payment/{{this._id}}" method="post">
+                          <input type="hidden" name="_method" value="PATCH" />
+                          <div class="form-group col-12">
+                            <label for="card-holder">1'st Line:</label>
+                            <input name="address_first_line" id="card-holder" type="text" class="form-control" placeholder="Add 1'st line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_first_line}}" required>
+                          </div>
+                        </div>
+                        <!-- <hr/> -->
+                        <div class="row">
+                          <div class="form-group col-12">
+                            <label for="card-holder">2'nd Line:</label>
+                            <input name="address_second_line" id="card-holder" type="text" class="form-control" placeholder="Add 2'nd line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_second_line}}">
+                          </div>
+                        </div>
+                        <!-- <hr/> -->
+
+                        <div class="row">
+                          <div class="form-group col-12">
+                            <label for="card-holder">Town:</label>
+                            <input name="address_town" id="card-holder" type="text" class="form-control" placeholder="Town" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_town}}" required>
+                          </div>
+                        </div>
+                        <!-- <hr/> -->
+
+                        <div class="row">
+                          <div class="form-group col-5">
+                            <label for="card-holder">Post Code:</label>
+                            <input name="address_post_code" id="card-holder" type="text" class="form-control" placeholder="Post Code" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_post_code}}" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-details">
+                        <h3 class="title">Credit Card Details</h3>
+                        <div class="row">
+                          <div class="form-group col-sm-7">
+                            <label for="card-holder">Card Holder</label>
+                            <input name="card_holder" id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_holder}}" required>
+                          </div>
+                          <div class="form-group col-sm-5">
+                            <label for="">Expiration Date</label>
+                            <div class="input-group expiration-date">
+                              <input name="expiration_month" type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1" value="{{this.expiration_month}}" required>
+                              <span class="date-separator">/</span>
+                              <input name="expiration_year" type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1" value="{{this.expiration_year}}" required>
+                            </div>
+                          </div>
+                          <div class="form-group col-sm-8">
+                            <label for="card-number">Card Number</label>
+                            <input name="card_number" id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_number}}" required>
+                          </div>
+                          <div class="form-group col-sm-4">
+                            <label for="cvc">CVC</label>
+                            <input name="cvc" id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.cvc}}" required>
+                          </div>
+                          <div class="">
+                            <input type="hidden" name="_method" value="DELETE" />
+                          </div>
+                          <div class="form-group col-sm-12">
+                            <a><button class="btn btn-primary btn-block">Save Card Details and Proceed With Payment</button></a>
+                          </div>
+                        </div>
+                      </form>
+                      <div class="form-group col-sm-12">
+                        <p>If you do not wish to save your card details, please click below:</p>
+                        <form id="delete-cart" style = "display: inline;" action="/checkout/cart/delete/{{this._id}}" method="post">
+                          <input type="hidden" name="_method" value="DELETE" />
+                          <a style="text-decoration:none;" href="/checkout/thank_you"><button type="submit" class="btn btn-primary btn-block">Confirm Payment</button></a>
+                        </form>
+                      </div>
+                      {{/users}}
+                    </div>
+                  </section>
+                </main>
+              </div>
+            </div>
+          </div>
+          <!-- /Callout -->
+
+          <!-- Footer -->
+          <footer class="container-fluid footer-container text-center">
+            <div class="col-12">
+              <p class="inline-block ">
+                <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
+              </p>
+            </div>
+            <div class="col-12">
+              <p class="inline-block ">
+                <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
+              </p>
+            </div>
+            <div class="col-12">
+              <p class="inline-block ">
+                <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
+              </p>
+            </div>
+            <div class="col-12">
+              <p class="inline-block ">
+                <i class="fas fa-phone "></i>0208 12345678
+              </p>
+            </div>
+            <div class="col-12 ">
+              <ul class="list-inline social-links ">
+                <li class="list-inline-item ">
+                  <a target="_blank " href="# " class="hvr-icon-bounce">
+                    <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
+                    <span class="sr-only ">Facebook</span>
+                  </a>
+                </li>
+                <li class="list-inline-item ">
+                  <a target="_blank " href="# " class="hvr-icon-bounce">
+                    <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
+                    <span class="sr-only ">Twitter</span>
+                  </a>
+                </li>
+                <li class="list-inline-item ">
+                  <a target="_blank " href="# " class="hvr-icon-bounce">
+                    <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
+                    <span class="sr-only ">LinkedIn</span>
+                  </a>
+                </li>
+                <li class="list-inline-item ">
+                  <a target="_blank " href="# " class="hvr-icon-bounce">
+                    <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
+                    <span class="sr-only ">Pinterest</span>
+                  </a>
+                </li>
+                <li class="list-inline-item ">
+                  <a target="_blank " href="# " class="hvr-icon-bounce">
+                    <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
+                    <span class="sr-only ">Instagram</span>
+                  </a>
+                </li>
+                <li class="list-inline-item ">
+                  <a target="_blank " href="# " class="hvr-icon-bounce">
+                    <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
+                    <span class="sr-only ">YouTube</span>
+                  </a>
                 </li>
               </ul>
             </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <!-- /.Header -->
+          </footer>
+          <!-- /.Footer -->
 
-    <!-- Callout -->
-    <div class="container-fluid background-jumbotron callout-container">
-      <div class="opaque-overlay">&nbsp;</div>
-      <div class="row">
-        <div class="col-12">
-          <main class="page payment-page">
-            <section class="payment-form dark">
-              <div class="container">
-                <div class="block-heading">
-                  <h2>Check Out</h2>
-                </div>
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+          <script type="text/javascript" src="js/jquery.shop.js"></script>
+          <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-                <div class="">
+          <script>
+          $(function(){
+            $('#searchName').autocomplete({
+              source: function(req,res){
 
-                  {{#each cartusers}}
-                  <li>{{this.film.name}} - {{this.film.price}} <button type="submit" style="display inline; "class="btn-danger float-right"><i style="" class="fas fa-times"></i></button></li><br>
-                  {{/each}}
+                $.ajax({
+                  url:"films/autocomplete/",
+                  dataType:"jsonp",
+                  type:"GET",
+                  data:req,
+                  success: function(data){
+                    res(data)
 
-                  {{#count}}
-                  Quantity: {{this}}
-                  {{/count}}
-                </div>
-                {{#users}}
-                <div class="form-group col-sm-12">
-                <a style="text-decoration:none;" href="/films"><button type="button" class="btn btn-primary btn-block">Continue Shopping</button></a>
-                </div>
-                <!-- <hr/> -->
-                <form class="card-details-form" action="/checkout/payment/{{this._id}}" method="post">
-                  <input type="hidden" name="_method" value="PATCH" />
-                  <div class="card-details">
-                    <h3 class="title">Address Details</h3>
-                    <div class="row">
-                      <form class="" action="/checkout/payment/{{this._id}}" method="post">
-                        <input type="hidden" name="_method" value="PATCH" />
-                        <div class="form-group col-12">
-                          <label for="card-holder">1'st Line:</label>
-                          <input name="address_first_line" id="card-holder" type="text" class="form-control" placeholder="Add 1'st line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_first_line}}" required>
-                        </div>
-                      </div>
-                      <!-- <hr/> -->
-                      <div class="row">
-                        <div class="form-group col-12">
-                          <label for="card-holder">2'nd Line:</label>
-                          <input name="address_second_line" id="card-holder" type="text" class="form-control" placeholder="Add 2'nd line of address" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_second_line}}">
-                        </div>
-                      </div>
-                      <!-- <hr/> -->
+                  },
+                  error: function(err){
+                    console.log(err.status);
+                  }
+                });
+              },
 
-                      <div class="row">
-                        <div class="form-group col-12">
-                          <label for="card-holder">Town:</label>
-                          <input name="address_town" id="card-holder" type="text" class="form-control" placeholder="Town" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_town}}" required>
-                        </div>
-                      </div>
-                      <!-- <hr/> -->
-
-                      <div class="row">
-                        <div class="form-group col-5">
-                          <label for="card-holder">Post Code:</label>
-                          <input name="address_post_code" id="card-holder" type="text" class="form-control" placeholder="Post Code" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.address_post_code}}" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-details">
-                      <h3 class="title">Credit Card Details</h3>
-                      <div class="row">
-                        <div class="form-group col-sm-7">
-                          <label for="card-holder">Card Holder</label>
-                          <input name="card_holder" id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_holder}}" required>
-                        </div>
-                        <div class="form-group col-sm-5">
-                          <label for="">Expiration Date</label>
-                          <div class="input-group expiration-date">
-                            <input name="expiration_month" type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1" value="{{this.expiration_month}}" required>
-                            <span class="date-separator">/</span>
-                            <input name="expiration_year" type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1" value="{{this.expiration_year}}" required>
-                          </div>
-                        </div>
-                        <div class="form-group col-sm-8">
-                          <label for="card-number">Card Number</label>
-                          <input name="card_number" id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.card_number}}" required>
-                        </div>
-                        <div class="form-group col-sm-4">
-                          <label for="cvc">CVC</label>
-                          <input name="cvc" id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1" value="{{this.cvc}}" required>
-                        </div>
-                        <div class="">
-                          <input type="hidden" name="_method" value="DELETE" />
-                        </div>
-                        <div class="form-group col-sm-12">
-                          <a><button class="btn btn-primary btn-block">Save Card Details and Proceed With Payment</button></a>
-                        </div>
-                      </div>
-                    </form>
-                    <div class="form-group col-sm-12">
-                      <p>If you do not wish to save your card details, please click below:</p>
-                      <form id="delete-cart" style = "display: inline;" action="/checkout/cart/delete/{{this._id}}" method="post">
-                        <input type="hidden" name="_method" value="DELETE" />
-                        <a style="text-decoration:none;" href="/checkout/thank_you"><button type="submit" class="btn btn-primary btn-block">Confirm Payment</button></a>
-                      </form>
-                    </div>
-                    {{/users}}
-                  </div>
-                </section>
-              </main>
-            </div>
-          </div>
-        </div>
-        <!-- /Callout -->
-
-        <!-- Footer -->
-        <footer class="container-fluid footer-container text-center">
-          <div class="col-12">
-            <p class="inline-block ">
-              <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
-            </p>
-          </div>
-          <div class="col-12">
-            <p class="inline-block ">
-              <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
-            </p>
-          </div>
-          <div class="col-12">
-            <p class="inline-block ">
-              <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
-            </p>
-          </div>
-          <div class="col-12">
-            <p class="inline-block ">
-              <i class="fas fa-phone "></i>0208 12345678
-            </p>
-          </div>
-          <div class="col-12 ">
-            <ul class="list-inline social-links ">
-              <li class="list-inline-item ">
-                <a target="_blank " href="# " class="hvr-icon-bounce">
-                  <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
-                  <span class="sr-only ">Facebook</span>
-                </a>
-              </li>
-              <li class="list-inline-item ">
-                <a target="_blank " href="# " class="hvr-icon-bounce">
-                  <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
-                  <span class="sr-only ">Twitter</span>
-                </a>
-              </li>
-              <li class="list-inline-item ">
-                <a target="_blank " href="# " class="hvr-icon-bounce">
-                  <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
-                  <span class="sr-only ">LinkedIn</span>
-                </a>
-              </li>
-              <li class="list-inline-item ">
-                <a target="_blank " href="# " class="hvr-icon-bounce">
-                  <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
-                  <span class="sr-only ">Pinterest</span>
-                </a>
-              </li>
-              <li class="list-inline-item ">
-                <a target="_blank " href="# " class="hvr-icon-bounce">
-                  <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
-                  <span class="sr-only ">Instagram</span>
-                </a>
-              </li>
-              <li class="list-inline-item ">
-                <a target="_blank " href="# " class="hvr-icon-bounce">
-                  <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
-                  <span class="sr-only ">YouTube</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </footer>
-        <!-- /.Footer -->
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="js/jquery.shop.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-        <script>
-        $(function(){
-          $('#searchName').autocomplete({
-            source: function(req,res){
-
-              $.ajax({
-                url:"films/autocomplete/",
-                dataType:"jsonp",
-                type:"GET",
-                data:req,
-                success: function(data){
-                  res(data)
-
-                },
-                error: function(err){
-                  console.log(err.status);
+              minLength:1,
+              select: function(event,ui){
+                if(ui.item){
+                  $('#searchName').val(ui.item.label);
                 }
-              });
-            },
-
-            minLength:1,
-            select: function(event,ui){
-              if(ui.item){
-                $('#searchName').val(ui.item.label);
               }
-            }
+            });
           });
-        });
-        </script>
+          </script>
 
-        <!-- jquery to shrink logo and navbar on scroll -->
-        <script>
+          <!-- jquery to shrink logo and navbar on scroll -->
+          <script>
           $( window ).scroll(function() {
-          if($(window).scrollTop() > 70){
-            $('.logo').css({'height': '70'});
-          }else{
+            if($(window).scrollTop() > 70){
+              $('.logo').css({'height': '70'});
+            }else{
               $('.logo').css({'height': '120'});
-          }
+            }
 
           });
-        </script>
+          </script>
 
-        <!-- jquery to shrink logo and navbar on scroll -->
-   <script>
-     $( window ).scroll(function() {
-      if($(window).scrollTop() > 70){
-        $('.logo').css({'height': '70'});
-      }else{
-          $('.logo').css({'height': '120'});
-      }
+          <!-- jquery to shrink logo and navbar on scroll -->
+          <script>
+          $( window ).scroll(function() {
+            if($(window).scrollTop() > 70){
+              $('.logo').css({'height': '70'});
+            }else{
+              $('.logo').css({'height': '120'});
+            }
 
-     });
-   </script>
+          });
+          </script>
 
-      </body>
+        </body>
 
-      </html>
+        </html>

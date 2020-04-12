@@ -91,22 +91,27 @@
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-shopping-cart">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
+                    <i class="fas fa-shopping-basket">{{#if cartusers}} {{#each_upto cartusers 1}} ({{../cartusers.length}}) {{/each_upto}} {{/if}}</i>
                   </a>
+                  {{#if cartusers}}
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
-                    {{#if cartusers}}
+
                     {{#each cartusers}}<form class="" action="/cart/delete/{{this._id}}" method="post">
                       <a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}
-                      <input type="hidden" name="_method" value="DELETE" />
-                      <button type="submit" class="btn-danger" style=" margin-right: -40px; float:right"><i class="fas fa-times float-right"></i></button>
-                    </a></form>
-                    {{/each}}
-                  <hr/>
-                  {{/if}}
-                    <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
-                    <hr> -->
-                    <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
-                  </div>
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit" class="btn-danger" style=" margin-right: -40px; float:right"><i class="fas fa-times float-right"></i></button>
+                      </a></form>
+                      {{/each}}
+                      <hr/>
+                      <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
+                      <hr> -->
+                      <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
+                    </div>
+                    {{else}}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
+                      <a class="dropdown-item" href="#"> Basket is empty </a>
+                    </div>
+                    {{/if}}
                 </li>
 
                 <li class="nav-item dropdown">
@@ -119,7 +124,7 @@
                     <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
                     <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
                     <a class="dropdown-item" href="/videochat">Video Chat<i class="fas fa-video float-right"></i></a>
-                    <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-shopping-cart float-right"></i></a>
+                    <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-cart-arrow-down float-right"></i></a>
                     <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                   </div>
                 </li>
