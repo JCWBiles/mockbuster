@@ -136,7 +136,7 @@
           <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
           <br>
 
-          <h2 id="user1"style="color: black;">Name: {{this.user}}</h2>
+          <h2 id="user1"style="color: black;">Name: {{this.user.firstname}}</h2>
           <br>
 
           <br>
@@ -146,9 +146,13 @@
       <div class="buttons" style="padding-bottom:50px;">
         <span class="like-btn"></span>
       </div>
+      <form id="delete-blog-form" style= "text-align: center;" action="/blog/delete2/{{this._id}}" method="post">
+        <input type="hidden" name="_method" value="PATCH" />
+        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from user's view and replace with notification)" />
+      </form>
       <form id="delete-blog-form" style= "text-align: center;" action="/blog/delete/{{this._id}}" method="post">
-        <input type="hidden" name="_method" value="DELETE" />
-        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review" />
+        <input type="hidden" name="_method" value="PATCH" />
+        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from database)" />
       </form>
       <hr>
       {{/each}}
@@ -395,36 +399,34 @@
             <div class="each-event" style="padding-left:20px;">
               <br>
               <hr>
-              {{#if sessionFlash.message}}
-              <div class="alert alert-{{ sessionFlash.type }} alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Note:</strong> {{ sessionFlash.message }}
-              </div>
-              {{/if}}
-              {{#each blog}}
-              <div class="event-description" style="margin:20px;" id="blogs">
-                <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
-                <br>
+            {{#each blog}}
+            <div class="event-description" style="margin:20px;" id="blogs">
+              <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
+              <br>
 
-                <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
-                <br>
+              <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
+              <br>
 
-                <h2 id="user1"style="color: black;">Name: {{this.user}}</h2>
-                <br>
+              <h2 id="user1"style="color: black;">Name: {{this.user.firstname}}</h2>
+              <br>
 
-                <br>
+              <br>
 
-              </div>
             </div>
-            <div class="buttons" style="padding-bottom:50px;">
-              <span class="like-btn"></span>
-            </div>
-            <form id="delete-blog-form" style= "text-align: center;" action="/blog/delete/{{this._id}}" method="post">
-              <input type="hidden" name="_method" value="DELETE" />
-              <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review" />
-            </form>
-            <hr>
-            {{/each}}
+          </div>
+          <div class="buttons" style="padding-bottom:50px;">
+            <span class="like-btn"></span>
+          </div>
+          <form id="delete-blog-form" style= "text-align: center;" action="/blog/delete2/{{this._id}}" method="post">
+            <input type="hidden" name="_method" value="PATCH" />
+            <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from user's view and replace with notification)" />
+          </form>
+          <form id="delete-blog-form" style= "text-align: center;" action="/blog/delete/{{this._id}}" method="post">
+            <input type="hidden" name="_method" value="PATCH" />
+            <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from database)" />
+          </form>
+          <hr>
+          {{/each}}
 
 
             <!-- /Callout -->
@@ -700,9 +702,9 @@
                           </div>
 
                           <div class="form-group">
-                            <label for="user">Name </label>
+
                             {{#users}}
-                            <input id="user" type="text" name="user" class="form-control" value="{{this.firstname}}" >
+                            <input hidden id="user" type="text" name="userId" class="form-control" value="{{this._id}}" >
                             {{/users}}
                           </div>
                           <button type="submit" class="btn btn-primary">Submit</button>
@@ -726,7 +728,7 @@
                       <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
                       <br>
 
-                      <h2 id="user1"style="color: black;">Name: {{this.user}}</h2>
+                      <h2 id="user1"style="color: black;">Name: {{this.user.firstname}}</h2>
                       <br>
                       <br>
 

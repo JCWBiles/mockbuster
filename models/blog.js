@@ -5,7 +5,8 @@ let BlogSchema = new Schema({
   id: String,
   movie: String,
   review: String,
-  user: String,
+  user: { type: mongoose.ObjectId,
+  ref: "Users" },
   date: { type: Date, default: Date.now }
 });
 
