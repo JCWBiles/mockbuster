@@ -111,9 +111,7 @@ var UserController = {
   },
   Account: function(req, res){
     User.find({_id: req.session.userId}, function(err,users){
-      if (err) {
-        throw err
-      }
+      if (err) { throw err }
       Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
       res.status(201).render('account/index', { users: users, cartusers:cartusers })
     })
@@ -177,19 +175,10 @@ var UserController = {
             message: 'Feedback Sent!'
           }
           console.log(feedback);
-          res.status(201).redirect('/account')
+          res.status(201).redirect('back')
         }
       })
     })
-  },
-
-  Completed: function(req, res){
-    User.find({_id: req.session.userId}, function(err, users){
-      if (err) {
-        throw err
-      }
-      res.status(201).render('account/completed', { users: users })
-    });
   },
 
 };

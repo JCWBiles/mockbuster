@@ -10,7 +10,6 @@ var FilmsController = {
       Films.find(function(err, films) {
         if (err) { throw err };
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          Cart.find().populate('film').exec(function(err, cart){
             if (err) { throw err };
             Cart.aggregate([ {
               $unwind: '$film'},
@@ -21,11 +20,10 @@ var FilmsController = {
                 }
               }
             } ] , function(err, total){
-              res.render('films/index', {  films: films, users: users, cart: cart, cartusers: cartusers, total:total});
+              res.render('films/index', {  films: films, users: users, cartusers: cartusers, total:total});
               console.log( "Total price : ", total );
               console.log(req.session.userId);
             })
-          })
         })
       })
     });
