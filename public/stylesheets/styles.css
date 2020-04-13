@@ -138,12 +138,8 @@ nav a{
 	text-align: center;
 	max-width: 420px;
 	margin: auto;
-	opacity:0.7;
 }
 
-.payment-form.dark .block-heading p{
-	opacity:0.8;
-}
 
 .payment-form .block-heading h1,
 .payment-form .block-heading h2,
@@ -454,6 +450,86 @@ nav a{
     margin-right:85px;
     min-width: 300px;
 
+}
+
+
+/*-------------------------------------------------payment_thank_you*/
+.receipt_container .receipt_hole {
+  background: #b1b1b1;
+  height: 10px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.4),0 1px 2px rgba(0,0,0,0.15);
+  border: 1px solid #8f8f8f;
+  border-top: 1px solid #242424;
+  border-radius: 99px;
+  width:75%;
+  margin-left: 50px;
+  padding-left: -90px;
+}
+
+.receipt_shadow{
+  border-top: 1px solid #666;
+  opacity: 1;
+  background: url('https://assets.gumroad.com/assets/product/patterns-f40ed85c07b5849d8f9cc4e044cb8fdbe5a88df0983fd17c2b1c329a8c289e87.png') repeat-x 0 -5px transparent;
+  z-index: 5;
+  height: 5px;
+  top: 0;
+  position: absolute;
+  width: 241px;
+  padding: 0 15px;
+  left: 50%;
+  margin-left: -125px;
+}
+
+.receipt {
+  position: absolute;
+  top: 1px;
+  background: #fff;
+  width: 241px;
+  padding: 15px 15px 0;
+  left: 50%;
+  margin-left: -125px;
+  border-top-width: 0;
+  box-shadow: 0 0 1px rgba(0,0,0,0.17),0 5px 10px rgba(0,0,0,0.05);
+  margin-top: 0px;
+}
+
+.receipt h3 {
+  color: #bfbfbf;
+  font-size: 13px;
+  line-height: 21px;
+  margin: 0 0 10px;
+}
+.receipt .receipt-entry:last-child {
+  border-bottom: 1px dotted #ddd;
+}
+.receipt .receipt-entry {
+  margin: 0;
+  padding: 0;
+  border-top: 1px dotted #ddd;
+  font-size: 15px;
+  overflow: hidden;
+}
+.receipt .receipt-entry .receipt-price {
+  color: #555;
+  float: right;
+  display: block;
+  padding: 12px 0;
+  text-align: center;
+  width: 60px;
+}
+
+.receipt .receipt-entry .product-details {
+  padding: 12px 12px 14px 0;
+  display: block;
+  margin-right: 60px;
+  border-right: 1px dotted #ddd;
+}
+
+.receipt_bottom {
+  clear: both;
+  background: url('https://assets.gumroad.com/assets/icons-9518e258988af31b814a6231837544f546e233e2e023821636ce59bfd9d56b71.png') 1px -158px;
+  height: 13px;
+  margin: 16px -16px -13px;
 }
 
 /*---------------------------------------------------footer*/

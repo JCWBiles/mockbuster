@@ -112,172 +112,185 @@
                       <a class="dropdown-item" href="#"> Basket is empty </a>
                     </div>
                     {{/if}}
-                </li>
+                  </li>
 
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{#users}}
-                    {{this.firstname}}'s Account
-                    {{/users}}
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
-                    <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
-                    <a class="dropdown-item" href="/videochat">Video Chat<i class="fas fa-video float-right"></i></a>
-                    <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-cart-arrow-down float-right"></i></a>
-                    <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{#users}}
+                      {{this.firstname}}'s Account
+                      {{/users}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                      <a class="dropdown-item" href="/blog">Blog<i class="fas fa-blog float-right"></i></a>
+                      <a class="dropdown-item" href="/videochat">Video Chat<i class="fas fa-video float-right"></i></a>
+                      <a class="dropdown-item" href="/checkout">Checkout<i class="fas fa-cart-arrow-down float-right"></i></a>
+                      <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
 
+          </div>
         </div>
-      </div>
-    </header>
-    <!-- /.Header -->
+      </header>
+      <!-- /.Header -->
 
 
-    <!-- Callout -->
+      <!-- Callout -->
 
-    <div class="container-fluid background-jumbotron callout-container">
-      <div class="opaque-overlay">&nbsp;</div>
-      <div class="row">
-        <div class="col-12">
-          <main class="page payment-page">
-            <section class="payment-form dark">
-              <div class="container">
-                <div class="block-heading">
-                  {{#users}}  <h2>Thank You {{this.firstname}}</h2> {{/users}}
-                  <p>Thank you for placing your order, an email confirmation will be sent shortly.</p>
-                  <br><br><br><br><br><br><br><br><br><br><br><br>
+      <div class="container-fluid background-jumbotron callout-container">
+        <div class="opaque-overlay">&nbsp;</div>
+        <div class="row">
+          <div class="col-10" style="left:-205px;">
+                <div class="form-background payment-form" style="width: 300%; margin-right: 20px; margin:75px;">
+                  <div class="block-heading">
+                    <div class="receipt_container" style="position: relative; visibility: visible; display: block; margin-top: 0px; margin-bottom: -40px; height: 451px;">
+                      <div class="receipt_hole"></div>
+                      <div class="receipt_shadow" style="opacity: 1;"></div>
+                      <div class="receipt" style="margin-top: 0px;">
+                        <h3 class="js-thank-you-notice">Order Completed!</h3>
+                        <br>
+                        {{#users}}  <h2>Thank You {{this.firstname}}</h2> {{/users}}
+                        <p>Thank you for placing your order, an email confirmation will be sent shortly.</p>
+
+                        <div class="receipt_bottom"></div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
+                <!-- <div class="container">
+                <div class="block-heading">
+                {{#users}}  <h2>Thank You {{this.firstname}}</h2> {{/users}}
+                <p>Thank you for placing your order, an email confirmation will be sent shortly.</p>
+                <br><br><br><br><br><br><br><br><br><br><br><br>
               </div>
-            </section>
-          </main>
+            </div> -->
 
-          <!-- </div> --> -->
+        <!-- </div> --> -->
 
-        </div>
       </div>
     </div>
+  </div>
 
-    <!-- /Callout -->
+  <!-- /Callout -->
 
-    <!-- Footer -->
-    <footer class="container-fluid footer-container text-center">
-      <div class="col-12">
-        <p class="inline-block ">
-          <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
-        </p>
-      </div>
-      <div class="col-12">
-        <p class="inline-block ">
-          <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
-        </p>
-      </div>
-      <div class="col-12">
-        <p class="inline-block ">
-          <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
-        </p>
-      </div>
-      <div class="col-12">
-        <p class="inline-block ">
-          <i class="fas fa-phone "></i>0208 12345678
-        </p>
-      </div>
-      <div class="col-12 ">
+  <!-- Footer -->
+  <footer class="container-fluid footer-container text-center">
+    <div class="col-12">
+      <p class="inline-block ">
+        <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
+      </p>
+    </div>
+    <div class="col-12">
+      <p class="inline-block ">
+        <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
+      </p>
+    </div>
+    <div class="col-12">
+      <p class="inline-block ">
+        <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
+      </p>
+    </div>
+    <div class="col-12">
+      <p class="inline-block ">
+        <i class="fas fa-phone "></i>0208 12345678
+      </p>
+    </div>
+    <div class="col-12 ">
 
-        <ul class="list-inline social-links ">
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">Facebook</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">Twitter</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">LinkedIn</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">Pinterest</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">Instagram</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">YouTube</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
-    <!-- /.Footer -->
+      <ul class="list-inline social-links ">
+        <li class="list-inline-item ">
+          <a target="_blank " href="# " class="hvr-icon-bounce">
+            <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
+            <span class="sr-only ">Facebook</span>
+          </a>
+        </li>
+        <li class="list-inline-item ">
+          <a target="_blank " href="# " class="hvr-icon-bounce">
+            <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
+            <span class="sr-only ">Twitter</span>
+          </a>
+        </li>
+        <li class="list-inline-item ">
+          <a target="_blank " href="# " class="hvr-icon-bounce">
+            <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
+            <span class="sr-only ">LinkedIn</span>
+          </a>
+        </li>
+        <li class="list-inline-item ">
+          <a target="_blank " href="# " class="hvr-icon-bounce">
+            <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
+            <span class="sr-only ">Pinterest</span>
+          </a>
+        </li>
+        <li class="list-inline-item ">
+          <a target="_blank " href="# " class="hvr-icon-bounce">
+            <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
+            <span class="sr-only ">Instagram</span>
+          </a>
+        </li>
+        <li class="list-inline-item ">
+          <a target="_blank " href="# " class="hvr-icon-bounce">
+            <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
+            <span class="sr-only ">YouTube</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+  <!-- /.Footer -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-    $(function(){
-      $('#searchName').autocomplete({
-        source: function(req,res){
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $(function(){
+    $('#searchName').autocomplete({
+      source: function(req,res){
 
-          $.ajax({
-            url:"autocomplete/",
-            dataType:"jsonp",
-            type:"GET",
-            data:req,
-            success: function(data){
-              res(data)
+        $.ajax({
+          url:"autocomplete/",
+          dataType:"jsonp",
+          type:"GET",
+          data:req,
+          success: function(data){
+            res(data)
 
-            },
-            error: function(err){
-              console.log(err.status);
-            }
-          });
-        },
-
-        minLength:1,
-        select: function(event,ui){
-          if(ui.item){
-            $('#searchName').val(ui.item.label);
+          },
+          error: function(err){
+            console.log(err.status);
           }
+        });
+      },
+
+      minLength:1,
+      select: function(event,ui){
+        if(ui.item){
+          $('#searchName').val(ui.item.label);
         }
-      });
-    });
-    </script>
-
-
-    <!-- jquery to shrink logo and navbar on scroll -->
-   <script>
-     $( window ).scroll(function() {
-      if($(window).scrollTop() > 70){
-        $('.logo').css({'height': '70'});
-      }else{
-          $('.logo').css({'height': '120'});
       }
+    });
+  });
+  </script>
 
-     });
-   </script>
-  </body>
 
-  </html>
+  <!-- jquery to shrink logo and navbar on scroll -->
+  <script>
+  $( window ).scroll(function() {
+    if($(window).scrollTop() > 70){
+      $('.logo').css({'height': '70'});
+    }else{
+      $('.logo').css({'height': '120'});
+    }
+
+  });
+  </script>
+</body>
+
+</html>

@@ -10,7 +10,6 @@ var CheckoutController = {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
           Cart.countDocuments({user:req.session.userId}, (err, count) => {
-            console.log( "Number of docs: ", count );
             if (count) res.render('checkout/index', { films: films, users: users, cartusers: cartusers, count: count });
             else res.send(err);
             console.log( "Number of docs: ", count );
