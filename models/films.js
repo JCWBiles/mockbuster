@@ -12,7 +12,9 @@ let FilmSchema = new Schema({
   imageUrl: String,
   description: String,
   trailerUrl: String,
-  modal: String
+  modal: String,
+  likes: [{ type: mongoose.ObjectId,
+  ref: "Users" }]
 });
 
 var Film = mongoose.model('Films', FilmSchema);

@@ -151,12 +151,8 @@
             <div class="row">
 
               <!-- Callout - Films -->
-              {{#users}}
-              <input type="hidden" name="userId" value="{{this._id}}">
-              {{/users}}
               {{#each films}}
               <div class="col-sm-6 col-md-3">
-                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/cart/add" method="post">
                   <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
                     <img src="{{this.imageUrl}}" alt="{{this.name}}">
                   </a>
@@ -176,6 +172,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
+                          <form id="add-to-cart-form" style = "display: inline; margin-top: -20px;" action="/cart/add" method="post">
                           <div class="form-group">
                             <input type="hidden" class="form-control" name="filmId" value="{{this._id}}">
                           </div>

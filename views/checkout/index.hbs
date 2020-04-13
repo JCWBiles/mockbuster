@@ -145,19 +145,19 @@
                     <h2>Check Out</h2>
                   </div>
 
-                  <div class="">
-
+                  <div>
                     {{#each cartusers}}
                     <form class="" action="/cart/delete/{{this._id}}" method="post">
                       <input type="hidden" name="_method" value="DELETE" />
-                      <li>{{this.film.name}} - {{this.film.price}} <button type="submit" style="display inline; "class="btn-danger float-right"><i style="" class="fas fa-times"></i></button></li><br>
+                      <li style="list-style-type: none; margin-left: 10px; margin-top:5px; padding-top:10px;">{{this.film.name}} - {{this.film.price}} <button type="submit" style="display inline; "class="btn-danger float-right"><i style="" class="fas fa-times"></i></button></li><br>
                     </form>
                     {{/each}}
-
+                    <br>
                     {{#count}}
                     Quantity: {{this}}
                     {{/count}}
                   </div>
+                  <br>
                   {{#users}}
                   <div class="form-group col-sm-12">
                     <a style="text-decoration:none;" href="/films"><button type="button" class="btn btn-primary btn-block">Continue Shopping</button></a>
