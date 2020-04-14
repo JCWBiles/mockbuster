@@ -9,8 +9,6 @@ var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var mailgun = require('mailgun-js');
 var flash = require('express-flash-messages');
-var server = require ('http').Server(app);
-var io = require('socket.io')(server);
 var Handlebars = require('hbs');
 // var simpleWebRTC = require('simplewebrtc');
 // var adapter = require('webrtc-adapter');
@@ -41,6 +39,7 @@ var managerRouter = require('./routes/manager');
 var man_authRouter = require('./routes/man_auth');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
