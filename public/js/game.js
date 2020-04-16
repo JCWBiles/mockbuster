@@ -18,6 +18,7 @@ fetch("https://opentdb.com/api.php?amount=15&category=11&difficulty=easy&type=mu
   return res.json();
 })
 .then(loadedQuestions => {
+
   console.log(loadedQuestions.results);
   questions = loadedQuestions.results.map(loadedQuestion => {
     const formattedQuestion = {
@@ -48,7 +49,7 @@ startGame = () => {
   questionCounter = 0;
   score = 0;
   availableQuestions = [...questions];
-  console.log(availableQuestions)
+  // console.log(availableQuestions)
   getNewQuestion();
   game.classList.remove('hidden');
   loader.classList.add('hidden');
@@ -70,11 +71,11 @@ getNewQuestion = () => {
 
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
-  question.innerText = currentQuestion.question;
+  question.innerText = currentQuestion.question.replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&#039;/g,"'");
 
   choices.forEach(choice => {
     const number = choice.dataset['number'];
-    choice.innerText = currentQuestion['choice' + number];
+    choice.innerText = currentQuestion['choice' + number].replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&#039;/g,"'");
   });
 
   availableQuestions.splice(questionIndex, 1);
