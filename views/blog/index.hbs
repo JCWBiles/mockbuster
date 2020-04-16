@@ -726,7 +726,7 @@
                   <br><br>
                   <br>
                   <h1 style="padding-left:20px; display:inline;">Reviews</h1>
-                    <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#chat" style="display: inline; float:right; margin-right:90px;">
+                    <a id="chatModal" class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#chat" style="display: inline; float:right; margin-right:90px;">
                       <i id="edit" class="fas fas fa-comment-alt fa-3x hvr-icon" aria-hidden="true" style="color:teal;"></i>
                       <span class="fa-lg sr-only">Chat</span>
                     </a>
@@ -905,7 +905,31 @@
                   </script>
 
                   <script src="/socket.io/socket.io.js"></script>
+
                   <script>
+            var socket = io.connect();
+            // submit text message without reload/refresh the page
+            $('#chat-form').submit(function(e){
+                e.preventDefault(); // prevents page reloading
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            // append the chat text message
+            socket.on('chat message', function(msg){
+                $('#messages').append($('<li>').html(msg));
+            });
+            // append text if someone is online
+            socket.on('is_online', function(username) {
+                $('#messages').append($('<li>').html(username));
+            });
+            // ask username
+            $('#chatModal').click(function(){
+              var username = '{{#users}}{{this.firstname}}{{/users}}';
+              socket.emit('username', username);
+            })
+    </script>
+                  <!-- <script>
                   $(function(){
                     var socket = io();
                     $('#chat-form').submit(function(){
@@ -917,8 +941,18 @@
                     socket.on('chat message', function(msg){
                       $('#messages').append($('<li>').text(msg));
                     });
+                    // append text if someone is online
+                    socket.on('is_online', function(username) {
+                      $('#messages').append($('<li>').text(username));
+                    });
+
+                    //getting the username
+                    var firstname = Jane;
+                    socket.emit('username', firstname);
                   });
-                  </script>
+
+
+                  </script> -->
 
 
                   <!-- jquery to shrink logo and navbar on scroll -->
