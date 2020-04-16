@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz - Results</title>
+    <link rel="stylesheet" href="/stylesheets/app.css">
+  </head>
+  <body>
+    <div class="gamecontainer">
+      <div class="flex-center flex-column" id="end">
+        <h1 id="finalScore"></h1>
+        <form class="" action="index.html" method="post">
+          <input type="text" name="username" id="username" placeholder="username" value="">
+          <button type="submit" class="btn" id="saveScoreBtn" onclick="saveHighScore(event)" disabled>Save</button>
+        </form>
+        <a class="btn" href="/level.html">Play Again</a>
+        <a class="btn" href="/">Go Home</a>
+      </div>
+    </div>
+    <script src="/js/end.js"></script>
+  </body>
+</html>
