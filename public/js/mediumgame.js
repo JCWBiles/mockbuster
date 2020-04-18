@@ -13,7 +13,7 @@ let availableQuestions = [];
 
 let questions = [];
 
-fetch("https://opentdb.com/api.php?amount=15&category=11&difficulty=medium&type=multiple")
+fetch("https://opentdb.com/api.php?amount=50&category=11&difficulty=medium&type=multiple")
 .then(res => {
   return res.json();
 })
@@ -43,7 +43,7 @@ fetch("https://opentdb.com/api.php?amount=15&category=11&difficulty=medium&type=
 
 //CONSTANTS
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 15;
 startGame = () => {
   questionCounter = 0;
   score = 0;
@@ -58,7 +58,7 @@ getNewQuestion = () => {
   if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
     localStorage.setItem('mostRecentScore', score);
     //GO TO THE END page
-    return window.location.assign('/end.html');
+    return window.location.assign('/quiz/end');
 
   }
   //shows how many questions answered out of available questions
@@ -70,11 +70,13 @@ getNewQuestion = () => {
 
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
-  question.innerText = currentQuestion.question;
+  question.innerText = currentQuestion.question.replace(/&quot;/g,'"').replace(/&egrave;/g,'è')
+  .replace(/&amp;/g,'&').replace(/&#039;/g,"'").replace(/&hellip;/g, '...').replace(/&ldquo;/g,'"').replace(/&rdquo;/g,'"').replace(/&eacute;/g,'é');
 
   choices.forEach(choice => {
     const number = choice.dataset['number'];
-    choice.innerText = currentQuestion['choice' + number];
+    choice.innerText = currentQuestion['choice' + number].replace(/&quot;/g,'"').replace(/&egrave;/g,'è')
+    .replace(/&amp;/g,'&').replace(/&#039;/g,"'").replace(/&hellip;/g, '...').replace(/&ldquo;/g,'"').replace(/&rdquo;/g,'"').replace(/&eacute;/g,'é');
   });
 
   availableQuestions.splice(questionIndex, 1);

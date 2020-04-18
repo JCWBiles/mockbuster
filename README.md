@@ -71,7 +71,6 @@ It uses:
 - [MethodOverride](https://www.npmjs.com/package/method-override) to allow a subclass or child class to provide a specific implementation of a method that is already provided by one of its superclasses or parent classes.
 - [Flash](https://www.npmjs.com/package/express-flash-messages) to prompt the user messages when features are tested.
 - [Mailgun](https://www.mailgun.com/) to send confirmation emails on sign-up and purchase.
-- [Heroku](https://signup.heroku.com/) Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
 - [bCrypt](https://www.npmjs.com/package/bcrypt) for our password security.
 ### Note: Database change
 The project began with:

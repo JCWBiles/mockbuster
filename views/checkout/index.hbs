@@ -125,6 +125,11 @@
                       <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                     </div>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/quiz" role="button" aria-haspopup="true" aria-expanded="false">
+                      Movie Quizzes
+                    </a>
+                  </li>
                 </ul>
               </div>
             </nav>
@@ -345,18 +350,6 @@
                 }
               }
             });
-          });
-          </script>
-
-          <!-- jquery to shrink logo and navbar on scroll -->
-          <script>
-          $( window ).scroll(function() {
-            if($(window).scrollTop() > 70){
-              $('.logo').css({'height': '70'});
-            }else{
-              $('.logo').css({'height': '120'});
-            }
-
           });
           </script>
 

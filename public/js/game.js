@@ -13,7 +13,7 @@ let availableQuestions = [];
 
 let questions = [];
 
-fetch("https://opentdb.com/api.php?amount=15&category=11&difficulty=easy&type=multiple")
+fetch("https://opentdb.com/api.php?amount=50&category=11&difficulty=easy&type=multiple")
 .then(res => {
   return res.json();
 })
@@ -71,11 +71,13 @@ getNewQuestion = () => {
 
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
-  question.innerText = currentQuestion.question.replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&#039;/g,"'");
+  question.innerText = currentQuestion.question.replace(/&quot;/g,'"').replace(/&egrave;/g,'è')
+  .replace(/&amp;/g,'&').replace(/&#039;/g,"'").replace(/&hellip;/g, '...').replace(/&ldquo;/g,'"').replace(/&rdquo;/g,'"').replace(/&eacute;/g,'é');
 
   choices.forEach(choice => {
     const number = choice.dataset['number'];
-    choice.innerText = currentQuestion['choice' + number].replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&#039;/g,"'");
+    choice.innerText = currentQuestion['choice' + number].replace(/&quot;/g,'"').replace(/&egrave;/g,'è')
+    .replace(/&amp;/g,'&').replace(/&#039;/g,"'").replace(/&hellip;/g, '...').replace(/&ldquo;/g,'"').replace(/&rdquo;/g,'"').replace(/&eacute;/g,'é');
   });
 
   availableQuestions.splice(questionIndex, 1);

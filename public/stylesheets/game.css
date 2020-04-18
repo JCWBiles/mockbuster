@@ -16,11 +16,15 @@
   padding: 1.5rem 2.5rem;
   background-color: #56a5eb;
   color: white;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .choice-text{
   padding:1.5rem;
   width: 100%;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 .correct{
   background-color: #28a745;
@@ -40,22 +44,23 @@ justify-content: space-between;
 
 .hud-prefix{
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .hud-main-text{
   text-align: center;
+  font-size: 3rem;
 }
 
 #progressBar{
-  width: 28rem;
-  height: 4rem;
+  width: 20rem;
+  height: 2rem;
   border: 0.3rem solid #56a5eb;
   margin-top: 1.5rem;
 }
 
 #progressBarFull{
-  height: 3.4rem;
+  height: 1.6rem;
   background-color: #56a5eb;
   width: 0%;
 }
@@ -68,6 +73,10 @@ justify-content: space-between;
   width: 12rem;
   height: 12rem;
   animation: spin 2s linear infinite;
+}
+
+#question{
+  margin-top: -50px;
 }
 
 @keyframes spin {

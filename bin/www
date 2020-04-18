@@ -51,6 +51,9 @@ io.sockets.on('connection', function(socket){
     io.emit('chat message', '<strong>' + socket.username +'</strong>: ' + msg);
     console.log('message: ' + msg);
   });
+  socket.on('typing', (type) => {
+    socket.emit('typing', socket.username)
+  })
 });
 
 /**

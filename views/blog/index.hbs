@@ -679,6 +679,11 @@
                                 <a class="dropdown-item" href="/auth/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
                               </div>
                             </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="/quiz" role="button" aria-haspopup="true" aria-expanded="false">
+                                Movie Quizzes
+                              </a>
+                            </li>
                           </ul>
                         </div>
                       </nav>
@@ -743,8 +748,7 @@
                           </div>
 
                           <div class="modal-body">
-
-                              <ul id="messages"></ul>
+                          <ul id="messages"></ul>
 
                             <form id="chat-form" style="display: inline; margin-top: -20px;" action="" method="post">
                             <br>
@@ -782,19 +786,7 @@
                   </div>
                   <hr>
                   {{/each}}
-                  <!-- <div style="text-align:center;s">
-                    <h1>Mockbuster Chat</h1>
-                    <ul id="messages"></ul>
-                    <form id="chat-form" style="display: inline; margin-top: -20px;" action="" method="post">
-                      <br>
-                      <input id="m" autocomplete="off"/> &nbsp &nbsp <button class="btn btn--teal btn-primary">Send</button>
-                    </form>
-                    <br><br>
-                  </div> -->
-
-
-
-                  <!-- /Callout -->
+          <!-- /Callout -->
 
                   <!-- Footer -->
                   <footer class="container-fluid footer-container text-center">
@@ -907,52 +899,34 @@
                   <script src="/socket.io/socket.io.js"></script>
 
                   <script>
-            var socket = io.connect();
-            // submit text message without reload/refresh the page
-            $('#chat-form').submit(function(e){
-                e.preventDefault(); // prevents page reloading
-                socket.emit('chat message', $('#m').val());
-                $('#m').val('');
-                return false;
-            });
-            // append the chat text message
-            socket.on('chat message', function(msg){
-                $('#messages').append($('<li>').html(msg));
-            });
-            // append text if someone is online
-            socket.on('is_online', function(username) {
-                $('#messages').append($('<li>').html(username));
-            });
-            // ask username
-            $('#chatModal').click(function(){
-              var username = '{{#users}}{{this.firstname}}{{/users}}';
-              socket.emit('username', username);
-            })
-    </script>
-                  <!-- <script>
-                  $(function(){
-                    var socket = io();
-                    $('#chat-form').submit(function(){
-                      event.preventDefault();
-                      socket.emit('chat message', $('#m').val());
-                      $('#m').val('');
-                      return false;
-                    });
-                    socket.on('chat message', function(msg){
-                      $('#messages').append($('<li>').text(msg));
-                    });
-                    // append text if someone is online
-                    socket.on('is_online', function(username) {
-                      $('#messages').append($('<li>').text(username));
-                    });
+                  var socket = io.connect();
+                  var username = '{{#users}}{{this.firstname}}{{/users}}';
+                  var userIsTypingEvent = 'user_typing';
 
-                    //getting the username
-                    var firstname = Jane;
-                    socket.emit('username', firstname);
+                  // submit text message without reload/refresh the page
+                  $('#chat-form').submit(function(e){
+                    e.preventDefault(); // prevents page reloading
+                    socket.emit('chat message', $('#m').val());
+                    $('#m').val('');
+                    return false;
                   });
-
-
-                  </script> -->
+                  // append the chat text message
+                  socket.on('chat message', function(msg){
+                    $('#messages').append($('<li>').html(msg));
+                  });
+                  // append text if someone is online
+                  socket.on('is_online', function(username) {
+                    $('#messages').append($('<li>').html(username));
+                  });
+                  // ask username
+                  $('#chatModal').click(function(){
+                    socket.emit('username', username);
+                  })
+                  //emit typing
+                  $('#m').on('keyup', function(event) {
+                    $.post('/userTyping', {username: username});
+                  });
+                  </script>
 
 
                   <!-- jquery to shrink logo and navbar on scroll -->
