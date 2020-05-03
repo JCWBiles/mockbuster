@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8" name="viewport" content="width-device-width, initial-scale=1.0">
-  <title>Chat App</title>
+  <meta charset="utf-8">
+  <title>Chat</title>
   <style media="screen">
-  body {
-    padding: 10;
-    margin: 10;
-    /* display: flex;
-    justify-content: center; */
+  #chat{
+    height: 500px;
+  }
+  #contentWrap{
+    display:none;
+  }
+  #chatWrap{
+    float: left;
+    border: 1px #000 solid;
+  }
+  /* .msg{
+    color: green;
+  } */
+  .error{
+    color: red;
+  }
+  .private{
+    color: pink;
+    font-style: italic;
   }
   </style>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-  <h1>Welcome to Mockbuster Chat Rooms!!</h1>
-
-  <div class="" id="room-container">
-    {{#each rooms}}<button type="button" class="col-10 hub-buttons btn btn-danger btn-lg"> {{@key}}: {{room}} <a href="/chat/{{@key}}">Join</a></button>
-    <br><br> {{/each}}
+  <div class="" id="nickWrap">
+    <p>Enter your username</p>
+    <p id="nickError"></p>
+    <form id="setNick" action="index.html" method="post">
+      <input type="text" id="nickname">
+      <input type="submit">
+    </form>
   </div>
-  <hr>
-  <form class="" action="/chat/room" method="post">
-    <input type="text" name="room" required>
-    <button type="submit" name="button">New Room</button>
-  </form>
-  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
+  <div class="" id="contentWrap">
+    <div class="" id="chatWrap">
+      <div class="" id="chat"></div>
+      <form class="" id="send-message" action="index.html" method="post">
+        <input type="text"  id="message" name="message">
+        <input hidden type="text"  name="user">
+        <input type="submit">
+      </form>
+    </div>
+    <div class="" id="users"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="js/script.js">
+  </script>
 </body>
 </html>
