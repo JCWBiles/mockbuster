@@ -10,8 +10,8 @@ var FilmsController = require('../controllers/films');
 // router.get('/', ChatController.Index);
 // // router.get('/:user', ChatController.UserIndex);
 // router.post('/room', ChatController.CreateRoom);
-router.get('/:room', ChatController.Room);
-router.post('/', ChatController.Create);
+// router.get('/:room', ChatController.Room);
+// router.post('/', ChatController.Create);
 router.get('/search', FilmsController.Search);
 router.get('/autocomplete', FilmsController.Autocomplete);
 

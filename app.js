@@ -39,11 +39,8 @@ var basketRouter = require('./routes/basket');
 var employeeRouter = require('./routes/employee');
 var managerRouter = require('./routes/manager');
 var man_authRouter = require('./routes/man_auth');
-var http = require('http');
+
 var app = express();
-var server = http.createServer(app);
-var io = require('socket.io').listen(server);
-server.listen(3001);
 
 
 // view engine setup
@@ -168,68 +165,59 @@ app.use('/manager/individualmsg', managerRouter);
 app.use('/man_auth', man_authRouter);
 app.use(methodOverride('_method'));
 
-//CHAT ROUTES
 
-users = {};
-var Chat = require('./models/chat');
-app.get('/chat', function(req, res){
-  res.render('chat/index')
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+const rooms = { }
+
+app.get('/chat', (req, res) => {
+  res.render('chat/index', { rooms: rooms })
 })
-io.sockets.on('connection', function(socket){
-  var query = Chat.find({});
-  query.sort('-date').limit(11).exec(function(err, docs){
-    if (err) { throw err }
-    console.log('sending old msgs!')
-    socket.emit('load old msgs', docs);
-  })
-  socket.on('new user', function(data, callback){
-    if(data in users){
-      callback(false);
-    }else{
-      callback(true);
-      socket.nickname = data;
-      users[socket.nickname] = socket;
-      updateNames();
-      // socket.broadcast.emit('new message', data);
-    }
-  });
 
-  function updateNames(){
-    io.sockets.emit('usernames', Object.keys(users));
+app.post('/chat/room', (req, res) => {
+  if (rooms[req.body.room] != null) {
+    return res.redirect('/chat')
   }
+  rooms[req.body.room] = { users: {} }
+  res.redirect(req.body.room)
+  // Send message that new room was created
+  io.emit('room-created', req.body.room)
+})
 
-  socket.on('send message', function(data, callback){
-    var message = data.trim();
-    if (message.substr(0, 1) === '@') {
-      message = message.substr(1);
-      var ind = message.indexOf(' ');
-      if (ind !== -1) {
-        var name = message.substring(0, ind);
-        var message = message.substring(ind + 1);
-        if (name in users) {
-          users[name].emit('private message', { message: message, name: socket.nickname })
-          console.log('private message');
-        }else {
-          callback('Error! enter a valid user.')
-        }
-      }else {
-        callback('Error! Please enter a message for you private message.')
-      }
-    }else {
-      var message = new Chat({message: message, name: socket.nickname});
-      message.save(function(err){
-        if (err) {throw err}
-        io.sockets.emit('new message', { message: message, name: socket.nickname });
-      })
-    }
-  });
+app.get('/chat/:room', (req, res) => {
+  if (rooms[req.params.room] == null) {
+    return res.redirect('/chat')
+  }
+  res.render('chat/room', { roomName: req.params.room })
+})
 
-  socket.on('disconnect', function(data){
-    if(!socket.nickname) return;
-    delete users[socket.nickname];
-    updateNames();
-  });
-});
+http.listen(3001)
+
+io.on('connection', socket => {
+  socket.on('new-user', (room, name) => {
+    socket.join(room)
+    rooms[room].users[socket.id] = name
+    socket.to(room).broadcast.emit('user-connected', name)
+  })
+  socket.on('send-chat-message', (room, message) => {
+    socket.to(room).broadcast.emit('chat-message', { message: message, name: rooms[room].users[socket.id] })
+  })
+  socket.on('disconnect', () => {
+    getUserRooms(socket).forEach(room => {
+      socket.to(room).broadcast.emit('user-disconnected', rooms[room].users[socket.id])
+      delete rooms[room].users[socket.id]
+    })
+  })
+})
+
+function getUserRooms(socket) {
+  return Object.entries(rooms).reduce((names, [name, room]) => {
+    if (room.users[socket.id] != null) names.push(name)
+    return names
+  }, [])
+}
+
 
 //route for initial USER image upload
 var User = require('./models/user');

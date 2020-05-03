@@ -42,10 +42,11 @@
     <input type="text" id="message-input" value="">
     <button type="submit" id="send-button">Send</button>
   </form>
+  <a style="margin-left: 20px;" href="/chat"><button type="button">Leave Room</button></a>
   <script type="text/javascript">
     var roomName = "{{roomName}}"
   </script>
-  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="http://localhost:3001/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="../js/script.js"></script>
   </body>
 </html>
