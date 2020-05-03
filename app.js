@@ -32,13 +32,16 @@ var authRouter = require('./routes/auth');
 var accountRouter = require('./routes/account');
 var checkoutRouter = require('./routes/checkout');
 var blogRouter = require('./routes/blog');
+// var chatRouter = require('./routes/chat');
 var quizRouter = require('./routes/quiz');
 var videoRouter = require('./routes/videochat');
 var basketRouter = require('./routes/basket');
 var employeeRouter = require('./routes/employee');
 var managerRouter = require('./routes/manager');
 var man_authRouter = require('./routes/man_auth');
-
+var http = require('http');
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
 var app = express();
 
 
@@ -130,6 +133,8 @@ app.use('/account/completed', accountRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/checkout/thank_you', checkoutRouter);
 app.use('/blog', blogRouter);
+// app.use('/chat', chatRouter);
+// app.use('/chat/room', chatRouter);
 app.use('/quiz', quizRouter);
 app.use('/quiz/level', quizRouter);
 app.use('/quiz/game', quizRouter);
@@ -161,6 +166,56 @@ app.use('/manager/messages', managerRouter);
 app.use('/manager/individualmsg', managerRouter);
 app.use('/man_auth', man_authRouter);
 app.use(methodOverride('_method'));
+
+
+const rooms = {Marvel:{} }
+
+app.get('/chat', (req, res) => {
+  res.render('chat/index', { rooms: rooms })
+})
+
+app.post('/chat/room', (req, res) => {
+  if (rooms[req.body.room] != null) {
+    return res.redirect('/chat')
+  }
+  rooms[req.body.room] = { users: {} }
+  res.redirect(req.body.room)
+  // Send message that new room was created
+  io.emit('room-created', req.body.room)
+})
+
+app.get('/chat/:room', (req, res) => {
+  if (rooms[req.params.room] == null) {
+    return res.redirect('/')
+  }
+  res.render('chat/room', { roomName: req.params.room })
+})
+//
+// server.listen(3000)
+
+io.on('connection', socket => {
+  socket.on('new-user', (room, name) => {
+    socket.join(room)
+    rooms[room].users[socket.id] = name
+    socket.to(room).broadcast.emit('user-connected', name)
+  })
+  socket.on('send-chat-message', (room, message) => {
+    socket.to(room).broadcast.emit('chat-message', { message: message, name: rooms[room].users[socket.id] })
+  })
+  socket.on('disconnect', () => {
+    getUserRooms(socket).forEach(room => {
+      socket.to(room).broadcast.emit('user-disconnected', rooms[room].users[socket.id])
+      delete rooms[room].users[socket.id]
+    })
+  })
+})
+
+function getUserRooms(socket) {
+  return Object.entries(rooms).reduce((names, [name, room]) => {
+    if (room.users[socket.id] != null) names.push(name)
+    return names
+  }, [])
+}
 
 //route for initial USER image upload
 var User = require('./models/user');

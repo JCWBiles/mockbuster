@@ -1,69 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="utf-8" name="viewport" content="width-device-width, initial-scale=1.0">
   <title>Chat App</title>
-  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
-  <script defer src="js/script.js"></script>
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-    }
-
-    #message-container {
-      width: 80%;
-      max-width: 1200px;
-    }
-
-    #message-container div {
-      background-color: #CCC;
-      padding: 5px;
-    }
-
-    #message-container div:nth-child(2n) {
-      background-color: #FFF;
-    }
-
-    #send-container {
-      position: fixed;
-      padding-bottom: 30px;
-      bottom: 0;
-      background-color: white;
-      max-width: 1200px;
-      width: 80%;
-      display: flex;
-    }
-
-    #message-input {
-      flex-grow: 1;
-    }
-    .leave{
-      position: fixed;
-      padding-bottom: 30px;
-      bottom: 0;
-      background-color: white;
-      max-width: 1200px;
-      width: 80%;
-      display: flex;
-    }
+  <style media="screen">
+  body {
+    padding: 10;
+    margin: 10;
+    /* display: flex;
+    justify-content: center; */
+  }
   </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-  <div id="message-container"></div>
-  <form id="send-container">
-    <input type="text" id="message-input" name="message">
-    <button type="submit" id="send-button">Send</button>
-  </form>
-  <br>
-  <div class="leave">
-    <a href="/films">
-    <button type="button" id="send-button">Leave Chat</button>
-  </a>
+  <h1>Welcome to Mockbuster Chat Rooms!!</h1>
+
+  <div class="" id="room-container">
+    {{#each rooms}}<button type="button" class="col-10 hub-buttons btn btn-danger btn-lg"> {{@key}}: {{room}} <a href="/chat/{{@key}}">Join</a></button>
+    <br><br> {{/each}}
   </div>
+  <hr>
+  <form class="" action="/chat/room" method="post">
+    <input type="text" name="room" required>
+    <button type="submit" name="button">New Room</button>
+  </form>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
