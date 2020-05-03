@@ -20,7 +20,7 @@ var FilmsController = {
                 }
               }
             } ] , function(err, total){
-              res.render('films/index', {  films: films, users: users, cartusers: cartusers, total:total});
+              res.render('films/index', {  films: films, users: users, cartusers: cartusers, total:total, href: "/films", iconClass: "fas fa-photo-video" });
               console.log( "Total price : ", total );
               console.log(req.session.userId);
             })
@@ -59,7 +59,7 @@ var FilmsController = {
       Films.find(({ name: { $in: [ /^A/, /^B/,/^C/, /^D/,/^E/] } }), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/a_to_e', {  films: films, users: users, cartusers: cartusers });
+          res.render('films/a_to_e', {  films: films, users: users, cartusers: cartusers, href: "/films/a_to_e", icon:"A-E" });
           console.log(req.session.userId);
         })
       }).sort( { name: 1 });
@@ -72,7 +72,7 @@ var FilmsController = {
       Films.find(({ name: { $in: [ /^F/, /^G/,/^H/, /^I/,/^J/] } }), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/f_to_j', {  films: films, users: users, cartusers: cartusers});
+          res.render('films/f_to_j', {  films: films, users: users, cartusers: cartusers, href: "/films/f_to_j", icon:"F-J"});
           console.log(req.session.userId);
         })
       }).sort( { name: 1 });
@@ -85,7 +85,7 @@ var FilmsController = {
       Films.find(({ name: { $in: [ /^K/, /^L/,/^M/, /^N/,/^O/] } }), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/k_to_o', {  films: films, users: users, cartusers: cartusers });
+          res.render('films/k_to_o', {  films: films, users: users, cartusers: cartusers, href: "/films/k_to_o", icon:"K-O" });
           console.log(req.session.userId);
         })
       }).sort( { name: 1 });
@@ -98,7 +98,7 @@ var FilmsController = {
       Films.find(({ name: { $in: [ /^P/, /^Q/,/^R/, /^S/,/^T/] } }), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/p_to_t', {  films: films, users: users, cartusers: cartusers});
+          res.render('films/p_to_t', {  films: films, users: users, cartusers: cartusers, href: "/films/p_to_t", icon:"P-T"});
           console.log(req.session.userId);
         })
       }).sort( { name: 1 });
@@ -111,7 +111,7 @@ var FilmsController = {
       Films.find(({ name: { $in: [ /^U/, /^V/,/^W/, /^X/,/^Y/,/^Z/] } }), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/u_to_z', {  films: films, users: users, cartusers: cartusers });
+          res.render('films/u_to_z', {  films: films, users: users, cartusers: cartusers, href: "/films/u_to_z", icon:"U-Z" });
           console.log(req.session.userId);
         })
       }).sort( { name: 1 });
@@ -124,7 +124,7 @@ var FilmsController = {
       Films.find(({ name: { $in: [ /^0/, /^1/,/^2/, /^3/,/^4/,/^5/,/^6/,/^7/,/^8/,/^9/] } }), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/zero_to_nine', {  films: films, users: users, cartusers: cartusers });
+          res.render('films/zero_to_nine', {  films: films, users: users, cartusers: cartusers, href: "/films/zero_to_nine", icon:"0-9" });
           console.log(req.session.userId);
         })
       }).sort( { name: 1 });
@@ -138,7 +138,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Action"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/action', { films:films, users: users, cartusers:cartusers })
+          res.render('films/action', { films:films, users: users, cartusers:cartusers, href: "/films/action", iconClass: "fas fa-radiation-alt"})
         })
       }).sort( { name: 1 });
     })
@@ -150,7 +150,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Biopic"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/biopic', { films:films, users:users, cartusers: cartusers })
+          res.render('films/biopic', { films:films, users:users, cartusers: cartusers, href: "/films/biopic", iconClass: "fas fa-user-tie" })
         })
       }).sort( { name: 1 });
     })
@@ -162,7 +162,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Comedy"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/comedy', { films:films, users:users, cartusers:cartusers })
+          res.render('films/comedy', { films:films, users:users, cartusers:cartusers, href: "/films/comedy", iconClass: "fas fa-theater-masks" })
         })
       }).sort( { name: 1 });
     })
@@ -174,7 +174,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Crime"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/crime', { films:films, users:users, cartusers:cartusers })
+          res.render('films/crime', { films:films, users:users, cartusers:cartusers, href: "/films/crime", iconClass: "fas fa-mask" })
         })
       }).sort( { name: 1 });
     })
@@ -186,7 +186,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Drama"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/drama', { films:films, users:users, cartusers:cartusers })
+          res.render('films/drama', { films:films, users:users, cartusers:cartusers, href: "/films/drama", iconClass: "fas fa-heartbeat" })
         })
       }).sort( { name: 1 });
     })
@@ -198,7 +198,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Fantasy"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/fantasy', { films:films, users:users, cartusers:cartusers })
+          res.render('films/fantasy', { films:films, users:users, cartusers:cartusers, href: "/films/fantasy", iconClass: "fas fa-dragon" })
         })
       }).sort( { name: 1 });
     })
@@ -210,7 +210,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["History"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/history', { films:films, users:users, cartusers:cartusers })
+          res.render('films/history', { films:films, users:users, cartusers:cartusers, href: "/films/history", iconClass: "fas fa-fort-awesome" })
         })
       }).sort( { name: 1 });
     })
@@ -222,7 +222,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Horror"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/horror', { films:films, users:users, cartusers:cartusers })
+          res.render('films/horror', { films:films, users:users, cartusers:cartusers, href: "/films/horror", iconClass: "fas fa-ghost" })
         })
       }).sort( { name: 1 });
     })
@@ -234,7 +234,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Kids"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/kids', { films:films, users:users, cartusers: cartusers })
+          res.render('films/kids', { films:films, users:users, cartusers: cartusers, href: "/films/kids", iconClass: "fas fa-child" })
         })
       }).sort( { name: 1 });
     })
@@ -246,7 +246,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Legal"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/legal', { films:films, users:users, cartusers: cartusers })
+          res.render('films/legal', { films:films, users:users, cartusers: cartusers, href: "/films/legal", iconClass: "fas fa-balance-scale" })
         })
       }).sort( { name: 1 });
     })
@@ -258,7 +258,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Musical"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/musical', { films:films, users:users, cartusers: cartusers })
+          res.render('films/musical', { films:films, users:users, cartusers: cartusers, href: "/films/musical", iconClass: "fas fa-music" })
         })
       }).sort( { name: 1 });
     })
@@ -270,7 +270,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Romance"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/romance', { films:films, users:users, cartusers:cartusers })
+          res.render('films/romance', { films:films, users:users, cartusers:cartusers, href: "/films/romance", iconClass: "fas fa-grin-hearts" })
         })
       }).sort( { name: 1 });
     })
@@ -282,7 +282,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Sports"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/sports', { films:films, users:users, cartusers:cartusers })
+          res.render('films/sports', { films:films, users:users, cartusers:cartusers, href: "/films/sports", iconClass: "fas fa-futbol" })
         })
       }).sort( { name: 1 });
     })
@@ -294,7 +294,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Superhero"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/superhero', { films:films, users:users, cartusers: cartusers })
+          res.render('films/superhero', { films:films, users:users, cartusers: cartusers, href: "/films/superhero", iconClass: "fab fa-superpowers" })
         })
       }).sort( { name: 1 });
     })
@@ -306,7 +306,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["Thriller"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/thriller', { films:films, users:users, cartusers: cartusers })
+          res.render('films/thriller', { films:films, users:users, cartusers: cartusers, href: "/films/thriller", iconClass: "far fa-surprise" })
         })
       }).sort( { name: 1 });
     })
@@ -318,7 +318,7 @@ var FilmsController = {
       Films.find(({"genres":{"$in":["War"]}}), function(err, films) {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-          res.render('films/war', { films:films, users:users, cartusers: cartusers })
+          res.render('films/war', { films:films, users:users, cartusers: cartusers, href: "/films/war", iconClass: "fas fa-bomb" })
         })
       }).sort( { name: 1 });
     })
@@ -359,7 +359,7 @@ var FilmsController = {
             if(allFilms.length < 1) {
               noMatch = "No films match that query, please try again.";
             }
-            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users, cartusers: cartusers});
+            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users, cartusers: cartusers, href: "/films/search", icon: "fas fa-photo-video"});
           })
         }
 

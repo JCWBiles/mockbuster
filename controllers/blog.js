@@ -13,7 +13,7 @@ var BlogController = {
         Blog.find().populate('user').sort( { date: -1 } ).exec(function(err, blog) {
           if (err) { throw err; }
           Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-            res.render('blog/index', { qs:req.query, blog: blog, users: users, cartusers:cartusers});
+            res.render('blog/index', { qs:req.query, blog: blog, users: users, cartusers:cartusers, href: "/films", iconClass: "fas fa-photo-video" });
             console.log(req.session.userId);
           })
         })

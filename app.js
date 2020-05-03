@@ -46,6 +46,11 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+
+// Register Partials
+Handlebars.registerPartials(path.join(__dirname + '/views/partials'));
+
+// Register Helpers
 Handlebars.registerHelper('each_upto', function(ary, max, options)
 {
   if(!ary || ary.length == 0)

@@ -10,7 +10,7 @@ var CheckoutController = {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
           Cart.countDocuments({user:req.session.userId}, (err, count) => {
-            if (count) res.render('checkout/index', { films: films, users: users, cartusers: cartusers, count: count });
+            if (count) res.render('checkout/index', { films: films, users: users, cartusers: cartusers, count: count, href: "/films", iconClass: "fas fa-photo-video" });
             else res.send(err);
             console.log( "Number of docs: ", count );
             console.log(req.session.userId);
@@ -56,7 +56,7 @@ var CheckoutController = {
   Thank_You: function(req, res) {
     User.find({_id: req.session.userId}, function(err,users) {
       if (err) { throw err; }
-      res.render('checkout/thank_you', {  users: users });
+      res.render('checkout/thank_you', {  users: users, href: "/films", iconClass: "fas fa-photo-video" });
       console.log(req.session.userId);
     })
 

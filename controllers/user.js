@@ -113,7 +113,7 @@ var UserController = {
     User.find({_id: req.session.userId}, function(err,users){
       if (err) { throw err }
       Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-      res.status(201).render('account/index', { users: users, cartusers:cartusers })
+      res.status(201).render('account/index', { users: users, cartusers:cartusers, href: "/films", iconClass: "fas fa-photo-video" })
     })
     });
   },

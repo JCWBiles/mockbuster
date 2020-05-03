@@ -10,7 +10,7 @@ var QuizController = {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
           if (err) { throw err; }
-          res.render('quiz/index', { films: films, users: users, cartusers: cartusers});
+          res.render('quiz/index', { films: films, users: users, cartusers: cartusers, href: "/films", iconClass: "fas fa-photo-video" });
         })
       })
     });
