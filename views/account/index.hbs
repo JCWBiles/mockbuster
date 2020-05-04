@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+{{#if users}}
   <!-- Header -->
   {{#if sessionFlash.message}}
   <div class="alert alert-{{ sessionFlash.type }} alert-dismissible">
@@ -203,6 +203,9 @@
     </div>
     {{/users}}
     <!-- /.Callout -->
+    {{else}}
+    {{> noUser}}
+    {{/if}}
 
     <!-- Footer -->
     {{> footer }}

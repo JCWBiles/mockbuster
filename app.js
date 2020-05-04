@@ -55,12 +55,12 @@ Handlebars.registerPartials(path.join(__dirname + '/views/partials'));
 Handlebars.registerHelper('each_upto', function(ary, max, options)
 {
   if(!ary || ary.length == 0)
-        return options.inverse(this);
+  return options.inverse(this);
 
-    var result = [ ];
-    for(var i = 0; i < max && i < ary.length; ++i)
-        result.push(options.fn(ary[i]));
-    return result.join('');
+  var result = [ ];
+  for(var i = 0; i < max && i < ary.length; ++i)
+  result.push(options.fn(ary[i]));
+  return result.join('');
 });
 
 //use sessions for tracking logins
@@ -75,7 +75,7 @@ app.use(session({
 app.use(flash());
 
 app.use(function(req, res, next){
-// if there's a flash message in the session request, make it available in the response, then delete it
+  // if there's a flash message in the session request, make it available in the response, then delete it
   res.locals.sessionFlash = req.session.sessionFlash;
   delete req.session.sessionFlash;
   next();
@@ -170,9 +170,29 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 const rooms = { }
-
+var Chat = require('./models/chat');
+var Cart = require('./models/cart');
 app.get('/chat', (req, res) => {
-  res.render('chat/index', { rooms: rooms })
+  User.find({_id: req.session.userId}, function(err,users) {
+    if (err) { throw err; }
+    Films.find(function(err, films) {
+      if (err) { throw err };
+      Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+        if (err) { throw err };
+        Cart.aggregate([ {
+          $unwind: '$film'},
+          {$group: {
+            _id: null,
+            total: {
+              $sum: "$film.price"
+            }
+          }
+        } ] , function(err, total){
+          res.render('chat/index', { rooms: rooms, films: films, users: users, cartusers: cartusers, total:total, href: "/films", iconClass: "fas fa-photo-video" });
+        })
+      })
+    })
+  })
 })
 
 app.post('/chat/room', (req, res) => {
@@ -186,10 +206,30 @@ app.post('/chat/room', (req, res) => {
 })
 
 app.get('/chat/:room', (req, res) => {
-  if (rooms[req.params.room] == null) {
-    return res.redirect('/chat')
-  }
-  res.render('chat/room', { roomName: req.params.room })
+  User.find({_id: req.session.userId}, function(err,users) {
+    if (err) { throw err; }
+    Films.find(function(err, films) {
+      if (err) { throw err };
+      Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+        if (err) { throw err };
+        Cart.aggregate([ {
+          $unwind: '$film'},
+          {$group: {
+            _id: null,
+            total: {
+              $sum: "$film.price"
+            }
+          }
+        } ] , function(err, total){
+          if (rooms[req.params.room] == null) {
+            return res.redirect('/chat')
+          }
+          console.log(req.session.userId);
+          res.render('chat/room', { roomName: req.params.room, films: films, users: users, cartusers: cartusers, total:total, href: "/films", iconClass: "fas fa-photo-video" });
+        })
+      })
+    })
+  })
 })
 
 http.listen(3001)
@@ -200,8 +240,14 @@ io.on('connection', socket => {
     rooms[room].users[socket.id] = name
     socket.to(room).broadcast.emit('user-connected', name)
   })
-  socket.on('send-chat-message', (room, message) => {
-    socket.to(room).broadcast.emit('chat-message', { message: message, name: rooms[room].users[socket.id] })
+
+  socket.on('send-chat-message', (room, message, user) => {
+    var message = new Chat({message: message, user: user, name: rooms[room].users[socket.id]});
+    message.save(function(err){
+      if (err) {throw err}
+      console.log(message);
+      socket.to(room).broadcast.emit('chat-message', { message: message, name: rooms[room].users[socket.id] })
+    })
   })
   socket.on('disconnect', () => {
     getUserRooms(socket).forEach(room => {
@@ -223,22 +269,22 @@ function getUserRooms(socket) {
 var User = require('./models/user');
 app.post('/user', upload.single('imageUrl'), function(req, res){
   if(req.file){
-  var user = new User({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email:  req.body.email,
-    password: req.body.password,
-    address_first_line: req.body.address_first_line,
-    address_second_line: req.body.address_second_line,
-    address_town: req.body.address_town,
-    address_post_code: req.body.address_post_code,
-    card_holder: req.body.card_holder,
-    card_number: req.body.card_number,
-    expiration_year: req.body.expiration_year,
-    expiration_month: req.body.expiration_month,
-    cvc: req.body.cvc,
-    imageUrl: req.file.path,
-  });
+    var user = new User({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email:  req.body.email,
+      password: req.body.password,
+      address_first_line: req.body.address_first_line,
+      address_second_line: req.body.address_second_line,
+      address_town: req.body.address_town,
+      address_post_code: req.body.address_post_code,
+      card_holder: req.body.card_holder,
+      card_number: req.body.card_number,
+      expiration_year: req.body.expiration_year,
+      expiration_month: req.body.expiration_month,
+      cvc: req.body.cvc,
+      imageUrl: req.file.path,
+    });
     console.log(req.body.firstname);
     console.log(req.body.email);
     console.log(req.file);
@@ -248,23 +294,23 @@ app.post('/user', upload.single('imageUrl'), function(req, res){
         req.session.userId = user._id;
         res.status(201).redirect('/films')
       }
-  });
-} else {
-  var user = new User({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email:  req.body.email,
-    password: req.body.password,
-    address_first_line: req.body.address_first_line,
-    address_second_line: req.body.address_second_line,
-    address_town: req.body.address_town,
-    address_post_code: req.body.address_post_code,
-    card_holder: req.body.card_holder,
-    card_number: req.body.card_number,
-    expiration_year: req.body.expiration_year,
-    expiration_month: req.body.expiration_month,
-    cvc: req.body.cvc,
-  });
+    });
+  } else {
+    var user = new User({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email:  req.body.email,
+      password: req.body.password,
+      address_first_line: req.body.address_first_line,
+      address_second_line: req.body.address_second_line,
+      address_town: req.body.address_town,
+      address_post_code: req.body.address_post_code,
+      card_holder: req.body.card_holder,
+      card_number: req.body.card_number,
+      expiration_year: req.body.expiration_year,
+      expiration_month: req.body.expiration_month,
+      cvc: req.body.cvc,
+    });
     console.log(req.body.firstname);
     console.log(req.body.email);
     user.save(function(err) {
@@ -290,13 +336,13 @@ app.post('/account/upload/:_id', upload.single('imageUrl'), function (req, res, 
 var Manager = require('./models/manager');
 app.post('/manager', upload.single('imageUrl'), function(req, res){
   if(req.file){
-  var manager = new Manager({
-    man_firstname: req.body.man_firstname,
-    man_lastname: req.body.man_lastname,
-    man_email: req.body.man_email,
-    man_password: req.body.man_password,
-    imageUrl: req.file.path,
-  });
+    var manager = new Manager({
+      man_firstname: req.body.man_firstname,
+      man_lastname: req.body.man_lastname,
+      man_email: req.body.man_email,
+      man_password: req.body.man_password,
+      imageUrl: req.file.path,
+    });
     console.log(req.body.man_firstname);
     console.log(req.body.man_email);
     console.log(req.file);
@@ -306,14 +352,14 @@ app.post('/manager', upload.single('imageUrl'), function(req, res){
         req.session.managerId = manager._id;
         res.status(201).redirect('/manager/hub')
       }
-  });
-} else {
-  var manager = new Manager({
-    man_firstname: req.body.man_firstname,
-    man_lastname: req.body.man_lastname,
-    man_email: req.body.man_email,
-    man_password: req.body.man_password,
-  });
+    });
+  } else {
+    var manager = new Manager({
+      man_firstname: req.body.man_firstname,
+      man_lastname: req.body.man_lastname,
+      man_email: req.body.man_email,
+      man_password: req.body.man_password,
+    });
     console.log(req.body.man_firstname);
     console.log(req.body.Man_email);
     manager.save(function(err) {
@@ -339,20 +385,20 @@ app.post('/manager/account/upload/:_id', upload.single('imageUrl'), function (re
 var Employee = require('./models/employee');
 app.post('/manager/staff_creation', upload.single('imageUrl'), function(req, res){
   if(req.file){
-  var employee = new Employee({
-    em_first_name: req.body.em_first_name,
-    em_last_name: req.body.em_last_name,
-    employee_number: req.body.employee_number,
-    em_email: req.body.em_email,
-    staff_id: req.body.staff_id,
-    password: req.body.password,
-    em_address_line1: req.body.em_address_line1,
-    em_address_line2: req.body.em_address_line2,
-    em_address_city: req.body.em_address_city,
-    em_address_postcode: req.body.em_address_postcode,
-    em_tel: req.body.em_tel,
-    imageUrl: req.file.path,
-  });
+    var employee = new Employee({
+      em_first_name: req.body.em_first_name,
+      em_last_name: req.body.em_last_name,
+      employee_number: req.body.employee_number,
+      em_email: req.body.em_email,
+      staff_id: req.body.staff_id,
+      password: req.body.password,
+      em_address_line1: req.body.em_address_line1,
+      em_address_line2: req.body.em_address_line2,
+      em_address_city: req.body.em_address_city,
+      em_address_postcode: req.body.em_address_postcode,
+      em_tel: req.body.em_tel,
+      imageUrl: req.file.path,
+    });
     console.log(req.body.em_first_name);
     console.log(req.body.em_email);
     console.log(req.file);
@@ -362,21 +408,21 @@ app.post('/manager/staff_creation', upload.single('imageUrl'), function(req, res
         req.session.employeeId = employee._id;
         res.status(201).redirect('/manager/completed')
       }
-  });
-} else {
-  var employee = new Employee({
-    em_first_name: req.body.em_first_name,
-    em_last_name: req.body.em_last_name,
-    employee_number: req.body.employee_number,
-    em_email: req.body.em_email,
-    staff_id: req.body.staff_id,
-    password: req.body.password,
-    em_address_line1: req.body.em_address_line1,
-    em_address_line2: req.body.em_address_line2,
-    em_address_city: req.body.em_address_city,
-    em_address_postcode: req.body.em_address_postcode,
-    em_tel: req.body.em_tel,
-  });
+    });
+  } else {
+    var employee = new Employee({
+      em_first_name: req.body.em_first_name,
+      em_last_name: req.body.em_last_name,
+      employee_number: req.body.employee_number,
+      em_email: req.body.em_email,
+      staff_id: req.body.staff_id,
+      password: req.body.password,
+      em_address_line1: req.body.em_address_line1,
+      em_address_line2: req.body.em_address_line2,
+      em_address_city: req.body.em_address_city,
+      em_address_postcode: req.body.em_address_postcode,
+      em_tel: req.body.em_tel,
+    });
     console.log(req.body.em_first_name);
     console.log(req.body.em_email);
     employee.save(function(err) {
@@ -403,18 +449,18 @@ app.post('/employee/account/upload/:_id', upload.single('imageUrl'), function (r
 var Films = require('./models/films');
 app.post('/employee/film_creation', upload.single('imageUrl'), function(req, res){
   if(req.file){
-  var films = new Films({
-    name: req.body.name,
-    genres: req.body.genres,
-    actors: req.body.actors,
-    directors: req.body.directors,
-    date: req.body.date,
-    price: req.body.price,
-    description: req.body.description,
-    trailerUrl: req.body.trailerUrl,
-    modal: req.body.modal,
-    imageUrl: req.file.path,
-  });
+    var films = new Films({
+      name: req.body.name,
+      genres: req.body.genres,
+      actors: req.body.actors,
+      directors: req.body.directors,
+      date: req.body.date,
+      price: req.body.price,
+      description: req.body.description,
+      trailerUrl: req.body.trailerUrl,
+      modal: req.body.modal,
+      imageUrl: req.file.path,
+    });
     console.log(req.body.name);
     console.log(req.body.date);
     console.log(req.file);
@@ -423,19 +469,19 @@ app.post('/employee/film_creation', upload.single('imageUrl'), function(req, res
       else {
         res.status(201).redirect('/employee/em_film_lib')
       }
-  });
-} else {
-  var films = new Films({
-    name: req.body.name,
-    genres: req.body.genres,
-    actors: req.body.actors,
-    directors: req.body.directors,
-    date: req.body.date,
-    price: req.body.price,
-    description: req.body.description,
-    trailerUrl: req.body.trailerUrl,
-    modal: req.body.modal,
-  });
+    });
+  } else {
+    var films = new Films({
+      name: req.body.name,
+      genres: req.body.genres,
+      actors: req.body.actors,
+      directors: req.body.directors,
+      date: req.body.date,
+      price: req.body.price,
+      description: req.body.description,
+      trailerUrl: req.body.trailerUrl,
+      modal: req.body.modal,
+    });
     console.log(req.body.name);
     console.log(req.body.date);
     films.save(function(err) {
@@ -451,46 +497,46 @@ app.post('/employee/film_creation', upload.single('imageUrl'), function(req, res
 app.post('/employee/film/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
   console.log(req.file)
   if(req.file){
-  Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path,
-     name: req.body.name,
-     genres: req.body.genres,
-     actors: req.body.actors,
-     directors: req.body.directors,
-     date: req.body.date,
-     price: req.body.price,
-     description: req.body.description }, overwrite: true} , function(err){
-    if (err) { throw err; }
-    res.status(201).redirect('/employee/em_film_lib');
-  });
-}else{
-  Films.findOneAndUpdate({_id: req.params._id}, {$set: {
-     name: req.body.name,
-     genres: req.body.genres,
-     actors: req.body.actors,
-     directors: req.body.directors,
-     date: req.body.date,
-     price: req.body.price,
-     description: req.body.description }, overwrite: true} , function(err){
-    if (err) { throw err; }
-    res.status(201).redirect('/employee/em_film_lib');
-  });
-}
-});
+    Films.findOneAndUpdate({_id: req.params._id}, {$set: { imageUrl: req.file.path,
+      name: req.body.name,
+      genres: req.body.genres,
+      actors: req.body.actors,
+      directors: req.body.directors,
+      date: req.body.date,
+      price: req.body.price,
+      description: req.body.description }, overwrite: true} , function(err){
+        if (err) { throw err; }
+        res.status(201).redirect('/employee/em_film_lib');
+      });
+    }else{
+      Films.findOneAndUpdate({_id: req.params._id}, {$set: {
+        name: req.body.name,
+        genres: req.body.genres,
+        actors: req.body.actors,
+        directors: req.body.directors,
+        date: req.body.date,
+        price: req.body.price,
+        description: req.body.description }, overwrite: true} , function(err){
+          if (err) { throw err; }
+          res.status(201).redirect('/employee/em_film_lib');
+        });
+      }
+    });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+    // catch 404 and forward to error handler
+    app.use(function(req, res, next) {
+      next(createError(404));
+    });
 
-// error handler
-app.use(function(err, req, res) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // error handler
+    app.use(function(err, req, res) {
+      // set locals, only providing error in development
+      res.locals.message = err.message;
+      res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+      // render the error page
+      res.status(err.status || 500);
+      res.render('error');
+    });
 
-module.exports = app;
+    module.exports = app;

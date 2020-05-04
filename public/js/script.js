@@ -3,17 +3,19 @@ const messageContainer = document.getElementById('message-container')
 const roomContainer = document.getElementById('room-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
+const userInput = document.getElementById('user-input')
 
 if (messageForm != null) {
-  const name = prompt('What is your name?')
+  const name = prompt('What is your username?')
   appendMessage('You joined')
   socket.emit('new-user', roomName, name)
 
   messageForm.addEventListener('submit', e => {
     e.preventDefault()
     const message = messageInput.value
+    const user = userInput.value
     appendMessage(`You: ${message}`)
-    socket.emit('send-chat-message', roomName, message)
+    socket.emit('send-chat-message', roomName, message, user)
     messageInput.value = ''
   })
 }

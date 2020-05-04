@@ -668,7 +668,9 @@
                   <hr>
                   {{/each}}
           <!-- /Callout -->
-
+          {{else}}
+          {{> noUser}}
+          {{/if }}
                   {{> footer }}
 
                   <!-- /.Footer -->
@@ -713,53 +715,6 @@
                     });
                   });
                   </script>
-
-                  <script src="/socket.io/socket.io.js"></script>
-
-                  <script>
-                  var socket = io.connect();
-                  var username = '{{#users}}{{this.firstname}}{{/users}}';
-                  var userIsTypingEvent = 'user_typing';
-
-                  // submit text message without reload/refresh the page
-                  $('#chat-form').submit(function(e){
-                    e.preventDefault(); // prevents page reloading
-                    socket.emit('chat message', $('#m').val());
-                    $('#m').val('');
-                    return false;
-                  });
-                  // append the chat text message
-                  socket.on('chat message', function(msg){
-                    $('#messages').append($('<li>').html(msg));
-                  });
-                  // append text if someone is online
-                  socket.on('is_online', function(username) {
-                    $('#messages').append($('<li>').html(username));
-                  });
-                  // ask username
-                  $('#chatModal').click(function(){
-                    socket.emit('username', username);
-                  })
-                  //emit typing
-                  $('#m').on('keyup', function(event) {
-                    $.post('/userTyping', {username: username});
-                  });
-                  </script>
-
-
-                  <!-- jquery to shrink logo and navbar on scroll -->
-                  <script>
-                  $( window ).scroll(function() {
-                    if($(window).scrollTop() > 70){
-                      $('.logo').css({'height': '70'});
-                    }else{
-                      $('.logo').css({'height': '120'});
-                    }
-
-                  });
-                  </script>
                 </body>
-                {{/if}}
                 <!-- /USERS VIEW -->
-
                 </html>

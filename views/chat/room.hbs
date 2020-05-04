@@ -4,7 +4,6 @@
   <metacharset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../stylesheets/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
   <script>document.getElementsByTagName("html")[0].className += " js";</script>
@@ -51,11 +50,17 @@
       <div class="opaque-overlay">&nbsp;</div>
       <div class="col-4 form-background"  style="padding-top: 30px; padding-bottom: 20px;">
         <div id="message-container" style="padding-bottom: 50px; padding-top: 20px;"></div>
-        <form id="send-container" action="">
-          <input type="text" id="message-input" value="">
+        <form id="send-container" action="/chat">
+          <input type="text" id="message-input" name="message" value="">
+          {{#users}}
+          <input type="text" id="user-input" name="user" value="{{this._id}}">
+          {{/users}}
           <button type="submit" id="send-button">Send</button>
         </form>
         <a style="margin-left: 20px;" href="/chat"><button type="button">Leave Room</button></a>
+        <div class="" id="users">
+
+        </div>
       </div>
     </div>
   </div>
