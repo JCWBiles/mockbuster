@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8" name="viewport" content="width-device-width, initial-scale=1.0">
-  <title>Chat App</title>
+  <metacharset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../stylesheets/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
+
+  <title>MockBuster - Chat Rooms</title>
   <style media="screen">
   body {
     padding: 10;
@@ -11,21 +22,36 @@
     justify-content: center; */
   }
   </style>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-  <h1>Welcome to Mockbuster Chat Rooms!!</h1>
+  <!-- Header -->
+  {{> header }}
+  <!-- /.Header -->
+  <div class="each-event">
+    <div class="container-fluid background-jumbotron callout-container">
+      <div class="opaque-overlay">&nbsp;</div>
+      <div class="col-4 form-background"  style="padding-top: 20px;">
+        <h1>Welcome to Mockbuster Chat Rooms!!</h1>
 
-  <div class="" id="room-container">
-    {{#each rooms}}<button type="button" class="col-10 hub-buttons btn btn-danger btn-lg"> {{@key}}: {{room}} <a href="/chat/{{@key}}">Join</a></button>
-    <br><br> {{/each}}
+        <div class="" id="room-container">
+          {{#each rooms}}<button type="button" class="col-10 hub-buttons btn btn-danger btn-lg"> {{@key}}: {{room}} <a href="/chat/{{@key}}">Join</a></button>
+          <br><br> {{/each}}
+        </div>
+        <hr>
+        <div class=" " style="padding-bottom: 50px; padding-top: 20px;">
+          <form class="" action="/chat/room" method="post">
+            <input type="text" name="room" required>
+            <button type="submit" name="button">New Room</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <hr>
-  <form class="" action="/chat/room" method="post">
-    <input type="text" name="room" required>
-    <button type="submit" name="button">New Room</button>
-  </form>
-  <script src="http://localhost:3001/socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
+</div>
+<!-- Footer -->
+{{> footer }}
+<!-- /.Footer -->
+<script src="http://localhost:3001/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
