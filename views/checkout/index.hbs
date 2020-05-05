@@ -51,6 +51,9 @@
                   <!-- <hr/> -->
                   <form class="card-details-form" action="/checkout/payment/{{this._id}}" method="post">
                     <input type="hidden" name="_method" value="PATCH" />
+                    <input hidden type="text" name="email" value="{{this.email}}">
+                    <input hidden type="text" name="firstname" value="{{this.firstname}}">
+                    <input hidden type="text" name="lastname" value="{{this.lastname}}">
                     <div class="card-details">
                       <h3 class="title">Address Details</h3>
                       <div class="row">

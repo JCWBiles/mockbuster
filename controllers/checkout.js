@@ -26,6 +26,11 @@ var CheckoutController = {
     var email = req.body.email;
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
+    var address_first_line = req.body.address_first_line;
+    var address_second_line = req.body.address_second_line;
+    var address_town = req.body.address_town;
+    var address_post_code = req.body.address_post_code;
+
     User.findOneAndUpdate({_id: req.params._id}, {$set: { address_first_line: req.body.address_first_line,
       address_second_line: req.body.address_second_line,
       address_town: req.body.address_town,
@@ -42,14 +47,15 @@ var CheckoutController = {
             service: 'gmail',
             auth: {
               user: 'mockbuster2020@gmail.com',
-              pass: 'xxxxx'
+              pass: 'XXXX'
             }
           });
 
           var mailOptions = {
-            from: 'MockBuster <mockbuster2020@gmail.com>',
+            from: 'MockBuster',
             to: email,
-            subject: `Thank You ${em_first_name}`,
+            subject: `Thank You ${firstname}`,
+            date: new Date('2000-01-01 00:00:00'),
             html: `<head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,6 +84,9 @@ var CheckoutController = {
               margin-top: 0;
               margin-bottom: 2.5cm;
             }
+            .logo {
+                background: url("/images/logo/mockbuster_logo_4.png");
+              }
             </style>
 
             </head>
@@ -95,15 +104,11 @@ var CheckoutController = {
             <td class="border-0">
             <div class="row">
             <div class="col-md text-center text-md-left mb-3 mb-md-0">
-            <img class="logo img-fluid mb-3" src="https://docamatic.s3-eu-west-1.amazonaws.com/assets/360_logo.png" style="max-height: 140px;"/>
+            <a class="logo img-fluid mb-3" style="max-height: 140px;"/><a>
             <br>
-
             <h2 class="mb-1">MockBuster</h2>
-            ${address_first_line}<br>
-            ${address_second_line}<br>
-            ${address_town}<br>
-            ${address_post_code}<br>
-             United Kingdom<br>
+            MockBuster Incorporated<br>
+            London, United Kingdom<br>
             info@mockbuster.co.uk / 0208 123 456<br>
             <strong>mockbuster.co.uk</strong>
             </div>
@@ -117,11 +122,14 @@ var CheckoutController = {
 
             <h4 class="mb-0">${firstname} ${lastname}</h4>
 
-            57 Parkway, 5th Floor<br/>
-            New York, NY 10013<br/>
+            ${address_first_line}<br>
+            ${address_second_line}<br>
+            ${address_town}<br>
+            ${address_post_code}<br>
+            United Kingdom<br>
             ${email}<br/>
 
-            <h5 class="mb-0 mt-3" id="date">DATE</h5>
+            <h5 class="mb-0 mt-3"></h5>
             </div>
             </div>
             </td>
@@ -141,20 +149,20 @@ var CheckoutController = {
             <tbody>
             <tr>
             <td>
-            <h5 class="mb-1">Pursuit Running Shoes</h5>
-            Men's Pursuit Running Shoes - 10/M
+            <h5 class="mb-1">Film</h5>
+            Elite
             </td>
-            <td class="font-weight-bold align-middle text-right text-nowrap">$149.00 USD</td>
+            <td class="font-weight-bold align-middle text-right text-nowrap">£4.99 GBP</td>
             </tr>
             <tr>
             <td>
-            <h5 class="mb-1">Shelby Boots</h5>
-            Men's Shelby Leather Boots - 10/M
+            <h5 class="mb-1">Film</h5>
+            Deadpool
             </td>
-            <td class="font-weight-bold align-middle text-right text-nowrap">$99.00 USD</td>
+            <td class="font-weight-bold align-middle text-right text-nowrap">£4.99 GBP</td>
             </tr>
             <tr>
-            <td colspan="2" class="text-right border-0 pt-4"><h5>Total: $248.00 USD</h5></td>
+            <td colspan="2" class="text-right border-0 pt-4"><h5>Total: £9.98 USD</h5></td>
             </tr>
             </table>
 
@@ -164,10 +172,6 @@ var CheckoutController = {
             Thank you for your custom!
             </h5>
             </div>
-            <script>
-            var today = new Date();
-            document.getElementById('date').innerHTML=today;
-            </script>
             </body>`
           };
 
@@ -199,14 +203,15 @@ var CheckoutController = {
             service: 'gmail',
             auth: {
               user: 'mockbuster2020@gmail.com',
-              pass: 'xxxxx'
+              pass: 'XXX'
             }
           });
 
           var mailOptions = {
-            from: 'MockBuster <mockbuster2020@gmail.com>',
+            from: 'MockBuster',
             to: email,
             subject: `Thank You ${firstname}`,
+            date: new Date('2000-01-01 00:00:00'),
             html: `<head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -235,6 +240,9 @@ var CheckoutController = {
               margin-top: 0;
               margin-bottom: 2.5cm;
             }
+            .logo {
+                background: url("/images/logo/mockbuster_logo_4.png");
+              }
             </style>
 
             </head>
@@ -252,11 +260,12 @@ var CheckoutController = {
             <td class="border-0">
             <div class="row">
             <div class="col-md text-center text-md-left mb-3 mb-md-0">
-            <img class="logo img-fluid mb-3" src="https://docamatic.s3-eu-west-1.amazonaws.com/assets/360_logo.png" style="max-height: 140px;"/>
+            <a class="logo img-fluid mb-3" style="max-height: 140px;"/><a>
             <br>
 
             <h2 class="mb-1">MockBuster</h2>
-            787 Fake Street, Fake Town United Kingdom<br>
+            MockBuster Incorporated<br>
+            London, United Kingdom<br>
             info@mockbuster.co.uk / 0208 123 456<br>
             <strong>mockbuster.co.uk</strong>
             </div>
@@ -270,11 +279,10 @@ var CheckoutController = {
 
             <h4 class="mb-0">${firstname} ${lastname}</h4>
 
-            57 Parkway, 5th Floor<br/>
-            New York, NY 10013<br/>
+
             ${email}<br/>
 
-            <h5 class="mb-0 mt-3" id="date"></h5>
+            <h5 class="mb-0 mt-3"></h5>
             </div>
             </div>
             </td>
@@ -294,20 +302,20 @@ var CheckoutController = {
             <tbody>
             <tr>
             <td>
-            <h5 class="mb-1">Pursuit Running Shoes</h5>
-            Men's Pursuit Running Shoes - 10/M
+            <h5 class="mb-1">Film</h5>
+            Elite
             </td>
-            <td class="font-weight-bold align-middle text-right text-nowrap">$149.00 USD</td>
+            <td class="font-weight-bold align-middle text-right text-nowrap">£4.99 GBP</td>
             </tr>
             <tr>
             <td>
-            <h5 class="mb-1">Shelby Boots</h5>
-            Men's Shelby Leather Boots - 10/M
+            <h5 class="mb-1">Film</h5>
+            Deadpool
             </td>
-            <td class="font-weight-bold align-middle text-right text-nowrap">$99.00 USD</td>
+            <td class="font-weight-bold align-middle text-right text-nowrap">£4.99 GBP</td>
             </tr>
             <tr>
-            <td colspan="2" class="text-right border-0 pt-4"><h5>Total: $248.00 USD</h5></td>
+            <td colspan="2" class="text-right border-0 pt-4"><h5>Total: £9.98 GBP</h5></td>
             </tr>
             </table>
 
@@ -317,10 +325,6 @@ var CheckoutController = {
             Thank you for your custom!
             </h5>
             </div>
-            <script>
-            var today = new Date();
-            document.getElementById('date').innerHTML=today;
-            </script>
             </body>`
           };
 
@@ -345,28 +349,6 @@ var CheckoutController = {
         res.render('checkout/thank_you', {  users: users, href: "/films", iconClass: "fas fa-photo-video" });
         console.log(req.session.userId);
       })
-
-
-      // Send order confirmation email
-
-      //    var api_key = '';
-      //    var domain = '';
-      //    var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
-      //    var data = {
-      //      from: 'MockBuster <mockbuster2020@gmail.com>',
-      //      to: 'parkermakers@gmail.com',
-      //      subject: 'Order confirmed',
-      //      text: 'Thank you for your order! We hope you have a premium viewing experience!'
-      //    };
-
-      //    mailgun.messages().send(data, function (error, body) {
-      //      if (error){
-      //        console.log(error);
-      //      }
-      //      console.log(body);
-      //    });
-
     },
   };
 
