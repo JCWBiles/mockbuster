@@ -10,6 +10,7 @@ var methodOverride = require('method-override');
 var mailgun = require('mailgun-js');
 var flash = require('express-flash-messages');
 var Handlebars = require('hbs');
+var nodemailer = require('nodemailer');
 // var simpleWebRTC = require('simplewebrtc');
 // var adapter = require('webrtc-adapter');
 //Image upload setup
@@ -319,9 +320,32 @@ app.post('/user', upload.single('imageUrl'), function(req, res){
         req.session.userId = user._id;
         res.status(201).redirect('/films')
       }
+
     });
   }
-});
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'mockbuster2020@gmail.com',
+      pass: 'Mockbuster2020!'
+    }
+  });
+
+  var mailOptions = {
+    from: 'MockBuster <mockbuster2020@gmail.com>',
+    to: req.body.email,
+    subject: 'Welcome to Mockbuster',
+    text: `You're all signed up! We hope you enjoy our incredible library of films.`
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+})
 
 //route for editing USER account image
 app.post('/account/upload/:_id', upload.single('imageUrl'), function (req, res, next) {
