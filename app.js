@@ -243,10 +243,10 @@ io.on('connection', socket => {
   })
 
   socket.on('send-chat-message', (room, message, user) => {
-    var message = new Chat({message: message, user: user, name: rooms[room].users[socket.id]});
-    message.save(function(err){
+    var msg = new Chat({message: message, user: user, name: rooms[room].users[socket.id]});
+    msg.save(function(err){
       if (err) {throw err}
-      console.log(message);
+      console.log(msg);
       socket.to(room).broadcast.emit('chat-message', { message: message, name: rooms[room].users[socket.id] })
     })
   })

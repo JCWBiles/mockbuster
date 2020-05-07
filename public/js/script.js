@@ -4,9 +4,10 @@ const roomContainer = document.getElementById('room-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 const userInput = document.getElementById('user-input')
+const userName = document.getElementById('user-name')
 
 if (messageForm != null) {
-  const name = prompt('What is your username?')
+  const name = userName.value
   appendMessage('You joined')
   socket.emit('new-user', roomName, name)
 
@@ -42,8 +43,8 @@ socket.on('user-disconnected', name => {
   appendMessage(`${name} disconnected`)
 })
 
-function appendMessage(message) {
+function appendMessage(data) {
   const messageElement = document.createElement('div')
-  messageElement.innerText = message
+  messageElement.innerText = data
   messageContainer.append(messageElement)
 }

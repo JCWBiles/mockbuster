@@ -48,13 +48,14 @@
   <div class="each-event">
     <div class="container-fluid background-jumbotron callout-container">
       <div class="opaque-overlay">&nbsp;</div>
-      <div class="col-4 form-background"  style="padding-top: 30px; padding-bottom: 20px;">
+      <div class="col-5 form-background"  style="padding-top: 30px; padding-bottom: 20px;">
         <div id="message-container" style="padding-bottom: 50px; padding-top: 20px;"></div>
         <form id="send-container" action="/chat">
           <input type="text" id="message-input" name="message" value="">
           {{#users}}
-          <input type="text" id="user-input" name="user" value="{{this._id}}">
+          <input hidden type="text" id="user-input" name="user" value="{{this._id}}">
           {{/users}}
+          <br>
           <button type="submit" id="send-button">Send</button>
         </form>
         <a style="margin-left: 20px;" href="/chat"><button type="button">Leave Room</button></a>
@@ -67,10 +68,52 @@
   <!-- Footer -->
   {{> footer }}
   <!-- /.Footer -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script type="text/javascript">
   var roomName = "{{roomName}}"
   </script>
   <script src="http://localhost:3001/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="../js/script.js"></script>
+  <script>
+  $(function(){
+    $('#searchName').autocomplete({
+      source: function(req,res){
+
+        $.ajax({
+          url:"films/autocomplete/",
+          dataType:"jsonp",
+          type:"GET",
+          data:req,
+          success: function(data){
+            res(data)
+
+          },
+          error: function(err){
+            console.log(err.status);
+          }
+        });
+      },
+
+      minLength:1,
+      select: function(event,ui){
+        if(ui.item){
+          $('#searchName').val(ui.item.label);
+        }
+      }
+    });
+  });
+  </script>
+  <!-- jquery to shrink logo and navbar on scroll -->
+  <script>
+  $( window ).scroll(function() {
+    if($(window).scrollTop() > 70){
+      $('.logo').css({'height': '70'});
+    }else{
+      $('.logo').css({'height': '120'});
+    }
+  });
+  </script>
 </body>
 </html>
