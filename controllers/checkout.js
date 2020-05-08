@@ -30,6 +30,9 @@ var CheckoutController = {
     var address_second_line = req.body.address_second_line;
     var address_town = req.body.address_town;
     var address_post_code = req.body.address_post_code;
+    var films = req.body.films;
+    var price = req.body.film_price;
+    var total = req.body.total;
 
     User.findOneAndUpdate({_id: req.params._id}, {$set: { address_first_line: req.body.address_first_line,
       address_second_line: req.body.address_second_line,
@@ -47,7 +50,7 @@ var CheckoutController = {
             service: 'gmail',
             auth: {
               user: 'mockbuster2020@gmail.com',
-              pass: 'XXXX'
+              pass: 'XXX'
             }
           });
 
@@ -149,20 +152,13 @@ var CheckoutController = {
             <tbody>
             <tr>
             <td>
-            <h5 class="mb-1">Film</h5>
-            Elite
+            <h5 class="mb-1" id="mb-1">Film</h5>
+            ${films}
             </td>
-            <td class="font-weight-bold align-middle text-right text-nowrap">£4.99 GBP</td>
+            <td class="font-weight-bold align-middle text-right text-nowrap">£${price} GBP</td>
             </tr>
             <tr>
-            <td>
-            <h5 class="mb-1">Film</h5>
-            Deadpool
-            </td>
-            <td class="font-weight-bold align-middle text-right text-nowrap">£4.99 GBP</td>
-            </tr>
-            <tr>
-            <td colspan="2" class="text-right border-0 pt-4"><h5>Total: £9.98 USD</h5></td>
+            <td colspan="2" class="text-right border-0 pt-4"><h5>Total: £${total} GBP</h5></td>
             </tr>
             </table>
 
@@ -194,6 +190,10 @@ var CheckoutController = {
       var email = req.body.email;
       var firstname = req.body.firstname;
       var lastname = req.body.lastname;
+      var films = req.body.films;
+      var price = req.body.film_price;
+      var total = req.body.total;
+
       User.find({_id: req.session.userId, }, function(err,users) {
         if (err) { throw err; }
         console.log(users);
@@ -203,7 +203,7 @@ var CheckoutController = {
             service: 'gmail',
             auth: {
               user: 'mockbuster2020@gmail.com',
-              pass: 'XXX'
+              pass: 'XXXX'
             }
           });
 
@@ -303,19 +303,12 @@ var CheckoutController = {
             <tr>
             <td>
             <h5 class="mb-1">Film</h5>
-            Elite
+            ${films}
             </td>
-            <td class="font-weight-bold align-middle text-right text-nowrap">£4.99 GBP</td>
+            <td class="font-weight-bold align-middle text-right text-nowrap">£${price} GBP</td>
             </tr>
             <tr>
-            <td>
-            <h5 class="mb-1">Film</h5>
-            Deadpool
-            </td>
-            <td class="font-weight-bold align-middle text-right text-nowrap">£4.99 GBP</td>
-            </tr>
-            <tr>
-            <td colspan="2" class="text-right border-0 pt-4"><h5>Total: £9.98 GBP</h5></td>
+            <td colspan="2" class="text-right border-0 pt-4"><h5>Total: £${total} GBP</h5></td>
             </tr>
             </table>
 
@@ -335,11 +328,11 @@ var CheckoutController = {
               console.log('Email sent: ' + info.response);
             }
           });
-          Cart.remove({user: req.session.userId}, function(err){
+          Cart.deleteMany({user: req.session.userId}, function(err){
             if (err) { throw err; }
             res.status(201).redirect('/checkout/thank_you');
           })
-        })
+        {cart:cart} })
       })
     },
 

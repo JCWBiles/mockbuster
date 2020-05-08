@@ -61,3 +61,26 @@
     </ul>
   </div>
 </footer>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  //handler to trigger sum event
+  $(".films").each(function() {
+    calculateTotal();
+  });
+});
+
+function calculateTotal() {
+  var sum = 0;
+  //iterate through each and add the values
+  $(".films").each(function() {
+    //add only if the value is number
+    if(!isNaN(this.value) && this.value.length!=0) {
+      sum += parseFloat(this.value);
+    }
+  });
+  //.toFixed() method will roundoff the final sum to 2 decimal places
+  $("#total").html(sum.toFixed(2));
+}
+</script>

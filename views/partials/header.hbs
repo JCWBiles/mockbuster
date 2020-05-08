@@ -77,15 +77,18 @@
                 {{#if cartusers}}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="padding-right: 40px;" >
 
-                  {{#each cartusers}}<form class="" action="/cart/delete/{{this._id}}" method="post">
-                    <a class="dropdown-item" href="#">{{this.film.name}} - {{this.film.price}}
+                  {{#each cartusers}}
+                  <form class="" action="/cart/delete/{{this._id}}" method="post">
+                    <a class="dropdown-item" href="#">{{this.film.name}} - £{{this.film.price}}
                       <input type="hidden" name="_method" value="DELETE" />
                       <button type="submit" class="btn-danger" style=" margin-right: -40px; float:right"><i class="fas fa-times float-right"></i></button>
-                    </a></form>
+                    </a>
+                  </form>
+                  <input hidden type="text" class="films" name="films" value="{{this.film.price}}">
                     {{/each}}
                     <hr/>
-                    <!-- <a class="dropdown-item" href="#">Total: {{#total}}{{this.total}}{{/total}}</a>
-                    <hr> -->
+                    <a class="dropdown-item" href="#">Total: £<span id="total"></span></a>
+                    <hr>
                     <a class="dropdown-item" href="/checkout">Go to Checkout<i style="margin-right: -40px;" class="fas fa-cart-arrow-down float-right"></i></a>
                   </div>
                   {{else}}

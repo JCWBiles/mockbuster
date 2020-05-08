@@ -359,7 +359,7 @@ var FilmsController = {
             if(allFilms.length < 1) {
               noMatch = "No films match that query, please try again.";
             }
-            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users, cartusers: cartusers, href: "/films/search", icon: "fas fa-photo-video"});
+            res.render("films/search",{films:allFilms, noMatch: noMatch, users:users, cartusers: cartusers, href: "/films/search", iconClass: "fas fa-photo-video"});
           })
         }
 

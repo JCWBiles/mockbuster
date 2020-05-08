@@ -19,7 +19,7 @@
 <body>
 
   <!-- Header -->
-{{> header }}
+  {{> header }}
   <!-- /.Header -->
 
   <!-- Callout -->
@@ -35,26 +35,26 @@
             <!-- Callout - Films -->
             {{#each films}}
             <div class="col-sm-6 col-md-3">
-                <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
-                  <img src="{{this.imageUrl}}" alt="{{this.name}}">
-                </a>
+              <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
+                <img src="{{this.imageUrl}}" alt="{{this.name}}">
+              </a>
 
-                <!-- Callout - film details modal -->
-                <div class="modal fade" id="{{this.modal}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="movieLabel"><b>{{this.name}}</b>
-                        </h5>
-                        <div class="buttons">
-                          <span class="like-btn"></span>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+              <!-- Callout - film details modal -->
+              <div class="modal fade" id="{{this.modal}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="movieLabel"><b>{{this.name}}</b>
+                      </h5>
+                      <div class="buttons">
+                        <span class="like-btn"></span>
                       </div>
-                      <div class="modal-body">
-                        <form id="add-to-cart-form" style = "display: inline; margin-top: -20px;" action="/cart/add" method="post">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="add-to-cart-form" style = "display: inline; margin-top: -20px;" action="/cart/add" method="post">
                         <div class="form-group">
                           <input type="hidden" class="form-control" name="filmId" value="{{this._id}}">
                         </div>
@@ -100,7 +100,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="../js/jquery.shop.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
@@ -139,16 +138,17 @@
       });
     });
     </script>
-    <!-- jquery to shrink logo and navbar on scroll -->
-    <script>
-    $( window ).scroll(function() {
-      if($(window).scrollTop() > 70){
-        $('.logo').css({'height': '70'});
-      }else{
-        $('.logo').css({'height': '120'});
-      }
-    });
-    </script>
-  </body>
 
-  </html>
+<!-- jquery to shrink logo and navbar on scroll -->
+<script>
+$( window ).scroll(function() {
+  if($(window).scrollTop() > 70){
+    $('.logo').css({'height': '70'});
+  }else{
+    $('.logo').css({'height': '120'});
+  }
+});
+</script>
+</body>
+
+</html>
