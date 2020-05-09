@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
-<style media="screen">
+  <style media="screen">
   nav{
     font-size: 120%;
   }
@@ -21,148 +21,196 @@
     width: 192px;
     font-size: 100%
   }
+    #chat-content { height: 180px;  overflow-y: scroll; }
 
 </style>
-  <title>MockBuster - Video Chat</title>
+<title>MockBuster - Video Chat</title>
 </head>
 
 <body>
 
   <!-- Header -->
-    {{> header }}
-    <!-- /.Header -->
+  {{> header }}
+  <!-- /.Header -->
 
-    <!-- Callout -->
-    <div class="each-event">
-      <div class="container-fluid background-jumbotron callout-container">
-        <div class="opaque-overlay">&nbsp;</div>
-        <div class="col-4 form-background col-8">
-      <h1 style="text-align: center;">Video Chat</h1>
-      <br>
-      <h2>Welcome to Mockbuster's  Video Chat Room!</h2>
-      <h4>Connect with other movie lovers and even join live interviews with industry insiders!</h4>
-<br>
-      <div class="ui two column stackable grid">
+  <!-- Callout -->
+  <div class="each-event">
+    <div class="container-fluid background-jumbotron callout-container">
+      <div class="opaque-overlay">&nbsp;</div>
+      <div class="col-4 form-background col-8">
+        <h1 style="text-align: center;">Video Chat</h1>
+        <br>
+        <h2>Welcome to Mockbuster's  Video Chat Room!</h2>
+        <h4>Connect with other movie lovers and even join live interviews with industry insiders!</h4>
+        <br>
+        <div class="ui container">
+          <div class="ui two column stackable grid">
 
-  <!-- Chat Section -->
-  <div class="ui nine wide column">
-    <div class="ui segment">
-      <!-- Chat Room Form -->
-      <div class="ui form">
-        <div class="fields">
-          <div class="field">
-            {{#users}}
-            <label>User Name</label>
-            <input type="text" value="{{this.firstname}} {{this.lastname}}" id="username" name="firstname">
-            {{/users}}
+            <!-- Chat Section -->
+            <div class="ui nine wide column">
+              <div class="ui segment">
+                <!-- Chat Room Form -->
+          <div class="ui form">
+            <div class="fields">
+              <div class="field">
+                <label>User Name</label>
+                {{#users}}
+                <input type="text" placeholder="Enter user name" id="username" name="username" value="{{this.firstname}}">
+                {{/users}}
+              </div>
+              <div class="field">
+                <label>Room</label>
+                <input type="text" placeholder="Enter room name" id="roomName" name="roomName">
+              </div>
+            </div>
+            <br>
+            <div class="ui buttons">
+              <div id="create-btn" class="ui submit yellow button">Create Room</div>
+              <div class="or"></div>
+              <div id="join-btn" class="ui submit blue button">Join Room</div>
+            </div>
           </div>
-          <br>
-          <div class="field">
-            <label>Room</label>
-            <input type="text" placeholder="Enter room name" id="roomName" name="roomName">
+
+                <!-- Chat Room Messages -->
+                <div id="chat"></div>
+              </div>
+            </div>
+            <!-- End of Chat Section -->
+
+            <!-- Local Camera -->
+            <div class="ui six wide column">
+              <h4 class="ui center aligned header" style="margin:0;">
+                Local Camera
+              </h4>
+              <img id="local-image" class="ui large image" src="images/blank-profile-picture.png" onerror="this.src='../images/blank-profile-picture.png';">
+              <video id="local-video" class="ui large image hidden" autoplay></video>
+            </div>
+
+          </div>
+
+          <!-- Remote Cameras -->
+          <h3 class="ui center aligned header">Remote Cameras</h3>
+          <div id="remote-videos" class="ui stackable grid">
+            <div class="four wide column">
+              <img class="ui centered medium image" src="images/blank-profile-picture.png" onerror="this.src='../images/blank-profile-picture.png';">
+            </div>
+            <div class="four wide column">
+              <img class="ui centered medium image" src="images/blank-profile-picture.png" onerror="this.src='../images/blank-profile-picture.png';">
+            </div>
+            <div class="four wide column">
+              <img class="ui centered medium image" src="images/blank-profile-picture.png" onerror="this.src='../images/blank-profile-picture.png';">
+            </div>
+            <div class="four wide column">
+              <img class="ui centered medium image" src="images/blank-profile-picture.png" onerror="this.src='../images/blank-profile-picture.png';">
+            </div>
           </div>
         </div>
         <br>
-        <div class="ui buttons">
-          <div id="create-btn" class="ui submit yellow button">Create Room</div>
-          <div class="or"></div>
-          <div id="join-btn" class="ui submit blue button">Join Room</div>
-        </div>
-      </div>
-      <!-- Chat Room Messages -->
-      <div id="chat"></div>
-    </div>
-  </div>
-  <!-- End of Chat Section -->
+        <!-- /.Callout -->
 
-  <!-- Local Camera -->
-  <div class="ui six wide column">
-    <h4 class="ui center aligned header" style="margin:0;">
-      Local Camera
-    </h4>
-    <img id="local-image" class="ui large image" src="images/image.png" onerror="this.src='../images/blank-profile-picture.png';">
-    <video id="local-video" class="ui large image hidden" autoplay></video>
-  </div>
+        <!-- Footer -->
+        {{> footer }}
+        <!-- /.Footer -->
 
-</div>
+        <!-- Remote Video Template -->
+        <script id="remote-video-template" type="text/x-handlebars-template">
+          <div id="{{ id }}" class="four wide column"></div>
+        </script>
 
-<!-- Remote Cameras -->
-<h3 class="ui center aligned header">Remote Cameras</h3>
-<div id="remote-videos" class="ui stackable grid">
-  <div class="four wide column">
-    <img class="ui centered medium image" src="images/image.png" onerror="this.src='../images/blank-profile-picture.png';">
-  </div>
-  <div class="four wide column">
-    <img class="ui centered medium image" src="images/image.png" onerror="this.src='../images/blank-profile-picture.png';">
-  </div>
-  <div class="four wide column">
-    <img class="ui centered medium image" src="images/image.png" onerror="this.src='../images/blank-profile-picture.png';">
-  </div>
-  <div class="four wide column">
-    <img class="ui centered medium image" src="images/image.png" onerror="this.src='../images/blank-profile-picture.png';">
-  </div>
-</div>
-<br>
-    <!-- /.Callout -->
+        <!-- Chat Content Template -->
+        <script id="chat-content-template" type="text/x-handlebars-template">
+          {{#each messages}}
+          <div class="event">
+            <div class="label">
+              <i class="icon blue user"></i>
+            </div>
+            <div class="content">
+              <div class="summary">
+                <a href="#"> {{ username }}</a> posted on
+                <div class="date">
+                  {{ postedOn }}
+                </div>
+              </div>
+              <div class="extra text">
+                {{ message }}
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </script>
 
-    <!-- Footer -->
-    {{> footer }}
-    <!-- /.Footer -->
+        <!-- Chat Template -->
+        <script id="chat-template" type="text/x-handlebars-template">
+          <h3 class="ui orange header">Room Name -> <strong>{{ chatroom }}</strong></h3>
+          <hr>
+          <div id="chat-content" class="ui feed"> </div>
+          <hr>
+          <div class="ui form">
+            <div class="ui field">
+              <label>Post Message</label>
+              <textarea id="post-message" name="post-message" rows="1"></textarea>
+            </div>
+            <div id="post-btn" class="ui primary submit button">Send</div>
+          </div>
+        </script>
+        <!-- Video Chat Scripts -->
+        <script src="scripts/semantic-ui-css/semantic.min.js"></script>
+        <script src="scripts/handlebars/dist/handlebars.min.js "></script>
+        <script src="scripts/simplewebrtc/out/simplewebrtc-with-adapter.bundle.js"></script>
+        <script src="js/video.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="../js/jquery.shop.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script type="text/javascript">
-    $('.like-btn').on('click', function() {
-      $(this).toggleClass('is-active');
-    });
-    </script>
+        <script type="text/javascript">
+        $('.like-btn').on('click', function() {
+          $(this).toggleClass('is-active');
+        });
+        </script>
 
-    <script>
-    $(function(){
-      $('#searchName').autocomplete({
-        source: function(req,res){
+        <script>
+        $(function(){
+          $('#searchName').autocomplete({
+            source: function(req,res){
 
-          $.ajax({
-            url:"films/autocomplete/",
-            dataType:"jsonp",
-            type:"GET",
-            data:req,
-            success: function(data){
-              res(data)
+              $.ajax({
+                url:"films/autocomplete/",
+                dataType:"jsonp",
+                type:"GET",
+                data:req,
+                success: function(data){
+                  res(data)
 
+                },
+                error: function(err){
+                  console.log(err.status);
+                }
+              });
             },
-            error: function(err){
-              console.log(err.status);
+
+            minLength:1,
+            select: function(event,ui){
+              if(ui.item){
+                $('#searchName').val(ui.item.label);
+              }
             }
           });
-        },
+        });
+        </script>
 
-        minLength:1,
-        select: function(event,ui){
-          if(ui.item){
-            $('#searchName').val(ui.item.label);
-          }
-        }
-      });
-    });
-    </script>
-
-      <!-- jquery to shrink logo and navbar on scroll -->
-      <script>
+        <!-- jquery to shrink logo and navbar on scroll -->
+        <script>
         $( window ).scroll(function() {
-        if($(window).scrollTop() > 70){
-          $('.logo').css({'height': '70'});
-        }else{
+          if($(window).scrollTop() > 70){
+            $('.logo').css({'height': '70'});
+          }else{
             $('.logo').css({'height': '120'});
-        }
+          }
 
         });
-      </script>
-  </body>
+        </script>
+      </body>
 
-  </html>
+      </html>

@@ -11,8 +11,7 @@ var mailgun = require('mailgun-js');
 var flash = require('express-flash-messages');
 var Handlebars = require('hbs');
 var nodemailer = require('nodemailer');
-// var simpleWebRTC = require('simplewebrtc');
-// var adapter = require('webrtc-adapter');
+
 //Image upload setup
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -94,6 +93,9 @@ app.use(session({
   saveUninitialized: false,
   store: new MongoStore({ mongooseConnection: db })
 }));
+
+// Provide access to node_modules folder from the client-side
+app.use('/scripts', express.static(`${__dirname}/node_modules/`))
 
 // route setup
 app.use('/', landingRouter);
