@@ -120,7 +120,7 @@
 
               <!-- Callout - Films -->
               {{#each films}}
-              <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="col-sm-6 col-md-4 col-lg-3" style="min-width: 320px">
                 <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
                   <img src="../{{this.imageUrl}}" alt="{{this.name}}">
                   <div class="modal fade" id="{{this.modal}}" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="movieLabel" aria-hidden="true">
@@ -154,23 +154,32 @@
                     </div>
                   </div>
                 </a>
-                <div id="content" class="add-to-cart-box">
-                  <div id="products">
-                    <div style="margin-left: 20px; padding-bottom:5px;" class="product-description" data-name="{{this.name}}" data-price="4.99">
-                      <h3 class="product-name">{{this.name}}</h3>
-                      <p class="product-price">&pound; 4.99</p>
-                      <form class="add-to-cart" action="/films" method="post">
-                        <div>
-                          <label for="qty-3">Quantity</label>
-                          <input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+
+                <aside>
+                  <details>
+                    <summary style="margin-bottom: 20px; color:white; ">Movie Details</summary>
+                      <div id="content" style="min-width: 315px; margin-bottom: 20px; background-color:teal; margin-right:85px;">
+                        <div id="products">
+                          <div style="margin-left: 20px; padding-bottom:5px;" class="product-description" data-name="{{this.name}}" data-price="4.99">
+                            <h3 class="product-name">{{this.name}}</h3>
+                            <p class="product-price">&pound; 4.99</p>
+                            <form class="add-to-cart" action="/films/action" method="post">
+                              <div>
+                                <label for="qty-3">Quantity</label>
+                                <input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+                              </div>
+                            <p><input type="submit" value="Add to cart" class="btn btn-primary" /></p>
+                          </form>
                         </div>
-                        <p><input type="submit" value="Add to cart" class="btn btn-primary" /></p>
-                      </form>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </details>
+                </aside>
+
               </div>
+
               {{/each}}
+              
               <!-- /Callout - /Films -->
 
             </div>
@@ -202,6 +211,8 @@
             <input type="submit" name="delete" id="empty-cart" class="btn btn-primary" value="Empty Cart" />
 
             <a href="/checkout" class="btn btn-primary">Go To Checkout</a>
+
+            <a href="#top" class="btn btn-info">Back to top</a>
           </div>
         </form>
       </div>

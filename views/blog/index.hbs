@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
+  <script src="../../public/js/geopositioning.js"></script>
 
   <title>MockBuster - Blogbuster</title>
 </head>
@@ -23,7 +24,7 @@
   <header>
     <div class="container-fluid header-container">
       <div class="row no-gutters">
-        <a class="col-md-2 logo" href="/films"></a>
+        <a class="col-md-2 logo" href="/manager/hub"></a>
 
         <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
           <a class="navbar-brand" href="/films"><i class="fas fa-photo-video"></i></a>
@@ -121,36 +122,131 @@
       <br>
 
       <!-- Output of reviews -->
-      <h1 style="padding-left:20px;">Reviews</h1>
 
-      <div class="each-event" style="padding-left:20px;" id="blogs">
-        <br>
-        <hr>
-        {{#each blog}}
-        <div class="event-description" style="margin:20px;">
-          <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
-          <br>
+          <h1 style="padding-left:20px; background:linear-gradient(to right, red, goldenrod, blue); margin:0px;">Reviews</h1>
+          {{#each blog}}
+          <div class="container-fluid background-jumbotron callout-container">
+            <div class="opaque-overlay">&nbsp;</div>
+          <div class="container">
+            <div class="row">
+              <div class="col align-self-center">
+            <br>
+            <hr>
+            
+            <div class="event-description" style="margin:20px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod; padding: 20px;">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">Movie:</th>
+                    <td width="80%">{{this.movie}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Review:</th>
+                    <td>{{this.review}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Name:</th>
+                    <td>{{this.user}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Like the review?</th>
+                    <td>
+                      <div class="buttons">
+                        <span class="like-btn"></span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
 
-          <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
-          <br>
+          <form id="delete-blog-form" style="text-align:center; " action="/blog/delete/{{this._id}}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input class="btn-danger" style="text-align: center; max-width:180px; border-radius: 25px; border: 4px solid rgb(161, 15, 15); padding: 20px;" type="submit" value="Delete Review" />
+          </form>
 
-          <h2 id="user1"style="color: black;">Name: {{this.user}}</h2>
-          <br>
+          </div>
+          </div>
+          </div>
+          </div>
+          {{/each}}
 
-          <br>
+          <h1 style="padding-left:20px; background:linear-gradient(to right, red, goldenrod, blue); margin:0px;">Mockbuster hangouts</h1>
+          <h4>Suggested Mockbuster movie meet up locations</h4>
 
-        </div>
-      </div>
-      <div class="buttons" style="padding-bottom:50px;">
-        <span class="like-btn"></span>
-      </div>
-      <form id="delete-blog-form" style= "text-align: center;" action="/blog/delete/{{this._id}}" method="post">
-        <input type="hidden" name="_method" value="DELETE" />
-        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Review" />
-      </form>
-      <hr>
-      {{/each}}
-
+          <div class="container-fluid background-jumbotron callout-container">
+            <div class="opaque-overlay">&nbsp;</div>
+            <div class="container">
+              <div class="row">
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79690.52692977329!2d-0.04085001272980092!3d51.37863171460491!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8aa6d8fe94b2f%3A0x3fce972bdb3bc806!2sBromley%20Picturehouse!5e0!3m2!1sen!2suk!4v1588711695804!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79546.59835130685!2d-0.18513014179685644!3d51.46125559999999!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876046863ee2d23%3A0x77bf73dcc9e728fd!2sRitzy%20Cinema%20and%20Cafe!5e0!3m2!1sen!2suk!4v1588711749400!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79689.92613922531!2d-0.04085016890607866!3d51.37897680317013!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876013f6114f2cf%3A0x36cab1fba5a6fe22!2sEveryman%20Crystal%20Palace!5e0!3m2!1sen!2suk!4v1588711794778!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79689.62574482811!2d-0.04085024699375953!3d51.37914934632646!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487601bc482410f3%3A0x7358460dee7f81ec!2sParking%20for%20cinema!5e0!3m2!1sen!2suk!4v1588711837839!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+              </div>
+            </div>
+          </div>
 
       <!-- /Callout -->
 
@@ -262,7 +358,6 @@
       });
       </script>
 
-
       <!-- jquery to shrink logo and navbar on scroll -->
    <script>
      $( window ).scroll(function() {
@@ -274,6 +369,7 @@
 
      });
    </script>
+
     </body>
 {{/if}}
 <!-- /MANAGER VIEW -->
@@ -386,36 +482,130 @@
       <br>
 
       <!-- Output of reviews -->
-      <h1 style="padding-left:20px;">Reviews</h1>
+          <h1 style="padding-left:20px; background:linear-gradient(to right, red, goldenrod, blue); margin:0px;">Reviews</h1>
+          {{#each blog}}
+          <div class="container-fluid background-jumbotron callout-container">
+            <div class="opaque-overlay">&nbsp;</div>
+          <div class="container">
+            <div class="row">
+              <div class="col align-self-center">
+            <br>
+            <hr>
+            
+            <div class="event-description" style="margin:20px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod; padding: 20px;">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">Movie:</th>
+                    <td width="80%">{{this.movie}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Review:</th>
+                    <td>{{this.review}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Name:</th>
+                    <td>{{this.user}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Like the review?</th>
+                    <td>
+                      <div class="buttons">
+                        <span class="like-btn"></span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
 
-      <div class="each-event" style="padding-left:20px;">
-        <br>
-        <hr>
-        {{#each blog}}
-        <div class="event-description" style="margin:20px;" id="blogs">
-          <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
-          <br>
+          <form id="delete-blog-form" style="text-align:center; " action="/blog/delete/{{this._id}}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input class="btn-danger" style="text-align: center; max-width:180px; border-radius: 25px; border: 4px solid rgb(161, 15, 15); padding: 20px;" type="submit" value="Delete Review" />
+          </form>
 
-          <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
-          <br>
+          </div>
+          </div>
+          </div>
+          </div>
+          {{/each}}
 
-          <h2 id="user1"style="color: black;">Name: {{this.user}}</h2>
-          <br>
+          <h1 style="padding-left:20px; background:linear-gradient(to right, red, goldenrod, blue); margin:0px;">Mockbuster hangouts</h1>
+          <h4>Suggested Mockbuster movie meet up locations</h4>
 
-          <br>
-
-        </div>
-      </div>
-      <div class="buttons" style="padding-bottom:50px;">
-        <span class="like-btn"></span>
-      </div>
-      <form id="delete-blog-form" style= "text-align: center;" action="/blog/delete/{{this._id}}" method="post">
-        <input type="hidden" name="_method" value="DELETE" />
-        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review" />
-      </form>
-      <hr>
-      {{/each}}
-
+          <div class="container-fluid background-jumbotron callout-container">
+            <div class="opaque-overlay">&nbsp;</div>
+            <div class="container">
+              <div class="row">
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79690.52692977329!2d-0.04085001272980092!3d51.37863171460491!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8aa6d8fe94b2f%3A0x3fce972bdb3bc806!2sBromley%20Picturehouse!5e0!3m2!1sen!2suk!4v1588711695804!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79546.59835130685!2d-0.18513014179685644!3d51.46125559999999!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876046863ee2d23%3A0x77bf73dcc9e728fd!2sRitzy%20Cinema%20and%20Cafe!5e0!3m2!1sen!2suk!4v1588711749400!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79689.92613922531!2d-0.04085016890607866!3d51.37897680317013!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876013f6114f2cf%3A0x36cab1fba5a6fe22!2sEveryman%20Crystal%20Palace!5e0!3m2!1sen!2suk!4v1588711794778!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79689.62574482811!2d-0.04085024699375953!3d51.37914934632646!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487601bc482410f3%3A0x7358460dee7f81ec!2sParking%20for%20cinema!5e0!3m2!1sen!2suk!4v1588711837839!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+              </div>
+            </div>
+          </div>
 
       <!-- /Callout -->
 
@@ -527,7 +717,6 @@
       });
       </script>
 
-
       <!-- jquery to shrink logo and navbar on scroll -->
    <script>
      $( window ).scroll(function() {
@@ -539,6 +728,7 @@
 
      });
    </script>
+
     </body>
     {{/if}}
 
@@ -549,7 +739,13 @@
 
     {{#if users}}
     <body>
-
+      <style>
+        #map {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        }
+      </style>
       <!-- Header -->
       <header>
         <div class="container-fluid header-container">
@@ -651,20 +847,23 @@
           <div class="container-fluid background-jumbotron callout-container">
             <div class="opaque-overlay">&nbsp;</div>
             <div class="row">
-              <div class="col-8 form-background">
+              <div class="col-12 form-background">
                 <form id="new-blog-form" action="/blog" method="post">
-                  <h5 style="padding-top: 20px;">Rate a Movie!</h5>
+                  <h6 style="padding-top: 20px;">Have you seen an epic movie that you would like to talk about? 
+                    Is there a sequal you can't wait for? Do you know of a great venue to watch movies? 
+                    If so, please discuss with fellow movie lovers here!</h6>
+                  <h5 style="padding-top: 5px;">Leave a blog!</h5>
                   <div class="form-group">
-                    <label for="movie">Movie</label>
-                    <input name="movie" type="text" class="form-control" id="movie" placeholder="Movie" >
+                    <label for="movie">Blog Title</label>
+                    <input name="movie" type="text" class="form-control" id="movie" placeholder="e.g. movie title" >
                   </div>
                   <div class="form-group">
-                    <label for="review">What is your review? </label>
-                    <input id="review" type="text" name="review" class="form-control" placeholder="Your review">
+                    <label for="review">What are you blogging about? </label>
+                    <input id="review" type="text" name="review" class="form-control" placeholder="e.g. your movie review">
                   </div>
 
                   <div class="form-group">
-                    <label for="user">Name </label>
+                    <label for="user">Blogbuster user</label>
                     {{#users}}
                     <input id="user" type="text" name="user" class="form-control" value="{{this.firstname}}" >
                     {{/users}}
@@ -677,32 +876,124 @@
           </div>
 
           <!-- Output of reviews -->
-          <h1 style="padding-left:20px;">Reviews</h1>
-
-          <div class="each-event" style="padding-left:20px;">
+          <h1 style="padding-left:20px; background:linear-gradient(to right, red, goldenrod, blue); margin:0px;">Mockbuster community is talking about...</h1>
+          {{#each blog}}
+          <div class="container-fluid background-jumbotron callout-container">
+            <div class="opaque-overlay">&nbsp;</div>
+          <div class="container">
+            <div class="row">
+              <div class="col align-self-center">
             <br>
             <hr>
-            {{#each blog}}
-            <div class="event-description" style="margin:20px;">
-              <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
-              <br>
-
-              <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
-              <br>
-
-              <h2 id="user1"style="color: black;">Name: {{this.user}}</h2>
-              <br>
-              <br>
-
-            </div>
+            
+            <div class="event-description" style="margin:20px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod; padding: 20px;">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">Movie:</th>
+                    <td width="80%">{{this.movie}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Review:</th>
+                    <td>{{this.review}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Name:</th>
+                    <td>{{this.user}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Like the review?</th>
+                    <td>
+                      <div class="buttons">
+                        <span class="like-btn"></span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
           </div>
-          <div class="buttons" style="padding-bottom:50px;">
-            <span class="like-btn"></span>
           </div>
-          <hr>
+          </div>
+          </div>
+          </div>
           {{/each}}
 
+          <h1 style="padding-left:20px; background:linear-gradient(to right, red, goldenrod, blue); margin:0px;">Mockbuster hangouts</h1>
+          <h4>Suggested Mockbuster movie meet up locations</h4>
 
+          <div class="container-fluid background-jumbotron callout-container">
+            <div class="opaque-overlay">&nbsp;</div>
+            <div class="container">
+              <div class="row">
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79690.52692977329!2d-0.04085001272980092!3d51.37863171460491!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8aa6d8fe94b2f%3A0x3fce972bdb3bc806!2sBromley%20Picturehouse!5e0!3m2!1sen!2suk!4v1588711695804!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79546.59835130685!2d-0.18513014179685644!3d51.46125559999999!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876046863ee2d23%3A0x77bf73dcc9e728fd!2sRitzy%20Cinema%20and%20Cafe!5e0!3m2!1sen!2suk!4v1588711749400!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79689.92613922531!2d-0.04085016890607866!3d51.37897680317013!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876013f6114f2cf%3A0x36cab1fba5a6fe22!2sEveryman%20Crystal%20Palace!5e0!3m2!1sen!2suk!4v1588711794778!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+                <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79689.62574482811!2d-0.04085024699375953!3d51.37914934632646!2m3!1f0!2f0!3f0!
+                  3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487601bc482410f3%3A0x7358460dee7f81ec!2sParking%20for%20cinema!5e0!3m2!1sen!2suk!4v1588711837839!5m2!1sen!2suk" 
+                  width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                <aside>
+                  <details>
+                    <summary style="padding-bottom: 15px;">Location details</summary>
+                    <ul>
+                      <li>Large space</li>
+                      <li>Great popcorn</li>
+                      <li>Comfy seats</li>
+                    </ul>
+                  </details>
+                </aside>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <!-- /Callout -->
 
@@ -826,6 +1117,7 @@
 
          });
        </script>
+
         </body>
 {{/if}}
 <!-- /USERS VIEW -->

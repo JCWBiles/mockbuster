@@ -194,15 +194,16 @@ var EmployeeController = {
       message.save(function(err) {
         if (err) { throw err; }
         else {
+          console.log('request sent');
+          req.session.sessionFlash = {
+            type: 'success',
+            message: 'Request Sent!'
+          }
           console.log(message);
-          res.status(201).redirect('/employee/completed')
+          res.status(201).redirect('/employee/update')
         }
       })
     })
-  },
-
-  Completed: function(req, res){
-      res.status(201).render('employee/completed', { employees: employees })
   },
 
   Feedback: function (req, res){

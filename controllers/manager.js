@@ -66,17 +66,17 @@ var ManagerController = {
               message: 'Incorrect password, please try again'
             }
             console.log('wrong password');
-            res.status(201).redirect('/manager')
+            res.status(201).redirect('/manager/login')
           }
         })
       }
       else {
         req.session.sessionFlash = {
           type: 'info',
-          message: 'Incorrect password, please try again'
+          message: 'Incorrect email, please try again'
         }
         console.log('wrong email');
-        res.status(201).redirect('/manager')
+        res.status(201).redirect('/manager/login')
       }
     });
   },

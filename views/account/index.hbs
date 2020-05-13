@@ -8,11 +8,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css"> --}}
+  {{!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
+  {{!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> --}}
+  {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
+  
   <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
 
   <title>MockBuster - Account</title>
+
 </head>
 
 <body>
@@ -157,10 +161,44 @@
       <!-- /.Callout - edit img modal -->
 
       <br>
-      <div class="event-description" style="text-align: center;">
+      {{!-- <div class="event-description" style="text-align: center;">
         <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
         <p id="user-last-name" style="color: black;">Last Name: {{this.lastname}}</p>
-        <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
+        <p id="user-email-name"style="color: black;">Email: {{this.email}}</p> --}}
+        <div class="event-description" style="text-align: center;">
+        <table class="table table-sm table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row">First Name:</th>
+                    <td width="80%">{{this.firstname}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Last Name:</th>
+                    <td>{{this.lastname}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email:</th>
+                    <td>{{this.email}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Address Line 1:</th>
+                    <td>{{this.address_first_line}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Address Line 2:</th>
+                    <td>{{this.address_second_line}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">City:</th>
+                    <td>{{this.address_town}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Postcode:</th>
+                    <td>{{this.address_post_code}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
         <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
           <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
           <span class="fa-lg sr-only">Edit Details</span>
@@ -183,19 +221,28 @@
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Edit your first name:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="firstname"value="{{this.firstname}}">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="First name" name="firstname"value="{{this.firstname}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Edit your last name:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="lastname" value="{{this.lastname}}">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Last name" name="lastname" value="{{this.lastname}}">
                   </div>
 
                   <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Edit your email address:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="email" value="{{this.email}}">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Email address" name="email" value="{{this.email}}">
+                  </div>
+
+                  <input type="hidden" name="_method" value="PATCH" />
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Edit your home address:</label>
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Address line 1" name="address_first_line" value="{{this.address_first_line}}">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Address line 2" name="address_second_line" value="{{this.address_second_line}}">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Town" name="address_town" value="{{this.address_town}}">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Post Code" name="address_post_code" value="{{this.address_post_code}}">
                   </div>
 
                 </div>
@@ -293,68 +340,7 @@
     <!-- /.Callout -->
 
     <!-- Footer -->
-    <footer class="container-fluid footer-container text-center">
-      <div class="col-12">
-        <p class="inline-block ">
-          <i class="far fa-clock "></i>Mondays - Sunday 11 am until 6 pm.
-        </p>
-      </div>
-      <div class="col-12">
-        <p class="inline-block ">
-          <i class="fas fa-map-marker-alt "></i>We are located at our streaming service.
-        </p>
-      </div>
-      <div class="col-12">
-        <p class="inline-block ">
-          <i class="fas fa-at "></i>info@mockbuster.co.uk</br>
-        </p>
-      </div>
-      <div class="col-12">
-        <p class="inline-block ">
-          <i class="fas fa-phone "></i>0208 12345678
-        </p>
-      </div>
-      <div class="col-12 ">
-        <ul class="list-inline social-links ">
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-facebook hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">Facebook</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-twitter hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">Twitter</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-linkedin-in hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">LinkedIn</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-pinterest hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">Pinterest</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-instagram hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">Instagram</span>
-            </a>
-          </li>
-          <li class="list-inline-item ">
-            <a target="_blank " href="# " class="hvr-icon-bounce">
-              <i class="fab fa-youtube hvr-icon" aria-hidden="true "></i>
-              <span class="sr-only ">YouTube</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
+    <div id="footer"></div>
     <!-- /.Footer -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -409,7 +395,14 @@
         }
 
         });
-      </script>s
+      </script>
+      
+      <script>
+        $(function() {
+          $('#footer').load('footer.hbs');
+        });
+      </script>
+
   </body>
 
   </html>

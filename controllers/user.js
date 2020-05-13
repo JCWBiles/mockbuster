@@ -125,7 +125,9 @@ var UserController = {
 
 
   EditUser: function(req, res){
-    User.findOneAndUpdate({_id: req.params._id}, {$set: { firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email }, overwrite: true} , function(err){
+    User.findOneAndUpdate({_id: req.params._id}, {$set: { firstname: req.body.firstname, lastname: req.body.lastname, 
+      email: req.body.email, address_first_line: req.body.address_first_line, address_second_line: req.body.address_second_line, 
+      address_town: req.body.address_town, address_post_code: req.body.address_post_code }, overwrite: true} , function(err){
       if (err) { throw err; }
       res.status(201).redirect('/account');
     });

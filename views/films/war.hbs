@@ -159,24 +159,29 @@
                     </div>
                   </div>
                 </a>
-                <div id="content" style="background-color:teal; margin-right:85px;">
-                  <div id="products">
-                    <div style="margin-left: 20px; padding-bottom:5px;" class="product-description" data-name="{{this.name}}" data-price="4.99">
-                      <h3 class="product-name">{{this.name}}</h3>
-                      <p class="product-price">&pound; 4.99</p>
-                      <form class="add-to-cart" action="/films/war" method="post">
-                        <div>
-                          <label for="qty-3">Quantity</label>
-                          <input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+
+                <aside>
+                  <details>
+                    <summary style="margin-bottom: 20px; color:white; ">Movie Details</summary>
+                      <div id="content" style="min-width: 315px; margin-bottom: 20px; background-color:teal; margin-right:85px;">
+                        <div id="products">
+                          <div style="margin-left: 20px; padding-bottom:5px;" class="product-description" data-name="{{this.name}}" data-price="4.99">
+                            <h3 class="product-name">{{this.name}}</h3>
+                            <p class="product-price">&pound; 4.99</p>
+                            <form class="add-to-cart" action="/films/action" method="post">
+                              <div>
+                                <label for="qty-3">Quantity</label>
+                                <input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+                              </div>
+                            <p><input type="submit" value="Add to cart" class="btn btn-primary" /></p>
+                          </form>
                         </div>
-                        <p><input type="submit" value="Add to cart" class="btn btn-primary" /></p>
-                      </form>
+                      </div>
                     </div>
+                  </details>
+                </aside>
 
-                  </div>
-                </div>
               </div>
-
 
               {{/each}}
 
@@ -213,6 +218,8 @@
             <input type="submit" name="delete" id="empty-cart" class="btn btn-primary" value="Empty Cart" />
 
             <a href="/checkout" class="btn btn-primary">Go To Checkout</a>
+
+            <a href="#top" class="btn btn-info">Back to top</a>
           </div>
 
         </form>
