@@ -164,38 +164,6 @@
                   <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
                 </form>
               </div>
-              <br>
-              <hr>
-              <h1>Feedback</h1>
-              <br>
-              <div class="feedback">
-                <h3>Make a Suggestion</h3>
-                <p>Can't find the film you're looking for? Suggest it below!!</p>
-                <form action="/account/feedback" id="usrform" method="post">
-                  <p style="text-align:center;"> Name: {{this.firstname}}</p>
-                  <br>
-                  <textarea class="textbox" rows="4" cols="35" name="movieSuggestion" form="usrform" placeholder="Suggest a Movie..."></textarea>
-                  <p id="demo1"></p>
-                  <input hidden name="userId" type="text" class="form-control textbox" id="exampleInputUserId" value="{{this._id}}">
-                  <input type="submit" style="margin-top:10px;">
-                </form>
-              </div>
-              <br>
-              <br>
-              <div class="feedback">
-                <h3>Complaints</h3>
-                <p> At MockBuster we strive to give a wonderful viewing experience. However, if you are not satisfied or have ideas on how we can make MockBuster even better, please let us know below!!</p>
-                <form action="/account/feedback" id="complaintform" method="post">
-                  <p style="text-align:center;">Name: {{this.firstname}}</p>
-                  <br>
-                  <textarea class="textbox" rows="4" cols="35" name="complaint" form="complaintform" placeholder="What could we do better?"></textarea>
-                  <p id="demo2"></p>
-                  <input hidden name="userId" type="text" class="form-control textbox" id="exampleInputUserId" value="{{this._id}}">
-                  <input type="submit" style="margin-top:10px;">
-                </form>
-              </div>
-              <br>
-              <br>
             </div>
           </div>
         </div>

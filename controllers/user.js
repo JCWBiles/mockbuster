@@ -113,8 +113,8 @@ var UserController = {
     User.find({_id: req.session.userId}, function(err,users){
       if (err) { throw err }
       Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
-      res.status(201).render('account/index', { users: users, cartusers:cartusers, href: "/films", iconClass: "fas fa-photo-video" })
-    })
+        res.status(201).render('account/index', { users: users, cartusers:cartusers, href: "/films", iconClass: "fas fa-photo-video" })
+      })
     });
   },
 
@@ -152,6 +152,15 @@ var UserController = {
       User.findOneAndUpdate({_id: req.params._id}, {$set: { password: req.body.password }, overwrite: true} , function(err){
         if (err) { throw err; }
         res.status(201).redirect('/account')
+      })
+    });
+  },
+
+  FeedbackIndex: function(req, res){
+    User.find({_id: req.session.userId}, function(err,users){
+      if (err) { throw err }
+      Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
+        res.render('feedback/index',  { users: users, cartusers:cartusers, href: "/films", iconClass: "fas fa-photo-video" })
       })
     });
   },

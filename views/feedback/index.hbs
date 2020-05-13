@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <metacharset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
+  <title>MockBuster - Suggest a Movie!</title>
+</head>
+<body>
+  {{#if users}}
+  <!-- Header -->
+  {{#if sessionFlash.message}}
+  <div class="alert alert-{{ sessionFlash.type }} alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success:</strong> {{ sessionFlash.message }}
+  </div>
+  {{/if}}
+  {{> header }}
+  <!-- /.Header -->
+
+  <!-- Callout -->
+  <div class="each-event">
+    <div class="container-fluid background-jumbotron callout-container">
+      <div class="opaque-overlay">&nbsp;</div>
+      <div class="col-4 form-background">
+        {{#users}}
+        <h1>Feedback</h1>
+        <br>
+        <div class="feedback">
+          <h3>Make a Suggestion</h3>
+          <p>Can't find the film you're looking for? Suggest it below!!</p>
+          <form action="/feedback" id="usrform" method="post">
+            <p style="text-align:center;"> Name: {{this.firstname}}</p>
+            <br>
+            <textarea class="textbox" rows="4" cols="35" name="movieSuggestion" form="usrform" placeholder="Suggest a Movie..."></textarea>
+            <p id="demo1"></p>
+            <input hidden name="userId" type="text" class="form-control textbox" id="exampleInputUserId" value="{{this._id}}">
+            <input type="submit" style="margin-top:10px;">
+          </form>
+        </div>
+        <br><hr><br>
+        <div class="feedback">
+          <h3>Complaints</h3>
+          <p> At MockBuster we strive to give a wonderful viewing experience. However, if you are not satisfied or have ideas on how we can make MockBuster even better, please let us know below!!</p>
+          <form action="/feedback" id="complaintform" method="post">
+            <p style="text-align:center;">Name: {{this.firstname}}</p>
+            <br>
+            <textarea class="textbox" rows="4" cols="35" name="complaint" form="complaintform" placeholder="What could we do better?"></textarea>
+            <p id="demo2"></p>
+            <input hidden name="userId" type="text" class="form-control textbox" id="exampleInputUserId" value="{{this._id}}">
+            <input type="submit" style="margin-top:10px;">
+          </form>
+        </div>
+        <br><hr><br>
+        {{/users}}
+        <!-- /.Callout -->
+        {{else}}
+        {{> noUser}}
+        {{/if}}
+
+        <!-- Footer -->
+        {{> footer }}
+        <!-- /.Footer -->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="../js/jquery.shop.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript">
+        $('.like-btn').on('click', function() {
+          $(this).toggleClass('is-active');
+        });
+        </script>
+
+        <script>
+        $(function(){
+          $('#searchName').autocomplete({
+            source: function(req,res){
+
+              $.ajax({
+                url:"films/autocomplete/",
+                dataType:"jsonp",
+                type:"GET",
+                data:req,
+                success: function(data){
+                  res(data)
+
+                },
+                error: function(err){
+                  console.log(err.status);
+                }
+              });
+            },
+
+            minLength:1,
+            select: function(event,ui){
+              if(ui.item){
+                $('#searchName').val(ui.item.label);
+              }
+            }
+          });
+        });
+        </script>
+
+        <!-- jquery to shrink logo and navbar on scroll -->
+        <script>
+        $( window ).scroll(function() {
+          if($(window).scrollTop() > 70){
+            $('.logo').css({'height': '70'});
+          }else{
+            $('.logo').css({'height': '120'});
+          }
+
+        });
+        </script>
+      </body>
+      </html>

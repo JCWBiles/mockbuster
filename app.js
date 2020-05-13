@@ -35,6 +35,7 @@ var blogRouter = require('./routes/blog');
 // var chatRouter = require('./routes/chat');
 var quizRouter = require('./routes/quiz');
 var videoRouter = require('./routes/videochat');
+var feedbackRouter = require('./routes/feedback');
 var basketRouter = require('./routes/basket');
 var employeeRouter = require('./routes/employee');
 var managerRouter = require('./routes/manager');
@@ -144,7 +145,8 @@ app.use('/quiz/difficultgame', quizRouter);
 app.use('/quiz/end', quizRouter);
 app.use('/quiz/highscores', quizRouter);
 app.use('/videochat', videoRouter);
-app.use('/films', basketRouter);
+app.use('/feedback', feedbackRouter);
+// app.use('/films', basketRouter);
 app.use('/employee', employeeRouter);
 app.use('/employee/change', employeeRouter);
 app.use('/employee/em_hub', employeeRouter);
@@ -333,10 +335,12 @@ app.post('/user', upload.single('imageUrl'), function(req, res){
     }
   });
 
+  var firstname = req.body.firstname;
+
   var mailOptions = {
     from: 'MockBuster <mockbuster2020@gmail.com>',
     to: req.body.email,
-    subject: 'Welcome to Mockbuster',
+    subject: `Welcome to Mockbuster ${firstname}!`,
     text: `You're all signed up! We hope you enjoy our incredible library of films.`
   };
 
