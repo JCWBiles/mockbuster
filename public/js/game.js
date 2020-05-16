@@ -5,6 +5,7 @@ const scoreText = document.getElementById('score');
 const progressBarFull = document.getElementById('progressBarFull');
 const loader = document.getElementById('loader');
 const game = document.getElementById('game');
+
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -91,18 +92,27 @@ choices.forEach(choice => {
     acceptingAnswers = false;
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset['number'];
+    const actualAnswer = currentQuestion.answer
+    const answer = document.querySelector(`[data-number= '${currentQuestion.answer}']`);
 
     const classToApply =
-    selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'; //if statement - if correct or if incorrect.
+    selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect' //if statement - if correct or if incorrect.
+
+    const showCorrectAnswer =
+    actualAnswer == currentQuestion.answer ? 'correct' : 'incorrect' //selects the correct answer if wrong answer chosen
+
+
 
     if (classToApply ==='correct') {
       incrementScore(CORRECT_BONUS);
     }
 
     selectedChoice.parentElement.classList.add(classToApply);
+    answer.parentElement.classList.add(showCorrectAnswer);
 
     setTimeout( () =>{
       selectedChoice.parentElement.classList.remove(classToApply);
+      answer.parentElement.classList.remove(showCorrectAnswer);
       getNewQuestion();
     }, 1000);
   });
