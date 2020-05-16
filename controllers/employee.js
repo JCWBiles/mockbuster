@@ -2,6 +2,7 @@ var Employee = require('../models/employee');
 var Films = require('../models/films');
 var Message = require('../models/message');
 var Feedback = require('../models/feedback');
+var Blog = require('../models/blog');
 var bcrypt = require('bcrypt');
 
 var EmployeeController = {
@@ -95,7 +96,7 @@ var EmployeeController = {
       };
       Feedback.find(function(err, feedback){
         if (err){throw err};
-      res.status(201).render('employee/em_hub', { feedback: feedback, employees:employees })
+        res.status(201).render('employee/em_hub', { feedback: feedback, employees:employees })
       })
     });
   },
@@ -269,6 +270,31 @@ var EmployeeController = {
     })
   },
 
+  Blog: function(req, res) {
+    console.log(req.query);
+    Employee.find({_id: req.session.employeeId}, function(err, employees) {
+      if (err) { throw err; }
+      Blog.find().populate('user').sort( { date: -1 } ).exec(function(err, blog) {
+        if (err) { throw err; }
+        res.render('employee/blog', { qs:req.query, blog: blog, employees: employees});
+        console.log(req.session.employeeId);
+      })
+    });
+  },
+
+  BlogDelete: function(req, res){
+    Blog.findByIdAndRemove({_id: req.params._id}, function(err){
+      if (err) { throw err };
+      res.status(201).redirect('back');
+    })
+  },
+
+  BlogDelete2: function(req, res){
+    Blog.findByIdAndUpdate({_id: req.params._id},{$set: { review: "This post has been removed due to the violation of the terms and conditions of use of this website." }, overwrite: true}, function (err){
+      if (err) { throw err };
+      res.status(201).redirect('back');
+    })
+  },
 };
 
 module.exports = EmployeeController;

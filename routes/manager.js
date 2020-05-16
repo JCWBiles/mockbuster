@@ -24,5 +24,9 @@ router.post('/em_password/:_id', ManagerController.EditEmPassword);
 router.get('/messages', ManagerController.Message);
 router.get('/individualmsg/:_id', ManagerController.IndividualMsg);
 router.post('/message/delete/:_id', ManagerController.DeleteMsg);
+router.get('/blog', ManagerController.Blog);
+router.post('/blog/delete/:_id', ManagerController.BlogDelete);
+router.post('/blog/delete2/:_id', ManagerController.BlogDelete2);
+router.get('/filmlib', ManagerController.FilmLib);
 
 module.exports = router;

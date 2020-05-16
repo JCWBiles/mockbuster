@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <metacharset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
+
+  <title>MockBuster - Blogbuster</title>
+</head>
+<body>
+  {{#if employees}}
+
+  <!-- Header -->
+  <header>
+    <div class="container-fluid header-container">
+      <div class="row no-gutters">
+        <a class="col-md-2 logo" href="/employee/em_hub"></a>
+
+        <nav class="col-md-10 navbar navbar-expand-sm navbar-light bg-white">
+          <a class="navbar-brand" href="/films"><i class="fas fa-photo-video"></i></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span><!-- This compenent is what provides the three bar icon for the button --></button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <!-- The id name must match the data-target seen in row 27 -->
+              <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Genres
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/films/action">Action<i class="fas fa-radiation-alt float-right"></i></a>
+                    <a class="dropdown-item" href="/films/biopic">Biopic<i class="fas fa-user-tie float-right"></i></a>
+                    <a class="dropdown-item" href="/films/comedy">Comedy<i class="fas fa-theater-masks float-right"></i></a>
+                    <a class="dropdown-item" href="/films/crime">Crime<i class="fas fa-mask float-right"></i></a>
+                    <a class="dropdown-item" href="/films/drama">Drama<i class="fas fa-heartbeat float-right"></i></a>
+                    <a class="dropdown-item" href="/films/fantasy">Fantasy<i class="fas fa-dragon float-right"></i></a>
+                    <a class="dropdown-item" href="/films/history">History<i class="fab fa-fort-awesome float-right"></i></a>
+                    <a class="dropdown-item" href="/films/horror">Horror<i class="fas fa-ghost float-right"></i></a>
+                    <a class="dropdown-item" href="/films/kids">Kids<i class="fas fa-child float-right"></i></a>
+                    <a class="dropdown-item" href="/films/legal">Legal<i class="fas fa-balance-scale float-right"></i></a>
+                    <a class="dropdown-item" href="/films/musical">Musical<i class="fas fa-music float-right"></i></a>
+                    <a class="dropdown-item" href="/films/romance">Romance<i class="fas fa-grin-hearts float-right"></i></a>
+                    <a class="dropdown-item" href="/films/sports">Sports<i class="fas fa-futbol float-right"></i></a>
+                    <a class="dropdown-item" href="/films/superhero">Superhero<i class="fab fa-superpowers float-right"></i></i></a>
+                    <a class="dropdown-item" href="/films/thriller">Thriller<i class="far fa-surprise float-right"></i></a>
+                    <a class="dropdown-item" href="/films/war">War<i class="fas fa-bomb float-right"></i></a>
+                    <hr/>
+                    <a class="dropdown-item" href="/films">Library<i class="fas fa-photo-video float-right"></i></a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    A-Z
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/films/a_to_e">A-E</a>
+                    <a class="dropdown-item" href="/films/f_to_j">F-J</a>
+                    <a class="dropdown-item" href="/films/k_to_o">K-O</a>
+                    <a class="dropdown-item" href="/films/p_to_t">P-T</a>
+                    <a class="dropdown-item" href="/films/u_to_z">U-Z</a>
+                    <hr/>
+                    <a class="dropdown-item" href="/films/zero_to_nine">0-9</a>
+                    <hr/>
+                    <a class="dropdown-item" href="/films">Library<i class="fas fa-photo-video float-right"></i></a>
+                  </div>
+                </li>
+                <!-- Header - search box -->
+                <li class="nav-item">
+                  <form class="form-inline" action="/films/search"  method="get">
+                    <div class="">
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <input type="text" id="searchName" class="form-control" name="search" placeholder="Search Films...">
+                        </div>
+                      </div>
+                    </div>
+                    <input type="submit" class="form-control btn btn-primary" name="submit" value="Search">
+                  </form>
+                </li>
+                <!-- /Header - /search box -->
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{#employees}}
+                    {{this.em_first_name}}'s Account
+                    {{/employees}}
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/employee/account">My Details<i class="fas fa-info-circle float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/blog?role=employee">Blog<i class="fas fa-blog float-right"></i></a>
+                    <a class="dropdown-item" href="#">HR<i class="fas fa-person-booth float-right"></i></a>
+                    <a class="dropdown-item" href="#">Film Library<i class="fas fa-photo-video float-right"></i></a>
+                    <a class="dropdown-item" href="#">Customer Feedback<i class="fas fa-comments float-right"></i></a>
+                    <a class="dropdown-item" href="#">Customer Suggestions<i style="padding-left: 15px;" class="fas fa-comment-dots"></i></a>
+                    <a class="dropdown-item" href="/employee/em_hub">Hub<i class="fas fa-backspace float-right"></i></a>
+                    <a class="dropdown-item" href="/employee/session/destroy">Log Out<i class="fas fa-sign-out-alt float-right"></i></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- /.Header -->
+
+    <!-- Callout -->
+    <div class="each-event">
+      <h1 style="padding-left:20px;">Welcome to Blogbuster! (insert Blogbuster logo) </h1>
+      <br>
+
+      <!-- Output of reviews -->
+      <h1 style="padding-left:20px;">Reviews</h1>
+
+      <div class="each-event" style="padding-left:20px;">
+        <br>
+        <hr>
+        {{#each blog}}
+        <div class="event-description" style="margin:20px;" id="blogs">
+          <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
+          <br>
+
+          <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
+          <br>
+
+          <h2 id="user1"style="color: black;">Name: {{this.user.firstname}}</h2>
+          <br>
+
+          <br>
+
+        </div>
+      </div>
+      <div class="buttons" style="padding-bottom:50px;">
+        <span class="like-btn"></span>
+      </div>
+      <form id="delete-blog-form" style= "text-align: center;" action="/employee/blog/delete2/{{this._id}}" method="post">
+        <input type="hidden" name="_method" value="PATCH" />
+        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from user's view and replace with notification)" />
+      </form>
+      <form id="delete-blog-form" style= "text-align: center;" action="/employee/blog/delete/{{this._id}}" method="post">
+        <input type="hidden" name="_method" value="PATCH" />
+        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from database)" />
+      </form>
+      <hr>
+      {{/each}}
+
+      {{else}}
+      {{> noManager}}
+      {{/if}}
+
+      {{> footer}}
+
+
+      <!-- /Callout -->
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script type="text/javascript">
+      $('.like-btn').on('click', function() {
+        $(this).toggleClass('is-active');
+      });
+      </script>
+
+      <script>
+      $(function(){
+        $('#searchName').autocomplete({
+          source: function(req,res){
+
+            $.ajax({
+              url:"films/autocomplete/",
+              dataType:"jsonp",
+              type:"GET",
+              data:req,
+              success: function(data){
+                res(data)
+
+              },
+              error: function(err){
+                console.log(err.status);
+              }
+            });
+          },
+
+          minLength:1,
+          select: function(event,ui){
+            if(ui.item){
+              $('#searchName').val(ui.item.label);
+            }
+          }
+        });
+      });
+      </script>
+
+
+      <!-- jquery to shrink logo and navbar on scroll -->
+      <script>
+      $( window ).scroll(function() {
+        if($(window).scrollTop() > 70){
+          $('.logo').css({'height': '70'});
+        }else{
+          $('.logo').css({'height': '120'});
+        }
+
+      });
+      </script>
+    </body>
+    </html>

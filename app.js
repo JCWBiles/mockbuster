@@ -158,6 +158,7 @@ app.use('/employee/feedback', employeeRouter);
 app.use('/employee/individualfeedback', employeeRouter);
 app.use('/employee/suggestions', employeeRouter);
 app.use('/employee/complaints', employeeRouter);
+app.use('/employee/blog', employeeRouter);
 app.use('/manager', managerRouter);
 app.use('/manager/login', managerRouter);
 app.use('/manager/account', managerRouter);
@@ -167,6 +168,8 @@ app.use('/manager/staff_creation', managerRouter);
 app.use('/manager/completed', managerRouter);
 app.use('/manager/messages', managerRouter);
 app.use('/manager/individualmsg', managerRouter);
+app.use('/manager/blog', managerRouter);
+app.use('/manager/filmlib', managerRouter);
 app.use('/man_auth', man_authRouter);
 app.use(methodOverride('_method'));
 

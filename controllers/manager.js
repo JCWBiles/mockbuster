@@ -1,6 +1,8 @@
 var Manager = require('../models/manager');
 var Employee = require('../models/employee');
 var Message = require('../models/message');
+var Blog = require('../models/blog');
+var Films = require('../models/films');
 var bcrypt = require('bcrypt');
 
 // var Manager = require('../models/films');
@@ -98,6 +100,16 @@ var ManagerController = {
         if (err) { throw err; }
         res.render('manager/hr', {  managers: managers, employees: employees });
         console.log(req.session.managerId);
+      })
+    });
+  },
+
+  FilmLib: function(req, res) {
+    Manager.find({_id: req.session.managerId}, function(err,managers) {
+      if (err) { throw err; }
+      Films.find(function(err, films) {
+        if (err) { throw err; }
+        res.render('manager/filmlib', {  films: films, managers: managers });
       })
     });
   },
@@ -230,6 +242,32 @@ var ManagerController = {
         if (err) { throw err }
         res.status(201).redirect('/manager/messages')
       })
+    })
+  },
+
+  Blog: function(req, res) {
+    console.log(req.query);
+      Manager.find({_id: req.session.managerId}, function(err, managers) {
+        if (err) { throw err; }
+        Blog.find().populate('user').sort( { date: -1 } ).exec(function(err, blog) {
+          if (err) { throw err; }
+          res.render('manager/blog', { qs:req.query, blog: blog, managers: managers});
+          console.log(req.session.managerId);
+        })
+      });
+  },
+
+  BlogDelete: function(req, res){
+    Blog.findByIdAndRemove({_id: req.params._id}, function(err){
+      if (err) { throw err };
+      res.status(201).redirect('back');
+    })
+  },
+
+  BlogDelete2: function(req, res){
+    Blog.findByIdAndUpdate({_id: req.params._id},{$set: { review: "This post has been removed due to the violation of the terms and conditions of use of this website." }, overwrite: true}, function (err){
+      if (err) { throw err };
+      res.status(201).redirect('back');
     })
   },
 

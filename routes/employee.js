@@ -24,5 +24,8 @@ router.get('/suggestions', EmployeeController.Suggestion);
 router.get('/complaints', EmployeeController.Complaint);
 router.get('/individualfeedback/:_id', EmployeeController.IndividualFeedback);
 router.post('/feedback/delete/:_id', EmployeeController.DeleteFeedback);
+router.get('/blog', EmployeeController.Blog);
+router.post('/blog/delete/:_id', EmployeeController.BlogDelete);
+router.post('/blog/delete2/:_id', EmployeeController.BlogDelete2);
 
 module.exports = router;
