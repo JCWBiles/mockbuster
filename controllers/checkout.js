@@ -11,16 +11,22 @@ var CheckoutController = {
         if (err) { throw err; }
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
           Cart.countDocuments({user:req.session.userId}, (err, count) => {
-            if (count) res.render('checkout/index', { films: films, users: users, cartusers: cartusers, count: count, href: "/films", iconClass: "fas fa-photo-video" });
-            else res.render('films/index', { films: films, users: users, cartusers: cartusers, count: count, href: "/films", iconClass: "fas fa-photo-video" });
-            console.log( "Number of docs: ", count );
-            console.log(req.session.userId);
-            console.log(users);
+            if (count) {
+              res.render('checkout/index', { films: films, users: users, cartusers: cartusers, count: count, href: "/films", iconClass: "fas fa-photo-video" });
+            }
+            else{
+              req.session.sessionFlash = {
+                type: 'info',
+                message: 'Your basket is now empty'
+              }
+              res.redirect('/films');
+            }
           })
         })
       })
-    });
+    })
   },
+
 
   EditPay: function(req, res) {
     var email = req.body.email;
@@ -88,8 +94,8 @@ var CheckoutController = {
               margin-bottom: 2.5cm;
             }
             .logo {
-                background: url("/images/logo/mockbuster_logo_4.png");
-              }
+              background: url("/images/logo/mockbuster_logo_4.png");
+            }
             </style>
 
             </head>
@@ -241,8 +247,8 @@ var CheckoutController = {
               margin-bottom: 2.5cm;
             }
             .logo {
-                background: url("/images/logo/mockbuster_logo_4.png");
-              }
+              background: url("/images/logo/mockbuster_logo_4.png");
+            }
             </style>
 
             </head>
@@ -332,17 +338,17 @@ var CheckoutController = {
             if (err) { throw err; }
             res.status(201).redirect('/checkout/thank_you');
           })
-        {cart:cart} })
-      })
-    },
+          {cart:cart} })
+        })
+      },
 
-    Thank_You: function(req, res) {
-      User.find({_id: req.session.userId}, function(err,users) {
-        if (err) { throw err; }
-        res.render('checkout/thank_you', {  users: users, href: "/films", iconClass: "fas fa-photo-video" });
-        console.log(req.session.userId);
-      })
-    },
-  };
+      Thank_You: function(req, res) {
+        User.find({_id: req.session.userId}, function(err,users) {
+          if (err) { throw err; }
+          res.render('checkout/thank_you', {  users: users, href: "/films", iconClass: "fas fa-photo-video" });
+          console.log(req.session.userId);
+        })
+      },
+    };
 
-  module.exports = CheckoutController;
+    module.exports = CheckoutController;

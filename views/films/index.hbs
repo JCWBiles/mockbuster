@@ -19,6 +19,12 @@
 <body>
 
   <!-- Header -->
+  {{#if sessionFlash.message}}
+  <div class="alert alert-{{ sessionFlash.type }} alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  {{ sessionFlash.message }}
+  </div>
+  {{/if}}
   {{> header }}
   <!-- /.Header -->
 
