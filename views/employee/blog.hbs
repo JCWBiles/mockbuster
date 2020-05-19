@@ -115,46 +115,142 @@
 
     <!-- Callout -->
     <div class="each-event">
-      <h1 style="padding-left:20px;">Welcome to Blogbuster! (insert Blogbuster logo) </h1>
+      <h1 style="padding-left:20px;">Welcome to Blogbuster! </h1>
       <br>
 
       <!-- Output of reviews -->
-      <h1 style="padding-left:20px;">Reviews</h1>
+     <h1 style="padding-left:20px; background:linear-gradient(to right, red, goldenrod, blue); margin:0px;">Mockbuster community is talking about...</h1>
+     {{#each blog}}
+     <div class="container-fluid background-jumbotron callout-container">
+       <div class="opaque-overlay">&nbsp;</div>
+       <div class="container">
+         <div class="row">
+           <div class="col align-self-center">
+             <br>
+             <hr>
 
-      <div class="each-event" style="padding-left:20px;">
-        <br>
-        <hr>
-        {{#each blog}}
-        <div class="event-description" style="margin:20px;" id="blogs">
-          <h2 id="movie1" style="color: black;">Movie: {{this.movie}}</h2>
-          <br>
+             <div class="event-description" style="margin:20px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod; padding: 20px;">
+               <table class="table table-borderless">
+                 <tbody>
+                   <tr>
+                     <th scope="row">Title:</th>
+                     <td width="80%">{{this.movie}}</td>
+                   </tr>
+                   <tr>
+                     <th scope="row">Details:</th>
+                     <td>{{this.review}}</td>
+                   </tr>
+                   <tr>
+                     <th scope="row">Name:</th>
+                     <td>{{this.user.firstname}}</td>
+                   </tr>
+                   <tr>
+                     <th scope="row">Like the blog?</th>
+                     <td>
+                       <div class="buttons">
+                         <span class="like-btn"></span>
+                       </div>
+                     </td>
+                   </tr>
+                 </tbody>
+               </table>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="buttons" style="padding-bottom:50px;">
+       <span class="like-btn"></span>
+     </div>
+     <form id="delete-blog-form" style= "text-align: center;" action="/manager/blog/delete2/{{this._id}}" method="post">
+       <input type="hidden" name="_method" value="PATCH" />
+       <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from user's view and replace with notification)" />
+     </form>
+     <form id="delete-blog-form" style= "text-align: center;" action="/manager/blog/delete/{{this._id}}" method="post">
+       <input type="hidden" name="_method" value="PATCH" />
+       <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from database)" />
+     </form>
+     <hr>
+     {{/each}}
 
-          <h2 id="review1"style="color: black;">Review: {{this.review}}</h2>
-          <br>
+     <h1 style="padding-left:20px; background:linear-gradient(to right, red, goldenrod, blue); margin:0px;">Mockbuster hangouts</h1>
+     <h4>Suggested Mockbuster movie meet up locations</h4>
 
-          <h2 id="user1"style="color: black;">Name: {{this.user.firstname}}</h2>
-          <br>
+     <div class="container-fluid background-jumbotron callout-container">
+       <div class="opaque-overlay">&nbsp;</div>
+       <div class="container">
+         <div class="row">
+           <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79690.52692977329!2d-0.04085001272980092!3d51.37863171460491!2m3!1f0!2f0!3f0!
+             3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8aa6d8fe94b2f%3A0x3fce972bdb3bc806!2sBromley%20Picturehouse!5e0!3m2!1sen!2suk!4v1588711695804!5m2!1sen!2suk"
+             width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
-          <br>
+             <aside>
+               <details>
+                 <summary style="padding-bottom: 15px;">Location details</summary>
+                 <ul>
+                   <li>Large space</li>
+                   <li>Great popcorn</li>
+                   <li>Comfy seats</li>
+                 </ul>
+               </details>
+             </aside>
+           </div>
+           <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79546.59835130685!2d-0.18513014179685644!3d51.46125559999999!2m3!1f0!2f0!3f0!
+             3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876046863ee2d23%3A0x77bf73dcc9e728fd!2sRitzy%20Cinema%20and%20Cafe!5e0!3m2!1sen!2suk!4v1588711749400!5m2!1sen!2suk"
+             width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
-        </div>
-      </div>
-      <div class="buttons" style="padding-bottom:50px;">
-        <span class="like-btn"></span>
-      </div>
-      <form id="delete-blog-form" style= "text-align: center;" action="/employee/blog/delete2/{{this._id}}" method="post">
-        <input type="hidden" name="_method" value="PATCH" />
-        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from user's view and replace with notification)" />
-      </form>
-      <form id="delete-blog-form" style= "text-align: center;" action="/employee/blog/delete/{{this._id}}" method="post">
-        <input type="hidden" name="_method" value="PATCH" />
-        <input class="btn-primary" style="text-align: center; margin-bottom: 20px;" type="submit" value="Delete Review (from database)" />
-      </form>
-      <hr>
-      {{/each}}
+             <aside>
+               <details>
+                 <summary style="padding-bottom: 15px;">Location details</summary>
+                 <ul>
+                   <li>Large space</li>
+                   <li>Great popcorn</li>
+                   <li>Comfy seats</li>
+                 </ul>
+               </details>
+             </aside>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79689.92613922531!2d-0.04085016890607866!3d51.37897680317013!2m3!1f0!2f0!3f0!
+             3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876013f6114f2cf%3A0x36cab1fba5a6fe22!2sEveryman%20Crystal%20Palace!5e0!3m2!1sen!2suk!4v1588711794778!5m2!1sen!2suk"
+             width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
+             <aside>
+               <details>
+                 <summary style="padding-bottom: 15px;">Location details</summary>
+                 <ul>
+                   <li>Large space</li>
+                   <li>Great popcorn</li>
+                   <li>Comfy seats</li>
+                 </ul>
+               </details>
+             </aside>
+           </div>
+           <div class="col" style="min-width: 300px; margin: 5px; padding-top: 15px; background-color:rgb(224, 245, 251); border-radius: 25px; border: 4px solid goldenrod;">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79689.62574482811!2d-0.04085024699375953!3d51.37914934632646!2m3!1f0!2f0!3f0!
+             3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487601bc482410f3%3A0x7358460dee7f81ec!2sParking%20for%20cinema!5e0!3m2!1sen!2suk!4v1588711837839!5m2!1sen!2suk"
+             width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+             <aside>
+               <details>
+                 <summary style="padding-bottom: 15px;">Location details</summary>
+                 <ul>
+                   <li>Large space</li>
+                   <li>Great popcorn</li>
+                   <li>Comfy seats</li>
+                 </ul>
+               </details>
+             </aside>
+           </div>
+         </div>
+       </div>
+     </div>
       {{else}}
-      {{> noManager}}
+      {{> noEmployee}}
       {{/if}}
 
       {{> footer}}

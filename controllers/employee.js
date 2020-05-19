@@ -260,7 +260,7 @@ var EmployeeController = {
       if (err) { throw err }
       Feedback.findByIdAndRemove({_id: req.params._id}, function(err, feedback){
         if (err) { throw err }
-        res.status(201).redirect('/employee/feedback')
+        res.status(201).redirect('back')
       })
     })
   },
