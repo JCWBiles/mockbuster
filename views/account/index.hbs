@@ -8,11 +8,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
-  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css"> --}}
-  {{!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
-  {{!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> --}}
-  {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
-
   <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
 
   <title>MockBuster - Account</title>
@@ -36,172 +31,190 @@
         <div class="container-fluid background-jumbotron callout-container">
           <div class="opaque-overlay">&nbsp;</div>
           <div class="col-4 form-background">
-            <h1 style="text-align: center;">Account Details</h1>
-            <br>
-            {{#users}}
-            <img src="{{this.imageUrl}}" alt="{{this.firstname}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
-            <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
-              <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
-              <span class="fa-lg sr-only">Edit Profile Pic</span>
-            </a>
-            <hr>
-
-            <!-- Callout - edit img modal -->
-            <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/upload/{{this._id}}" method="post" enctype="multipart/form-data">
-                      <input type="hidden" name="_method" value="PATCH" />
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
-                        <input type='file' accept="image/*" name="imageUrl"/>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <input type="submit" class="btn btn--teal btn-primary" value="Edit"/>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- /.Callout - edit img modal -->
-      <br>
-      {{!-- <div class="event-description" style="text-align: center;">
-        <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
-        <p id="user-last-name" style="color: black;">Last Name: {{this.lastname}}</p>
-        <p id="user-email-name"style="color: black;">Email: {{this.email}}</p> --}}
-        <div class="event-description" style="text-align: center;">
-        <table class="table table-sm table-striped">
-                <tbody>
-                  <tr>
-                    <th scope="row">First Name:</th>
-                    <td width="80%">{{this.firstname}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Last Name:</th>
-                    <td>{{this.lastname}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Email:</th>
-                    <td>{{this.email}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Address Line 1:</th>
-                    <td>{{this.address_first_line}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Address Line 2:</th>
-                    <td>{{this.address_second_line}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">City:</th>
-                    <td>{{this.address_town}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Postcode:</th>
-                    <td>{{this.address_post_code}}</td>
-                  </tr>
-                </tbody>
-              </table>
-
-        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
-          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-          <span class="fa-lg sr-only">Edit Details</span>
+        <h1 style="text-align: center;">Account Details</h1>
+        <br>
+        <img src="{{this.imageUrl}}" alt="{{this.firstname}}" class="profilePic" onerror="this.src='../images/blank-profile-picture.png';">
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit6" style="display: inline;">
+          <i id="edit" class="fas fas fa-edit hvr-icon pic-edit" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit Profile Pic</span>
         </a>
-                    <div class="modal-body">
-                      <form id="new-name-form" style="display: inline; margin-top: -20px;" action="/account/edit_user/{{this._id}}" method="post">
+        <hr>
 
-                        <input type="hidden" name="_method" value="PATCH" />
-                        <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Edit your first name:</label>
-                          <input type="text" class="form-control" id="recipient-name" name="firstname"value="{{this.firstname}}">
-                        </div>
-                        <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Edit your last name:</label>
-                          <input type="text" class="form-control" id="recipient-name" name="lastname" value="{{this.lastname}}">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Edit your email address:</label>
-                          <input type="text" class="form-control" id="recipient-name" name="email" value="{{this.email}}">
-                        </div>
-
-                      </div>
-
+        <!-- Callout - edit img modal -->
+        <div class="modal fade" id="edit6" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="new-name-form" style = "display: inline; margin-top: -20px;" action="/account/upload/{{this._id}}" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="_method" value="PATCH" />
                   <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Edit your home address:</label>
-                    <input type="text" class="form-control" id="recipient-name" placeholder="Address line 1" name="address_first_line" value="{{this.address_first_line}}">
-                    <input type="text" class="form-control" id="recipient-name" placeholder="Address line 2" name="address_second_line" value="{{this.address_second_line}}">
-                    <input type="text" class="form-control" id="recipient-name" placeholder="Town" name="address_town" value="{{this.address_town}}">
+                    <label for="recipient-name" class="col-form-label">Edit your profile pic:</label>
+                    <input type='file' accept="image/*" name="imageUrl"/>
                   </div>
                 </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-              </div>
-            </form>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn--teal btn-primary" value="Edit"/>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- /.Callout - edit img modal -->
 
-              <!-- /.Callout - edit USER modal -->
+        <br>
+        {{!-- <div class="event-description" style="text-align: center;">
+          <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
+          <p id="user-last-name" style="color: black;">Last Name: {{this.lastname}}</p>
+          <p id="user-email-name"style="color: black;">Email: {{this.email}}</p> --}}
+          <div class="event-description" style="text-align: center;">
+          <table class="table table-sm table-striped">
+                  <tbody>
+                    <tr>
+                      <th scope="row">First Name:</th>
+                      <td width="80%">{{this.firstname}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Last Name:</th>
+                      <td>{{this.lastname}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Email:</th>
+                      <td>{{this.email}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Address Line 1:</th>
+                      <td>{{this.address_first_line}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Address Line 2:</th>
+                      <td>{{this.address_second_line}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">City:</th>
+                      <td>{{this.address_town}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Postcode:</th>
+                      <td>{{this.address_post_code}}</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-              <hr>
-              <p id="user-password"style="color: black;">To update your password please click the edit button:</p>
-              <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit4" style="">
-                <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-                <span class="fa-lg sr-only">Edit Password</span>
-              </a>
+          <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
+            <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+            <span class="fa-lg sr-only">Edit Details</span>
+          </a>
 
-              <!-- Callout - edit password modal -->
-              <div class="modal fade" id="edit4" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+          <!-- Callout - edit USER modal -->
+          <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <form id="new-name-form" style="display: inline; margin-top: -20px;" action="/account/edit_user/{{this._id}}" method="post">
+
+                    <input type="hidden" name="_method" value="PATCH" />
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Edit your first name:</label>
+                      <input type="text" class="form-control" id="recipient-name" placeholder="First name" name="firstname"value="{{this.firstname}}">
                     </div>
-                    <div class="modal-body">
-                      <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/account/password/{{this._id}}" method="post">
-                        <input type="hidden" name="_method" value="PATCH" />
-                        <div class="form-group">
-                          <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <!-- /.Callout - edit password modal -->
 
-              <hr>
-              <br>
-              <div style="text-align: center;">
-                <form id="delete-user-form" style = "display: inline;" action="/account/delete/{{this._id}}" method="post">
-                  <input type="hidden" name="_method" value="DELETE" />
-                  <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
+                    <input type="hidden" name="_method" value="PATCH" />
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Edit your last name:</label>
+                      <input type="text" class="form-control" id="recipient-name" placeholder="Last name" name="lastname" value="{{this.lastname}}">
+                    </div>
+
+                    <input type="hidden" name="_method" value="PATCH" />
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Edit your email address:</label>
+                      <input type="text" class="form-control" id="recipient-name" placeholder="Email address" name="email" value="{{this.email}}">
+                    </div>
+
+                    <input type="hidden" name="_method" value="PATCH" />
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Edit your home address:</label>
+                      <input type="text" class="form-control" id="recipient-name" placeholder="Address line 1" name="address_first_line" value="{{this.address_first_line}}">
+                      <input type="text" class="form-control" id="recipient-name" placeholder="Address line 2" name="address_second_line" value="{{this.address_second_line}}">
+                      <input type="text" class="form-control" id="recipient-name" placeholder="Town" name="address_town" value="{{this.address_town}}">
+                      <input type="text" class="form-control" id="recipient-name" placeholder="Post Code" name="address_post_code" value="{{this.address_post_code}}">
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                  </div>
                 </form>
               </div>
             </div>
           </div>
+          <!-- /.Callout - edit USER modal -->
+
+          <hr>
+          <p id="user-password"style="color: black;">To update your password please click the edit button:</p>
+          <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit4" style="">
+            <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+            <span class="fa-lg sr-only">Edit Password</span>
+          </a>
+
+          <!-- Callout - edit password modal -->
+          <div class="modal fade" id="edit4" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="new-password-form" style="display: inline; margin-top: -20px;" action="/account/password/{{this._id}}" method="post">
+                    <input type="hidden" name="_method" value="PATCH" />
+                    <div class="form-group">
+                      <label for="exampleInputPassword1" class="col-form-label">To update your password please enter in the space provided below and press edit.</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter new password here">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- /.Callout - edit password modal -->
+
+          <hr>
+          <br>
+          <div style="text-align: center;">
+            <form id="delete-user-form" style = "display: inline;" action="/account/delete/{{this._id}}" method="post">
+              <input type="hidden" name="_method" value="DELETE" />
+              <input class="btn-primary" style="text-align: center; margin-bottom: 20px;"type="submit" value="Delete Account" />
+            </form>
+          </div>
+          <br>
+          <hr>
+          </div>
         </div>
       </div>
-    </div>
-    {{/users}}
-    <!-- /.Callout -->
+      </div>
+      </div>
+      <!-- /.Callout -->
     {{else}}
     {{> noUser}}
     {{/if}}
