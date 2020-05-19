@@ -8,11 +8,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/b21f20a653.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css"> --}}
+  {{!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
+  {{!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> --}}
+  {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
+
   <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
 
   <title>MockBuster - Account</title>
+
 </head>
 
 <body>
@@ -69,28 +73,49 @@
               </div>
             </div>
             <!-- /.Callout - edit img modal -->
+      <br>
+      {{!-- <div class="event-description" style="text-align: center;">
+        <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
+        <p id="user-last-name" style="color: black;">Last Name: {{this.lastname}}</p>
+        <p id="user-email-name"style="color: black;">Email: {{this.email}}</p> --}}
+        <div class="event-description" style="text-align: center;">
+        <table class="table table-sm table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row">First Name:</th>
+                    <td width="80%">{{this.firstname}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Last Name:</th>
+                    <td>{{this.lastname}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email:</th>
+                    <td>{{this.email}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Address Line 1:</th>
+                    <td>{{this.address_first_line}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Address Line 2:</th>
+                    <td>{{this.address_second_line}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">City:</th>
+                    <td>{{this.address_town}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Postcode:</th>
+                    <td>{{this.address_post_code}}</td>
+                  </tr>
+                </tbody>
+              </table>
 
-            <br>
-            <div class="event-description" style="text-align: center;">
-              <p id="user-first-name" style="color: black;">First Name: {{this.firstname}}</p>
-              <p id="user-last-name" style="color: black;">Last Name: {{this.lastname}}</p>
-              <p id="user-email-name"style="color: black;">Email: {{this.email}}</p>
-              <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
-                <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
-                <span class="fa-lg sr-only">Edit Details</span>
-              </a>
-
-              <!-- Callout - edit USER modal -->
-              <div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="basketLabel"><b>Edit</b></h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-
+        <a class="nav-link hvr-icon-bounce" data-toggle="modal" data-target="#edit1" style="">
+          <i id="edit" class="fas fas fa-edit hvr-icon" aria-hidden="true" ></i>
+          <span class="fa-lg sr-only">Edit Details</span>
+        </a>
                     <div class="modal-body">
                       <form id="new-name-form" style="display: inline; margin-top: -20px;" action="/account/edit_user/{{this._id}}" method="post">
 
@@ -99,7 +124,6 @@
                           <label for="recipient-name" class="col-form-label">Edit your first name:</label>
                           <input type="text" class="form-control" id="recipient-name" name="firstname"value="{{this.firstname}}">
                         </div>
-
                         <div class="form-group">
                           <label for="recipient-name" class="col-form-label">Edit your last name:</label>
                           <input type="text" class="form-control" id="recipient-name" name="lastname" value="{{this.lastname}}">
@@ -111,14 +135,21 @@
                         </div>
 
                       </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
-                      </div>
-                    </form>
+
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Edit your home address:</label>
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Address line 1" name="address_first_line" value="{{this.address_first_line}}">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Address line 2" name="address_second_line" value="{{this.address_second_line}}">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Town" name="address_town" value="{{this.address_town}}">
                   </div>
                 </div>
               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn--teal btn-primary" value="Edit" />
+              </div>
+            </form>
+
               <!-- /.Callout - edit USER modal -->
 
               <hr>
@@ -176,7 +207,9 @@
     {{/if}}
 
     <!-- Footer -->
+
     {{> footer }}
+
     <!-- /.Footer -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -229,9 +262,8 @@
       }else{
         $('.logo').css({'height': '120'});
       }
-
-    });
-    </script>
+        });
+      </script>
   </body>
 
   </html>

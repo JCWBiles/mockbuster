@@ -338,8 +338,10 @@ nav a{
 
 .form-background {
     background-color: #fff;
-    margin: 100px;
+    margin: 50px 0px;
     border-radius: 25px;
+    min-width: 350px;
+    max-width: 400px;
 }
 
 
@@ -570,13 +572,14 @@ nav a{
   padding-top: 30px;
   margin-right: 60px;
 }
+
 .like-btn {
   position: absolute;
-  top: 9px;
-  left: 15px;
+  top: -15px;
+  left: -15px;
   background: url('https://designmodo.com/demo/shopping-cart/twitter-heart.png');
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background-size: 2900%;
   background-repeat: no-repeat;
 }

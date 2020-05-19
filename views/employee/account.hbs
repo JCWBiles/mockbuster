@@ -103,9 +103,50 @@
       <br>
       <br>
       <div class="event-description" style="text-align: center;">
-        <p id="user-first-name" style="color: black;">First Name: {{this.em_first_name}}</p>
+        <table class="table table-sm table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row">First Name:</th>
+                    <td width="80%">{{this.em_first_name}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Last Name:</th>
+                    <td>{{this.em_last_name}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email:</th>
+                    <td>{{this.em_email}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Address Line 1:</th>
+                    <td>{{this.em_address_line1}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Address Line 2:</th>
+                    <td>{{this.em_address_line2}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">City:</th>
+                    <td>{{this.em_address_city}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Postcode:</th>
+                    <td>{{this.em_address_postcode}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Telephone:</th>
+                    <td>{{this.em_tel}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        {{!-- <p id="user-first-name" style="color: black;">First Name: {{this.em_first_name}}</p>
         <p id="user-last-name" style="color: black;">Last Name: {{this.em_last_name}}</p>
         <p id="user-email-name"style="color: black;">Email: {{this.em_email}}</p>
+        <p id="user-email-name"style="color: black;">Address: {{this.em_address_line1}}<br>
+          {{this.em_address_line2}}<br>
+          {{this.em_address_city}}<br>
+          {{this.em_address_postcode}}</p>
+        <p id="user-email-name"style="color: black;">Telephone: {{this.em_tel}}</p> --}}
         <hr>
         <div style="text-align: center;">
         <p id="user-password"style="color: black;">To update your password please click the edit button:</p>
