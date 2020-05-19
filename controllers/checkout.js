@@ -12,7 +12,7 @@ var CheckoutController = {
         Cart.find({user:req.session.userId}).populate('film').exec(function(err,cartusers){
           Cart.countDocuments({user:req.session.userId}, (err, count) => {
             if (count) res.render('checkout/index', { films: films, users: users, cartusers: cartusers, count: count, href: "/films", iconClass: "fas fa-photo-video" });
-            else res.send(err);
+            else res.render('films/index', { films: films, users: users, cartusers: cartusers, count: count, href: "/films", iconClass: "fas fa-photo-video" });
             console.log( "Number of docs: ", count );
             console.log(req.session.userId);
             console.log(users);

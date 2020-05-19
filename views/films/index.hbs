@@ -22,72 +22,74 @@
   {{> header }}
   <!-- /.Header -->
 
-  <!-- Callout -->
-  <div id="site">
 
-    <h1 style="margin-left:20px;">Library</h1>
-    <div class="container-fluid background-jumbotron callout-container">
-      <div class="opaque-overlay">&nbsp;</div>
-      <div class="row">
-        <div class="tz-gallery">
-          <div class="row">
+          <!-- Callout -->
+          <div id="site">
 
-            <!-- Callout - Films -->
-            {{#each films}}
-            <div class="col-sm-6 col-md-3">
-              <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
-                <img src="{{this.imageUrl}}" alt="{{this.name}}">
-              </a>
+            <h1 style="margin-left:20px;">Library</h1>
+            <div class="container-fluid background-jumbotron callout-container">
+              <div class="opaque-overlay">&nbsp;</div>
+              <div class="row">
+                <div class="tz-gallery">
+                  <div class="row">
 
-              <!-- Callout - film details modal -->
-              <div class="modal fade" id="{{this.modal}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="movieLabel"><b>{{this.name}}</b>
-                      </h5>
-                      <div class="buttons">
-                        <span class="like-btn"></span>
-                      </div>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                    <!-- Callout - Films -->
+                    {{#each films}}
+                    <div class="col-sm-6 col-md-3">
+                      <a class="lightbox" data-toggle="modal" data-target="#{{this.modal}}">
+                        <img src="{{this.imageUrl}}" alt="{{this.name}}">
+                      </a>
+
+                      <!-- Callout - film details modal -->
+                      <div class="modal fade" id="{{this.modal}}" tabindex="-1" role="dialog" aria-labelledby="basketLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="movieLabel"><b>{{this.name}}</b>
+                              </h5>
+                              <div class="buttons">
+                                <span class="like-btn"></span>
+                              </div>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form id="add-to-cart-form" style = "display: inline; margin-top: -20px;" action="/cart/add" method="post">
+                                <div class="form-group">
+                                  <input type="hidden" class="form-control" name="filmId" value="{{this._id}}">
+                                </div>
+                                <div class="form-group">
+                                  <p>{{this.description}}</p>
+                                </div>
+                              <div>
+                                <h4 style="margin:10px;"><span>Trailer</span></h4>
+                                <iframe style="margin:10px;" height="150" width="300" src="{{this.trailerUrl}}" allowfullscreen frameborder="0"></iframe>
+                              </div>
+
+                              <div class="modal-footer">
+                                <input type="submit" class="btn btn--teal btn-primary" value="Add to Basket" />
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                              </form>
+                              <!-- /.Callout -  film details modal -->
+                            </div>
+                          </div>
+                          </div>
+                          </div>
+
+
                     </div>
-                    <div class="modal-body">
-                      <form id="add-to-cart-form" style = "display: inline; margin-top: -20px;" action="/cart/add" method="post">
-                        <div class="form-group">
-                          <input type="hidden" class="form-control" name="filmId" value="{{this._id}}">
-                        </div>
-                        <div class="form-group">
-                          <p>{{this.description}}</p>
-                        </div>
-                        <div>
-                          <h4 style="margin:10px;"><span>Trailer</span></h4>
-                          <iframe style="margin:10px;" height="150" width="300" src="{{this.trailerUrl}}" allowfullscreen frameborder="0"></iframe>
-                        </div>
+                    {{/each}}
 
-                        <div class="modal-footer">
-                          <input type="submit" class="btn btn--teal btn-primary" value="Add to Basket" />
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </form>
-                      <!-- /.Callout -  film details modal -->
-                    </div>
                   </div>
                 </div>
+
               </div>
-              {{/each}}
 
-              <!-- /Callout - /Films -->
           </div>
-        </div>
 
-      </div>
-
-    </div>
-
-
-    <!-- /Callout -->
+          <!-- /Callout -->
 
     <!-- Footer -->
     {{> footer }}
