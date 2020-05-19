@@ -99,7 +99,7 @@ choices.forEach(choice => {
     selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect' //if statement - if correct or if incorrect.
 
     const showCorrectAnswer =
-    actualAnswer == currentQuestion.answer ? 'correct' : 'incorrect' //selects the correct answer if wrong answer chosen
+    actualAnswer == currentQuestion.answer ? 'correct' : 'incorrect' //reveals the correct answer after wrong answer selected
 
 
 
