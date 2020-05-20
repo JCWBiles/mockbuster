@@ -11,6 +11,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
+  <script type="text/javascript">
+  function refreshPage() {
+      var page_y = document.getElementsByTagName("body")[0].scrollTop;
+      window.location.href = window.location.href.split('?')[0] + '?page_y=' + page_y;
+	  }
+</script>
 
   <title>MockBuster - Employee Hub</title>
 </head>

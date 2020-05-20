@@ -14,6 +14,14 @@
   <link rel="stylesheet" href="../stylesheets/styles.css" type="text/css" />
 
   <title>MockBuster - Library</title>
+
+  <script type="text/javascript">
+  function refreshPage() {
+      var page_y = document.getElementsByTagName("body")[0].scrollTop;
+      window.location.href = window.location.href.split('?')[0] + '?page_y=' + page_y;
+	  }
+</script>
+
 </head>
 
 <body>
